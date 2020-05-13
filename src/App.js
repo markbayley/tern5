@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 
+
+
+
 class App extends React.Component {
   render() {
     return (
@@ -24,7 +27,7 @@ class App extends React.Component {
           </div>
         </div>
 
-
+     
 
         <div class="main-header">
           <div class="container">
@@ -33,6 +36,7 @@ class App extends React.Component {
                 <a href="#"><span><img src="img/logo@3x.png" alt="" /></span></a>
               </div>
               <div class="main-header-bar-navigation">
+          
                 <input class="menu-btn" type="checkbox" id="menu-btn" />
                 <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                 <ul id="primary-menu" class="main-header-menu d-flex">
@@ -47,7 +51,8 @@ class App extends React.Component {
                     </ul>
                   </li>
                   <li><a href="#">Tools & Resources</a>
-                    <ul class="dropdown">
+                    <ul class="dropDown">
+                
 
                     </ul>
                   </li>
@@ -65,6 +70,8 @@ class App extends React.Component {
 
 
 
+
+
         <div class="main-footer">
           <div class="container">
             <div class="main-footer-row">
@@ -75,9 +82,10 @@ class App extends React.Component {
                       <h3>Contact us</h3>
                       <p class="mb-20">
                         Physical &amp; Mail Address
-                        <div>Room 156, Goddard Building (8)The University of Queensland</div>
-                        <p><span >St Lucia 4072</span></p>
-                        <p class="fz-15 font-500 mb-20">P <a class="text-black" href="tel:0733659097">(07) 33659097</a>E <a href="mailto:esupport@tern.org.au">esupport@tern.org.au</a></p>
+                        <div >Room 156, Goddard Building (8)<br></br>
+                        The University of Queensland<br></br>
+                        St Lucia 4072</div>
+                        <p class="fz-15 font-500 mb-20">P <a class="text-black" href="tel:0733659097">(07) 33659097<br></br></a>E <a href="mailto:esupport@tern.org.au">esupport@tern.org.au</a></p>
                         <p class="fz-15"><a href="https://www.tern.org.au/access-policy">Access Policy</a></p>
                         <ul class="social-icons">
                           <li><a href="#"><i class="fa fa-facebook"></i></a></li>
