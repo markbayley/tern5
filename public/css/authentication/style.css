@@ -1,0 +1,288 @@
+* {
+	box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Uni Neue';
+    src: url('https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/static-web-assets/tern/2020-04-09/fonts/fontfabric_-_unineueheavy-webfont.woff2')format('woff2'),
+         url('https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/static-web-assets/tern/2020-04-09/fonts/fontfabric_-_unineueheavy-webfont.woff')format('woff');
+    font-weight: 900;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Uni Neue';
+    src: url('https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/static-web-assets/tern/2020-04-09/fontfabric_-_unineuelight-webfont.woff2')format('woff2'),
+         url('https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/static-web-assets/tern/2020-04-09/fontfabric_-_unineuelight-webfont.woff')format('woff');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+html {
+	font-size: 100%;
+}
+
+body {
+	/* -webkit-font-smoothing: antialiased; */
+	color: #333333;
+	font-family: 'museo-sans', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #e36a51;
+}
+
+a:focus, a:hover {
+	color: #3a3a3a;
+}
+
+/* TOP HEADER STYLES */
+.above-header	{
+	background-color: #0f3540;
+}
+
+.above-header-section-wrap {
+	max-width: 1185px;
+}
+
+.above-header-section a {
+    font-family: 'Uni Neue', sans-serif;
+    font-weight: 900;
+}
+
+.above-header-section-1 a {
+    background-color: #FFF;
+	color: #0F3540;
+	font-size: 20px;
+	padding: 6px 15px 12px 15px;
+}
+.above-header-section-1 a img {
+    max-width: 65px;
+}
+
+
+.above-header-section-2 span {
+	background-color: #E36A51;
+	padding: 10px 15px 8px 15px;
+}
+
+.above-header-section-2 img {
+	background-color: #E36A51;
+	max-height: 1.5em;
+}
+
+.above-header-section-2 a {
+	color: #FFF;
+}
+
+
+
+
+/* MENU / APP HEADER STYLES */
+.main-header {
+	padding: 15px 15px 15px 15px;
+	margin-top: 15px;
+
+}
+
+.main-header img {
+	max-width: 300px;
+}
+
+
+.content-title {
+	background: url(https://www.tern.org.au/wp-content/uploads/innerbanner@2x-scaled.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center right;
+	margin-bottom: 1em;
+}
+
+.content-title-container  {
+	padding: 49px 15px 49px 15px;
+}
+
+.content-title h1 {
+	font-family: "Uni Neue", Sans-serif;
+	font-size: 35px;
+	font-weight: 900;
+	/* color: #043e4f; */
+	color: #FFF;
+}
+
+
+.main-footer {
+	margin-top: 1em;
+}
+
+.main-footer h3 {
+	color: #0f3540;
+	font-size: 16px;
+	font-family: "Uni Neue", Sans-serif;
+	font-weight: 900;
+}
+
+.main-footer img {
+	height: auto;
+}
+
+.main-footer .footer-section {
+	border-style: solid;
+	border-width: 7px 0px 0px 0px;
+	border-color: #6093a4;
+	transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+	padding: 45px 0px 0px 0px;
+	margin: 1em;
+}
+
+.main-footer .footer-contact {
+	border-color: #043e4f;
+}
+
+.main-footer .contact-social a {
+	margin-right: 20px;
+	color: #0f3540;
+}
+
+.main-footer .footer-funding {
+	border-color: #6093a4;
+}
+
+.main-footer .footer-funding img {
+	width: 138px;
+}
+
+.main-footer .footer-investment {
+	border-color: #6093A4;
+}
+
+.main-footer .footer-investment img {
+	width: 180px;
+}
+
+
+.main-footer .footer-newsletter {
+	border-color: #e36a51;
+}
+
+.main-footer .footer-partners {
+	color: #ffffff;
+	background-color: #898888;
+	padding: 10px;
+	margin-top: 1em;
+}
+
+.main-footer .footer-partners-list {
+	background-color: #ecebea;
+	padding-bottom: 30px;
+}
+
+/* login form styles */
+.login-form-container {
+    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/form-background.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 20px;
+
+    line-height: 2;
+    padding: 2em;
+    color: #F6F6F8;
+}
+
+@media (min-width: 768px) {
+    .login-form-container {
+        border-radius: 20px 0 0 20px;
+    }
+}
+
+.login-text-container {
+    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/text-background.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+
+.login-text-container h3 {
+    color: #5EA595;
+}
+
+.login-text-container p {
+    color: #F6F6F8;
+}
+
+
+/* kc login style overrides */
+#kc-form form {
+    display: none;
+}
+
+#kc-social-providers ul {
+    margin-top: 1em;
+}
+
+#kc-social-providers a {
+    margin-bottom:1rem;
+    height: 50px;
+    width: 240px;
+    padding:12px 0 0 60px;
+    color: #fff;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: left top;
+    transition-delay:0s, 0s, 0s;
+    transition-duration:0.218s, 0.218s, 0.218s;
+    transition-property:background-color, border-color, box-shadow;
+    transition-timing-function:ease, ease, ease;
+}
+
+#kc-social-providers a:hover {
+    text-decoration: none;
+    -webkit-box-shadow: 0 0 3px 3px rgba(66,133,244,1);
+    box-shadow: 0 0 3px 3px rgba(66,133,244,1);
+}
+
+
+#kc-social-providers a.zocial-google {
+    background-color: #FFFFFF;
+    color: #757575;
+    /* background-color: #4285f4; */
+    border: 1px solid #4285f4;
+    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/google-icon.svg);
+}
+
+#kc-social-providers a#zocial-google {
+    background-color: #FFFFFF;
+    color: #757575;
+    /* background-color: #4285f4; */
+    border: 1px solid #4285f4;
+    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/google-icon.svg);
+}
+
+#kc-social-providers a#zocial-aaf {
+    /* background-color: #f5811d;
+    border: 1px solid #f5811d; */
+
+    background-color: #f67f29;
+    border: 1px solid #f67f29;
+
+    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/aaf-icon.png);
+}
+
+#kc-social-providers a#zocial-oidc {
+    /* background-color: #f5811d;
+    border: 1px solid #f5811d; */
+
+    background-color: #f67f29;
+    border: 1px solid #f67f29;
+
+    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/aaf-icon.png);
+}
+
+.login-pf-social {
+    line-height: 1.5;
+}
