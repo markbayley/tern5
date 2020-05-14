@@ -1,3 +1,10 @@
+Quick Guide:
+
+1. Clone the repository: git clone https://markbayleyuq@bitbucket.org/terndatateam/tern-react.git
+2. npm install
+3. npm start
+
+(May take a few seconds to open in the browser as its still in development mode).
 
 
 ## Available Scripts
