@@ -30,7 +30,7 @@ class MainHeader extends Component {
                                 <ul id="primary-menu" class="main-header-menu d-flex">
                                     <li><a href="#">
                                         <Dropdown autoOpen>
-                                            <Dropdown.Toggle title="About" style={{ fontSize: "18px", border: "none", fontWeight: "bold", color: "#0f3540;" }} />
+                                            <Dropdown.Toggle title="About" style={{ fontSize: "18px", border: "none", color: "#0f3540;" }} />
                                             <Dropdown.Menu>
                                                 <MenuItem>
                                                     Menu item one
@@ -53,7 +53,7 @@ class MainHeader extends Component {
                                     </li>
                                     <li><a href="#">
                                         <Dropdown autoOpen>
-                                            <Dropdown.Toggle title="TERN Observatory" style={{ fontSize: "18px", border: "none", fontWeight: "bold", color: "#0f3540;" }} />
+                                            <Dropdown.Toggle title="TERN Observatory" style={{ fontSize: "18px", border: "none", color: "#0f3540;" }} />
                                             <Dropdown.Menu>
                                                 <MenuItem>
                                                     Menu item one
@@ -75,7 +75,7 @@ class MainHeader extends Component {
                                     </li>
                                     <li><a href="#">
                                         <Dropdown autoOpen>
-                                            <Dropdown.Toggle title="Resources" style={{ fontSize: "18px", border: "none", fontWeight: "bold", color: "#0f3540;" }} />
+                                            <Dropdown.Toggle title="Tools & Resources" style={{ fontSize: "18px", border: "none", color: "#0f3540;" }} />
                                             <Dropdown.Menu>
                                                 <MenuItem>
                                                     Menu item one
@@ -99,7 +99,7 @@ class MainHeader extends Component {
                                     </li>
                                     <li><a href="#">
                                         <Dropdown autoOpen>
-                                            <Dropdown.Toggle title="Community" style={{ fontSize: "18px", border: "none", fontWeight: "bold", color: "#0f3540;" }} />
+                                            <Dropdown.Toggle title="Community" style={{ fontSize: "18px", border: "none", color: "#0f3540;" }} />
                                             <Dropdown.Menu>
                                                 <MenuItem>
                                                     Menu item one

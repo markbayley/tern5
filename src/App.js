@@ -3,7 +3,7 @@ import './App.css';
 import AboveHeader from './components/AboveHeader';
 import MainHeader from './components/MainHeader';
 import MainFooter from './components/MainFooter';
-
+import SubFooter from './components/SubFooter';
 
 
 
@@ -15,6 +15,7 @@ class App extends React.Component {
         <AboveHeader />
         <MainHeader />
         <MainFooter />
+    
 
       </div>
 
