@@ -1,8 +1,10 @@
 import React, { Component, Fragment} from 'react';
 
-import DropDown from '../components/DropDown';
+import AboutUsDropdown from '../components/AboutUsDropdown';
+import ObservatoryDropdown from '../components/ObservatoryDropdown';
+import ResourcesDropdown from '../components/ResourcesDropdown';
+import CommunityDropdown from '../components/CommunityDropdown';
 
-const name = () => name;
 
 class MainHeader extends Component {
     render() {
@@ -22,23 +24,22 @@ class MainHeader extends Component {
                                 <ul id="primary-menu" class="main-header-menu d-flex">
                                     <li><a href="#">
                                   
-                                    <DropDown 
-                                       name="Community" 
-                                      >
-                                    </DropDown></a>
+                                    <AboutUsDropdown content="hello">
+                                        
+                                    </AboutUsDropdown></a>
                                         <ul class="dropdown">
 
 
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                        <DropDown></DropDown></a>
+                                        <ObservatoryDropdown></ObservatoryDropdown></a>
                                         <ul class="dropdown">
 
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                        <DropDown></DropDown>
+                                       <ResourcesDropdown></ResourcesDropdown>
                                     </a>
                                         <ul class="dropdown">
 
@@ -46,7 +47,7 @@ class MainHeader extends Component {
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                        <DropDown></DropDown>
+                                        <CommunityDropdown></CommunityDropdown>
                                     </a>
                                         <ul class="dropdown">
 
