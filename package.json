@@ -9,10 +9,12 @@
     "@tgdn/react-dropdown": "0.0.7",
     "@trendmicro/react-dropdown": "^1.4.0",
     "bootstrap": "^4.5.0",
+    "leaflet": "^1.6.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-leaflet": "^2.7.0",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.4.1",
     "semantic-ui-react": "^0.88.2"

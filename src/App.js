@@ -4,9 +4,9 @@ import AboveHeader from './components/AboveHeader';
 import MainHeader from './components/MainHeader';
 import MainFooter from './components/MainFooter';
 import SubFooter from './components/SubFooter';
-import Banner from './components/Banner';
+import BioimagesBanner from './components/BioimagesBanner';
 import SignIn from './components/SignIn';
-
+import MapBox from './components/MapBox';
 
 class App extends React.Component {
   render() {
@@ -15,8 +15,10 @@ class App extends React.Component {
       
         <AboveHeader />
         <MainHeader />
-        <Banner />
-        <SignIn />
+        <BioimagesBanner />
+       
+        <MapBox />
+       
         <MainFooter />
         <SubFooter/>
     
