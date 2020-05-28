@@ -6,7 +6,12 @@ import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import wkt_coords from 'wicket';
 
 
-import { Container, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, Row, Col
+  } from 'reactstrap';
+import BreadCrumb from './BreadCrumb';
 
 
 
@@ -326,7 +331,7 @@ class MapBox extends React.Component {
 
 
 
-          <Col sm="6">
+          <Col sm="6" >
             <Card body>
               <div>
                 <div className="right">
@@ -355,12 +360,117 @@ class MapBox extends React.Component {
                 </div>
               </div>
               <hr></hr>
-              <CardTitle>Breadcrumb</CardTitle>
+            <BreadCrumb></BreadCrumb>
               <CardText></CardText>
-              <Button>Button</Button>
+            
             </Card>
+            <Row>
+        <Col sm="3">
+        <Card>
+        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText> </CardText>
+     
+        </CardBody>
+      </Card>
+            </Col>
+
+
+          <Col sm="3">
+          <Card>
+          <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+       
+        </CardBody>
+      </Card>
+            
+
+          </Col>
+          <Col sm="3">
+          <Card>
+        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+         
+        </CardBody>
+      </Card>
+            
+
+          </Col>
+          <Col sm="3">
+          <Card>
+          <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+   
+        </CardBody>
+      </Card>
+
+      </Col >
+          <Col sm="3" >
+          <Card >
+        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+         
+        </CardBody>
+      </Card>
+
+      </Col>
+
+          <Col sm="3">
+          <Card>
+        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+         
+        </CardBody>
+      </Card>
+
+      </Col>
+          <Col sm="3">
+          <Card>
+        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+         
+        </CardBody>
+      </Card>
+
+      </Col>
+          <Col sm="3">
+          <Card>
+        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle></CardSubtitle>
+          <CardText></CardText>
+         
+        </CardBody>
+      </Card>
+            
+
           </Col>
         </Row>
+          </Col>
+        </Row>
+
+       
 
 
 

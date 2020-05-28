@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 class MainFooter extends Component {
     render() {
         return (
+     
+          
 
 
             <div class="main-footer">
@@ -76,6 +79,7 @@ class MainFooter extends Component {
                     </div>
                 </div>
             </div>
+          
 
 
 

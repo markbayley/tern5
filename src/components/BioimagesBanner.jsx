@@ -5,10 +5,11 @@ class BioimagesBanner extends Component {
         return (
 
 
-            <div class="row content-title">
-                <div class="container content-title-container">
+            <div class="row bionanner">
+                <div class="biobanner-container">
                     <h1>
-                        Bioimages
+                 
+                        <img src='img/biobanner.png' />
                    </h1>
                 </div>
             </div>

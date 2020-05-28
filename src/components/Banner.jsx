@@ -5,21 +5,12 @@ class Banner extends Component {
         return (
          
 
-<div class="row content-title">
-      <div class="container content-title-container">
-     
-        <h1> Sign in
-
-        </h1>
-      </div>
-    </div>
+          <div class="row content-title">
+            <div class="container content-title-container">  
+              <h1> Sign in</h1>
+            </div>
+          </div>
                  
-
-
-
-          
-
-
         );
     }
 }
