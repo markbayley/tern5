@@ -637,6 +637,8 @@ a {
 	.main-header .menu-icon {
 	    display: none;
 	 }
+
+	
 }
 @media(max-width: 1055px) {
 	.site-branding {
@@ -696,11 +698,22 @@ a {
 	.main-header-container {
 		display: block;
 	}
+
+	.main-header-menu > li {
+		display: none;
+	}
+
+	footer {
+		display: none;
+	}
+
 }
 @media(max-width: 1024px) {
 	.footer-col {
 		width: 50%;
 	}
+
+
 }
 @media(max-width: 767px) {
 	.footer-col {
@@ -711,6 +724,10 @@ a {
 	.footer-column-2, .footer-column-3, .footer-column-4 {
 		display: none;
 	}
+
+	
+
+	
 }
 @media(max-width: 400px) {
 	.above-header-section .above-header-section-1 {
@@ -746,8 +763,27 @@ a {
 
 .leaflet-container {
   height: 500px;
-  width: 100%;
+  width: fluid;
 }
+
+.map-container {
+	height: 100%;
+	/* Fallback for vmin */
+	
+  }
+  
+  .map-frame {
+	height: 100%;
+	width: 100%;
+  /*   We use outline over border as has issues in some cases */
+	
+  }
+  
+  #map-id { 
+	height: 100%;
+  }
+
+
 
 
 

@@ -6,9 +6,9 @@ class MainFooter extends Component {
         return (
      
           
+           <Container style={{paddingTop: "2%"}}>
 
-
-            <div class="main-footer">
+            <div class="main-footer" >
                 <div class="container">
                     <div class="main-footer-row">
                         <div class="main-footer-container">
@@ -80,6 +80,7 @@ class MainFooter extends Component {
                 </div>
             </div>
           
+            </Container>
 
 
 

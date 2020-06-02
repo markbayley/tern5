@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-class SubFooter extends Component {
+class BioimagesSubFooter extends Component {
     render() {
         return (
             
@@ -25,7 +25,9 @@ class SubFooter extends Component {
            
                         <div class="row align-items-center footer-partners">
                             <div class="col">
-                                Key Operating Partners
+                                <div class="row">Access Policy</div>
+                                <div class="row">Data Licensing</div>
+                                <div class="row">Copyright</div>
                         </div>
                         </div>
 
@@ -55,4 +57,4 @@ class SubFooter extends Component {
 }
 
 
-export default SubFooter;
+export default BioimagesSubFooter;

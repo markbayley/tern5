@@ -4,18 +4,18 @@ import { CONFIG } from '../config.js';
 import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
-
-
+//import Api from './Api';
+import Cards from './Cards';
+import PhotoGallery from './PhotoGallery'
 
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Row, Col
-  } from 'reactstrap';
+  Card, CardTitle, Row, Col,
+} from 'reactstrap';
+
+
+
 import BreadCrumb from './BreadCrumb';
-
-
-
-
+import SideBar from './SideBar';
 
 
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
@@ -37,8 +37,8 @@ function SearchResults(props) {
       </div>
     </div>
   );
-
 }
+
 function SearchResult(props) {
   const img_url = base_image_url + props.value.published_root + '/' + props.value.thumbnail_path;
   return (
@@ -48,7 +48,6 @@ function SearchResult(props) {
     </li>
   );
 }
-
 
 function ImageSearch(props) {
   return (
@@ -137,8 +136,8 @@ function ImageMarkers(props) {
       id={id}
       key={id} />
   );
-
 }
+
 function ImageMarker(props) {
   return (
     <Marker key={props.id}
@@ -263,79 +262,41 @@ class MapBox extends React.Component {
         </div>
 
         <Row>
-        <Col sm="2">
-            <Card body>
-              </Card>
-              </Col>
-          <Col sm="2">
-            <Card body>
-              <CardTitle><strong>Filter</strong></CardTitle>
-              <CardText>Site</CardText>
-              <div>
-                  <ImageSearch
-                    value={this.state.filters}
-                    onClick={(i) => this.handleFilter(i)} />
-                </div>
-                <hr></hr>
-                <CardText>Image Type</CardText>
-                <p>Leaf Area Index</p>
-                <p>Phenocam</p>
-                <p>Photopoint</p>
-                <p>Panorama</p>
-                <hr></hr>
-                <CardText>Ancillary Images</CardText>
-                <p>Fungi</p>
-                <p>Flora</p>
-                <p>Fauna</p>
-                <p>General</p>
-                <hr></hr>
-             
-              
-             
+          <Col sm="0" md="0" lg="0" xl="2" >
 
+          </Col>
+          <Col sm="3" xl="2" style={{ fontFamily: 'museo-sans, sans-serif' }}>
+            <Card body>
+              <CardTitle style={{ fontFamily: 'museo-sans, sans-serif', fontSize: "18px" }}><strong>Filter</strong></CardTitle>
+
+              <div>
+                <ImageSearch
+                  value={this.state.filters}
+                  onClick={(i) => this.handleFilter(i)} />
+              </div>
+
+
+              <SideBar />
 
               <div className="left">
-              <br></br>
-                Date Range
-              <br></br>
-              <hr></hr>
-              <br></br>
-                Favourites list
+
+                <hr style={{ border: '1px solid #95dbc7' }}></hr>
+
                 <ul>
                   {favs}
                 </ul>
-                <br></br>
-                <br></br>
-                <br></br>
-              
-              
-                
-               
-                
+
               </div>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <hr></hr>
-              <Button>Button</Button>
-              
+
             </Card>
           </Col>
 
-         
 
-
-
-          <Col sm="6" >
+          <Col sm="9" md="9" lg='9' xl='6'>
             <Card body>
-              <div>
-                <div className="right">
-                  <div id="container">
+              <div className="map-container">
+                <div className="right map-frame">
+                  <div id="map-id">
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
                       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                       crossOrigin="" />
@@ -350,7 +311,7 @@ class MapBox extends React.Component {
                           location={index} />
                       ))}
                     </Map></div>
-              
+
                   <div>
                     <SearchResults
                       value={this.state.hits}
@@ -359,127 +320,16 @@ class MapBox extends React.Component {
                   </div>
                 </div>
               </div>
-              <hr></hr>
-            <BreadCrumb></BreadCrumb>
-              <CardText></CardText>
-            
+              <hr style={{ border: '2px solid #95dbc7' }}></hr>
+              <BreadCrumb></BreadCrumb>
+              
+              <PhotoGallery />
+
             </Card>
-            <Row>
-        <Col sm="3">
-        <Card>
-        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText> </CardText>
      
-        </CardBody>
-      </Card>
-            </Col>
-
-
-          <Col sm="3">
-          <Card>
-          <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-       
-        </CardBody>
-      </Card>
-            
-
-          </Col>
-          <Col sm="3">
-          <Card>
-        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-         
-        </CardBody>
-      </Card>
-            
-
-          </Col>
-          <Col sm="3">
-          <Card>
-          <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-   
-        </CardBody>
-      </Card>
-
-      </Col >
-          <Col sm="3" >
-          <Card >
-        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-         
-        </CardBody>
-      </Card>
-
-      </Col>
-
-          <Col sm="3">
-          <Card>
-        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-         
-        </CardBody>
-      </Card>
-
-      </Col>
-          <Col sm="3">
-          <Card>
-        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-         
-        </CardBody>
-      </Card>
-
-      </Col>
-          <Col sm="3">
-          <Card>
-        <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle></CardSubtitle>
-          <CardText></CardText>
-         
-        </CardBody>
-      </Card>
-            
-
           </Col>
         </Row>
-          </Col>
-        </Row>
-
-       
-
-
-
-
-
-
-
-
-
+        <hr style={{ border: '2px solid #95dbc7' }}></hr>
 
       </Fragment>
 

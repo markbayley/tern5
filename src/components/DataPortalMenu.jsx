@@ -1,12 +1,12 @@
 import React, { Component, Fragment} from 'react';
 
-import AboutUsDropdown from '../components/AboutUsDropdown';
-import ObservatoryDropdown from '../components/ObservatoryDropdown';
-import ResourcesDropdown from '../components/ResourcesDropdown';
+import TERNDataDropdown from '../components/TERNDataDropdown';
+import DataVisualiserDropdown from '../components/DataVisualiserDropdown';
+import CoESRADropdown from '../components/CoESRADropdown';
 import CommunityDropdown from '../components/CommunityDropdown';
 
 
-class MainHeader extends Component {
+class DataPortalMenu extends Component {
     render() {
 
         return (
@@ -24,22 +24,22 @@ class MainHeader extends Component {
                                 <ul id="primary-menu" class="main-header-menu d-flex">
                                     <li><a href="#">
                                   
-                                    <AboutUsDropdown content="hello">
+                                    <TERNDataDropdown content="hello">
                                         
-                                    </AboutUsDropdown></a>
+                                    </TERNDataDropdown></a>
                                         <ul class="dropdown">
 
 
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                        <ObservatoryDropdown></ObservatoryDropdown></a>
+                                        <DataVisualiserDropdown></DataVisualiserDropdown></a>
                                         <ul class="dropdown">
 
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                       <ResourcesDropdown></ResourcesDropdown>
+                                       <CoESRADropdown></CoESRADropdown>
                                     </a>
                                         <ul class="dropdown">
 
@@ -53,7 +53,7 @@ class MainHeader extends Component {
 
                                         </ul>
                                     </li>
-                                    <li><a href="#">Contact</a></li>
+                                   
                                 </ul>
                             </div>
                         </div>
@@ -67,4 +67,4 @@ class MainHeader extends Component {
 }
 
 
-export default MainHeader;
+export default DataPortalMenu;

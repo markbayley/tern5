@@ -7,6 +7,13 @@ import SubFooter from './components/SubFooter';
 import BioimagesBanner from './components/BioimagesBanner';
 import SignIn from './components/SignIn';
 import MapBox from './components/MapBox';
+import Api from './components/Api';
+import PhotoGallery from './components/PhotoGallery';
+import Card from './components/Cards';
+import DataPortalMenu from './components/DataPortalMenu';
+import SearchBar from './components/SearchBar';
+import BioimagesSubFooter from './components/BioimagesSubFooter'
+
 
 class App extends React.Component {
   render() {
@@ -14,13 +21,18 @@ class App extends React.Component {
       <div className="App">
       
         <AboveHeader />
-        <MainHeader />
+        <DataPortalMenu />
+      
+      
         <BioimagesBanner />
-       
+      
+   
         <MapBox />
+   
+     
+       <MainFooter/>
+        <BioimagesSubFooter />
        
-        <MainFooter />
-        <SubFooter/>
     
       </div>
 
