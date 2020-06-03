@@ -14,14 +14,22 @@ import Card from './components/Cards';
 import BioimagesMenu from './components/BioimagesMenu';
 import SearchBar from './components/SearchBar';
 import BioimagesSubFooter from './components/BioimagesSubFooter'
+import Data from './components/Data';
 
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
+
       
         <NavBar />
         <BioimagesMenu />

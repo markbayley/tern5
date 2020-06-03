@@ -775,6 +775,7 @@ a {
   .map-frame {
 	height: 100%;
 	width: 100%;
+
   /*   We use outline over border as has issues in some cases */
 	
   }
@@ -787,7 +788,11 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 3px solid green;
+
+  }
+
+  .breadcrumb {
+	  background-color: "white";
   }
 
 

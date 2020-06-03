@@ -28,7 +28,7 @@ class Datepicker extends React.Component {
             onChange={this.handleChange}
           />
         </Card.Header>
-        <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
+        <hr style={{ border: '1.5px solid #95dbc7', marginTop: "0%" }}></hr>
       </Fragment>
     );
   }

@@ -264,9 +264,8 @@ class MapBox extends React.Component {
           <Col sm="0" md="0" lg="0" xl="2">
           </Col>
 
-          <Col sm="3" xl="2" style={{ fontFamily: 'museo-sans, sans-serif' }}>
-            <Card body>
-              <CardTitle style={{ fontFamily: 'museo-sans, sans-serif', fontSize: "18px" }}><strong>Filter</strong></CardTitle>
+          <Col sm="3" xl={2} style={{ fontFamily: 'museo-sans, sans-serif', borderRight: "70px solid rgba(149, 219, 199, 0.5)"}}>
+            
               <SideBar />
             
               <div>
@@ -279,16 +278,36 @@ class MapBox extends React.Component {
                   {favs}
                 </ul>
               </div>
-            </Card>
-           
+
+              <Row style={{ position: "absolute", left: "114%", top: "5%"}}>
+              <i class="fa fa-map-marker fa-3x"></i>
+              </Row>
+
+              <Row style={{ position: "absolute", left: "114%", top: "13.5%"}}>
+             <i class="fa fa-camera fa-2x"></i>
+              </Row>
+        
+              <Row style={{ position: "absolute", left: "114%", top: "22%"}}>
+              <i class="fa fa-calendar fa-2x"></i>
+              </Row>
+
+              <Row style={{ position: "absolute", left: "114%", top: "33%"}}>
+              <i class="fa fa-history fa-2x"></i>
+              </Row>
+
+              
+
+             
           </Col>
 
-          <Col xl={0.5}><div style={{borderRight: "70px solid #95dbc7", height: "100%"}}></div></Col>
+        
+
+         
          
           
 
           <Col sm="9" md="9" lg='9' xl='6'  >
-            <Card body >
+            <Card body style={{padding: "0%", margin: "0%", border: "none"}}>
               <div className="map-container">
                 <div className="right map-frame">
                   <div id="map-id" >
@@ -317,7 +336,7 @@ class MapBox extends React.Component {
                 </div>
               </div>
               <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
-              <BreadCrumb></BreadCrumb>
+              <BreadCrumb> </BreadCrumb>
               <PhotoGallery />
             </Card>
           </Col>
