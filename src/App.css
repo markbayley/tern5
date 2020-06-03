@@ -783,7 +783,12 @@ a {
 	height: 100%;
   }
 
-
+  .center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 3px solid green;
+  }
 
 
 

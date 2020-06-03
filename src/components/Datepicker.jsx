@@ -18,9 +18,9 @@ class Datepicker extends React.Component {
   render() {
     return (
       <Fragment>
-        <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ color: "black", width: "100%" }}>
-            <p style={{ float: "left" }}>Date Picker</p> <div style={{ float: 'right' }}><i class="fa fa-plus" aria-hidden="true"></i></div>
+        <Card.Header style={{backgroundColor: "white"}}>
+          <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ color: "black", paddingLeft: "0%" }}>
+            <p style={{ float: "left", paddingTop: "10%"}}>Date Picker</p> <div style={{ paddingTop: "10%" }}></div>
           </Accordion.Toggle>
           <DatePicker
             
@@ -28,7 +28,7 @@ class Datepicker extends React.Component {
             onChange={this.handleChange}
           />
         </Card.Header>
-        <hr style={{ border: '1px solid #95dbc7' }}></hr>
+        <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
       </Fragment>
     );
   }

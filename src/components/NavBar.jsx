@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import React from 'react';
 
-class AboveHeader extends Component {
-  render() {
+function NavBar() {
+ 
     return (
   
 
@@ -24,11 +23,9 @@ class AboveHeader extends Component {
         </div>
       </div>
 
-     
-
     );
   }
-}
 
 
-export default AboveHeader;
+
+export default NavBar;

@@ -6,16 +6,15 @@ import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import wkt_coords from 'wicket';
 //import Api from './Api';
 import Cards from './Cards';
-import PhotoGallery from './PhotoGallery'
 
 import {
-  Card, CardTitle, Row, Col,
+  Card, CardTitle, Row, Col, Button,
 } from 'reactstrap';
 
-
-
+import PhotoGallery from './PhotoGallery'
 import BreadCrumb from './BreadCrumb';
 import SideBar from './SideBar';
+import SidePanel from './SidePanel';
 
 
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
@@ -261,42 +260,38 @@ class MapBox extends React.Component {
         <div className="App">
         </div>
 
-        <Row>
-          <Col sm="0" md="0" lg="0" xl="2" >
-
+        <Row >
+          <Col sm="0" md="0" lg="0" xl="2">
           </Col>
+
           <Col sm="3" xl="2" style={{ fontFamily: 'museo-sans, sans-serif' }}>
             <Card body>
               <CardTitle style={{ fontFamily: 'museo-sans, sans-serif', fontSize: "18px" }}><strong>Filter</strong></CardTitle>
-
+              <SideBar />
+            
               <div>
                 <ImageSearch
                   value={this.state.filters}
                   onClick={(i) => this.handleFilter(i)} />
               </div>
-
-
-              <SideBar />
-
               <div className="left">
-
-                <hr style={{ border: '1px solid #95dbc7' }}></hr>
-
                 <ul>
                   {favs}
                 </ul>
-
               </div>
-
             </Card>
+           
           </Col>
 
+          <Col xl={0.5}><div style={{borderRight: "70px solid #95dbc7", height: "100%"}}></div></Col>
+         
+          
 
-          <Col sm="9" md="9" lg='9' xl='6'>
-            <Card body>
+          <Col sm="9" md="9" lg='9' xl='6'  >
+            <Card body >
               <div className="map-container">
                 <div className="right map-frame">
-                  <div id="map-id">
+                  <div id="map-id" >
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
                       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                       crossOrigin="" />
@@ -310,7 +305,8 @@ class MapBox extends React.Component {
                           value={this.state.hits[index]}
                           location={index} />
                       ))}
-                    </Map></div>
+                    </Map >
+                  </div>
 
                   <div>
                     <SearchResults
@@ -320,19 +316,15 @@ class MapBox extends React.Component {
                   </div>
                 </div>
               </div>
-              <hr style={{ border: '2px solid #95dbc7' }}></hr>
+              <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
               <BreadCrumb></BreadCrumb>
-              
               <PhotoGallery />
-
             </Card>
-     
           </Col>
         </Row>
-        <hr style={{ border: '2px solid #95dbc7' }}></hr>
-
+        <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
       </Fragment>
-
+  
     );
   }
 }

@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-class SubFooter extends Component {
-    render() {
+function SubFooter() {
+  
         return (
             
                   <footer class="main-footer container-fluid">
@@ -52,7 +52,7 @@ class SubFooter extends Component {
               
         );
     }
-}
+
 
 
 export default SubFooter;

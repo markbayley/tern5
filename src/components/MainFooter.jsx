@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-class MainFooter extends Component {
-    render() {
+function MainFooter() {
+   
         return (
      
           
@@ -86,7 +86,7 @@ class MainFooter extends Component {
 
         );
     }
-}
+
 
 
 export default MainFooter;

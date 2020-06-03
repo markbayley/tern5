@@ -9,7 +9,7 @@ class PhotoGallery extends React.Component {
     render() {
         return (
 
-            <Row style={{ paddingBottom: "5%" }}>
+            <Row style={{ paddingBottom: "5%" }} >
             <Col sm="3">
               <Card>
                 <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />

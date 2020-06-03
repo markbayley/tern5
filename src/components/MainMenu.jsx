@@ -1,12 +1,12 @@
 import React, { Component, Fragment} from 'react';
 
-import TERNDataDropdown from '../components/TERNDataDropdown';
-import DataVisualiserDropdown from '../components/DataVisualiserDropdown';
-import CoESRADropdown from '../components/CoESRADropdown';
+import AboutUsDropdown from '../components/AboutUsDropdown';
+import ObservatoryDropdown from '../components/ObservatoryDropdown';
+import ResourcesDropdown from '../components/ResourcesDropdown';
 import CommunityDropdown from '../components/CommunityDropdown';
 
 
-class DataPortalMenu extends Component {
+class MainMenu extends Component {
     render() {
 
         return (
@@ -24,22 +24,22 @@ class DataPortalMenu extends Component {
                                 <ul id="primary-menu" class="main-header-menu d-flex">
                                     <li><a href="#">
                                   
-                                    <TERNDataDropdown content="hello">
+                                    <AboutUsDropdown content="hello">
                                         
-                                    </TERNDataDropdown></a>
+                                    </AboutUsDropdown></a>
                                         <ul class="dropdown">
 
 
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                        <DataVisualiserDropdown></DataVisualiserDropdown></a>
+                                        <ObservatoryDropdown></ObservatoryDropdown></a>
                                         <ul class="dropdown">
 
                                         </ul>
                                     </li>
                                     <li><a href="#">
-                                       <CoESRADropdown></CoESRADropdown>
+                                       <ResourcesDropdown></ResourcesDropdown>
                                     </a>
                                         <ul class="dropdown">
 
@@ -53,7 +53,7 @@ class DataPortalMenu extends Component {
 
                                         </ul>
                                     </li>
-                                   
+                                    <li><a href="#">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -67,4 +67,4 @@ class DataPortalMenu extends Component {
 }
 
 
-export default DataPortalMenu;
+export default MainMenu;

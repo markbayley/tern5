@@ -1,10 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 
-class Banner extends Component {
-    render() {
+function MainBanner() {
+
         return (
-         
-
           <div class="row content-title">
             <div class="container content-title-container">  
               <h1> Sign in</h1>
@@ -13,7 +11,5 @@ class Banner extends Component {
                  
         );
     }
-}
 
-
-export default Banner;           
+export default MainBanner;           
