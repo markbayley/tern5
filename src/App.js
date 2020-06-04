@@ -17,12 +17,8 @@ import BioimagesSubFooter from './components/BioimagesSubFooter'
 import Data from './components/Data';
 
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+
+
 
 
 class App extends React.Component {
@@ -31,15 +27,10 @@ class App extends React.Component {
       <div className="App">
 
       
-        <NavBar />
-        <BioimagesMenu />
+     
+        <Data />
+    
       
-      
-        <BioimagesBanner />
-      
-   
-        <MapBox />
-   
      
        <MainFooter/>
         <BioimagesSubFooter />

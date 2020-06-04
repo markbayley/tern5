@@ -6,6 +6,9 @@ import CoESRADropdown from '../components/CoESRADropdown';
 import CommunityDropdown from '../components/CommunityDropdown';
 
 
+
+
+
 class BioimagesMenu extends Component {
     render() {
 

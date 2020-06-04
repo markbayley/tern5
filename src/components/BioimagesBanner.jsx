@@ -5,12 +5,11 @@ class BioimagesBanner extends Component {
     render() {
         return (
 
-            <div class="row bionanner">
+            <div class="row bionanner" >
                 <div class="biobanner-container">
-                    <h1>
+                  
                     <Image src='img/biobanner.png' fluid />
-                     
-                   </h1>
+                 
                 </div>
             </div>
 

@@ -1,38 +1,73 @@
 import React from 'react';
-import { Jumbotron, Container, Form, Button } from 'react-bootstrap';
+import { Jumbotron, Container, Form, Button, FormControl } from 'react-bootstrap';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import MapBox from './MapBox';
 
 
-class SearchBar extends React.Component {
-    render() {
-        return (
+export default function SearchBar() {
+ 
+    return (
+      <Router>
+      <div>
+   
 
-            <Jumbotron fluid>
-                <Container>
-                <Form>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
 
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
-                </Container>
-            </Jumbotron>
 
-        );
-    }
+      <Jumbotron fluid style={{ borderBottom: "1.5px solid #95dbc7" }}>
+        <Container >
+
+          <Form inline className="center" >
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Link to="/search">
+            <Button variant="outline-success">Search</Button>
+            </Link>
+          </Form>
+
+        </Container>
+
+      </Jumbotron>
+
+
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+            <Switch>
+            <Route path="/search">
+              <Search />
+            </Route>
+  
+      
+  
+       
+          </Switch>
+        </div>
+      </Router>
+
+
+
+    );
+  }
+
+
+
+function Search() {
+  return (
+    <div>
+      <MapBox />
+
+      
+
+
+
+    </div>
+  );
 }
 
-export default SearchBar;
+
+

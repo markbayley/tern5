@@ -174,12 +174,17 @@ a {
 .above-header-section-2 span {
 	background-color: #E36A51;
 	padding: 10px 15px 8px 15px;
+
 }
 
 .above-header-section-2 img {
 	background-color: #E36A51;
 	max-height: 1.5em;
+
 }
+
+
+
 
 .above-header-section-2 a {
 	color: #FFF;
@@ -762,9 +767,11 @@ a {
 }
 
 .leaflet-container {
-  height: 500px;
+  height: 800px;
   width: fluid;
 }
+
+
 
 .map-container {
 	height: 100%;
@@ -783,6 +790,8 @@ a {
   #map-id { 
 	height: 100%;
   }
+
+
 
   .center {
 	display: flex;

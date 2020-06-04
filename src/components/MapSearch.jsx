@@ -11,10 +11,8 @@ import {
   Card, CardTitle, Row, Col, Button,
 } from 'reactstrap';
 
-import PhotoGallery from './PhotoGallery'
-import BreadCrumb from './BreadCrumb';
-import SideBar from './SideBar';
-import SidePanel from './SidePanel';
+
+import SearchBar from './SearchBar';
 
 
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
@@ -260,13 +258,15 @@ class MapBox extends React.Component {
         <div className="App">
         </div>
 
-        <Row >
-          <Col sm="0" md="0" lg="0" xl="2">
-          </Col>
+        <SearchBar />
 
-          <Col sm="3" xl={2} style={{ fontFamily: 'museo-sans, sans-serif', borderRight: "70px solid rgba(149, 219, 199, 0.5)", marginTop: "-1.5%"}}>
+        <Row style={{paddingBottom: "3%"}}>
+          <Col sm="1" md="1" lg="1" xl="2" >
+         
+
+         
             
-              <SideBar />
+     
             
               <div>
                 <ImageSearch
@@ -279,26 +279,11 @@ class MapBox extends React.Component {
                 </ul>
               </div>
 
-              <Row style={{ position: "absolute", left: "114%", top: "5%"}}>
-              <i class="fa fa-map-marker fa-3x"></i>
-              </Row>
-
-              <Row style={{ position: "absolute", left: "114%", top: "13.5%"}}>
-             <i class="fa fa-camera fa-2x"></i>
-              </Row>
-        
-              <Row style={{ position: "absolute", left: "114%", top: "22%"}}>
-              <i class="fa fa-calendar fa-2x"></i>
-              </Row>
-
-              <Row style={{ position: "absolute", left: "114%", top: "33%"}}>
-              <i class="fa fa-history fa-2x"></i>
-              </Row>
 
               
-
+              </Col>
              
-          </Col>
+        
 
         
 
@@ -306,9 +291,9 @@ class MapBox extends React.Component {
          
           
 
-          <Col sm="9" md="9" lg='9' xl='6'  >
-            <Card body style={{padding: "0%", marginTop: "-3%"}}>
-              <div className="map-container">
+          <Col sm="10" md="10" lg='10' xl='8'  >
+            <Card body style={{padding: "0%", margin: "-2.5%"}}>
+              <div className="map-container" style={{height: "800px"}}>
                 <div className="right map-frame">
                   <div id="map-id" >
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -335,13 +320,14 @@ class MapBox extends React.Component {
                   </div>
                 </div>
               </div>
-              <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
-              <BreadCrumb> </BreadCrumb>
-              <PhotoGallery />
+         
+           
             </Card>
           </Col>
+         
         </Row>
-        <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
+      
+    
       </Fragment>
   
     );
