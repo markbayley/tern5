@@ -17,6 +17,8 @@ import SideBar from './SideBar';
 import SidePanel from './SidePanel';
 
 
+
+
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
 
 function SearchResults(props) {
@@ -256,6 +258,7 @@ class MapBox extends React.Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <Fragment>
+   
 
         <div className="App">
         </div>
@@ -279,20 +282,20 @@ class MapBox extends React.Component {
                 </ul>
               </div>
 
-              <Row style={{ position: "absolute", left: "114%", top: "5%"}}>
-              <i class="fa fa-map-marker fa-3x"></i>
+              <Row style={{ position: "absolute", left: "112%", top: "4%"}}>
+              <img src="img/icons/Location.svg" alt="location" height="40px"/>
               </Row>
 
-              <Row style={{ position: "absolute", left: "114%", top: "13.5%"}}>
-             <i class="fa fa-camera fa-2x"></i>
+              <Row style={{ position: "absolute", left: "112%", top: "10%"}}>
+             <img src="img/icons/camera1.svg" alt="location" height="40px"/>
               </Row>
         
-              <Row style={{ position: "absolute", left: "114%", top: "22%"}}>
-              <i class="fa fa-calendar fa-2x"></i>
+              <Row style={{ position: "absolute", left: "112%", top: "16%"}}>
+              <img src="img/icons/calendar.svg" alt="location" height="40px"/>
               </Row>
 
-              <Row style={{ position: "absolute", left: "114%", top: "33%"}}>
-              <i class="fa fa-history fa-2x"></i>
+              <Row style={{ position: "absolute", left: "112%", top: "24%"}}>
+              <img src="img/icons/frequency.svg" alt="location" height="40px"/>
               </Row>
 
               
@@ -307,7 +310,7 @@ class MapBox extends React.Component {
           
 
           <Col sm="9" md="9" lg='9' xl='6'  >
-            <Card body style={{padding: "0%", marginTop: "-3%"}}>
+            <Card body style={{padding: "0%", marginTop: "-3.3%", marginLeft: "-1.5%"}}>
               <div className="map-container">
                 <div className="right map-frame">
                   <div id="map-id" >
@@ -337,7 +340,7 @@ class MapBox extends React.Component {
               </div>
               <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
               <BreadCrumb> </BreadCrumb>
-              <PhotoGallery />
+             
             </Card>
           </Col>
         </Row>

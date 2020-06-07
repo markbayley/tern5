@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	
+	
 }
 @font-face {
     font-family: 'Uni Neue';
@@ -102,18 +103,11 @@ a {
     max-width: 65px;
     width: 100%;
 }
-.above-header-section-2 .user-select a {
-    background-color: #E36A51;
-    background-image: url(/../public/assets/img/search-icon@2x.png);
-    background-position: 28px center;
-    background-repeat: no-repeat;
-    -webkit-background-size: 23px auto;
-    background-size: 23px auto;
-    color: #FFF !important;
-    padding-left: 46px;
-	padding-right: 15px;
-	
-}
+
+
+
+
+
 .above-header .above-header-section-wrap {
     justify-content: flex-end;
 }
@@ -124,16 +118,40 @@ a {
 
 
 .content-title {
-	background: url(https://www.tern.org.au/wp-content/uploads/innerbanner@2x-scaled.png);
+	background: url(/img/innerbanner@2x-scaled.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center right;
 	margin-bottom: 1em;
 }
 
+.content-bio {
+	background: url(/img/innerbanner2x-scaled-green.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center right;
+	margin-bottom: 0em;
+	height: 100px;
+	
+	
+}
+
+
+
 .content-title-container  {
 	padding: 49px 15px 49px 15px;
 }
+
+.content-bio-container  {
+	padding: 25px 15px 49px 5px; 
+	
+	height: 100px;
+
+
+
+}
+
+
 
 .content-title h1 {
 	font-family: "Uni Neue", Sans-serif;
@@ -142,6 +160,66 @@ a {
 	/* color: #043e4f; */
 	color: #FFF;
 }
+
+.content-bio h1 {
+	font-family: "Uni Neue", Sans-serif;
+	font-size: 35px;
+	font-weight: 900;
+	/* color: #043e4f; */
+	color: #fff;
+	display: inline-block;
+	margin-left: "30px";
+ 
+}
+
+.icon {	
+	margin-top: -15px;
+	margin-right: 5px;
+	margin-left: 10px;
+
+}
+
+.searchbar {
+	display: "flex";
+	justify-content: "center";
+	background-image: url(/img/icons/search-bar.png);
+    
+	width: 50%;
+	height: 100%;
+	background-repeat: no-repeat;
+
+
+	
+}
+
+.searchbutton {
+	background-image: url(/img/icons/search-arrow.svg);
+	background-repeat: no-repeat;
+	width: 150%;
+}
+
+.searchicon {
+	background-image: url(/img/icons/search-bioimages-icon.svg);
+
+}
+
+#place {
+	background-color:rgba(0, 0, 0, 0);
+    color:white;
+    border: none;
+    outline:none;
+    height:30px;
+    transition:height 1s;
+    -webkit-transition:height 1s;
+}
+
+#place::placeholder {
+    color: #95dbc7;
+    opacity: 1;
+
+}
+
+
 
 
 /* TOP HEADER INDEX */
@@ -171,24 +249,34 @@ a {
 }
 
 
-.above-header-section-2 span {
+
+.above-header-section-2 div {
 	background-color: #E36A51;
-	padding: 10px 15px 8px 15px;
+	padding: 7px 15px 8px 15px;
+	width: 95px;
+	height: 48px;
+	background-image: url(/img/search-icon@2x.png);
+	background-repeat: no-repeat;
+	background-position: 25% 75%;
+	 -webkit-background-size: 23px auto;
+
 
 }
 
-.above-header-section-2 img {
-	background-color: #E36A51;
-	max-height: 1.5em;
+.above-header-section-2 .user-select div{
+    background-color: #E36A51;
+    color: #FFF !important;
+    padding-left: 50px;
+	padding-right: 15px;
+}
 
+#data {
+	color: #FFF !important;
+	padding-left: 35px;
+	padding-top: 6px;
 }
 
 
-
-
-.above-header-section-2 a {
-	color: #FFF;
-}
 
 
 

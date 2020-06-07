@@ -3,7 +3,9 @@ import { Accordion, Card, CardTitle, Button, Col } from "react-bootstrap";
 
 import Datepicker from './Datepicker';
 
-import SidePanel from './SidePanel'
+import SidePanel from './SidePanel';
+
+
 
 
 class SideBar extends React.Component {
@@ -26,7 +28,8 @@ class SideBar extends React.Component {
                     <Card.Header style={{backgroundColor: "white"}}>
                     
                         <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{color: "black", width: "100%", paddingLeft: "0%"}}>
-                        <p style={{float: "left", paddingTop: "5%"}}>Site</p> <div style={{float: 'right', paddingTop: "5%"}}><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        <p style={{float: "left", paddingTop: "7%"}}>Site</p> <div style={{float: 'right'}}> 
+                        <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
                         </Accordion.Toggle>
                     </Card.Header>
                    
@@ -52,8 +55,9 @@ class SideBar extends React.Component {
                 <Card style={{border: "white"}} >
                     <Card.Header style={{backgroundColor: "white"}}>
                     
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{color: "black", width: "100%", paddingLeft: "0%"}}>
-                        <p style={{float: "left", paddingTop: "0%"}}>Image Type</p> <div style={{float: 'right', paddingTop: "0%"}}><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{color: "black", paddingLeft: "0%"}}>
+                        <p style={{float: "left",  paddingTop: "7%"}}>Image Type</p> <div style={{float: 'right'}}>
+                        <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -100,8 +104,9 @@ class SideBar extends React.Component {
                 <Card style={{border: "white"}}>
                     <Card.Header style={{backgroundColor: "white"}}>
                     
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{color: "black", width: "100%", paddingLeft: "0%"}}>
-                        <p style={{float: "left", paddingTop: "0%"}}>Frequency</p> <div style={{float: 'right', paddingTop: "0%" }}><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{color: "black", paddingLeft: "0%"}}>
+                        <p style={{float: "left", paddingTop: "7%"}}>Frequency</p> <div style={{float: 'right'}}>
+                        <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -131,6 +136,7 @@ class SideBar extends React.Component {
       
 
           </Card>
+        
        
 
             </Fragment>

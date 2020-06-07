@@ -11,13 +11,14 @@ import MainBanner from './MainBanner';
 import SignIn from './SignIn';
 import MapBox from './MapBox';
 
-
+import Api from './Api';
 
 import NavBar from './NavBar';
 import SearchBar from './SearchBar';
 import BioimagesSubFooter from './BioimagesSubFooter'
 
 import MapSearch from './MapSearch';
+import State from './State';
 
 
 
@@ -37,6 +38,7 @@ export default function Data() {
         <div class="above-header">
           <div class="container">
             <div class="above-header-section-wrap d-flex">
+
               <div class="above-header-section above-header-section-1">
                 <div class="user-select">
                   <Link to="/"> <img src="img/logo-mini-all.png" alt="" /> </Link>
@@ -44,10 +46,11 @@ export default function Data() {
               </div>
 
               <div class="above-header-section above-header-section-2">
-                <div class="user-select" style={{ float: "left" }}>
-                  <Link to="/data">Data</Link>
-                </div>
+              
+                 <div id="data"> <Link to="/data" style={{color: "#fff", fontSize: "16px"}}><p class="center">Data</p></Link></div>
+            
               </div>
+
             </div>
           </div>
         </div>
@@ -63,9 +66,7 @@ export default function Data() {
             <Home />
           </Route>
 
-          <Route path="/authentication">
-            <Authentication />
-          </Route>
+       
         </Switch>
       </div>
     </Router>
@@ -91,18 +92,13 @@ function DataPortal() {
     <div>
       <BioimagesMenu />
       <BioimagesBanner />
-      <MapSearch />
+      <Api />
+    
+
+   
     </div>
   );
 }
 
-function Authentication() {
-  return (
-    <div>
-      <MainMenu />
-      <MainBanner />
-      <SignIn />
-    </div>
-  );
-}
+
 

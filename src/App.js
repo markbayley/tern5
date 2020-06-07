@@ -18,9 +18,6 @@ import Data from './components/Data';
 
 
 
-
-
-
 class App extends React.Component {
   render() {
     return (
@@ -28,8 +25,9 @@ class App extends React.Component {
 
       
      
-        <Data />
-    
+       <Data />
+
+     
       
      
        <MainFooter/>

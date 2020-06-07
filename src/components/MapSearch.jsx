@@ -5,7 +5,7 @@ import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
 //import Api from './Api';
-import Cards from './Cards';
+//import Cards from './Cards';
 
 import {
   Card, CardTitle, Row, Col, Button,
@@ -13,6 +13,7 @@ import {
 
 
 import SearchBar from './SearchBar';
+
 
 
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
@@ -255,10 +256,11 @@ class MapBox extends React.Component {
     return (
       <Fragment>
 
+
         <div className="App">
         </div>
 
-        <SearchBar />
+      
 
         <Row style={{paddingBottom: "3%"}}>
           <Col sm="1" md="1" lg="1" xl="2" >
@@ -292,8 +294,9 @@ class MapBox extends React.Component {
           
 
           <Col sm="10" md="10" lg='10' xl='8'  >
-            <Card body style={{padding: "0%", margin: "-2.5%"}}>
+            <Card body style={{padding: "0% 4% 0% 4%", margin: "-2.5%", border: "white"}}>
               <div className="map-container" style={{height: "800px"}}>
+
                 <div className="right map-frame">
                   <div id="map-id" >
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"

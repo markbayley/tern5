@@ -1,88 +1,109 @@
-import React from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+//import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Col, Row, Button, InputGroup, FormControl, Jumbotron, Form } from "react-bootstrap";
 
+import MapBox from './MapBox';
+import State from './State';
 
+function Api() {
+    const [term, setPhoto] = useState("");
+    const [clientId, setClientId] = useState(
+        "52d5d5565994d57c3160b4296aef1be1bf8985d9265e313f0f9db7eb1145d86d"
+    );
 
+    const [result, setResult] = useState([]);
 
-/**
- * App
- *
- * Simple react js fetch example
- */
-class Api extends React.Component {
-
-    /**
-     * constructor
-     *
-     * @object  @props  parent props
-     * @object  @state  component state
-     */
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-            items: [],
-            isLoaded: false
-        }
-
+    function handleChange(event) {
+        setPhoto(event.target.value);
     }
 
-    /**
-     * componentDidMount
-     *
-     * Fetch json array of objects from given url and update state.
-     */
-    componentDidMount() {
+    function handleSubmit(event) {
+        console.log(term);
 
-        fetch('https://jsonplaceholder.typicode.com/photos')
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    items: json,
-                    isLoaded: true, 
-                })
-            }).catch((err) => {
-                console.log(err);
-            });
+        const url =
+            "https://api.unsplash.com/search/photos?page=1&query=" +
+            term +
+            "&client_id=" +
+            clientId;
 
-            
+        axios.get(url).then((response) => {
+            console.log(response);
+            setResult(response.data.results);
+        });
     }
 
-    /**
-     * render
-     *
-     * Render UI
-     */
-    render() {
+    return (
+        <div>
 
-        const { isLoaded, items } = this.state;
+       
 
-        if (!isLoaded)
-            return <div>Loading...</div>;
 
-        return (
-            <div className="App">
-                <ul>
-           
-                    {items.map(item => (
-                        <li key={item.id}>
-                           <img src= {item.thumbnailUrl} alt="placeholder"/>
+            <Container>
+                <Row>
+                    <Col>
+                        {result.map((term) => (
+                        
+                            <img
+                                src={term.urls.small}
+                                width="200px"
+                                height="200px"
+                                style={{margin: "20px 39px 20px 0px"}}
+                            />
                           
-                        </li>
+                        ))}
 
-                    ))}
+                    </Col>
+                </Row>
+            </Container>
 
 
-                </ul>
+             
+
+
+     <Jumbotron  style={{ borderBottom: "1.5px solid #95dbc7" }}>
+        <Container >
+
+       
+         
+          <InputGroup inline className="searchbar center" style={{ height:"80px", marginLeft: "25%", paddingLeft: "2%"}}>
+          <img src="/img/icons/search-bioimages-icon.svg" alt="bioimages search icon" style={{width: "8%", paddingTop: "2%", marginRight: "0%"}}/>
             
-            </div>
-        );
+            <FormControl 
+            onChange={handleChange} 
+            id="place" 
+            type="text" 
+            placeholder="Search images by region or by site" 
+           
+            style={{fontSize: "22px", width: "45%", color: "#95dbc7"}} 
+            aria-label="term"
+            />
+        
+   
+            <Button onClick={handleSubmit}
+                     variant="outline" 
+                     type="submit"
+                     style={{marginLeft: "0%", height: "70px", width: "90px"}}>
+            </Button>
+          </InputGroup>
 
-    }
+        </Container>
+      </Jumbotron>
 
+
+
+
+  <State />
+
+
+
+
+            
+          
+        </div>
+    );
 }
 
 export default Api;
-
 
 

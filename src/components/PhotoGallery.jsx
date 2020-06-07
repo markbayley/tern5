@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment }from 'react';
+import Api from './Api';
 
 import {
     Card, CardImg, CardText, CardBody,
@@ -8,6 +9,13 @@ import {
 class PhotoGallery extends React.Component {
     render() {
         return (
+
+          <Fragment>
+            <Api />
+
+
+
+
 
             <Row style={{ paddingBottom: "5%" }} >
             <Col sm="3">
@@ -112,6 +120,8 @@ class PhotoGallery extends React.Component {
 
             </Col>
           </Row>
+
+        </Fragment>
 
         );
     }
