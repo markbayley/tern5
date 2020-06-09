@@ -5,7 +5,7 @@ import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
 //import Api from './Api';
-import Cards from './Cards';
+import State from './State';
 
 import {
   Card, CardTitle, Row, Col, Button,
@@ -15,6 +15,7 @@ import PhotoGallery from './PhotoGallery'
 import BreadCrumb from './BreadCrumb';
 import SideBar from './SideBar';
 import SidePanel from './SidePanel';
+import Api from './Api';
 
 
 
@@ -261,7 +262,9 @@ class MapBox extends React.Component {
    
 
         <div className="App">
-        </div>
+    
+
+      
 
         <Row >
           <Col sm="0" md="0" lg="0" xl="2">
@@ -282,19 +285,19 @@ class MapBox extends React.Component {
                 </ul>
               </div>
 
-              <Row style={{ position: "absolute", left: "112%", top: "4%"}}>
+              <Row style={{ position: "absolute", left: "112%", top: "5%"}}>
               <img src="img/icons/Location.svg" alt="location" height="40px"/>
               </Row>
 
-              <Row style={{ position: "absolute", left: "112%", top: "10%"}}>
+              <Row style={{ position: "absolute", left: "112%", top: "13%"}}>
              <img src="img/icons/camera1.svg" alt="location" height="40px"/>
               </Row>
         
-              <Row style={{ position: "absolute", left: "112%", top: "16%"}}>
+              <Row style={{ position: "absolute", left: "112%", top: "29%"}}>
               <img src="img/icons/calendar.svg" alt="location" height="40px"/>
               </Row>
 
-              <Row style={{ position: "absolute", left: "112%", top: "24%"}}>
+              <Row style={{ position: "absolute", left: "112%", top: "37%"}}>
               <img src="img/icons/frequency.svg" alt="location" height="40px"/>
               </Row>
 
@@ -311,13 +314,13 @@ class MapBox extends React.Component {
 
           <Col sm="9" md="9" lg='9' xl='6'  >
             <Card body style={{padding: "0%", marginTop: "-3.3%", marginLeft: "-1.5%"}}>
-              <div className="map-container">
-                <div className="right map-frame">
+              <div className="map-container" >
+                <div className="right map-frame" >
                   <div id="map-id" >
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
                       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                       crossOrigin="" />
-                    <Map center={position} zoom={this.state.zoom}>
+                    <Map center={position} zoom={this.state.zoom} style={{ height: "650px", borderBottom: "1.5px solid #66b3a6"}} >
                       <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -327,7 +330,7 @@ class MapBox extends React.Component {
                           value={this.state.hits[index]}
                           location={index} />
                       ))}
-                    </Map >
+                    </Map  >
                   </div>
 
                   <div>
@@ -337,14 +340,20 @@ class MapBox extends React.Component {
                       onClick={(i) => this.handleFilter(i)} />
                   </div>
                 </div>
+              
+               
+              
               </div>
-              <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
-              <BreadCrumb> </BreadCrumb>
+            
+              <BreadCrumb></BreadCrumb>
+              <PhotoGallery />
              
             </Card>
           </Col>
         </Row>
-        <hr style={{ border: '1.5px solid #95dbc7' }}></hr>
+        <hr style={{ border: '1.5px solid #66b3a6', width: "110%" }}></hr>
+
+        </div>
       </Fragment>
   
     );

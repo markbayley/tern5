@@ -75,7 +75,7 @@ function Api() {
             type="text" 
             placeholder="Search images by region or by site" 
            
-            style={{fontSize: "22px", width: "45%", color: "#95dbc7"}} 
+            style={{fontSize: "22px", width: "45%", color: "#66b3a6"}} 
             aria-label="term"
             />
         
@@ -84,7 +84,11 @@ function Api() {
                      variant="outline" 
                      type="submit"
                      style={{marginLeft: "0%", height: "70px", width: "90px"}}>
+                         <img src="/img/icons/search-arrow.svg" 
+                         alt="bioimages search icon" 
+                         style={{width: "80%", paddingTop: "1%", marginRight: "20%"}}/>
             </Button>
+            
           </InputGroup>
 
         </Container>

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 import MapBox from "./MapBox";
 import MapSearch from "./MapSearch";
+import Api from './Api'
+import { Map } from "leaflet";
+
+import SideBar from './SideBar';
+
 
 
 
@@ -10,6 +15,10 @@ const State = () => {
     const searchmodes = ["map", "filter"];
     const [mySearch, setMySearch] = useState("");
 
+  
+    const [open, setOpen] = useState(false);
+    
+        
     return (
         <>
            
@@ -21,14 +30,20 @@ const State = () => {
 
                     <p >
                         {mySearch === "map" && (
-                          
-                         
-                            <MapSearch />
+                            <div>
+                           
+                           <MapSearch />
+                            
+                              </div>
                       
                         )}
                         {mySearch === "filter" && (
-                        
-                            <MapBox />
+                         <div>
+                               <MapBox>
+                                  <SideBar />
+                              </MapBox>
+                          
+                            </div>
                        
                         )}
                     
@@ -40,18 +55,20 @@ const State = () => {
                     <div
                         className="btn-group"
                         role="group"
-                        aria-label="Basic example"
+                        aria-label="toggle"
                         m
                     >
                         {searchmodes.map(searchmode => (
-                            <button
+                            <Button style={{fontWeight: "100", color: "#065f65", borderColor: "1px solid #065f65"}}
+                        
+                              
                                 type="button"
                                 key={searchmode}
                                 className={"btn btn-light border-dark "}
                                 onClick={() => setMySearch(searchmode)}
                             >
                                 {searchmode.toLocaleUpperCase()}
-                            </button>
+                            </Button>
                         ))}
                     </div>
 

@@ -38,7 +38,7 @@ function SearchBar() {
 
          
 
-      <Jumbotron  style={{ borderBottom: "1.5px solid #95dbc7" }}>
+      <Jumbotron  style={{ borderBottom: "1.5px solid #66b3a6" }}>
         <Container >
 
              <Row>
@@ -64,7 +64,7 @@ function SearchBar() {
             type="text" 
             placeholder="Search images by region or by site" 
             className="mr-sm-2" 
-            style={{fontSize: "22px", width: "75%", color: "#95dbc7"}} 
+            style={{fontSize: "22px", width: "75%", color: "#66b3a6"}} 
             aria-label="term"
             />
             <br />

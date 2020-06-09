@@ -4,13 +4,13 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 class BreadCrumb extends React.Component {
     render() {
         return (
-    <div style={{backgroundColor: "white"}}>
+    <div style={{ backgroundColor: "#fff"}}>
       
-      <Breadcrumb >
-     <div style={{paddingRight: "2%", paddingBottom: "0%"}}><strong>Filters: </strong></div>
-        <BreadcrumbItem ><a href="#">Home</a></BreadcrumbItem>
-        <BreadcrumbItem><a href="#">Library</a></BreadcrumbItem>
-        <BreadcrumbItem active>Data</BreadcrumbItem>
+      <Breadcrumb className="breadcrumb" style={{ backgroundColor: "#fff", marginTop: "10px"}}>
+       
+        <BreadcrumbItem><a  href="#"> Home</a></BreadcrumbItem>
+        <BreadcrumbItem><a href="#"> Library</a></BreadcrumbItem>
+        <BreadcrumbItem active> Data</BreadcrumbItem>
       </Breadcrumb>
     </div>
   );

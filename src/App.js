@@ -13,8 +13,13 @@ import PhotoGallery from './components/PhotoGallery';
 import Card from './components/Cards';
 import BioimagesMenu from './components/BioimagesMenu';
 import SearchBar from './components/SearchBar';
-import BioimagesSubFooter from './components/BioimagesSubFooter'
+import BioimagesSubFooter from './components/BioimagesSubFooter';
 import Data from './components/Data';
+import Side from './components/Side';
+
+import BurgerMenu from './animations/BurgerMenu';
+import LeftSideBar from './animations/LeftSideBar';
+
 
 
 
@@ -23,9 +28,12 @@ class App extends React.Component {
     return (
       <div className="App">
 
-      
-     
+
+    
        <Data />
+      
+
+    
 
      
       

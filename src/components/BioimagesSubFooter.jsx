@@ -7,8 +7,8 @@ function BioimagesSubFooter() {
     return (
         <Container className="main-footer" fluid style={{ paddingTop: "20%", paddingLeft: "0%", paddingRight: "0%"}}>
           
-                <Nav  className="footer-partners justify-content-center" activeKey="/home">
-                    <Nav.Item style={{padding: "0 20px 0 20px", fontSize: "16px"}}>
+                <Nav  className="footer-partners justify-content-center" activeKey="/home" style={{lineHeight: "5px"}}>
+                    <Nav.Item style={{padding: "0 20px 0px 20px", fontSize: "16px"}}>
                         <Nav.Link style={{color: "white"}} href="/home">Access Policy</Nav.Link>
                     </Nav.Item>
                     <Nav.Item style={{padding: "0 20px 0 20px", fontSize: "16px"}}>

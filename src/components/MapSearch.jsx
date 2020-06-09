@@ -13,6 +13,10 @@ import {
 
 
 import SearchBar from './SearchBar';
+import Side from './Side';
+
+import BurgerMenu from '../animations/BurgerMenu';
+import LeftSideBar from '../animations/LeftSideBar';
 
 
 
@@ -263,9 +267,10 @@ class MapBox extends React.Component {
       
 
         <Row style={{paddingBottom: "3%"}}>
+     
           <Col sm="1" md="1" lg="1" xl="2" >
          
-
+         
          
             
      
@@ -289,20 +294,27 @@ class MapBox extends React.Component {
 
         
 
+       
          
-         
+       
           
 
           <Col sm="10" md="10" lg='10' xl='8'  >
+          
             <Card body style={{padding: "0% 4% 0% 4%", margin: "-2.5%", border: "white"}}>
+         
               <div className="map-container" style={{height: "800px"}}>
-
+             
+             
                 <div className="right map-frame">
+               
                   <div id="map-id" >
+               
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
                       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                       crossOrigin="" />
                     <Map center={position} zoom={this.state.zoom}>
+                 
                       <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -329,6 +341,8 @@ class MapBox extends React.Component {
           </Col>
          
         </Row>
+
+       
       
     
       </Fragment>
