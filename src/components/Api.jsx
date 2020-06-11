@@ -61,38 +61,7 @@ function Api() {
              
 
 
-     <Jumbotron  style={{ borderBottom: "1.5px solid #95dbc7" }}>
-        <Container >
-
-       
-         
-          <InputGroup inline className="searchbar center" style={{ height:"80px", marginLeft: "25%", paddingLeft: "2%"}}>
-          <img src="/img/icons/search-bioimages-icon.svg" alt="bioimages search icon" style={{width: "8%", paddingTop: "2%", marginRight: "0%"}}/>
-            
-            <FormControl 
-            onChange={handleChange} 
-            id="place" 
-            type="text" 
-            placeholder="Search images by region or by site" 
-           
-            style={{fontSize: "22px", width: "45%", color: "#66b3a6"}} 
-            aria-label="term"
-            />
-        
-   
-            <Button onClick={handleSubmit}
-                     variant="outline" 
-                     type="submit"
-                     style={{marginLeft: "0%", height: "70px", width: "90px"}}>
-                         <img src="/img/icons/search-arrow.svg" 
-                         alt="bioimages search icon" 
-                         style={{width: "80%", paddingTop: "1%", marginRight: "20%"}}/>
-            </Button>
-            
-          </InputGroup>
-
-        </Container>
-      </Jumbotron>
+    
 
 
 

@@ -15,8 +15,8 @@ class BioimagesMenu extends Component {
         return (
             <Fragment >
                              
-                <div class="main-header">
-                    <div class="container">
+                <div class="main-header" style={{marginTop:"-30px", marginBottom: "-30px"}}>
+                    <div class="container" >
                         <div class="main-header-container d-flex">
                             <div class="site-branding">
                                 <a href="#"><span><img src="img/logo@3x.png" alt="" /></span></a>

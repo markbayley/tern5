@@ -7,7 +7,7 @@ import {
   } from 'reactstrap';
 
 import {
-  Form
+  Form, Image
 } from 'react-bootstrap';
 
 class PhotoGallery extends React.Component {
@@ -24,7 +24,7 @@ class PhotoGallery extends React.Component {
             <Row style={{ paddingBottom: "3%", paddingTop: "3%" }}  >
             <Col  sm="3">
               <Card style={{border: "white"}}>
-                <CardImg top width="100%" src="/img/photo-placeholder.png" alt="Card image cap" />
+                <Image width="100%" src="/img/photo-placeholder.png" alt="Card image cap" rounded />
                 <CardBody style={{ fontSize: "11px", fontWeight: "900", color: "#065f65", padding: "0px 0px 0px 6px"}}>
 
 

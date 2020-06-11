@@ -12,7 +12,7 @@ class MainMenu extends Component {
         return (
             <Fragment >
                              
-                <div class="main-header">
+                <div class="main-header" >
                     <div class="container">
                         <div class="main-header-container d-flex">
                             <div class="site-branding">

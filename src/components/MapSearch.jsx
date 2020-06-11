@@ -268,7 +268,7 @@ class MapBox extends React.Component {
 
         <Row style={{paddingBottom: "3%"}}>
      
-          <Col sm="1" md="1" lg="1" xl="2" >
+          <Col sm="0" md="0" lg="0" xl="0" >
          
          
          
@@ -291,7 +291,6 @@ class MapBox extends React.Component {
               </Col>
              
         
-
         
 
        
@@ -299,9 +298,9 @@ class MapBox extends React.Component {
        
           
 
-          <Col sm="10" md="10" lg='10' xl='8'  >
+          <Col sm="12" md="12" lg='12' xl='12'  >
           
-            <Card body style={{padding: "0% 4% 0% 4%", margin: "-2.5%", border: "white"}}>
+            <Card body style={{padding: "0% 0% 0% 0%", margin: "-2.5%", border: "white", marginTop: "-.9%", marginRight: "-5"}}>
          
               <div className="map-container" style={{height: "800px"}}>
              
