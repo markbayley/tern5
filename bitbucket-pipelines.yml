@@ -33,7 +33,7 @@ pipelines:
           script:
             - *setenv
             - docker build --target builder -t $IMAGE_NAME:builder .
-            - docker run --rm -it -e CI=true $IMAGE_NAME:builder npm test
+            - docker run --rm -e CI=true $IMAGE_NAME:builder npm test
             - export VERSION=$(git describe --always)
             - docker build -t $IMAGE_NAME .
             - docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
