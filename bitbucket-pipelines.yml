@@ -1,0 +1,47 @@
+image: node:12
+
+
+definitions:
+  # generic re-usable steps
+  steps:
+    - step: &envstep
+      # use a multiline step to set environment variables
+      - script: &setenv |
+          export IMAGE_NAME=ternau/bioimages_portal_ui
+
+
+pipelines:
+
+  branches:
+
+    develop:
+      - step:
+          caches:
+            - node
+          script:
+            - *setenv
+            - npm install
+            - CI=true npm test
+
+    master:
+      - step:
+          image: ternau/bb-python:3.8-alpine
+          script:
+            - *setenv
+            - docker build --target builder -t $IMAGE_NAME:builder .
+            - docker run --rm -it -e CI=true $IMAGE_NAME:builder npm test
+            - export VERSION=$(git describe --always)
+            - docker build -t $IMAGE_NAME .
+            - docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
+            - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+            - docker push $IMAGE_NAME
+            - docker push $IMAGE_NAME:$VERSION
+          services:
+            - docker
+
+  pull-requests:
+    "**":
+      - step:
+          - *setenv
+          - npm install
+          - CI=true npm test
