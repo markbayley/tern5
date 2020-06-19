@@ -8,6 +8,10 @@ definitions:
       # use a multiline step to set environment variables
       - script: &setenv |
           export IMAGE_NAME=ternau/bioimages_portal_ui
+  services:
+    docker:
+      # npm optimised build needs a bit more memory
+      memory: 3072
 
 
 pipelines:
