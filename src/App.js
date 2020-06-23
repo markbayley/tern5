@@ -16,7 +16,7 @@ import SearchBar from './components/SearchBar';
 import BioimagesSubFooter from './components/BioimagesSubFooter';
 import Data from './components/Data';
 import Side from './components/Side';
-
+import MapSearch from './components/MapSearch';
 import BurgerMenu from './animations/BurgerMenu';
 import LeftSideBar from './animations/LeftSideBar';
 
@@ -31,15 +31,8 @@ class App extends React.Component {
 
     
        <Data />
-      
-
-    
-
      
       
-     
-       <MainFooter/>
-        <BioimagesSubFooter />
        
     
       </div>

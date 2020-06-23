@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import { Nav, Navbar, NavDropdown, Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,29 +8,40 @@ import {
   Link
 } from "react-router-dom";
 
+import SearchBar from './SearchBar';
+
 function NavBar() {
  
     return (
 
-      
+      <Navbar bg="white" expand="lg" style={{height: "4%"}}>
+
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+   
+    <Container>
   
-      <div class="above-header container-fluid" style={{marginTop: "1%", width: "100%"}}>
-        <div  class="container" >
-          <div class="row above-header-section-wrap justify-content-end">
-            <div class="above-header-section above-header-section-1 align-middle d-flex" >
-              <a href="https://www.tern.org.au/"><img
-                src="img/logo-mini-all.png"
-                alt="" /></a>
-            </div>
-            <div class="above-header-section above-header-section-2 align-middle d-flex">
-              <span>
-                <img src="img/search-icon@2x.png" />
-                <a href="https://portal.tern.org.au/" target="_blank" class="btn-orange">Data</a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <Col>  <Navbar.Brand href="#home"> 
+   <div class="site-branding">
+          <a href="#"><span><img src="img/logo@3x.png" alt="" /></span></a>
+    </div>
+    </Navbar.Brand></Col>
+   
+     <Form inline >
+      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button variant="outline-success">Search</Button>
+    </Form>
+    
+ 
+  </Container>
+   
+   
+  </Navbar.Collapse>
+  </Navbar>
+
+
+  
+  
      
 
     );

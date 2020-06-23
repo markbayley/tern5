@@ -30,7 +30,8 @@ export default class DataVisualiserDropdown extends React.Component {
   
   render() {
     return (
-      <Dropdown className="d-inline-block" onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+      <Dropdown className="d-inline-block" style={{ color: "white"}}
+      onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle  caret tag="span"
        
       >

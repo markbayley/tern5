@@ -18,7 +18,7 @@ import Side from './Side';
 import BurgerMenu from '../animations/BurgerMenu';
 import LeftSideBar from '../animations/LeftSideBar';
 
-
+import SideBar from './SideBar';
 
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
 
@@ -150,7 +150,7 @@ function ImageMarker(props) {
   );
 }
 
-class MapBox extends React.Component {
+class MapSearch extends React.Component {
 
   constructor() {
     super();
@@ -261,17 +261,16 @@ class MapBox extends React.Component {
       <Fragment>
 
 
-        <div className="App">
-        </div>
+      
 
       
 
-        <Row style={{paddingBottom: "3%"}}>
+        <Row style={{paddingBottom: "0%"}}>
      
-          <Col sm="0" md="0" lg="0" xl="0" >
+          <Col sm="0" md="0" lg="2" xl="2" >
          
          
-         
+          <SideBar />
             
      
             
@@ -286,7 +285,7 @@ class MapBox extends React.Component {
                 </ul>
               </div>
 
-
+       
               
               </Col>
              
@@ -296,14 +295,15 @@ class MapBox extends React.Component {
        
          
        
-          
-
-          <Col sm="12" md="12" lg='12' xl='12'  >
-          
-            <Card body style={{padding: "0% 0% 0% 0%", margin: "-2.5%", border: "white", marginTop: "-.9%", marginRight: "-5"}}>
          
-              <div className="map-container" style={{height: "800px"}}>
+
              
+          <Col  sm="12" md="12" lg='10' xl='10' style={{padding: "0% 0% 0% 0%", marginTop: "0%" }} >
+          
+   
+         
+              <div className="map-container" style={{height: "80%"}}>
+           
              
                 <div className="right map-frame">
                
@@ -336,7 +336,7 @@ class MapBox extends React.Component {
               </div>
          
            
-            </Card>
+           
           </Col>
          
         </Row>
@@ -350,4 +350,4 @@ class MapBox extends React.Component {
   }
 }
 
-export default MapBox;
+export default MapSearch;

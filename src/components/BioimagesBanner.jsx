@@ -42,38 +42,7 @@ function BioimagesBanner() {
             <div class="row content-bio"  >
                 <div class="container content-bio-container" >
 
-                <Container  style={{height: "5px", marginBottom: "20px", marginTop: "-40px",  paddingTop: "20px", width: "80%"}} >
-
-       
-         
-<InputGroup inline className="searchbar center" style={{ height:"80px", marginLeft: "25%", paddingLeft: "2%"}}>
-<img src="/img/icons/search-bioimages-icon.svg" alt="bioimages search icon" style={{width: "8%", paddingTop: "2%", marginRight: "0%"}}/>
-  
-  <FormControl 
-  onChange={handleChange} 
-  id="place" 
-  type="text" 
-  placeholder="Search images by region or by site" 
  
-  style={{fontSize: "22px", width: "45%", color: "#66b3a6"}} 
-  aria-label="term"
-  />
-
-
-  <Button onClick={handleSubmit}
-            className="btn-default"
-           variant="outline" 
-           type="submit"
-           style={{marginLeft: "0%", marginRight: "4%", height: "60px", width: "60px", outline: "#fff", borderRadius: "50px",
-           outlineOffset: "#fff"}}>
-               <img src="/img/icons/search-arrow.svg" 
-               alt="bioimages search icon" 
-               style={{width: "130%", paddingTop: "10%", paddingRight: "20%" }}/>
-  </Button>
-  
-</InputGroup>
-
-</Container>
               <img class="icon" src="/img/icons/Bioimages icon.svg"  height="70px" style={{marginLeft:"20px"}}/>
                     <h1 class="mytitle"> Bioimages</h1>
                

@@ -6,46 +6,24 @@ import CoESRADropdown from '../components/CoESRADropdown';
 import CommunityDropdown from '../components/CommunityDropdown';
 
 
-import SearchBar from './SearchBar';
 
 
-class BioimagesMenu extends Component {
+class BioMenu extends Component {
     render() {
 
         return (
             <Fragment >
                              
-                <div class="main-header" style={{marginTop:"-30px", marginBottom: "-30px"}}>
+                <div class="main-header" style={{ border: "1px solid red", height: "60px"}}>
                     <div class="container" >
-                        <div class="main-header-container d-flex">
-                            <div class="site-branding">
-                                <a href="#"><span><img src="img/logo@3x.png" alt="" /></span></a>
-                            </div>
-
-
+                        <div class="main-header-container d-flex"  style={{border: "1px solid white", height: "60px"}}>
+                        
+                            <div class="main-header-bar-navigation"  style={{marginRight: "20%", border: "2px solid green", height: "60px"}}>
                             
-
-
-
-                          
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="main-header-bar-navigation">
-                                <input class="menu-btn" type="checkbox" id="menu-btn" />
-                                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                                <ul id="primary-menu" class="main-header-menu d-flex">
+                                <ul id="primary-menu" class="main-header-menu d-flex" style={{border: "1px solid blue", height: "60px"}}>
                                     <li><a href="#">
                                   
-                                    <TERNDataDropdown content="hello">
+                                    <TERNDataDropdown content="hello"  >
                                         
                                     </TERNDataDropdown></a>
                                         <ul class="dropdown">
@@ -88,4 +66,4 @@ class BioimagesMenu extends Component {
 }
 
 
-export default BioimagesMenu;
+export default BioMenu;
