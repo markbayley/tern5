@@ -35,6 +35,8 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden; /* Hide horizontal scrollbar */
+	overflow-y: hidden;
+
 }
 a {
     color: #e36a51;
@@ -176,19 +178,19 @@ a {
 	margin-top: -15px;
 	margin-right: 5px;
 	margin-left: 10px;
+	
 
 }
 
 .searchbar {
 	display: "flex";
 	justify-content: "center";
-	background-image: url(/img/icons/search-bar.png);
+	background-image: url(/img/icons/search-bar2.png);
+	
     
 	width: 50%;
 	height: 100%;
 	background-repeat: no-repeat;
-
-
 	
 }
 
@@ -214,7 +216,7 @@ a {
 }
 
 #place::placeholder {
-    color: #66b3a6;
+    color: #065f65;
     opacity: 1;
 
 }
@@ -388,7 +390,7 @@ a {
 
 /* login form styles */
 .login-form-container {
-    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/form-background.png);
+    background-image: url(/img/form-background.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 20px;
@@ -405,7 +407,7 @@ a {
 }
 
 .login-text-container {
-    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/text-background.png);
+    background-image: url(/img/text-background.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 20px;
@@ -457,7 +459,7 @@ a {
     color: #757575;
     /* background-color: #4285f4; */
     border: 1px solid #4285f4;
-    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/google-icon.svg);
+    background-image: url(/img/google-icon.svg);
 }
 
 #kc-social-providers a#zocial-google {
@@ -465,7 +467,7 @@ a {
     color: #757575;
     /* background-color: #4285f4; */
     border: 1px solid #4285f4;
-    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/google-icon.svg);
+    background-image: url(/img/google-icon.svg);
 }
 
 #kc-social-providers a#zocial-aaf {
@@ -475,7 +477,7 @@ a {
     background-color: #f67f29;
     border: 1px solid #f67f29;
 
-    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/aaf-icon.png);
+    background-image: url(/img/aaf-icon.png);
 }
 
 #kc-social-providers a#zocial-oidc {
@@ -485,7 +487,7 @@ a {
     background-color: #f67f29;
     border: 1px solid #f67f29;
 
-    background-image: url(https://auth-test.tern.org.au/auth/resources/xtd87/login/tern-bootstrap4/img/aaf-icon.png);
+    background-image: url(/img/aaf-icon.png);
 }
 
 .login-pf-social {
@@ -863,7 +865,7 @@ a {
 }
 
 .leaflet-container {
-  height: 81vh;
+  height: 80vh;
   width: fluid;
 }
 
@@ -937,12 +939,15 @@ a {
   text-decoration: none;
   display: inline-block;
  
+}
 
-	
-	
+circle {
+	fill: red;
   }
 
-
+  svg {
+	width: 200px;
+  }
 
 
 

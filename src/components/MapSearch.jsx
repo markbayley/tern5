@@ -7,6 +7,8 @@ import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Api from './Api';
 //import Cards from './Cards';
 
+import { Nav, Container } from 'react-bootstrap';
+
 import {
   Card, CardTitle, Row, Col, Button,
 } from 'reactstrap';
@@ -265,7 +267,7 @@ class MapSearch extends React.Component {
 
       
 
-        <Row style={{paddingBottom: "0%"}}>
+        <Row>
      
           <Col sm="0" md="0" lg="2" xl="2" >
          
@@ -298,11 +300,11 @@ class MapSearch extends React.Component {
          
 
              
-          <Col  sm="12" md="12" lg='10' xl='10' style={{padding: "0% 0% 0% 0%", marginTop: "0%" }} >
+          <Col  sm="12" md="12" lg='10' xl='10' style={{padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%"}} >
           
    
          
-              <div className="map-container" style={{height: "80%"}}>
+              <div className="map-container">
            
              
                 <div className="right map-frame">
@@ -338,10 +340,25 @@ class MapSearch extends React.Component {
            
            
           </Col>
+      
          
         </Row>
-
        
+    
+        <Row  className="justify-content-center" activeKey="/home" style={{lineHeight: "15px", backgroundColor: "#003d4f", height: "35px"}}>
+                    <Nav.Item style={{padding: "0 20px 0px 20px", fontSize: "14px"}}>
+                        <Nav.Link style={{color: "white"}} href="/home">Access Policy</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item style={{padding: "0 20px 0 20px", fontSize: "14px"}}>
+                        <Nav.Link style={{color: "white"}} eventKey="link-1">Data Licensing</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item style={{padding: "0 20px 0 20px", fontSize: "14px"}}>
+                        <Nav.Link style={{color: "white"}} eventKey="link-2">Copyright</Nav.Link>
+                    </Nav.Item>
+                
+                </Row>
+              
+              
       
     
       </Fragment>

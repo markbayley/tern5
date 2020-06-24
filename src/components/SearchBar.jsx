@@ -55,7 +55,7 @@ function SearchBar() {
              </Row>
        
          
-          <Form inline className="searchbar" style={{ height:"80px", marginLeft: "25%", paddingLeft: "2%"}}>
+          <InputGroup inline className="searchbar" style={{ height:"80px", marginLeft: "25%", paddingLeft: "2%"}}>
           <img src="/img/icons/search-bioimages-icon.svg" alt="bioimages search icon" style={{width: "8%", paddingTop: "2%", marginRight: "0%"}}/>
             
             <FormControl 
@@ -73,9 +73,9 @@ function SearchBar() {
             <Button onClick={handleSubmit}
                      variant="outline" 
                      type="submit"
-                     style={{marginLeft: "40%", height: "50px", width: "50px", border: "1px solid red"}}> 
+                     style={{marginLeft: "0%", height: "50px", width: "50px", border: "1px solid red"}}> 
             </Button>
-          </Form>
+          </InputGroup>
 
           
            

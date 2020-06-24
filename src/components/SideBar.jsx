@@ -16,7 +16,7 @@ class SideBar extends React.Component {
             
                
                
-            <Card body style={{ marginRight: "-15px", border: "white", color: "#065f65", marginLeft: "0px"}}  >
+            <Card body style={{ border: "white", color: "#065f65", marginLeft: "0px"}}  >
               <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
              
 
