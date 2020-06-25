@@ -269,27 +269,38 @@ class MapSearch extends React.Component {
 
         <Row>
      
-          <Col sm="0" md="0" lg="2" xl="2" >
-         
-         
+          <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", marginLeft: "0%"}} >
+   
           <SideBar />
+
+          <Row style={{ position: "absolute", left: "112%", top: "5%"}}>
+            <img src="img/icons/Location.svg" alt="location" height="40px"/>
+            </Row>
+
+            <Row style={{ position: "absolute", left: "112%", top: "13%"}}>
+           <img src="img/icons/camera1.svg" alt="location" height="40px"/>
+            </Row>
+      
+            <Row style={{ position: "absolute", left: "112%", top: "29%"}}>
+            <img src="img/icons/calendar.svg" alt="location" height="40px"/>
+            </Row>
+
+            <Row style={{ position: "absolute", left: "112%", top: "37%"}}>
+            <img src="img/icons/frequency.svg" alt="location" height="40px"/>
+            </Row>
+
+ 
+         
+        
+         
             
      
             
-              <div>
-                <ImageSearch
-                  value={this.state.filters}
-                  onClick={(i) => this.handleFilter(i)} />
-              </div>
-              <div className="left">
-                <ul>
-                  {favs}
-                </ul>
-              </div>
+         
 
        
               
-              </Col>
+     </Col>
              
         
         

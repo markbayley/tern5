@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import { Accordion, Card, CardTitle, Button, Col } from "react-bootstrap";
+import { Accordion, Card, CardTitle, Button, Col, Row } from "react-bootstrap";
 
 import Datepicker from './Datepicker';
 
-import SidePanel from './SidePanel';
+import State from './State';
 
 
 
@@ -13,10 +13,15 @@ class SideBar extends React.Component {
 
            <Fragment > 
             
-            
+         
+           
                
-               
-            <Card body style={{ border: "white", color: "#065f65", marginLeft: "0px"}}  >
+            <Card body style={{border: "white"}} >
+        
+           
+         
+    
+             
               <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
              
 
@@ -142,7 +147,7 @@ class SideBar extends React.Component {
 
             </Accordion>
 
-      
+       
 
           </Card>
         

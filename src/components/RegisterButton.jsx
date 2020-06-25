@@ -24,9 +24,9 @@ function simulateNetworkRequest() {
         size="md" 
         disabled={isLoading}
         onClick={!isLoading ? handleClick : null}
-       
+        to="https://auth-test.tern.org.au/auth/realms/tern/protocol/openid-connect/auth?client_id=account&redirect_uri=https%3A%2F%2Fauth-test.tern.org.au%2Fauth%2Frealms%2Ftern%2Faccount%2Flogin-redirect&state=0%2F8b80b485-2114-431c-b92a-1a27748ee396&response_type=code&scope=openid"
       >
-        {isLoading ? 'Loading' : 'REGISTER'}
+      REGISTER
       </Button>
     );
   }
