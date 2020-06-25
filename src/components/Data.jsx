@@ -26,8 +26,8 @@ export default function Data() {
         <div class="above-header">
           <div class="container">
             <div class="above-header-section-wrap d-flex">
-              <Row style={{ marginRight: "24%", paddingTop: ".5%" }}>
-                <Col style={{ marginRight: "20px" }}>   <TERNDataDropdown /></Col>
+              <Row style={{ marginRight: "3%", paddingTop: ".5%" }}>
+                <Col style={{ marginRight: "15px" }}>   <TERNDataDropdown /></Col>
                 <Col> <DataVisualiserDropdown /></Col>
                 <Col style={{ marginLeft: "40px" }}> <CoESRADropdown /></Col>
                 <Col><CommunityDropdown /></Col>
