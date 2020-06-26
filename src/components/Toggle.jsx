@@ -11,7 +11,7 @@ import SideBar from './SideBar';
 
 
 
-const State = () => {
+const Toggle = () => {
     const searchmodes = ["map", "filter"];
     const [mySearch, setMySearch] = useState("");
 
@@ -82,4 +82,4 @@ const State = () => {
 };
 
 
-export default State;
+export default Toggle;

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Button, FormControl, Col, Row, InputGroup, Navbar, Image } from 'react-bootstrap';
+import React, { useState, Fragment } from "react";
+import { Container, Button, FormControl, Col, Row, InputGroup, Navbar, Image, Card, Form } from 'react-bootstrap';
 import axios from "axios";
 import LoginButton from './LoginButton';
 import RegisterButton from './RegisterButton';
@@ -11,7 +11,7 @@ import MainFooter from './MainFooter';
 
 import BioimagesSubFooter from './BioimagesSubFooter'
 import MapSearch from './MapSearch';
-import State from './State';
+import State from './Toggle';
 
 import {
   BrowserRouter as Router,
@@ -19,6 +19,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+
 
 
 function NavBar() {
@@ -37,7 +39,7 @@ function NavBar() {
     console.log(term);
 
     const url =
-      "https://api.unsplash.com/search/photos?page=1&query=" +
+      "https://api.unsplash.com/search/photos?page=2&per_page=15&query=" +
       term +
       "&client_id=" +
       clientId;
@@ -51,7 +53,6 @@ function NavBar() {
   function Home() {
     return (
       <div>
-
         <MainBanner />
         <SignIn />
         <MainFooter />
@@ -63,11 +64,12 @@ function NavBar() {
   function DataPortal() {
     return (
       <div>
-
         <MapSearch />
       </div>
     );
   }
+
+
 
   return (
     <Router>
@@ -95,7 +97,7 @@ function NavBar() {
 
                 }}>
                   <Image class="icon" src="/img/icons/bioimages-download.svg"
-                    height="40px" />Bioimages
+                     style={{marginBottom: "3%", height: "35px"}} />Bioimages
                     </h3>
 
                 <InputGroup inline className="searchbar"
@@ -139,18 +141,40 @@ function NavBar() {
 
               <Link to="/login" style={{marginRight: ".5%"}}> <RegisterButton /> </Link>
 
-              <Row>
-                <Col>
-                  {result.map((term) => (
-                    <Image src={term.urls.small} width="210px" height="210px" style={{ margin: "10px 13px 50px 13px" }} />
-                  ))}
-                </Col>
-              </Row>
+           
 
 
             </Container>
           </Navbar.Collapse>
         </Navbar>
+              <Container style={{ paddingLeft: "3%"}}>
+              <Row>
+           
+                  {result.map((term) => (
+            <div >
+          
+               
+                    <Image src={term.urls.small} width="210px" height="210px" style={{ margin: "10px 13px 10px 13px" }} /><br/>
+                    <Form  style={{paddingTop: "5px"}}>
+  {[ 'radio'].map((type) => (
+    <div key={`inline-${type}`} className="mb-3">
+      <Form.Check  type={type} id={`inline-${type}-1`} inline label="View"/>
+      <Form.Check inline label="Select" type={type} id={`inline-${type}-2`} />
+      <Form.Check inline label="Download" type={type} id={`inline-${type}-3`} />
+     
+    </div>
+  ))}
+</Form>
+                   
+                  
+                 
+ 
+                 
+                    </div>
+                  ))}
+             
+              </Row>
+              </Container>
 
         <Switch>
 

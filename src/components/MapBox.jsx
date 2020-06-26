@@ -5,7 +5,7 @@ import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
 //import Api from './Api';
-import State from './State';
+import State from './Toggle';
 
 import {
   Card, CardTitle, Row, Col, Button,

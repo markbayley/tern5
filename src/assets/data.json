@@ -1,0 +1,94 @@
+{
+    "venues": [
+        {
+            "id": 1,
+            "description": "This is my home ",
+            "name": "St Lucia",
+            "geometry": [
+                 -27,
+                 153
+            ]
+        },
+        {
+            "id": 2,
+            "description": "Queensland outback town",
+            "name": "Longreach",
+            "geometry": [
+                -23,
+                144
+            ]
+        },
+        {
+            "id": 3,
+            "description": "Town in outback somewhere",
+            "name": "Widden",
+            "geometry": [
+               -33,
+               150
+            ]
+        },
+        {
+            "id": 4,
+            "description": "Small town in Australia",
+            "name": "Wodonga",
+            "geometry": [
+                -36,
+                147
+            ]
+        },
+        {
+            "id": 5,
+            "description": "Town New South Wales",
+            "name": "Kempsey",
+            "geometry": [
+                -31,
+                152
+            ]
+        },
+        {
+            "id": 6,
+            "description": "This is a small town",
+            "name": "Wingan",
+            "geometry": [
+                -37,
+                149
+            ]
+        },
+        {
+            "id": 7,
+            "description": "Town in South Australia",
+            "name": "Yumbarra",
+            "geometry": [
+                -31,
+                133.409063
+            ]
+        },
+        {
+            "id": 8,
+            "description": "A lake in Tasmania",
+            "name": "Lake Leake",
+            "geometry": [
+                -42,
+                148
+            ]
+        },
+        {
+            "id": 9,
+            "description": "This is a town",
+            "name": "Gregory",
+            "geometry": [
+                -16,
+                130
+            ]
+        },
+        {
+            "id": 10,
+            "description": "This is a lake",
+            "name": "Lake Wells",
+            "geometry": [
+                -27,
+                122
+            ]
+        }
+    ]
+}

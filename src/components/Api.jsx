@@ -4,7 +4,7 @@ import axios from "axios";
 import { Container, Col, Row, Button, InputGroup, FormControl, Jumbotron, Form } from "react-bootstrap";
 
 import MapBox from './MapBox';
-import State from './State';
+import State from './Toggle';
 
 function Api() {
     const [term, setPhoto] = useState("");

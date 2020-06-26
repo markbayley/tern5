@@ -19,6 +19,7 @@ import {
   Link
 } from "react-router-dom";
 
+
 export default function Data() {
   return (
     <Router>
@@ -74,6 +75,7 @@ function DataPortal() {
   return (
     <div>
       <NavBar />
+ 
       <MapSearch />
     </div>
   );

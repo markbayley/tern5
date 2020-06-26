@@ -4,21 +4,19 @@ import { CONFIG } from '../config.js';
 import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
-//import Api from './Api';
-//import Cards from './Cards';
 
-import { Nav, Container } from 'react-bootstrap';
+import data from '../assets/data';
+import Markers from './VenueMarkers';
+
+
+import { Nav} from 'react-bootstrap';
 
 import {
-  Card, CardTitle, Row, Col, Button,
+  Row, Col
 } from 'reactstrap';
 
 
-import SearchBar from './SearchBar';
-import Side from './Side';
 
-import BurgerMenu from '../animations/BurgerMenu';
-import LeftSideBar from '../animations/LeftSideBar';
 
 import SideBar from './SideBar';
 
@@ -261,11 +259,7 @@ class MapSearch extends React.Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <Fragment>
-
-
-      
-
-      
+           
 
         <Row>
      
@@ -273,32 +267,22 @@ class MapSearch extends React.Component {
    
           <SideBar />
 
-          <Row style={{ position: "absolute", left: "112%", top: "5%"}}>
+          <Row style={{ position: "absolute", left: "112%", top: "8%"}}>
             <img src="img/icons/Location.svg" alt="location" height="40px"/>
             </Row>
 
-            <Row style={{ position: "absolute", left: "112%", top: "13%"}}>
+            <Row style={{ position: "absolute", left: "112%", top: "22%"}}>
            <img src="img/icons/camera1.svg" alt="location" height="40px"/>
             </Row>
       
-            <Row style={{ position: "absolute", left: "112%", top: "29%"}}>
+            <Row style={{ position: "absolute", left: "112%", top: "49%"}}>
             <img src="img/icons/calendar.svg" alt="location" height="40px"/>
             </Row>
 
-            <Row style={{ position: "absolute", left: "112%", top: "37%"}}>
+            <Row style={{ position: "absolute", left: "112%", top: "62%"}}>
             <img src="img/icons/frequency.svg" alt="location" height="40px"/>
             </Row>
-
- 
-         
-        
-         
-            
-     
-            
-         
-
-       
+  
               
      </Col>
              
@@ -331,6 +315,9 @@ class MapSearch extends React.Component {
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                       />
+
+                      <Markers venues={data.venues}/>
+
                       {Object.keys(this.state.hits).map((index) => (
                         <ImageMarkers
                           value={this.state.hits[index]}
