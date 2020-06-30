@@ -1,17 +1,17 @@
 import React, { useState, Fragment } from "react";
 import { Container, Button, FormControl, Col, Row, InputGroup, Navbar, Image, Card, Form } from 'react-bootstrap';
 import axios from "axios";
-import LoginButton from './LoginButton';
-import RegisterButton from './RegisterButton';
+import LoginButton from './buttons/LoginButton';
+import RegisterButton from './buttons/RegisterButton';
 
 
-import MainBanner from './MainBanner';
-import SignIn from './SignIn';
-import MainFooter from './MainFooter';
+import MainBanner from './banners/MainBanner';
+import SignIn from './signin/SignIn';
+import MainFooter from './footers/MainFooter';
 
-import BioimagesSubFooter from './BioimagesSubFooter'
+import BioimagesSubFooter from './footers/BioimagesSubFooter'
 import MapSearch from './MapSearch';
-import State from './Toggle';
+
 
 import {
   BrowserRouter as Router,
@@ -78,9 +78,9 @@ function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Col sm={2} style={{ position: "absolute", left: "0%" }}>
-              <Navbar.Brand href="#home">
-                <div class="site-branding">
-                  <a href="#"><span><img src="img/logo@3x.png" alt="" /></span></a>
+              <Navbar.Brand>
+                <div className="site-branding">
+                  <Link to="/"><img src="img/logo@3x.png" alt="" /></Link>
                 </div>
               </Navbar.Brand>
             </Col>
@@ -96,11 +96,11 @@ function NavBar() {
                   color: "#065f65",
 
                 }}>
-                  <Image class="icon" src="/img/icons/bioimages-download.svg"
-                     style={{marginBottom: "3%", height: "35px"}} />Bioimages
+                  <Image className="icon" src="/img/icons/bioimages-download.svg"
+                     style={{marginBottom: "3%", height: "35px", marginTop: "0%"}} />Bioimages
                     </h3>
 
-                <InputGroup inline className="searchbar"
+                <InputGroup inline="true" className="searchbar"
                   style={{
                     height: "60px",
                     width: "455px",

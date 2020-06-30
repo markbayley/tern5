@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Jumbotron, Container, Form, Button, FormControl, Col, Row, InputGroup } from 'react-bootstrap';
+import { Jumbotron, Container, Button, FormControl, Col, Row, InputGroup } from 'react-bootstrap';
 
 
 import axios from "axios";
@@ -34,10 +34,6 @@ function SearchBar() {
 
     return (
 
-     
-
-         
-
       <Jumbotron  style={{ borderBottom: "1.5px solid #66b3a6" }}>
         <Container >
 
@@ -49,6 +45,7 @@ function SearchBar() {
                                 width="200px"
                                 height="200px"
                                 style={{margin: "10px 13px 50px 13px"}}
+                                alt="result"
                             />
                         ))}
                     </Col>

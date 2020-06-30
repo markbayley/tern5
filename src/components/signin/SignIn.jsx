@@ -13,7 +13,7 @@ class SignIn extends Component {
                                     <div class="row login-form-container">
                                         <div id="kc-form" class="col">
                                             <div id="kc-form-wrapper" class=" row justify-content-center">
-                                                <form id="kc-form-login" onsubmit="login.disabled = true; return true;"
+                                                <form id="kc-form-login" onSubmit="login.disabled = true; return true;"
                                                     action="https://auth-test.tern.org.au/auth/realms/tern/login-actions/authenticate?session_code=9gEZyr3Uvk-HOT5jEjdBNOHDiE5vvH_u9f5IFiqEoLc&amp;execution=6fa357a1-6037-4d67-8330-96901139dbc4&amp;client_id=account&amp;tab_id=Q8XsMUIOKeg"
                                                     method="post">
                                                     <div class="">
@@ -42,7 +42,7 @@ class SignIn extends Component {
 
                                                     <div id="kc-form-buttons" class="">
                                                         <input type="hidden" id="id-hidden-input" name="credentialId" />
-                                                        <input tabindex="4" class="   " name="login" id="kc-login" type="submit" value="Sign in" />
+                                                        <input tabIndex="4" class="   " name="login" id="kc-login" type="submit" value="Sign in" />
                                                     </div>
                                                 </form>
                                             </div>

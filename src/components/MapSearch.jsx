@@ -1,26 +1,19 @@
 import React, { Fragment } from 'react';
 import '../App.css';
 import { CONFIG } from '../config.js';
-import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
+import { Map, Marker, Popup, Tooltip, TileLayer, GeoJSON } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
-
 import data from '../assets/data';
 import Markers from './VenueMarkers';
-
-
-import { Nav} from 'react-bootstrap';
+import Footer from './Footer'
+import SideBar from './SideBar';
 
 import {
   Row, Col
 } from 'reactstrap';
 
-
-
-
-import SideBar from './SideBar';
-
-const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
+const base_image_url =  "https://bioimages-test.tern.org.au/api/v1.0/search?";
 
 function SearchResults(props) {
   return (
@@ -259,108 +252,55 @@ class MapSearch extends React.Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <Fragment>
-           
-
         <Row>
-     
-          <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", marginLeft: "0%"}} >
-   
           <SideBar />
 
-          <Row style={{ position: "absolute", left: "112%", top: "8%"}}>
-            <img src="img/icons/Location.svg" alt="location" height="40px"/>
-            </Row>
+          <Col sm="12" md="12" lg='10' xl='10' style={{ padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%" }} >
+            <div className="map-container">
+              <div className="right map-frame">
+                <div id="map-id" >
+                  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+                    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                    crossOrigin="" />
+                  <Map center={position} zoom={this.state.zoom}>
 
-            <Row style={{ position: "absolute", left: "112%", top: "22%"}}>
-           <img src="img/icons/camera1.svg" alt="location" height="40px"/>
-            </Row>
-      
-            <Row style={{ position: "absolute", left: "112%", top: "49%"}}>
-            <img src="img/icons/calendar.svg" alt="location" height="40px"/>
-            </Row>
+                    <TileLayer
+                      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                      url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                    />
+                    <Markers venues={data.venues} />
 
-            <Row style={{ position: "absolute", left: "112%", top: "62%"}}>
-            <img src="img/icons/frequency.svg" alt="location" height="40px"/>
-            </Row>
-  
-              
-     </Col>
-             
-        
-        
-
-       
-         
-       
-         
-
-             
-          <Col  sm="12" md="12" lg='10' xl='10' style={{padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%"}} >
-          
-   
-         
-              <div className="map-container">
-           
-             
-                <div className="right map-frame">
-               
-                  <div id="map-id" >
-               
-                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-                      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-                      crossOrigin="" />
-                    <Map center={position} zoom={this.state.zoom}>
-                 
-                      <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                      />
-
-                      <Markers venues={data.venues}/>
-
-                      {Object.keys(this.state.hits).map((index) => (
-                        <ImageMarkers
-                          value={this.state.hits[index]}
-                          location={index} />
-                      ))}
-                    </Map >
-                  </div>
-
-                  <div>
-                    <SearchResults
-                      value={this.state.hits}
-                      group={this.state.aggregation}
-                      onClick={(i) => this.handleFilter(i)} />
-                  </div>
+                    {Object.keys(this.state.hits).map((index) => (
+                      <ImageMarkers
+                        value={this.state.hits[index]}
+                        location={index} />
+                    ))}
+                  </Map >
                 </div>
+                <div>
+                  <SearchResults
+                    value={this.state.hits}
+                    group={this.state.aggregation}
+                    onClick={(i) => this.handleFilter(i)} />
+                </div>
+                <div>
+                <ImageSearch
+                  value={this.state.filters}
+                  onClick={(i) => this.handleFilter(i)} />
               </div>
-         
-           
-           
+              <div className="left">
+                <ul>
+                  {favs}
+                </ul>
+              </div>
+              </div>
+            </div>
           </Col>
-      
-         
+
         </Row>
-       
-    
-        <Row  className="justify-content-center" activeKey="/home" style={{lineHeight: "15px", backgroundColor: "#003d4f", height: "35px"}}>
-                    <Nav.Item style={{padding: "0 20px 0px 20px", fontSize: "14px"}}>
-                        <Nav.Link style={{color: "white"}} href="/home">Access Policy</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item style={{padding: "0 20px 0 20px", fontSize: "14px"}}>
-                        <Nav.Link style={{color: "white"}} eventKey="link-1">Data Licensing</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item style={{padding: "0 20px 0 20px", fontSize: "14px"}}>
-                        <Nav.Link style={{color: "white"}} eventKey="link-2">Copyright</Nav.Link>
-                    </Nav.Item>
-                
-                </Row>
-              
-              
-      
-    
+        <Footer />
       </Fragment>
-  
+
     );
   }
 }

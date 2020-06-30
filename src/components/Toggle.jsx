@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
-import MapBox from "./MapBox";
+import MapBox from "./test/MapBox";
 import MapSearch from "./MapSearch";
-import Api from './Api'
-import { Map } from "leaflet";
+
+
 
 import SideBar from './SideBar';
 
@@ -16,7 +16,7 @@ const Toggle = () => {
     const [mySearch, setMySearch] = useState("");
 
   
-    const [open, setOpen] = useState(false);
+   
     
         
     return (

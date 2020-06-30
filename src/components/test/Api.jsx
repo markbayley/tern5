@@ -3,8 +3,8 @@ import axios from "axios";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Col, Row, Button, InputGroup, FormControl, Jumbotron, Form } from "react-bootstrap";
 
-import MapBox from './MapBox';
-import State from './Toggle';
+
+import Toggle from '../Toggle';
 
 function Api() {
     const [term, setPhoto] = useState("");
@@ -66,7 +66,7 @@ function Api() {
 
 
 
-  <State />
+  <Toggle />
 
 
 

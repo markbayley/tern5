@@ -1,21 +1,20 @@
 import React, { Fragment } from 'react';
-import '../App.css';
-import { CONFIG } from '../config.js';
+
+import { CONFIG } from '../../config.js';
 import { Map, Marker, Popup, Tooltip, TileLayer } from 'react-leaflet';
 //import Wkt from 'wicket';
 //import wkt_coords from 'wicket';
 //import Api from './Api';
-import State from './Toggle';
+
 
 import {
   Card, CardTitle, Row, Col, Button,
 } from 'reactstrap';
 
 import PhotoGallery from './PhotoGallery'
-import BreadCrumb from './BreadCrumb';
-import SideBar from './SideBar';
-import SidePanel from './SidePanel';
-import Api from './Api';
+import BreadCrumb from '../BreadCrumb';
+import SideBar from '../SideBar';
+
 
 
 
