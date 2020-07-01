@@ -1,6 +1,16 @@
+import React from 'react'
 
-{
-    "venues": [
+const buttons = [
+    { name: "All", type: "All" },
+    { name: "phenocam", type: "phenocam" },
+    { name: "panorama", type: "panorama" }
+ 
+  ];
+  class Filter extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        venues: [
         {
             "id": 1,
             "description": "This is my home ",
@@ -94,12 +104,59 @@
         {
             "id": 10,
             "description": "This is a lake",
-            "name": "Lake Wells",
+            "name": "panorama",
             "type": "panorama",
             "geometry": [
                 -27,
                 122
             ]
         }
-    ]
-}
+    ],
+        filterVenue: []
+      };
+    }
+  
+    componentDidMount() {
+      this.setState({
+        filterVenue: this.state.venues
+      });
+    }
+  
+    handleClick = name => {
+      let filterVenue = [];
+      if (name === "All") {
+        filterVenue = this.state.venues;
+      } else {
+        filterVenue = this.state.venues.filter(
+          venue => venue.type === name
+        );
+      }
+  
+      this.setState({ filterVenue });
+    };
+  
+
+    render() {
+        const renderAll = this.state.filterVenue.map(venue => (
+          <li key={venue.name}>{venue.name}</li>
+        ));
+        return (
+          <div>
+            {buttons.map(({ name, type }) => (
+              <button
+                key={name}
+                type={type}
+                onClick={this.handleClick.bind(this, name)}
+              >
+                {name}
+              </button>
+            ))}
+    
+            <p>Venue: {renderAll}</p>
+            <h2>{this.state.filterVenue.length}</h2>
+          </div>
+        );
+      }
+    }
+
+export default Filter;

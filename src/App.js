@@ -4,11 +4,6 @@ import './App.css';
 import TopBar from './components/TopBar';
 
 
-
-
-
-
-
 class App extends React.Component {
   render() {
     return (
@@ -17,13 +12,7 @@ class App extends React.Component {
 
     
        <TopBar />
-      
-    
-   
-     
-     
-      
-       
+        
     
       </div>
 

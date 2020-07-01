@@ -4,6 +4,8 @@ import { Accordion, Card, CardTitle, Button, Col, Row } from "react-bootstrap";
 import Datepicker from './Datepicker';
 import IconBar from './IconBar'
 import TernAPI from './TernAPI';
+import Filter from './Filter';
+
 
 
 
@@ -119,10 +121,10 @@ class SideBar extends React.Component {
                         </Accordion>
 
 
-                        <TernAPI />
+                       
                     </Card>
 
-
+               
 
 
                     <IconBar />

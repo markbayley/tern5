@@ -10,10 +10,10 @@ import Footer from './Footer'
 import SideBar from './SideBar';
 
 import {
-  Row, Col
+  Row, Col, Button
 } from 'reactstrap';
 
-const base_image_url =  "https://bioimages-test.tern.org.au/api/v1.0/search?";
+const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
 
 function SearchResults(props) {
   return (
@@ -38,7 +38,7 @@ function SearchResult(props) {
   const img_url = base_image_url + props.value.published_root + '/' + props.value.thumbnail_path;
   return (
     <li id={props.id}>
-      <img src={img_url} /><br />
+      <img src={img_url} alt="image_result" /><br />
       <span className="space-left"><button onClick={() => props.onClick(props.id)}>key:{props.id} - count: {props.value.doc_count}- id:{props.value._id} - node:{props.value.metadata_doc.supersite_node_code} - img:{props.value.metadata_doc.image_type}</button></span>
     </li>
   );
@@ -238,22 +238,25 @@ class MapSearch extends React.Component {
   }
 
   render() {
-    const { favourites } = this.state;
-    const favs = favourites.map((favourite, index) => {
-      return (
-        <Favourite
-          value={favourite}
-          index={index}
-          key={'f' + index}
-          onClick={() => this.handleFavourite(favourite.favourite_name)} />
-      );
-    });
+    // const { favourites } = this.state;
+    // const favs = favourites.map((favourite, index) => {
+      // return (
+        // <Favourite
+        //   value={favourite}
+        //   index={index}
+        //   key={'f' + index}
+        //   onClick={() => this.handleFavourite(favourite.favourite_name)} />
+    //   );
+    // });
 
     const position = [this.state.lat, this.state.lng];
     return (
       <Fragment>
+      
         <Row>
+        
           <SideBar />
+         
 
           <Col sm="12" md="12" lg='10' xl='10' style={{ padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%" }} >
             <div className="map-container">
@@ -268,6 +271,7 @@ class MapSearch extends React.Component {
                       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                       url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                     />
+
                     <Markers venues={data.venues} />
 
                     {Object.keys(this.state.hits).map((index) => (
@@ -288,16 +292,18 @@ class MapSearch extends React.Component {
                   value={this.state.filters}
                   onClick={(i) => this.handleFilter(i)} />
               </div>
-              <div className="left">
-                <ul>
+              <div className="favs">
+               
+                {/* <ul>
                   {favs}
-                </ul>
+                </ul> */}
               </div>
               </div>
             </div>
           </Col>
 
         </Row>
+    
         <Footer />
       </Fragment>
 
