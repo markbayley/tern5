@@ -141,7 +141,7 @@ const buttons = [
           <li key={venue.name}>{venue.name}</li>
         ));
         return (
-          <div>
+          <div style={{paddingLeft: "10%"}}>
             {buttons.map(({ name, type }) => (
               <button
                 key={name}

@@ -17,53 +17,42 @@ function Datepicker() {
     <Fragment>
       <div>
 
-        <Accordion>
+     
           <Card style={{ border: "white", textAlign: "left" }} >
-            <Card.Header style={{ backgroundColor: "white" }}>
+         
+          <h6 style={{ paddingTop: "0%", color: "#065f65", fontWeight: "500" }}>Date Range</h6> 
+            
+          
 
-              <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ color: "#065f65", width: "200px", marginLeft: "-25px" }}>
-                <p style={{ float: "left", paddingTop: "6%", fontWeight: "100" }}>Date Range</p> <div style={{ float: 'right' }}>
-                  <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
-              </Accordion.Toggle>
-            </Card.Header>
+                <p style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>Start Date</p> 
+           
+             
+                <DatePicker 
+                  onChange={onChange}
+                  value={value}
+                
+                />
+              
+                
+              <p style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>End Date</p> 
+               
 
-            <Accordion.Collapse eventKey="0" style={{}}>
-              <Card.Body> <p style={{ color: 'lightblue', paddingTop: "26%" }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Start Date</p>
-                <div style={{ marginLeft: "-20px" }}> <DatePicker
+                <div style={{ marginLeft: "0px" }}> <DatePicker
                   onChange={onChange}
                   value={value}
                 /></div>
-                <p style={{ color: 'lightblue', paddingTop: "16%" }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> End Date</p>
 
-
-                <div style={{ marginLeft: "-20px" }}> <DatePicker
-                  onChange={onChange}
-                  value={value}
-                /></div>
-
-
-              </Card.Body>
-            </Accordion.Collapse>
 
           </Card>
 
 
           <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
 
-        </Accordion>
-
-
-
-
 
       </div>
     </Fragment>
   );
 }
-
-
-
-
 
 
 

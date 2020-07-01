@@ -6,137 +6,139 @@ import IconBar from './IconBar'
 import TernAPI from './TernAPI';
 import Filter from './Filter';
 
-
+import {
+    Form, Image
+} from 'react-bootstrap';
 
 
 class SideBar extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            favourites: [],
+            filters: {},
+            hits: [],
+            images: null,
+            error: null,
+            isLoading: true,
+            isLoadingSearch: true,
+            search: {},
+            selectedFilter: {},
+            aggregation: null,
+            lat: -27.47,
+            lng: 143.02,
+            zoom: 4
+        };
+    }
+
+    handleChange = event => {
+        alert(`${this.state.selectedFilter}`)
+        event.preventDefault()
+    }
+
+
     render() {
         return (
 
             <Fragment >
 
-                <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", marginLeft: "0%" }} >
-                    <Card body style={{ border: "white" }} >
+        
 
 
 
 
 
-                        <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
+<Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", marginLeft: "0%" }} >
+            <Card body style={{ border: "white" }} >
+
+              <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
+
+         
+
+        
+                <Card style={{ border: "white", textAlign: "left" }} >      
+                  
+                <h6 style={{ paddingTop: "10%", color: "#065f65", fontWeight: "500" }}>Site</h6> 
+                
+                  <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
+              
+                      {['radio'].map((type) => (
+                        <div key={`inline-${type}`} className="mb-3">
+                          <Form.Check inline label="Site One" type={type} id={`inline-${type}-1`} /><br />
+                          <Form.Check inline label="Site Two" type={type} id={`inline-${type}-2`} /><br />
+                          <Form.Check inline label="Site Three" type={type} id={`inline-${type}-3`} /><br />
+                          <Form.Check inline label="Site Four" type={type} id={`inline-${type}-4`} />
+                        </div>
+                      ))}
+                    </Form>
+
+                </Card>
+                <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
+
+     
+                <Card style={{ border: "white", textAlign: "left" }} >
+                <h6 style={{ paddingTop: "0%", color: "#065f65", fontWeight: "500" }}>Image Type</h6> 
+                
+
+                <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
+            
+                    {['radio'].map((type) => (
+                      <div key={`inline-${type}`} className="mb-3">
+                        <Form.Check inline label="Leaf Area Index" type={type} id={`inline-${type}-1`} /><br />
+                        <Form.Check inline label="Phenocam" type={type} id={`inline-${type}-2`} /><br />
+                        <Form.Check inline label="Panorama" type={type} id={`inline-${type}-3`} /><br />
+                        <Form.Check inline label="Photopoint" type={type} id={`inline-${type}-4`} />
+                      </div>
+                    ))}
+                  </Form>
 
 
+                </Card>
+
+                <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
 
 
-                        <Accordion >
-                            <Card style={{ border: "white", textAlign: "left" }} >
-                                <Card.Header style={{ backgroundColor: "white" }}>
+              <Datepicker />
 
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ color: "#065f65", width: "200px", marginLeft: "-25px" }}>
-                                        <p style={{ float: "left", paddingTop: "6%", color: "#065f65", fontWeight: "100" }}>Site</p> <div style={{ float: "right" }}>
-                                            <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
-                                    </Accordion.Toggle>
-                                </Card.Header>
+              <Card style={{ border: "white", textAlign: "left" }} >
+                <h6 style={{ paddingTop: "0%", color: "#065f65", fontWeight: "500" }}>Frequency</h6> 
+                
 
-                                <Accordion.Collapse eventKey="0" style={{}} >
-                                    <Card.Body> <p style={{ color: 'lightblue', margin: "0 !important" }} ><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Item 1</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }} >
-                                    <Card.Body> <p style={{ color: "Tomato" }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Item 2</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }} >
-                                    <Card.Body> <p style={{ color: '#95dbc7' }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Item 3</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }} >
-                                    <Card.Body><p><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Item 4</p></Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                            <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
+                <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
+            
+                    {['radio'].map((type) => (
+                      <div key={`inline-${type}`} className="mb-3">
+                        <Form.Check inline label="Daily" type={type} id={`inline-${type}-1`} /><br />
+                        <Form.Check inline label="Weekly" type={type} id={`inline-${type}-2`} /><br />
+                        <Form.Check inline label="Monthly" type={type} id={`inline-${type}-3`} /><br />
+                        <Form.Check inline label="Yearly" type={type} id={`inline-${type}-4`} />
+                      </div>
+                    ))}
+                  </Form>
 
 
+                </Card>
 
-                        </Accordion>
-                        <Accordion>
-                            <Card style={{ border: "white", textAlign: "left" }} >
-                                <Card.Header style={{ backgroundColor: "white" }}>
+                <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
 
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ color: "#065f65", width: "200px", marginLeft: "-25px" }}>
-                                        <p style={{ float: "left", paddingTop: "6%", fontWeight: "100" }}>Image Type</p> <div style={{ float: 'right' }}>
-                                            <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0" style={{}}>
-                                    <Card.Body> <p style={{ color: 'lightblue' }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Leaf Area Index</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }}>
-                                    <Card.Body> <p style={{ color: "Tomato" }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Phenocam</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }}>
-                                    <Card.Body> <p style={{ color: ' #95dbc7' }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Photopoint</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }}>
-                                    <Card.Body><p><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Panorama</p></Card.Body>
-                                </Accordion.Collapse>
-
-                            </Card>
-
-                            <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
-
-                        </Accordion>
-
-
-
-                        <Datepicker />
-
-                        <Accordion>
-                            <Card style={{ border: "white", textAlign: "left" }}>
-                                <Card.Header style={{ backgroundColor: "white" }}>
-
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ color: "#065f65", width: "200px", marginLeft: "-25px" }}>
-                                        <p style={{ float: "left", paddingTop: "6%", fontWeight: "100" }}>Frequency</p> <div style={{ float: 'right' }}>
-                                            <img src="img/icons/quickview.svg" alt="location" height="40px" /></div>
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body> <p style={{ color: 'lightblue' }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Daily</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }}>
-                                    <Card.Body> <p style={{ color: "Tomato" }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Weekly</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }}>
-                                    <Card.Body> <p style={{ color: ' #95dbc7' }}><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Monthly</p></Card.Body>
-                                </Accordion.Collapse>
-                                <Accordion.Collapse eventKey="0" style={{ marginTop: "-25px" }}>
-                                    <Card.Body><p><i className="fa fa-circle fa-lg" aria-hidden="true"></i> Yearly</p></Card.Body>
-                                </Accordion.Collapse>
-
-
-
-
-
-
-                            </Card>
-
-                            <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
-
-                        </Accordion>
-
-
-                       
-                    </Card>
-
+         
                
 
+              
 
-                    <IconBar />
-
-
-
-                </Col>
-
-
+                </Card>
+              
+            
+         
 
 
 
+            <IconBar />
+
+         
+
+          </Col>
 
 
             </Fragment>

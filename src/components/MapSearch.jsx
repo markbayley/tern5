@@ -7,11 +7,19 @@ import { Map, Marker, Popup, Tooltip, TileLayer, GeoJSON } from 'react-leaflet';
 import data from '../assets/data';
 import Markers from './VenueMarkers';
 import Footer from './Footer'
+//import SideBar from './SideBar';
+
+import { Accordion, Card, CardTitle, Button, Col, Row, Form } from "react-bootstrap";
+
+import Datepicker from './Datepicker';
+import IconBar from './IconBar';
+import Filter from './Filter';
 import SideBar from './SideBar';
 
-import {
-  Row, Col, Button
-} from 'reactstrap';
+
+// import {
+//   Row, Col, Button
+// } from 'reactstrap';
 
 const base_image_url = 'https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/';
 
@@ -47,7 +55,7 @@ function SearchResult(props) {
 function ImageSearch(props) {
   return (
     <div>
-      <div className="">
+      <div >
         {Object.keys(props.value).map((key, indexer) => (
           <ImageFilterType
             value={props.value[key]}
@@ -63,7 +71,7 @@ function ImageSearch(props) {
 function ImageFilterType(props) {
   return (
     <div className="container" key="{key}">
-      <span className="">
+      <span>
         <button onClick={() => props.onClick(props.header + '=')}>
           {props.header}</button></span>
       <ul>
@@ -81,7 +89,7 @@ function ImageFilterType(props) {
 function ImageFilter(props) {
   return (
     <div>
-      <div className="">
+      <div>
         <li key="{key}">
           <button onClick={props.onClick}>
             {props.value.key} ({props.value.doc_count})</button>
@@ -91,12 +99,12 @@ function ImageFilter(props) {
   );
 }
 
-function Favourite(props) {
-  return (
-    <li key="{index}"> <button
-      onClick={props.onClick}>{props.value.user_id} {props.value.favourite_name}</button></li>
-  );
-}
+// function Favourite(props) {
+//   return (
+//     <li key="{index}"> <button
+//       onClick={props.onClick}>{props.value.user_id} {props.value.favourite_name}</button></li>
+//   );
+// }
 
 function ImageMarkers(props) {
   console.log('hello');
@@ -237,26 +245,38 @@ class MapSearch extends React.Component {
     alert(i);  //image_type=photopoint
   }
 
+  handleChange = (event) => {
+    this.setState({
+      topic: event.target.value
+    })
+    console.log(event.target.value)
+  }
+
   render() {
     // const { favourites } = this.state;
     // const favs = favourites.map((favourite, index) => {
-      // return (
-        // <Favourite
-        //   value={favourite}
-        //   index={index}
-        //   key={'f' + index}
-        //   onClick={() => this.handleFavourite(favourite.favourite_name)} />
+    // return (
+    // <Favourite
+    //   value={favourite}
+    //   index={index}
+    //   key={'f' + index}
+    //   onClick={() => this.handleFavourite(favourite.favourite_name)} />
     //   );
     // });
 
     const position = [this.state.lat, this.state.lng];
     return (
       <Fragment>
-      
+
         <Row>
-        
-          <SideBar />
-         
+
+
+
+         <SideBar />
+
+
+
+
 
           <Col sm="12" md="12" lg='10' xl='10' style={{ padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%" }} >
             <div className="map-container">
@@ -288,22 +308,22 @@ class MapSearch extends React.Component {
                     onClick={(i) => this.handleFilter(i)} />
                 </div>
                 <div>
-                <ImageSearch
-                  value={this.state.filters}
-                  onClick={(i) => this.handleFilter(i)} />
-              </div>
-              <div className="favs">
-               
-                {/* <ul>
+                  <ImageSearch
+                    value={this.state.filters}
+                    onClick={(i) => this.handleFilter(i)} />
+                </div>
+                <div className="favs">
+
+                  {/* <ul>
                   {favs}
                 </ul> */}
-              </div>
+                </div>
               </div>
             </div>
           </Col>
 
         </Row>
-    
+
         <Footer />
       </Fragment>
 
