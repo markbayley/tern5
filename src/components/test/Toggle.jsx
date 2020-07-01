@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button } from 'reactstrap';
 
-import MapBox from "./test/MapBox";
-import MapSearch from "./MapSearch";
+import MapBox from "./MapBox";
+import MapSearch from "../MapSearch";
 
 
 
-import SideBar from './SideBar';
+import SideBar from '../SideBar';
 
 
 

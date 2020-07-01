@@ -3,8 +3,8 @@ import { Accordion, Card, CardTitle, Button, Col, Row } from "react-bootstrap";
 
 import Datepicker from './Datepicker';
 import IconBar from './IconBar'
-import TernAPI from './TernAPI';
-import Filter from './Filter';
+import TernAPI from './test/TernAPI';
+import Filter from './test/Filter';
 
 import {
     Form, Image
