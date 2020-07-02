@@ -5,6 +5,7 @@ import Datepicker from './Datepicker';
 import IconBar from './IconBar'
 import TernAPI from './test/TernAPI';
 import Filter from './test/Filter';
+import DatePicker from 'react-date-picker'
 
 import {
     Form, Image
@@ -32,10 +33,12 @@ class SideBar extends React.Component {
         };
     }
 
-    handleChange = event => {
-        alert(`${this.state.selectedFilter}`)
-        event.preventDefault()
-    }
+    handleChange = (event) => {
+        this.setState({
+          topic: event.target.value
+        })
+        console.log(event.target.value)
+      }
 
 
     render() {

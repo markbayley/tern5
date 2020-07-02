@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from "react";
-import { Container, Button, FormControl, Col, Row, InputGroup, Navbar, Image, Card, Form } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Container, Button, FormControl, Col, Row, InputGroup, Navbar, Image, Form, Modal } from 'react-bootstrap';
 import axios from "axios";
 import LoginButton from './buttons/LoginButton';
 import RegisterButton from './buttons/RegisterButton';
@@ -13,12 +13,15 @@ import BioimagesSubFooter from './footers/BioimagesSubFooter'
 import MapSearch from './MapSearch';
 
 
+
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
 
 
 
@@ -69,9 +72,15 @@ function NavBar() {
     );
   }
 
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+ 
 
   return (
+  
     <Router>
       <div>
         <Navbar bg="white" expand="lg" style={{ height: "4%", borderBottom: "1.5px solid #065f65" }}>
@@ -97,7 +106,7 @@ function NavBar() {
 
                 }}>
                   <Image className="icon" src="/img/icons/bioimages-download.svg"
-                     style={{marginBottom: "3%", height: "35px", marginTop: "0%"}} />Bioimages
+                    style={{ marginBottom: "3%", height: "35px", marginTop: "0%" }} />Bioimages
                     </h3>
 
                 <InputGroup inline="true" className="searchbar"
@@ -137,44 +146,61 @@ function NavBar() {
                 </InputGroup>
               </Col>
 
-              <Link to="/login" style={{marginRight: ".5%"}}> <LoginButton /> </Link>
+              <Link to="/login" style={{ marginRight: ".5%" }}> <LoginButton /> </Link>
 
-              <Link to="/login" style={{marginRight: ".5%"}}> <RegisterButton /> </Link>
+              <Link to="/login" style={{ marginRight: ".5%" }}> <RegisterButton /> </Link>
 
-           
+
 
 
             </Container>
           </Navbar.Collapse>
         </Navbar>
-              <Container style={{ paddingLeft: "3%"}}>
-              <Row>
-           
-                  {result.map((term) => (
-            <div >
-          
-               
-                    <Image src={term.urls.small} width="210px" height="210px" style={{ margin: "10px 13px 10px 13px" }} /><br/>
-                    <Form  style={{paddingTop: "5px"}}>
-  {[ 'radio'].map((type) => (
-    <div key={`inline-${type}`} className="mb-3">
-      <Form.Check  type={type} id={`inline-${type}-1`} inline label="View"/>
-      <Form.Check inline label="Select" type={type} id={`inline-${type}-2`} />
-      <Form.Check inline label="Download" type={type} id={`inline-${type}-3`} />
-     
-    </div>
-  ))}
-</Form>
-                   
-                  
-                 
- 
-                 
+        <Container style={{ paddingLeft: "3%" }}>
+          <Row>
+
+            {result.map((term) => (
+              <div>
+             
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Image Title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><Image  src={term.urls.small} width="465px" height="465px"  /></Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="outline-secondary" onClick={handleClose}>
+            Download
+          </Button>
+        </Modal.Footer>
+      </Modal>
+   
+
+        
+                <Image onClick={handleShow} src={term.urls.small} width="210px" height="210px" style={{ margin: "10px 13px 10px 13px" }} /><br />
+                <Form style={{ paddingTop: "5px" }}>
+                  {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                      <Form.Check type={type} id={`inline-${type}-1`} inline label="View" />
+                      <Form.Check inline label="Select" type={type} id={`inline-${type}-2`} />
+                      <Form.Check inline label="Download" type={type} id={`inline-${type}-3`} />
+
                     </div>
                   ))}
-             
-              </Row>
-              </Container>
+                </Form>
+
+
+              
+
+
+              </div>
+            ))}
+
+          </Row>
+        </Container>
 
         <Switch>
 

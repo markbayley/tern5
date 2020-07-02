@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import '../App.css';
 import { CONFIG } from '../config.js';
 import { Map, Marker, Popup, Tooltip, TileLayer, GeoJSON } from 'react-leaflet';
@@ -14,7 +14,10 @@ import { Accordion, Card, CardTitle, Button, Col, Row, Form } from "react-bootst
 import Datepicker from './Datepicker';
 import IconBar from './IconBar';
 import Filter from './test/Filter';
-import SideBar from './SideBar';
+import DatePicker from 'react-date-picker'
+import MultiSelect from './MultiSelect';
+
+
 
 
 // import {
@@ -152,6 +155,7 @@ function ImageMarker(props) {
 }
 
 class MapSearch extends React.Component {
+ 
 
   constructor() {
     super();
@@ -234,16 +238,16 @@ class MapSearch extends React.Component {
     this.fetchSearch();
     console.log(this.state.isLoadingSearch);
     //console.log(args[0]);
-    //alert(i);  //image_type=photopoint
-  }
-
-  handleFavourite(i) {
-    const favourites = this.state.favourites;
-
-    console.log(i);
-    //console.log(args[0]);
     alert(i);  //image_type=photopoint
   }
+
+  // handleFavourite(i) {
+  //   const favourites = this.state.favourites;
+
+  //   console.log(i);
+  //   //console.log(args[0]);
+  //   alert(i);  //image_type=photopoint
+  // }
 
   handleChange = (event) => {
     this.setState({
@@ -251,6 +255,11 @@ class MapSearch extends React.Component {
     })
     console.log(event.target.value)
   }
+
+
+
+  
+  
 
   render() {
     // const { favourites } = this.state;
@@ -265,14 +274,84 @@ class MapSearch extends React.Component {
     // });
 
     const position = [this.state.lat, this.state.lng];
+   
     return (
       <Fragment>
 
         <Row>
+       
 
 
+          <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65" }} >
+            <Card body style={{ border: "white" }} >
 
-         <SideBar />
+              <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
+             
+              <Card style={{ border: "white", textAlign: "left" }} >
+
+                <h6 style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>Site</h6>
+           
+                <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
+
+                  {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                      <Form.Check value={'Site 1'} onChange={this.handleFilter} inline label="Site One" type={type} id={`inline-${type}-1`} /><br />
+                      <Form.Check selectedFilter={this.handleInputChange} onChange={this.selectedFilter} inline label="Site Two" type={type} id={`inline-${type}-2`} /><br />
+                      <Form.Check value={this.state.selectedFilter} onChange={this.handleFilter} inline label="Site Three" type={type} id={`inline-${type}-3`} /><br />
+                      <Form.Check value={this.state.selectedFilter} onChange={this.handleFilter} inline label="Site Four" type={type} id={`inline-${type}-4`} />
+                    </div>
+                  ))}
+                </Form>
+
+              </Card>
+              <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
+
+              <Card style={{ border: "white", textAlign: "left" }} >
+                <h6 style={{ paddingTop: "0%", color: "#065f65", fontWeight: "500" }}>Image Type</h6>
+
+                <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
+
+                  {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                      <Form.Check inline label="Leaf Area Index" type={type} id={`inline-${type}-5`} /><br />
+                      <Form.Check inline label="Phenocam" type={type} id={`inline-${type}-6`} /><br />
+                      <Form.Check inline label="Panorama" type={type} id={`inline-${type}-7`} /><br />
+                      <Form.Check inline label="Photopoint" type={type} id={`inline-${type}-8`} />
+                    </div>
+                  ))}
+                </Form>
+
+              </Card>
+
+              <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
+
+              <Datepicker />
+
+              <Card style={{ border: "white", textAlign: "left" }} >
+                <h6 style={{ paddingTop: "0%", color: "#065f65", fontWeight: "500" }}>Frequency</h6>
+
+                <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
+
+                  {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                      <Form.Check inline label="Daily" type={type} id={`inline-${type}-9`} /><br />
+                      <Form.Check inline label="Weekly" type={type} id={`inline-${type}-10`} /><br />
+                      <Form.Check inline label="Monthly" type={type} id={`inline-${type}-11`} /><br />
+                      <Form.Check inline label="Yearly" type={type} id={`inline-${type}-12`} />
+                    </div>
+                  ))}
+                </Form>
+
+              </Card>
+
+              <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
+
+            </Card>
+      
+
+            <IconBar />
+
+          </Col>
 
 
 

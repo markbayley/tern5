@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 //import DatePicker from "react-datepicker";
-import { Accordion, Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import DatePicker from 'react-date-picker'
 
 //import "react-datepicker/dist/react-datepicker.css";
@@ -30,6 +30,7 @@ function Datepicker() {
                 <DatePicker 
                   onChange={onChange}
                   value={value}
+                  width="10px"
                 
                 />
               
@@ -37,10 +38,14 @@ function Datepicker() {
               <p style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>End Date</p> 
                
 
-                <div style={{ marginLeft: "0px" }}> <DatePicker
+                   
+                <DatePicker 
                   onChange={onChange}
                   value={value}
-                /></div>
+                  width="10px"
+                
+                />
+           
 
 
           </Card>
