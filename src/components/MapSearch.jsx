@@ -16,6 +16,7 @@ import IconBar from './IconBar';
 import Filter from './test/Filter';
 import DatePicker from 'react-date-picker'
 import MultiSelect from './MultiSelect';
+import DateRange from './DateRange';
 
 
 
@@ -282,7 +283,7 @@ class MapSearch extends React.Component {
        
 
 
-          <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65" }} >
+          <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", zIndex: "10" }} >
             <Card body style={{ border: "white" }} >
 
               <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
@@ -294,7 +295,7 @@ class MapSearch extends React.Component {
                 <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
 
                   {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
+                    <div style={{fontSize: "15px"}} key={`inline-${type}`} className="mb-3">
                       <Form.Check value={'Site 1'} onChange={this.handleFilter} inline label="Site One" type={type} id={`inline-${type}-1`} /><br />
                       <Form.Check selectedFilter={this.handleInputChange} onChange={this.selectedFilter} inline label="Site Two" type={type} id={`inline-${type}-2`} /><br />
                       <Form.Check value={this.state.selectedFilter} onChange={this.handleFilter} inline label="Site Three" type={type} id={`inline-${type}-3`} /><br />
@@ -312,7 +313,7 @@ class MapSearch extends React.Component {
                 <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
 
                   {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
+                    <div style={{fontSize: "15px"}} key={`inline-${type}`} className="mb-3">
                       <Form.Check inline label="Leaf Area Index" type={type} id={`inline-${type}-5`} /><br />
                       <Form.Check inline label="Phenocam" type={type} id={`inline-${type}-6`} /><br />
                       <Form.Check inline label="Panorama" type={type} id={`inline-${type}-7`} /><br />
@@ -325,7 +326,8 @@ class MapSearch extends React.Component {
 
               <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
 
-              <Datepicker />
+            
+              <DateRange />
 
               <Card style={{ border: "white", textAlign: "left" }} >
                 <h6 style={{ paddingTop: "0%", color: "#065f65", fontWeight: "500" }}>Frequency</h6>
@@ -333,7 +335,7 @@ class MapSearch extends React.Component {
                 <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
 
                   {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
+                    <div style={{fontSize: "15px"}} key={`inline-${type}`} className="mb-3">
                       <Form.Check inline label="Daily" type={type} id={`inline-${type}-9`} /><br />
                       <Form.Check inline label="Weekly" type={type} id={`inline-${type}-10`} /><br />
                       <Form.Check inline label="Monthly" type={type} id={`inline-${type}-11`} /><br />
@@ -358,15 +360,15 @@ class MapSearch extends React.Component {
 
 
           <Col sm="12" md="12" lg='10' xl='10' style={{ padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%" }} >
-            <div className="map-container">
-              <div className="right map-frame">
+            <div className="map-container" >
+              <div className="right map-frame" >
                 <div id="map-id" >
-                  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+                  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" 
                     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                     crossOrigin="" />
-                  <Map center={position} zoom={this.state.zoom}>
+                  <Map center={position} zoom={this.state.zoom} style={{zIndex: "1"}}>
 
-                    <TileLayer
+                    <TileLayer 
                       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                       url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                     />

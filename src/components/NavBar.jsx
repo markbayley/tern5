@@ -12,6 +12,9 @@ import MainFooter from './footers/MainFooter';
 import BioimagesSubFooter from './footers/BioimagesSubFooter'
 import MapSearch from './MapSearch';
 
+import TernAPI from './test/TernAPI';
+import Query from './test/Query';
+
 
 
 
@@ -145,6 +148,7 @@ function NavBar() {
                   </Button>
                 </InputGroup>
               </Col>
+      
 
               <Link to="/login" style={{ marginRight: ".5%" }}> <LoginButton /> </Link>
 
