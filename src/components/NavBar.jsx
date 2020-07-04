@@ -4,7 +4,6 @@ import axios from "axios";
 import LoginButton from './buttons/LoginButton';
 import RegisterButton from './buttons/RegisterButton';
 
-
 import MainBanner from './banners/MainBanner';
 import SignIn from './signin/SignIn';
 import MainFooter from './footers/MainFooter';
@@ -15,17 +14,12 @@ import MapSearch from './MapSearch';
 import TernAPI from './test/TernAPI';
 import Query from './test/Query';
 
-
-
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-
-
 
 
 
@@ -56,34 +50,13 @@ function NavBar() {
     });
   }
 
-  function Home() {
-    return (
-      <div>
-        <MainBanner />
-        <SignIn />
-        <MainFooter />
-        <BioimagesSubFooter />
-      </div>
-    );
-  }
-
-  function DataPortal() {
-    return (
-      <div>
-        <MapSearch />
-      </div>
-    );
-  }
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
- 
 
   return (
-  
+
     <Router>
       <div>
         <Navbar bg="white" expand="lg" style={{ height: "4%", borderBottom: "1.5px solid #065f65" }}>
@@ -112,6 +85,7 @@ function NavBar() {
                     style={{ marginBottom: "3%", height: "35px", marginTop: "0%" }} />Bioimages
                     </h3>
 
+                {/*Search Input */}
                 <InputGroup inline="true" className="searchbar"
                   style={{
                     height: "60px",
@@ -147,43 +121,42 @@ function NavBar() {
                     }}>
                   </Button>
                 </InputGroup>
-              </Col>
-      
+                {/*End of Search Input */}
 
+              </Col>
+              
+              {/*Login Buttons */}
               <Link to="/login" style={{ marginRight: ".5%" }}> <LoginButton /> </Link>
 
               <Link to="/login" style={{ marginRight: ".5%" }}> <RegisterButton /> </Link>
 
-
-
-
             </Container>
           </Navbar.Collapse>
         </Navbar>
+
+
+         {/*Search Results */}
         <Container style={{ paddingLeft: "3%" }}>
           <Row>
-
+           
             {result.map((term) => (
               <div>
-             
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Image Title</Modal.Title>
-        </Modal.Header>
-        <Modal.Body><Image  src={term.urls.small} width="465px" height="465px"  /></Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="outline-secondary" onClick={handleClose}>
-            Download
-          </Button>
-        </Modal.Footer>
-      </Modal>
-   
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Image Title</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body><Image src={term.urls.small} width="465px" height="465px" /></Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="outline-secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="outline-secondary" onClick={handleClose}>
+                      Download
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
 
-        
                 <Image onClick={handleShow} src={term.urls.small} width="210px" height="210px" style={{ margin: "10px 13px 10px 13px" }} /><br />
                 <Form style={{ paddingTop: "5px" }}>
                   {['radio'].map((type) => (
@@ -191,33 +164,21 @@ function NavBar() {
                       <Form.Check type={type} id={`inline-${type}-1`} inline label="View" />
                       <Form.Check inline label="Select" type={type} id={`inline-${type}-2`} />
                       <Form.Check inline label="Download" type={type} id={`inline-${type}-3`} />
-
                     </div>
                   ))}
                 </Form>
-
-
-              
-
-
               </div>
             ))}
 
           </Row>
         </Container>
+         {/*End of Search Results */}
 
         <Switch>
-
           <Route path='/login' component={() => {
             window.location.href = "https://auth-test.tern.org.au/auth/realms/tern/protocol/openid-connect/auth?client_id=account&redirect_uri=https%3A%2F%2Fauth-test.tern.org.au%2Fauth%2Frealms%2Ftern%2Faccount%2Flogin-redirect&state=0%2F8b80b485-2114-431c-b92a-1a27748ee396&response_type=code&scope=openid";
             return null;
           }} />
-          <Route path="/data">
-            <DataPortal />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
         </Switch>
       </div>
     </Router>

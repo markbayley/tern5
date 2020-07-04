@@ -19,7 +19,7 @@ class Query extends React.Component {
   render() {
     const { query, data } = this.state;
     return (
-      <div>
+      <div style={{marginLeft: "10%", marginTop: "0%"}}>
           
   
         <input

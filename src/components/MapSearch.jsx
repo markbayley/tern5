@@ -11,12 +11,13 @@ import Footer from './Footer'
 
 import { Accordion, Card, CardTitle, Button, Col, Row, Form } from "react-bootstrap";
 
-import Datepicker from './Datepicker';
+import Datepicker from './test/Datepicker';
 import IconBar from './IconBar';
 import Filter from './test/Filter';
 import DatePicker from 'react-date-picker'
-import MultiSelect from './MultiSelect';
+import MultiSelect from './test/MultiSelect';
 import DateRange from './DateRange';
+import Query from './test/Query';
 
 
 
@@ -259,9 +260,6 @@ class MapSearch extends React.Component {
 
 
 
-  
-  
-
   render() {
     // const { favourites } = this.state;
     // const favs = favourites.map((favourite, index) => {
@@ -278,18 +276,16 @@ class MapSearch extends React.Component {
    
     return (
       <Fragment>
-
         <Row>
        
-
-
+          { /* SideBar.jsx */}
           <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", zIndex: "10" }} >
             <Card body style={{ border: "white" }} >
 
               <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
-             
+              <Query />
               <Card style={{ border: "white", textAlign: "left" }} >
-
+           
                 <h6 style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>Site</h6>
            
                 <Form value={this.state.selectedFilter} onChange={this.handleChange} style={{ paddingTop: "5px" }}>
@@ -326,7 +322,6 @@ class MapSearch extends React.Component {
 
               <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
 
-            
               <DateRange />
 
               <Card style={{ border: "white", textAlign: "left" }} >
@@ -345,20 +340,16 @@ class MapSearch extends React.Component {
                 </Form>
 
               </Card>
-
-              <hr style={{ border: '0.5px solid #66b3a6', marginTop: "0%" }}></hr>
-
+              <hr style={{ border: '0.5px solid #66b3a6', marginBottom: "0%", marginTop: "0%" }}></hr>
             </Card>
-      
-
+           
             <IconBar />
 
           </Col>
+          { /*End of SideBar.jsx */}
 
 
-
-
-
+          { /*Leaflet Map */}
           <Col sm="12" md="12" lg='10' xl='10' style={{ padding: "0% 0% 0% 0%", marginTop: "0%", marginBottom: "-0.7%" }} >
             <div className="map-container" >
               <div className="right map-frame" >
@@ -402,12 +393,13 @@ class MapSearch extends React.Component {
               </div>
             </div>
           </Col>
+          { /*End of Leaflet  Map */}
 
         </Row>
-
+      
         <Footer />
-      </Fragment>
 
+      </Fragment>
     );
   }
 }

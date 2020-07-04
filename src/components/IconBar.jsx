@@ -18,8 +18,7 @@ function IconBar() {
 
             <Row style={{ position: "absolute", left: "112%", top: "62%"}}>
             <img src="img/icons/frequency.svg" alt="location" height="40px"/>
-          </Row>
-            
+          </Row>      
         </div>
     )
 }
