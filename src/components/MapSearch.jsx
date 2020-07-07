@@ -18,6 +18,7 @@ import DatePicker from 'react-date-picker'
 import MultiSelect from './test/MultiSelect';
 import DateRange from './DateRange';
 import Query from './test/Query';
+import LandingPage from './LandingPage/LandingPage';
 
 
 
@@ -276,6 +277,7 @@ class MapSearch extends React.Component {
    
     return (
       <Fragment>
+      
         <Row>
        
           { /* SideBar.jsx */}
@@ -283,7 +285,7 @@ class MapSearch extends React.Component {
             <Card body style={{ border: "white" }} >
 
               <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
-              <Query />
+         
               <Card style={{ border: "white", textAlign: "left" }} >
            
                 <h6 style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>Site</h6>

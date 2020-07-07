@@ -21,6 +21,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import LandingPage from "./LandingPage/LandingPage";
 
 
 export default function TopBar() {
@@ -80,7 +81,7 @@ function DataPortal() {
       <NavBar />
   
   
-      <MapSearch />
+     <MapSearch />
     </div>
   );
 }

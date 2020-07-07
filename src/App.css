@@ -1,3 +1,5 @@
+
+
 * {
 	
 	box-sizing: border-box;
@@ -36,6 +38,7 @@ body {
 	padding: 0;
 	overflow-x: hidden; /* Hide horizontal scrollbar */
 	overflow-y: hidden;
+
 
 }
 a {
@@ -941,10 +944,10 @@ a {
  
 }
 
-.CalendarDay__selected {
-	background: red;
-	color: white;
-  }
+
+
+
+
 
 
 
