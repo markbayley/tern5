@@ -4,7 +4,7 @@ import { Checkbox, Collapse } from 'antd';
 const { Panel } = Collapse
 
 
-function CheckBox(props) {
+function Ancillary(props) {
 
     const [Checked, setChecked] = useState([])
 
@@ -38,8 +38,8 @@ function CheckBox(props) {
 
     return (
         <div >
-            <Collapse defaultActiveKey={['0']}  >
-                <Panel  style={{color: "#00565D", backgroundColor: "white", border: "1px solid #00565D"}} header="Site" key="1"> 
+            <Collapse defaultActiveKey={['0']} >
+                <Panel header="Ancillary" key="1" style={{backgroundColor: "white", border: "1px solid rgba(0,86,93)"}}>
                     {renderCheckboxLists()}
                 </Panel>
             </Collapse>
@@ -47,4 +47,4 @@ function CheckBox(props) {
     )
 }
 
-export default CheckBox
+export default Ancillary

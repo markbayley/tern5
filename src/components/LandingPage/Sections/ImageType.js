@@ -4,7 +4,7 @@ import { Checkbox, Collapse } from 'antd';
 const { Panel } = Collapse
 
 
-function CheckBox(props) {
+function ImageType(props) {
 
     const [Checked, setChecked] = useState([])
 
@@ -27,7 +27,7 @@ function CheckBox(props) {
 
     const renderCheckboxLists = () => props.list && props.list.map((value, index) => (
         <React.Fragment key={index}>
-           <p> <Checkbox
+           <p> <Checkbox 
                 onChange={() => handleToggle(value._id)}
                 type="checkbox"
                 checked={Checked.indexOf(value._id) === -1 ? false : true}
@@ -38,8 +38,8 @@ function CheckBox(props) {
 
     return (
         <div >
-            <Collapse defaultActiveKey={['0']}  >
-                <Panel  style={{color: "#00565D", backgroundColor: "white", border: "1px solid #00565D"}} header="Site" key="1"> 
+            <Collapse defaultActiveKey={['0']} >
+                <Panel header="Image Type" key="1"  style={{border: "1px solid #E36A51", backgroundColor: "white"}}>
                     {renderCheckboxLists()}
                 </Panel>
             </Collapse>
@@ -47,4 +47,4 @@ function CheckBox(props) {
     )
 }
 
-export default CheckBox
+export default ImageType

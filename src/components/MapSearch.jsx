@@ -175,7 +175,7 @@ class MapSearch extends React.Component {
       aggregation: null,
       lat: -27.47,
       lng: 143.02,
-      zoom: 4
+      zoom: 5
     };
   }
 
@@ -279,13 +279,14 @@ class MapSearch extends React.Component {
       <Fragment>
       
         <Row>
-       
+         
           { /* SideBar.jsx */}
           <Col sm="0" md="0" lg="0" xl="2" style={{ borderRight: "70px solid rgba(149, 219, 199, 0.5)", color: "#065f65", zIndex: "10" }} >
+        
             <Card body style={{ border: "white" }} >
 
               <header style={{ textAlign: "left", fontFamily: 'museo-sans, sans-serif', fontSize: "20px", backgroundColor: "white" }}><strong>Filter</strong></header>
-         
+            <Query />
               <Card style={{ border: "white", textAlign: "left" }} >
            
                 <h6 style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500" }}>Site</h6>

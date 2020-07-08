@@ -21,7 +21,7 @@ function RadioBox(props) {
     return (
         <div>
             <Collapse defaultActiveKey={['0']}>
-                <Panel header="Image Type" key="1">
+                <Panel header="Date Range" key="1" style={{border:  "1px solid rgba(227, 106, 81)", backgroundColor: "white"}}>
                     <Radio.Group onChange={handleChange} value={Value}>
 
                         {renderRadioBox()}

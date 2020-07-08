@@ -1,5 +1,5 @@
 
-const price = [
+const date = [
     {
         "_id": 0,
         "name": "Any",
@@ -7,66 +7,100 @@ const price = [
     },
     {
         "_id": 1,
-        "name": "$0 to $199",
-        "array": [0, 199]
+        "name": "0 to 7 days",
+        "array": [0, 7]
     },
     {
         "_id": 2,
-        "name": "$200 to $249",
-        "array": [200, 249]
+        "name": "8 to 14 days",
+        "array": [8, 14]
     },
     {
         "_id": 3,
-        "name": "$250 to $279",
-        "array": [250, 279]
+        "name": "15 to 21 days",
+        "array": [15, 21]
     },
     {
         "_id": 4,
-        "name": "$280 to $299",
-        "array": [280, 299]
+        "name": "22 to 50 days",
+        "array": [22, 50]
     },
     {
         "_id": 5,
-        "name": "More than $300",
-        "array": [300, 1500000]
+        "name": "More than 50 days",
+        "array": [51, 1000]
     }
 ]
 
 
 
-const continents = [
+const siteId = [
     {
         "_id": 1,
-        "name": "Africa"
+        "name": "Site 1"
     },
     {
         "_id": 2,
-        "name": "Europe"
+        "name": "Site 2"
     },
     {
         "_id": 3,
-        "name": "Asia"
+        "name": "Site 3"
     },
     {
         "_id": 4,
-        "name": "North America"
+        "name": "Site 4"
+    },
+ 
+]
+
+
+const types = [
+    {
+        "_id": 1,
+        "name": "Leaf Area Index"
     },
     {
-        "_id": 5,
-        "name": "South America"
+        "_id": 2,
+        "name": "Photopoint"
     },
     {
-        "_id": 6,
-        "name": "Australia"
+        "_id": 3,
+        "name": "Panorama"
     },
     {
-        "_id": 7,
-        "name": "Antarctica"
-    }
+        "_id": 4,
+        "name": "Phenocam"
+    },
+    
+]
+
+
+
+const ancillary = [
+    {
+        "_id": 1,
+        "name": "Flora"
+    },
+    {
+        "_id": 2,
+        "name": "Fauna"
+    },
+    {
+        "_id": 3,
+        "name": "Fungi"
+    },
+    {
+        "_id": 4,
+        "name": "General"
+    },
+    
 ]
 
 
 export {
-    price,
-    continents
+    date,
+    siteId,
+    ancillary,
+    types
 }
