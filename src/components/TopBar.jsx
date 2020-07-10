@@ -7,9 +7,9 @@ import DataVisualiserDropdown from './dropdowns/DataVisualiserDropdown';
 import MainBanner from './banners/MainBanner';
 import SignIn from './signin/SignIn';
 import MainFooter from './footers/MainFooter';
-import NavBar from './NavBar';
+import NavBar from './SearchBar';
 import BioimagesSubFooter from './footers/BioimagesSubFooter'
-import MapSearch from './MapSearch';
+//import MapSearch from './MapSearch';
 import MainMenu from './signin/MainMenu'
 
 
@@ -21,7 +21,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import LandingPage from "./LandingPage/LandingPage";
+//import LandingPage from "./LandingPage/LandingPage";
 
 
 export default function TopBar() {
@@ -78,10 +78,10 @@ function Home() {
 function DataPortal() {
   return (
     <div>
-      <NavBar />
+     
   
   
-     <MapSearch />
+    
     </div>
   );
 }

@@ -9,7 +9,7 @@ import SignIn from './signin/SignIn';
 import MainFooter from './footers/MainFooter';
 
 import BioimagesSubFooter from './footers/BioimagesSubFooter'
-import MapSearch from './MapSearch';
+//import MapSearch from './MapSearch';
 
 import TernAPI from './test/TernAPI';
 import Query from './test/Query';
@@ -23,7 +23,7 @@ import {
 
 
 
-function NavBar() {
+function SearchBar() {
   const [term, setPhoto] = useState("");
   const [clientId, setClientId] = useState(
     "52d5d5565994d57c3160b4296aef1be1bf8985d9265e313f0f9db7eb1145d86d"
@@ -185,4 +185,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default SearchBar;

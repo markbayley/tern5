@@ -4,19 +4,19 @@ import {Row} from 'react-bootstrap';
 function IconBar() {
     return (
         <div>
-            <Row style={{ position: "absolute", left: "112%", top: "6%"}}>
+            <Row style={{ position: "absolute", left: "108%", top: "1%"}}>
             <img src="img/icons/Location.svg" alt="location" height="40px"/>
             </Row>
 
-            <Row style={{ position: "absolute", left: "112%", top: "26%"}}>
+            <Row style={{ position: "absolute", left: "108%", top: "3%"}}>
            <img src="img/icons/camera1.svg" alt="location" height="40px"/>
             </Row>
       
-            <Row style={{ position: "absolute", left: "112%", top: "46%"}}>
+            <Row style={{ position: "absolute", left: "108%", top: "5%"}}>
             <img src="img/icons/calendar.svg" alt="location" height="40px"/>
             </Row>
 
-            <Row style={{ position: "absolute", left: "112%", top: "62%"}}>
+            <Row style={{ position: "absolute", left: "108%", top: "7%"}}>
             <img src="img/icons/frequency.svg" alt="location" height="40px"/>
           </Row>      
         </div>

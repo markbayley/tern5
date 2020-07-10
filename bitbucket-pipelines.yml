@@ -1,51 +1,45 @@
-image: node:12
+version: '3.5'
 
+services:
 
-definitions:
-  # generic re-usable steps
-  steps:
-    - step: &envstep
-      # use a multiline step to set environment variables
-      - script: &setenv |
-          export IMAGE_NAME=ternau/bioimages_portal_ui
-  services:
-    docker:
-      # npm optimised build needs a bit more memory
-      memory: 3072
+  # db:
+  #   container_name: bioimages-db
+  #   image: postgres
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - ./volumes/db:/var/lib/postgresql/data
+  #   env_file:
+  #     - .env
 
+  # flask-api:
+  #   container_name: bioimages-api
+  #   restart: always
+  #   build:
+  #     context: ./backend/
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5000:80
+  #   volumes:
+  #     - ./backend:/usr/src/app
+  #   depends_on:
+  #     - db
+  #   env_file:
+  #     - .env
 
-pipelines:
-
-  branches:
-
-    develop:
-      - step:
-          caches:
-            - node
-          script:
-            - *setenv
-            - npm install
-            - CI=true npm test
-
-    master:
-      - step:
-          image: ternau/bb-python:3.8-alpine
-          script:
-            - *setenv
-            - docker build --target builder -t $IMAGE_NAME:builder .
-            - docker run --rm -e CI=true $IMAGE_NAME:builder npm test
-            - export VERSION=$(git describe --always)
-            - docker build -t $IMAGE_NAME .
-            - docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
-            - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-            - docker push $IMAGE_NAME
-            - docker push $IMAGE_NAME:$VERSION
-          services:
-            - docker
-
-  pull-requests:
-    "**":
-      - step:
-          - *setenv
-          - npm install
-          - CI=true npm test
+  client:
+    container_name: react-app
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - './client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3000:3000
+    # depends_on:
+    #   - flask-api
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - HOST_URL='https://bioimages-test.tern.org.au/api/v1.0/'
