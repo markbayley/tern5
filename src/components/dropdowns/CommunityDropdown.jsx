@@ -35,7 +35,7 @@ export default class CommunityDropdown extends React.Component {
         <DropdownToggle  caret tag="span"
        
       >
-          Community 
+          Contact
         </DropdownToggle>
         <DropdownMenu>
        
