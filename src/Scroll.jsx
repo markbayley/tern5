@@ -5,7 +5,7 @@ class ScrollButton extends React.Component {
     super();
 
     this.state = {
-      intervalId: 0,
+      intervalId: 1,
     };
   }
 

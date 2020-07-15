@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "./index.css";
 import { CONFIG } from "./config.js";
@@ -12,11 +12,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-date-range/dist/theme/default.css'; // theme css file*/
 import TopBar from "./components/TopBar";
 import Footer from "./Footer";
+import { Link, animateScroll as scroll } from "react-scroll";
 import {
   Accordion,
   Card,
-  CardTitle,
-  Container,
   Button,
   Col,
   Row,
@@ -31,7 +30,8 @@ import Scroll from "./Scroll";
 import DateRange from "./DateRange";
 import Legend from "./Legend";
 import Query from "./Query";
-import BreadCrumb from './BreadCrumb';
+import BreadCrumb from "./BreadCrumb";
+import Toaster from "./Toaster";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -101,7 +101,34 @@ function SearchResult(props) {
       </Modal>
 
       <Card id={props.id} style={{ marginTop: "5%" }}>
-        <Image onClick={handleShow} src={img_url} style={{ height: "210px" }} />
+        <div class="hvrbox">
+          <Button
+            variant="outline-secondary"
+            style={{ width: "100%" }}
+            onClick={() => props.onClick(props.id)}
+          >
+            <Image
+              className="hvrbox-layer_bottom"
+              onClick={handleShow}
+              src={img_url}
+              style={{ width: "400px", height: "210px" }}
+            />
+            <div class="hvrbox-layer_top">
+              <div class="hvrbox-text">
+                Search These Images?
+                <br />
+                <img src="/img/stack.png" alt="stack" width="100px" /> <br />
+                <span className="center"></span>
+              </div>
+            </div>{" "}
+            <strong>Site:</strong> {props.value.site_id.label} <br />
+            <strong>Image Type:</strong>{" "}
+            {props.value.image_type.value[0].toUpperCase() +
+              props.value.image_type.value.substr(1)}{" "}
+            <strong>Image Count:</strong> {props.value.doc_count}{" "}
+          </Button>
+        </div>
+
         <Form
           className="center"
           style={{ paddingTop: "5px", color: "#065f65" }}
@@ -129,20 +156,6 @@ function SearchResult(props) {
             </div>
           ))}
         </Form>
-        <span className="center">
-          <Button
-            variant="outline-secondary"
-            style={{ width: "100%" }}
-            onClick={() => props.onClick(props.id)}
-          >
-            {" "}
-            <strong>Site:</strong> {props.value.site_id.label} <br />
-            <strong>Image Type:</strong>{" "}
-            {props.value.image_type.value[0].toUpperCase() +
-              props.value.image_type.value.substr(1)}{" "}
-            <strong>Image Count:</strong> {props.value.doc_count}{" "}
-          </Button>
-        </span>
       </Card>
     </Col>
   );
@@ -339,11 +352,12 @@ function ImageMarker(props) {
       })}
       key={props.id}
       position={props.position}
-     
     >
       {" "}
       <br />
       <Popup>
+      <strong><p>You Have Selected This Site!</p></strong>
+     
         <strong>
           Site:{" "}
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
@@ -361,21 +375,24 @@ function ImageMarker(props) {
         <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
         <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
         <img src="/img/photopoint.svg" width="25px" margin-right="5px" />
+        <Toaster />
       </Popup>
+
       <Tooltip>
-        <strong>
+        <strong><p>Click The Marker To Search This Site! </p></strong>
+       
           Site:{" "}
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
             {props.type}{" "}
           </a>
-        </strong>
+    
         <br />
-        <strong>
+       
           Image Types:{" "}
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
             {props.value}
           </a>{" "}
-        </strong>{" "}
+        {" "}
         <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" />
         <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
         <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
@@ -520,7 +537,7 @@ class App extends React.Component {
           <Col
             xl={2}
             style={{ marginRight: "-.7%", zIndex: "9", height: "200vh" }}
-          > 
+          >
             <h5
               style={{
                 marginLeft: "15px",
@@ -670,8 +687,6 @@ class App extends React.Component {
                       <ImageMarkers
                         value={this.state.hits[index]}
                         location={index}
-                      
-                       
                       />
                     ))}
                   </Map>
@@ -679,7 +694,6 @@ class App extends React.Component {
               </div>
               {/*End of Leaflet  Map */}
               <BreadCrumb />
-           
 
               {/*Photo Gallery */}
               <SearchResults
@@ -692,6 +706,7 @@ class App extends React.Component {
         </Row>
         <Scroll />
         <Legend />
+
         <Footer />
       </div>
     );
@@ -699,4 +714,3 @@ class App extends React.Component {
 }
 
 export default App;
-
