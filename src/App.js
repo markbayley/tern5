@@ -129,29 +129,30 @@ function SearchResult(props) {
           </Button>
         </div>
 
-        <Form
+        <Form 
           className="center"
           style={{ paddingTop: "5px", color: "#065f65" }}
         >
           {["radio"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
+            <div key={props.id} className="mb-3">
               <Form.Check
                 type={type}
-                id={`inline-${type}-1`}
+                id={props.id}
                 inline
                 label="View"
+                onClick={handleShow}
               />
               <Form.Check
                 inline
                 label="Select"
                 type={type}
-                id={`inline-${type}-2`}
+                id={props.id}
               />
               <Form.Check
                 inline
                 label="Download"
                 type={type}
-                id={`inline-${type}-3`}
+                id={props.id}
               />
             </div>
           ))}
@@ -166,7 +167,17 @@ function SearchResult(props) {
 }
 function ImageSearch(props) {
   return (
-    <div>
+    <div  >
+           <IconBar />
+         <h5
+              style={{
+                marginLeft: "15px",
+                marginTop: "20px",
+                color: "#065f65",
+              }}
+            >
+              Filter
+            </h5>
       {Object.keys(props.value).map((key, indexer) => (
         <ImageFilterType
           value={props.value[key]}
@@ -175,6 +186,19 @@ function ImageSearch(props) {
           onClick={(i) => props.onClick(i)}
         />
       ))}
+        <DateRange />
+        <div className="favs">
+              <h5
+                style={{
+                  marginLeft: "15px",
+                  marginTop: "20px",
+                  color: "#065f65",
+                }}
+              >
+                Favourites
+              </h5>
+              
+            </div>
     </div>
   );
 }
@@ -204,8 +228,8 @@ function ImageFilterType(props) {
 
   return (
     <div style={{ marginLeft: "4%" }} key="{key}">
-      <Accordion>
-        <Card>
+      <Accordion >
+        <Card >
           <Accordion.Toggle
             as={Card.Header}
             eventKey="0"
@@ -248,6 +272,7 @@ function ImageFilterType(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
+    
       <hr
         style={{
           border: "0.5px solid #66b3a6",
@@ -538,43 +563,26 @@ class App extends React.Component {
       <div id="map">
         <TopBar />
         <SearchBar />
-        <IconBar />
+   
+
+        
 
         <Row >
           {/*Filter SideBar*/}
-          <Col
+          <Col 
             xl={2}
             style={{ marginRight: "-.7%", zIndex: "9", height: "195vh" }}
           >
-            <h5
-              style={{
-                marginLeft: "15px",
-                marginTop: "20px",
-                color: "#065f65",
-              }}
-            >
-              Filter
-            </h5>
-            <ImageSearch
+         
+            <ImageSearch 
               value={this.state.filters}
               onClick={(i) => this.handleFilter(i)}
             />
 
-            <DateRange />
+            
             {/*<Query />*/}
 
-            <div className="favs">
-              <h5
-                style={{
-                  marginLeft: "15px",
-                  marginTop: "20px",
-                  color: "#065f65",
-                }}
-              >
-                Favourites
-              </h5>
-              <ul>{favs}</ul>
-            </div>
+         
           </Col>
 
           {/*Leaflet Map */}
@@ -718,6 +726,7 @@ class App extends React.Component {
               />
               
             </div>
+            <ul>{favs}</ul>
            
           </Col>
         </Row>

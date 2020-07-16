@@ -995,6 +995,17 @@
 }
 
 
+.sidebar{	
+	position: fixed;
+
+	top: 17%;
+	left: 0%;
+    width: 15.3%;
+	z-index: 11;
+	
+  }
+
+
 
 
 
