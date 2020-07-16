@@ -14,11 +14,11 @@ class BreadCrumb extends React.Component {
         <BreadcrumbItem><a  href="#"> Home</a></BreadcrumbItem>
         <BreadcrumbItem><a href="#"> Site</a></BreadcrumbItem>
         <BreadcrumbItem active> Image Type</BreadcrumbItem>
-        <Form
+        {/*<Form
           className="right"
           style={{ paddingTop: "5px", color: "#065f65" }}
         >
-          {["radio"].map((type) => (
+         {["radio"].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
               <Form.Check
                 type={type}
@@ -29,7 +29,7 @@ class BreadCrumb extends React.Component {
 
             </div>
           ))}
-        </Form>
+        </Form> */}
     
       </Breadcrumb>
      

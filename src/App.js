@@ -267,13 +267,13 @@ function ImageFilter(props) {
     <div>
       <div className="">
         <div key="{key}">
-          <Button
-            style={{ width: "100%" }}
-            variant="outline-secondary"
-            onClick={props.onClick}
-          >
-            {props.value.label} ({props.value.doc_count})
-          </Button>
+        <Form.Group controlId="formBasicCheckbox" >
+       
+    <Form.Check type="checkbox" style={{textTransform: "capitalize"}} label={props.value.label}  onClick={props.onClick} />
+    {/*{props.value.doc_count} */}
+  </Form.Group>
+
+        
         </div>
       </div>
     </div>
@@ -346,7 +346,7 @@ function ImageMarker(props) {
   return (
     <Marker
       icon={L.divIcon({
-        html: "<div>" + props.value[10] + props.value[11] + "</div>",
+        html: ` ${props.value.length} `,
         className: "custom-marker",
         iconSize: L.point(33, 33, true),
       })}
@@ -356,44 +356,52 @@ function ImageMarker(props) {
       {" "}
       <br />
       <Popup>
-      <strong><p>You Have Selected This Site!</p></strong>
+      <strong><h6>You selected {props.type}! Choose image type.</h6></strong>
      
-        <strong>
-          Site:{" "}
+      
+          Site:{" "}  
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.type}{" "}
-          </a>
-        </strong>
-        <br />
-        <strong>
-          Image Types:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.value}
+            {props.type}
           </a>{" "}
-        </strong>{" "}
-        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" />
-        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
-        <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
-        <img src="/img/photopoint.svg" width="25px" margin-right="5px" />
-        <Toaster />
+        <br />
+    
+          Image Types:{" "} 
+          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+           {props.value}
+          </a>{" "}   
+        <br /> 
+        <br />
+
+        
+       
+
+        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/LAI.svg" width="25px" margin-right="5px" alt="leaf area index"/></Button>
+        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/Panoramic.svg" width="25px" margin-right="10px" alt="panorama" /></Button>
+        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/phenocam.svg" width="25px" margn-right="5px" alt="phenocam" /></Button>
+        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/photopoint.svg" width="25px" margin-right="5px" alt="photopoint"/></Button>
+
+        
+     
+        <Link style={{float: "right"}} to="gallery" smooth={true} duration={1000}>
+          <Button style={{ padding: "6px 7px", border: "1px solid #065f65"}} variant="outline-secondary" size="sm">View Images</Button>
+          </Link>
       </Popup>
 
       <Tooltip>
-        <strong><p>Click The Marker To Search This Site! </p></strong>
+        <strong><h6>Click the marker to select this site</h6></strong>
        
           Site:{" "}
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
             {props.type}{" "}
-          </a>
-    
-        <br />
-       
+          </a>{" "}
+        <br /> 
           Image Types:{" "}
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
             {props.value}
           </a>{" "}
         {" "}
-        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" />
+        <br /> 
+        <img src="/img/LAI.svg" width="25px" margin-right="5px" />
         <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
         <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
         <img src="/img/photopoint.svg" width="25px" margin-right="5px" />
@@ -527,16 +535,16 @@ class App extends React.Component {
     };
 
     return (
-      <div>
+      <div id="map">
         <TopBar />
         <SearchBar />
         <IconBar />
 
-        <Row>
+        <Row >
           {/*Filter SideBar*/}
           <Col
             xl={2}
-            style={{ marginRight: "-.7%", zIndex: "9", height: "200vh" }}
+            style={{ marginRight: "-.7%", zIndex: "9", height: "195vh" }}
           >
             <h5
               style={{
@@ -553,7 +561,7 @@ class App extends React.Component {
             />
 
             <DateRange />
-            <Query />
+            {/*<Query />*/}
 
             <div className="favs">
               <h5
@@ -570,7 +578,7 @@ class App extends React.Component {
           </Col>
 
           {/*Leaflet Map */}
-          <Col
+          <Col 
             sm={12}
             md={12}
             lg={10}
@@ -582,7 +590,7 @@ class App extends React.Component {
               marginBottom: "0%",
             }}
           >
-            <div className="map-container">
+            <div  className="map-container">
               <div className=" map-frame">
                 <link
                   rel="stylesheet"
@@ -614,11 +622,15 @@ class App extends React.Component {
 
                     {/* Example Markers */}
                     <MarkerClusterGroup>
-                      <Marker position={[-27.8397, 143.0297]} />
-                      <Marker position={[-28.2297, 143.0122]} />
-                      <Marker position={[-27, 143.0901]} />
-                      <Marker position={[-27.8397, 143.0297]} />
-                      <Marker position={[-28.2297, 142.0122]} />
+                      <Marker position={[-22, 133]} />
+                      <Marker position={[-22, 133]} />
+                      <Marker position={[-22, 133]} />
+                      <Marker position={[-22, 133]} />
+                      <Marker position={[-22, 133]} />
+                   </MarkerClusterGroup>
+
+                   <MarkerClusterGroup>
+                      
                       <Marker position={[-27, 143.0901]} />
                       <Marker position={[-27.8397, 143.0297]} />
                       <Marker position={[-28.2297, 143.0122]} />
@@ -689,22 +701,30 @@ class App extends React.Component {
                         location={index}
                       />
                     ))}
+
+                 
                   </Map>
                 </div>
               </div>
               {/*End of Leaflet  Map */}
               <BreadCrumb />
-
+              <div id="gallery" ></div>
               {/*Photo Gallery */}
               <SearchResults
+              
                 value={this.state.hits}
                 group={this.state.aggregation}
                 onClick={(i) => this.handleFilter(i)}
               />
+              
             </div>
+           
           </Col>
         </Row>
-        <Scroll />
+     
+        <Link  to="map" smooth={true} duration={1000}><Button style={{width:"106px"}} className="togglemap" variant="info"><Image width="30px"src="/img/map.png" alt="map"/>  Map</Button></Link>
+        <Link  to="gallery" smooth={true} duration={1000}><Button className="toggleimages" variant="info"><Image width="25px"src="/img/stack.png" alt="images"/>  Images</Button></Link>
+        
         <Legend />
 
         <Footer />
