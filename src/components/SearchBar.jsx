@@ -78,11 +78,11 @@ function SearchBar() {
                   position: "absolute",
                   right: "80%",
                   top: "30%",
-                  color: "#065f65",
+                  color: "#00565D",
 
                 }}>
                   <Image className="icon" src="/img/icons/bioimages-download.svg"
-                    style={{ marginBottom: "3%", height: "35px", marginTop: "0%" }} />Bioimages
+                    style={{ marginBottom: "3%", height: "35px", marginTop: "0%", color: "#00565D" }} />Bioimages
                     </h3>
 
                 {/*Search Input */}

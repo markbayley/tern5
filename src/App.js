@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-date-range/dist/theme/default.css'; // theme css file*/
 import TopBar from "./components/TopBar";
 import Footer from "./Footer";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link, scroller, animateScroll as scroll } from "react-scroll";
 import {
   Accordion,
   Card,
@@ -22,16 +22,17 @@ import {
   Form,
   Modal,
   Image,
+  Navbar,
 } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import Scroll from "./Scroll";
 import DateRange from "./DateRange";
 import Legend from "./Legend";
 import Query from "./Query";
 import BreadCrumb from "./BreadCrumb";
-import Toaster from "./Toaster";
+import Toggle from "./components/buttons/Toggle";
+import ViewImages from "./components/buttons/ViewImages";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -69,25 +70,55 @@ function SearchResult(props) {
         <Modal.Header closeButton>
           <Modal.Title>
             {" "}
-            Site: {props.value.site_id.label} <br />
-            Image Type: {props.value.image_type.value} <br />
-            Image Count: {props.value.doc_count}
+            <Col sm={2} style={{ position: "absolute", left: "0%" }}>
+              <Navbar.Brand>
+                <div className="site-branding">
+                  <Link to="/">
+                    <img src="img/logo@3x.png" alt="" />
+                  </Link>
+                </div>
+              </Navbar.Brand>
+            </Col>
+            <Col style={{ position: "relative", left: "230%", width: "100%" }}>
+              <h5>
+                Site: {props.value.site_id.label} <br />
+                Image Type: {props.value.image_type.value} <br />
+                Image Count: 1/{props.value.doc_count}
+              </h5>
+            </Col>
           </Modal.Title>
         </Modal.Header>
+        <hr
+          style={{
+            border: "0.5px solid #66b3a6",
+            marginTop: "0%",
+            marginBottom: "0.5%",
+          }}
+        ></hr>
         <Modal.Body>
           {" "}
           <Image src={img_url} width="765px" height="465px" />
           <br />
           <br />
-          <br />
+          <Form
+            className="center"
+            style={{ paddingTop: "5px", color: "#065f65" }}
+          >
+            {["radio"].map((type) => (
+              <div key={props.id} className="mb-3">
+                <Form.Check
+                  inline
+                  label="Add To Selected Images?"
+                  type={type}
+                  id={props.id}
+                />
+              </div>
+            ))}
+          </Form>
           <p>
             Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
             commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-            ipsam atque a dolores quisquam quisquam adipisci possimus
-            laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-            accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-            reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-            deleniti rem!
+            ipsam atque a dolores quisquam quisquam adipisci possimus.
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -129,7 +160,7 @@ function SearchResult(props) {
           </Button>
         </div>
 
-        <Form 
+        <Form
           className="center"
           style={{ paddingTop: "5px", color: "#065f65" }}
         >
@@ -142,18 +173,8 @@ function SearchResult(props) {
                 label="View"
                 onClick={handleShow}
               />
-              <Form.Check
-                inline
-                label="Select"
-                type={type}
-                id={props.id}
-              />
-              <Form.Check
-                inline
-                label="Download"
-                type={type}
-                id={props.id}
-              />
+              <Form.Check inline label="Select" type={type} id={props.id} />
+              <Form.Check inline label="Download" type={type} id={props.id} />
             </div>
           ))}
         </Form>
@@ -167,17 +188,17 @@ function SearchResult(props) {
 }
 function ImageSearch(props) {
   return (
-    <div  >
-           <IconBar />
-         <h5
-              style={{
-                marginLeft: "15px",
-                marginTop: "20px",
-                color: "#065f65",
-              }}
-            >
-              Filter
-            </h5>
+    <div>
+      <IconBar />
+      <h5
+        style={{
+          marginLeft: "15px",
+          marginTop: "20px",
+          color: "#065f65",
+        }}
+      >
+        Filter
+      </h5>
       {Object.keys(props.value).map((key, indexer) => (
         <ImageFilterType
           value={props.value[key]}
@@ -186,19 +207,18 @@ function ImageSearch(props) {
           onClick={(i) => props.onClick(i)}
         />
       ))}
-        <DateRange />
-        <div className="favs">
-              <h5
-                style={{
-                  marginLeft: "15px",
-                  marginTop: "20px",
-                  color: "#065f65",
-                }}
-              >
-                Favourites
-              </h5>
-              
-            </div>
+      <DateRange />
+      <div className="favs">
+        <h5
+          style={{
+            marginLeft: "15px",
+            marginTop: "20px",
+            color: "#065f65",
+          }}
+        >
+          Favourites
+        </h5>
+      </div>
     </div>
   );
 }
@@ -228,14 +248,14 @@ function ImageFilterType(props) {
 
   return (
     <div style={{ marginLeft: "4%" }} key="{key}">
-      <Accordion >
-        <Card >
+      <Accordion>
+        <Card>
           <Accordion.Toggle
             as={Card.Header}
             eventKey="0"
             style={{
               backgroundColor: "#fff",
-              borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+              borderRight: "55px solid #6EB3A6",
             }}
           >
             <Button
@@ -272,7 +292,7 @@ function ImageFilterType(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-    
+
       <hr
         style={{
           border: "0.5px solid #66b3a6",
@@ -292,13 +312,15 @@ function ImageFilter(props) {
     <div>
       <div className="">
         <div key="{key}">
-        <Form.Group controlId="formBasicCheckbox" >
-       
-    <Form.Check type="checkbox" style={{textTransform: "capitalize"}} label={props.value.label}  onClick={props.onClick} />
-    {/*{props.value.doc_count} */}
-  </Form.Group>
-
-        
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check
+              type="checkbox"
+              style={{ textTransform: "capitalize" }}
+              label={props.value.label}
+              onClick={props.onClick}
+            />
+            {/*{props.value.doc_count} */}
+          </Form.Group>
         </div>
       </div>
     </div>
@@ -316,6 +338,8 @@ function Favourite(props) {
     </li>
   );
 }
+
+
 
 function ImageMarkers(props) {
   console.log("hello");
@@ -363,9 +387,11 @@ function ImageMarkers(props) {
       id={id}
       key={id}
       label={id}
+      onClick={props.onClick}
     />
   );
 }
+
 
 function ImageMarker(props) {
   return (
@@ -377,55 +403,26 @@ function ImageMarker(props) {
       })}
       key={props.id}
       position={props.position}
+      onClick={props.onClick}
     >
       {" "}
       <br />
-      <Popup>
-      <strong><h6>You selected {props.type}! Choose image type.</h6></strong>
      
-      
-          Site:{" "}  
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.type}
-          </a>{" "}
-        <br />
     
-          Image Types:{" "} 
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-           {props.value}
-          </a>{" "}   
-        <br /> 
-        <br />
-
-        
-       
-
-        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/LAI.svg" width="25px" margin-right="5px" alt="leaf area index"/></Button>
-        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/Panoramic.svg" width="25px" margin-right="10px" alt="panorama" /></Button>
-        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/phenocam.svg" width="25px" margn-right="5px" alt="phenocam" /></Button>
-        <Button style={{padding: "3px", border: "1px solid #065f65", marginRight: "5px"}} variant="light" size="small"><img src="/img/photopoint.svg" width="25px" margin-right="5px" alt="photopoint"/></Button>
-
-        
-     
-        <Link style={{float: "right"}} to="gallery" smooth={true} duration={1000}>
-          <Button style={{ padding: "6px 7px", border: "1px solid #065f65"}} variant="outline-secondary" size="sm">View Images</Button>
-          </Link>
-      </Popup>
-
       <Tooltip>
-        <strong><h6>Click the marker to select this site</h6></strong>
-       
-          Site:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.type}{" "}
-          </a>{" "}
-        <br /> 
-          Image Types:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.value}
-          </a>{" "}
-        {" "}
-        <br /> 
+        <strong>
+          <h6>Click the marker to select this site</h6>
+        </strong>
+        Site:{" "}
+        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+          {props.type}{" "}
+        </a>{" "}
+        <br />
+        Image Types:{" "}
+        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+          {props.value}
+        </a>{" "}
+        <br />
         <img src="/img/LAI.svg" width="25px" margin-right="5px" />
         <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
         <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
@@ -514,10 +511,15 @@ class App extends React.Component {
     this.fetchSearch();
   }
 
+  filterSiteID(id) {
+    this.setState({selectedFilter:{site_id:id}})
+    console.log('filterSiteID', this.state)
+  }
+
   handleFilter(i) {
     const selectedFilter = this.state.selectedFilter;
 
-    console.log(i);
+    console.log('HELLO MARK', i);
     var arr = i.split("=");
     selectedFilter[arr[0]] = arr[1];
     if (arr[0] !== "_id") {
@@ -563,30 +565,23 @@ class App extends React.Component {
       <div id="map">
         <TopBar />
         <SearchBar />
-   
 
-        
-
-        <Row >
+        <Row>
           {/*Filter SideBar*/}
-          <Col 
+          <Col
             xl={2}
             style={{ marginRight: "-.7%", zIndex: "9", height: "195vh" }}
           >
-         
-            <ImageSearch 
+            <ImageSearch
               value={this.state.filters}
               onClick={(i) => this.handleFilter(i)}
             />
-
-            
+              <Query />
             {/*<Query />*/}
-
-         
           </Col>
 
           {/*Leaflet Map */}
-          <Col 
+          <Col
             sm={12}
             md={12}
             lg={10}
@@ -598,7 +593,7 @@ class App extends React.Component {
               marginBottom: "0%",
             }}
           >
-            <div  className="map-container">
+            <div className="map-container">
               <div className=" map-frame">
                 <link
                   rel="stylesheet"
@@ -629,16 +624,9 @@ class App extends React.Component {
                     />
 
                     {/* Example Markers */}
-                    <MarkerClusterGroup>
-                      <Marker position={[-22, 133]} />
-                      <Marker position={[-22, 133]} />
-                      <Marker position={[-22, 133]} />
-                      <Marker position={[-22, 133]} />
-                      <Marker position={[-22, 133]} />
-                   </MarkerClusterGroup>
+                 
 
-                   <MarkerClusterGroup>
-                      
+                    <MarkerClusterGroup>
                       <Marker position={[-27, 143.0901]} />
                       <Marker position={[-27.8397, 143.0297]} />
                       <Marker position={[-28.2297, 143.0122]} />
@@ -707,33 +695,35 @@ class App extends React.Component {
                       <ImageMarkers
                         value={this.state.hits[index]}
                         location={index}
+                        onClick={() => {
+                          console.log('test' , this.props, this.state)
+                          this.handleFilter('site_id=' + index )
+                          scroller.scrollTo('gallery', {duration: 1000, smooth:true})
+                        }}
                       />
+                      
                     ))}
 
-                 
                   </Map>
                 </div>
               </div>
               {/*End of Leaflet  Map */}
               <BreadCrumb />
-              <div id="gallery" ></div>
+         
+              <div id="gallery"></div>
               {/*Photo Gallery */}
               <SearchResults
-              
                 value={this.state.hits}
                 group={this.state.aggregation}
                 onClick={(i) => this.handleFilter(i)}
               />
-              
             </div>
             <ul>{favs}</ul>
-           
           </Col>
         </Row>
-     
-        <Link  to="map" smooth={true} duration={1000}><Button style={{width:"106px"}} className="togglemap" variant="info"><Image width="30px"src="/img/map.png" alt="map"/>  Map</Button></Link>
-        <Link  to="gallery" smooth={true} duration={1000}><Button className="toggleimages" variant="info"><Image width="25px"src="/img/stack.png" alt="images"/>  Images</Button></Link>
-        
+
+        <Toggle />
+
         <Legend />
 
         <Footer />

@@ -919,7 +919,9 @@
 	border: -10px solid rgba(149, 219, 199);
 	transition: background 0.5s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
 	-webkit-transition: background .5s;
-	
+	box-shadow: 0 0 0 10px rgba(84, 179, 166, 0.5), 0 3px 14px rgba(0, 0, 0, 0.4);
+
+		
 
 	size: 3em;
   }
@@ -989,10 +991,7 @@
   }
 
 
-.image:hover {
-	opacity: .75;
-	background-image: url(/img/stack.png);
-}
+
 
 
 .sidebar{	
@@ -1070,6 +1069,8 @@
 .hvrbox.active .hvrbox-text_mobile {
 	display: block;
 }
+
+
 
 
 

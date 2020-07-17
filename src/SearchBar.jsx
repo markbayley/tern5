@@ -67,7 +67,7 @@ function SearchBar() {
         <Navbar
           bg="white"
           expand="lg"
-          style={{ height: "4%", borderBottom: "1.5px solid #065f65" }}
+          style={{ height: "4%", borderBottom: "1.5px solid #6EB3A6" }}
         >
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -94,7 +94,7 @@ function SearchBar() {
                     position: "absolute",
                     right: "83%",
                     top: "30%",
-                    color: "#065f65",
+                    color: "#6EB3A6",
                   }}
                 >
                   <Image
@@ -169,7 +169,7 @@ function SearchBar() {
               style={{ 
                   
                     position: "absolute",
-                    right: "24%",
+                    right: "24.2%",
                     top: "33%"}}>
                 {" "}
                 <LoginButton />{" "}
@@ -179,7 +179,7 @@ function SearchBar() {
               style={{ 
                
                 position: "absolute",
-                right: "19%",
+                right: "18.9%",
                 top: "33%" }}>
                 {" "}
                 <RegisterButton />{" "}
