@@ -34,7 +34,7 @@ class Toggle extends Component {
         </Link>
         <Link to="gallery" smooth={true} duration={1000}>
           <Button className="toggleimages" variant="toggle">
-            <Image width="25px" src="/img/stack.png" alt="images" /> Images
+            <Image width="25px" src="/img/icons/bioimages-download-white.svg" alt="bioimages icon" /> Images
           </Button>
         </Link>
       </>

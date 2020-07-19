@@ -11,35 +11,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 /*import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file*/
 import TopBar from "./components/TopBar";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
-import {
-  Accordion,
-  Card,
-  Button,
-  Col,
-  Row,
-  Form,
-  Modal,
-  Image,
-  Navbar,
-} from "react-bootstrap";
-import SearchBar from "./SearchBar";
-import IconBar from "./IconBar";
-import MarkerClusterGroup from "react-leaflet-markercluster";
-import DateRange from "./DateRange";
-import Legend from "./Legend";
-import Query from "./Query";
-import BreadCrumb from "./BreadCrumb";
+import { Accordion, Card, Button, Col, Row, Form, Modal, Image, Navbar} from "react-bootstrap";
+import SearchBar from "./components/SearchBar";
+import IconBar from "./components/IconBar";
+import DateRange from "./components/DateRange";
+import Legend from "./components/Legend";
+import Query from "./components/Query";
+import BreadCrumb from "./components/BreadCrumb";
 import Toggle from "./components/buttons/Toggle";
 import ViewImages from "./components/buttons/ViewImages";
+import MarkerClusters from "./components/test/MarkerClusters";
+import LoginButton from "./components/buttons/LoginButton";
+import ResetFilter from "./components/buttons/ResetFilter";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
-{
-  /*Photo Gallery*/
-}
+{ /*Photo Gallery*/ }
 function SearchResults(props) {
   return (
     <Row>
@@ -55,9 +45,7 @@ function SearchResults(props) {
   );
 }
 
-{
-  /*Photo Gallery Item*/
-}
+{ /*Photo Gallery Item*/ }
 function SearchResult(props) {
   const img_url = props.value.thumbnail_url;
 
@@ -65,6 +53,24 @@ function SearchResult(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
+
+<>
+    <style type="text/css">
+    {`
+    .btn-flat {
+      background-color: #fff;
+      color:  #00565D;
+      border: 1px solid #00565D;
+    }
+
+    .btn-flat:hover {
+      background-color: #00565D;
+      color:  #fff;
+      border: 1px solid #00565D;
+    }
+    
+    `}
+    </style>
     <Col xl={3}>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -131,11 +137,11 @@ function SearchResult(props) {
         </Modal.Footer>
       </Modal>
 
-      <Card id={props.id} style={{ marginTop: "5%" }}>
-        <div class="hvrbox">
+      <Card id={props.id} style={{ marginTop: "5%", border: "#fff" }}>
+        <div className="hvrbox">
           <Button
-            variant="outline-secondary"
-            style={{ width: "100%" }}
+            variant="flat"
+            style={{ width: "100%", padding: "0px" }}
             onClick={() => props.onClick(props.id)}
           >
             <Image
@@ -144,11 +150,11 @@ function SearchResult(props) {
               src={img_url}
               style={{ width: "400px", height: "210px" }}
             />
-            <div class="hvrbox-layer_top">
-              <div class="hvrbox-text">
+            <div className="hvrbox-layer_top">
+              <div className="hvrbox-text">
                 Search These Images?
                 <br />
-                <img src="/img/stack.png" alt="stack" width="100px" /> <br />
+                <img src="/img/icons/Bioimages icon.svg" alt="bioimages icon" width="100px" /> <br />
                 <span className="center"></span>
               </div>
             </div>{" "}
@@ -180,82 +186,76 @@ function SearchResult(props) {
         </Form>
       </Card>
     </Col>
+    </>
   );
 }
 
-{
-  /*Filter SideBar*/
-}
+{ /*Filter SideBar*/ }
 function ImageSearch(props) {
   return (
-    <div>
+    <>
+    <div > 
       <IconBar />
       <h5
         style={{
-          marginLeft: "15px",
-          marginTop: "20px",
-          color: "#065f65",
+          marginLeft: "5px",
+          marginTop: "1px",
+          color: "#00565D",
+          //border: "1px solid #065f65",
+          //borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+         
+          padding: "10px 10px 10px 10px"
         }}
       >
-        Filter
+        Filter <ResetFilter />
       </h5>
+      <div >
       {Object.keys(props.value).map((key, indexer) => (
         <ImageFilterType
           value={props.value[key]}
           header={key}
           key={key}
           onClick={(i) => props.onClick(i)}
+          
         />
       ))}
-      <DateRange />
-      <div className="favs">
-        <h5
-          style={{
-            marginLeft: "15px",
-            marginTop: "20px",
-            color: "#065f65",
-          }}
-        >
-          Favourites
-        </h5>
       </div>
+      <DateRange />
+    
     </div>
+
+<div className="favs" >
+<h5
+      style={{
+        marginLeft: "5px",
+        marginTop: "1px",
+        color: "#00565D",
+        //border: "1px solid #065f65",
+        //borderBottom: "5px solid #66b3a6",
+        padding: "10px 10px 10px 10px",
+      
+      }}
+>
+  
+  Favourites
+</h5>
+</div>
+</>
   );
 }
 
-{
-  /*Filter SideBar Toggle*/
-}
+{ /*Filter SideBar Toggle*/ }
 function ImageFilterType(props) {
-  const icons = [
-    {
-      id: 1,
-      icon: <img src="/img/LAI.svg" />,
-    },
-    {
-      id: 2,
-      icon: <img src="/img/LAI.svg" />,
-    },
-    {
-      id: 3,
-      icon: <img src="/img/LAI.svg" />,
-    },
-    {
-      id: 4,
-      icon: <img src="/img/LAI.svg" />,
-    },
-  ];
-
   return (
-    <div style={{ marginLeft: "4%" }} key="{key}">
+    <div style={{ marginLeft: "5px" }} key="{key}">
       <Accordion>
-        <Card>
+        <Card >
           <Accordion.Toggle
             as={Card.Header}
             eventKey="0"
             style={{
               backgroundColor: "#fff",
-              borderRight: "55px solid #6EB3A6",
+              borderRight: "55px solid rgba(149, 219, 199, 0.5)",
             }}
           >
             <Button
@@ -272,7 +272,7 @@ function ImageFilterType(props) {
                 .replace("_", " ")
                 .replace("_", " ")
                 .replace("d", "D")}{" "}
-              <img src="/img/quickview.svg" width="40px" />
+              <img className="accordion" src="/img/quickview.svg" width="40px" alt="quickview" />
             </Button>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
@@ -295,7 +295,7 @@ function ImageFilterType(props) {
 
       <hr
         style={{
-          border: "0.5px solid #66b3a6",
+          border: "1px solid #66b3a6",
           marginTop: "0%",
           marginBottom: "0.5%",
         }}
@@ -304,9 +304,7 @@ function ImageFilterType(props) {
   );
 }
 
-{
-  /*Filter SideBar Item*/
-}
+{ /*Filter SideBar Item*/ }
 function ImageFilter(props) {
   return (
     <div>
@@ -338,8 +336,6 @@ function Favourite(props) {
     </li>
   );
 }
-
-
 
 function ImageMarkers(props) {
   console.log("hello");
@@ -392,41 +388,204 @@ function ImageMarkers(props) {
   );
 }
 
-
 function ImageMarker(props) {
   return (
     <Marker
       icon={L.divIcon({
-        html: ` ${props.value.length} `,
+      
+         html: `  `,
         className: "custom-marker",
         iconSize: L.point(33, 33, true),
+        tooltipAnchor: [ 20, 0 ]
       })}
+
       key={props.id}
       position={props.position}
       onClick={props.onClick}
     >
       {" "}
       <br />
-     
+
+    
+
+      <Popup >
+                      <strong>
+                        <h6>{props.label} selected. Choose an image type.</h6>
+                      </strong>
+                      Site:{" "}
+                      <a
+                        href="www.link.com"
+                        style={{ textTransform: "capitalize", color: "#065f65" }}
+                      >
+                       {props.type} 
+                      </a>{" "}
+                      <br />
+                      Image Types:{" "}
+                      <a
+                        href="www.link.com"
+                        style={{ textTransform: "capitalize", color: "#065f65" }}
+                      >
+                      {props.value}  
+                      </a>{" "}
+                      <br />
+                      <br />
+                      <Button
+                        style={{
+                          padding: "3px",
+                          border: "1px solid #065f65",
+                          marginRight: "5px",
+                        }}
+                        variant="light"
+                        size="small"
+                      >
+                        <img
+                          src="/img/LAI.svg"
+                          width="25px"
+                          margin-right="5px"
+                          alt="leaf area index"
+                        />
+                      </Button>
+                      <Button
+                        style={{
+                          padding: "3px",
+                          border: "1px solid #065f65",
+                          marginRight: "5px",
+                        }}
+                        variant="light"
+                        size="small"
+                      >
+                        <img
+                          src="/img/Panoramic.svg"
+                          width="25px"
+                          margin-right="10px"
+                          alt="panorama"
+                        />
+                      </Button>
+                      <Button
+                        style={{
+                          padding: "3px",
+                          border: "1px solid #065f65",
+                          marginRight: "5px",
+                        }}
+                        variant="light"
+                        size="small"
+                      >
+                        <img
+                          src="/img/phenocam.svg"
+                          width="25px"
+                          margn-right="5px"
+                          alt="phenocam"
+                        />
+                      </Button>
+                      <Button
+                        style={{
+                          padding: "3px",
+                          border: "1px solid #065f65",
+                          marginRight: "5px",
+                        }}
+                        variant="light"
+                        size="small"
+                      >
+                        <img
+                          src="/img/photopoint.svg"
+                          width="25px"
+                          margin-right="5px"
+                          alt="photopoint"
+                        />
+                      </Button>
+                      <Link
+                        style={{ float: "right" }}
+                        to="gallery"
+                        smooth={true}
+                        duration={1000}
+                      >
+              
+                      <>
+                      <style type="text/css">
+                      {`
+                      .btn-flat {
+                        background-color: #fff;
+                        color:  #00565D;
+                        border: 1px solid #00565D;
+                      }
+                
+                      .btn-flat:hover {
+                        background-color: #00565D;
+                        color:  #fff;
+                        border: 1px solid #00565D;
+                      }
+                      
+                      `}
+                      </style>
+                      <Link
+                      style={{ float: "right" }}
+                      to="gallery"
+                      smooth={true}
+                      duration={1000}
+                    >
+                      <Button
+                        style={{ padding: "6px 7px", border: "1px solid #065f65" }}
+                        variant="flat"
+                        size="sm"
+                      
+                     
+                      >
+                        View Images
+                      </Button>
+                    </Link>
+                    </>
+                       
+              
+              
+              
+                      </Link>
+                    </Popup>
+                   
     
       <Tooltip>
         <strong>
           <h6>Click the marker to select this site</h6>
         </strong>
         Site:{" "}
-        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+        <a
+          href="www.tern.org"
+          style={{ textTransform: "capitalize", color: "#065f65" }}
+        >
           {props.type}{" "}
         </a>{" "}
         <br />
         Image Types:{" "}
-        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+        <a
+          href="www.tern.org"
+          style={{ textTransform: "capitalize", color: "#065f65" }}
+        >
           {props.value}
         </a>{" "}
         <br />
-        <img src="/img/LAI.svg" width="25px" margin-right="5px" />
-        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
-        <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
-        <img src="/img/photopoint.svg" width="25px" margin-right="5px" />
+        <img
+          src="/img/LAI.svg"
+          width="25px"
+          margin-right="5px"
+          alt="leaf area index"
+        />
+        <img
+          src="/img/Panoramic.svg"
+          width="25px"
+          margin-right="10px"
+          alt="panorama"
+        />
+        <img
+          src="/img/phenocam.svg"
+          width="25px"
+          margn-right="5px"
+          alt="phenocam"
+        />
+        <img
+          src="/img/photopoint.svg"
+          width="25px"
+          margin-right="5px"
+          alt="photopoint"
+        />
       </Tooltip>
     </Marker>
   );
@@ -512,14 +671,19 @@ class App extends React.Component {
   }
 
   filterSiteID(id) {
-    this.setState({selectedFilter:{site_id:id}})
-    console.log('filterSiteID', this.state)
+    this.setState({ selectedFilter: { site_id: id } });
+    console.log("filterSiteID", this.state);
   }
+
+  // resetSiteID(id) {
+  //   this.setState({ selectedFilter: { site_id: null } });
+  //   console.log("resetSiteID", this.state);
+  // }
 
   handleFilter(i) {
     const selectedFilter = this.state.selectedFilter;
 
-    console.log('HELLO MARK', i);
+    console.log("HELLO MARK", i);
     var arr = i.split("=");
     selectedFilter[arr[0]] = arr[1];
     if (arr[0] !== "_id") {
@@ -568,16 +732,16 @@ class App extends React.Component {
 
         <Row>
           {/*Filter SideBar*/}
-          <Col
+          <Col 
             xl={2}
-            style={{ marginRight: "-.7%", zIndex: "9", height: "195vh" }}
+            style={{ marginRight: "-.7%", zIndex: "9", height: "190vh" }}
           >
             <ImageSearch
               value={this.state.filters}
               onClick={(i) => this.handleFilter(i)}
             />
-              <Query />
-            {/*<Query />*/}
+        
+          
           </Col>
 
           {/*Leaflet Map */}
@@ -623,93 +787,31 @@ class App extends React.Component {
                       url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                     />
 
-                    {/* Example Markers */}
-                 
-
-                    <MarkerClusterGroup>
-                      <Marker position={[-27, 143.0901]} />
-                      <Marker position={[-27.8397, 143.0297]} />
-                      <Marker position={[-28.2297, 143.0122]} />
-                      <Marker position={[-27, 143.0901]} />
-                      <Marker position={[-27.8397, 144.0297]} />
-                      <Marker position={[-28.2297, 143.0122]} />
-                      <Marker position={[-28, 143.0901]} />
-                      <Marker position={[-27.8397, 143.0297]} />
-                      <Marker position={[-28.2297, 143.0122]} />
-                      <Marker position={[-26, 143.0901]} />
-                      <Marker position={[-27.8397, 143.0297]} />
-                      <Marker position={[-28.2297, 140.0122]} />
-                      <Marker position={[-28, 143.0901]} />
-                      <Marker position={[-27.8397, 142.0297]} />
-                      <Marker position={[-28.2297, 143.0122]} />
-                    </MarkerClusterGroup>
-
-                    <MarkerClusterGroup>
-                      <Marker position={[-29.8397, 140.0297]} />
-                      <Marker position={[-28.2297, 142.0122]} />
-                      <Marker position={[-29, 141.0901]} />
-                      <Marker position={[-27.8397, 141.0297]} />
-                      <Marker position={[-29.2297, 140.0122]} />
-                      <Marker position={[-26, 141.0901]} />
-                      <Marker position={[-30.8397, 142.0297]} />
-                      <Marker position={[-29.2297, 140.0122]} />
-                      <Marker position={[-28, 141.0901]} />
-                      <Marker position={[-29.8397, 141.0297]} />
-                      <Marker position={[-29.2297, 140.0122]} />
-                      <Marker position={[-28, 141.0901]} />
-                      <Marker position={[-29.8397, 139.0297]} />
-                      <Marker position={[-29.2297, 142.0122]} />
-                      <Marker position={[-27, 141.0901]} />
-                      <Marker position={[-29.8397, 140.0297]} />
-                      <Marker position={[-26.2297, 141.0122]} />
-                      <Marker position={[-25, 141.0901]} />
-                    </MarkerClusterGroup>
-
-                    <MarkerClusterGroup>
-                      <Marker position={[-20.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 140.0122]} />
-                      <Marker position={[-28, 141.0901]} />
-                      <Marker position={[-26.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 135.0122]} />
-                      <Marker position={[-26, 131.0901]} />
-                      <Marker position={[-20.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 140.0122]} />
-                      <Marker position={[-28, 141.0901]} />
-                      <Marker position={[-26.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 135.0122]} />
-                      <Marker position={[-26, 131.0901]} />
-                      <Marker position={[-20.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 140.0122]} />
-                      <Marker position={[-28, 141.0901]} />
-                      <Marker position={[-26.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 135.0122]} />
-                      <Marker position={[-26, 131.0901]} />
-                      <Marker position={[-20.8397, 140.0297]} />
-                      <Marker position={[-27.2297, 140.0122]} />
-                      <Marker position={[-28, 141.0901]} />
-                      <Marker position={[-26.8397, 140.0297]} />
-                    </MarkerClusterGroup>
+                    <MarkerClusters />
 
                     {/* API Markers */}
                     {Object.keys(this.state.hits).map((index) => (
+                      
                       <ImageMarkers
                         value={this.state.hits[index]}
                         location={index}
-                        onClick={() => {
-                          console.log('test' , this.props, this.state)
-                          this.handleFilter('site_id=' + index )
-                          scroller.scrollTo('gallery', {duration: 1000, smooth:true})
-                        }}
+                        // onClick={() => {
+                        //   console.log("test", this.props, this.state);
+                        //   this.handleFilter("site_id=" + index);
+                          // scroller.scrollTo("gallery", {
+                          //   duration: 1000,
+                          //   smooth: true,
+                          // });
+                        // }}
                       />
                       
                     ))}
-
                   </Map>
                 </div>
               </div>
               {/*End of Leaflet  Map */}
               <BreadCrumb />
-         
+
               <div id="gallery"></div>
               {/*Photo Gallery */}
               <SearchResults

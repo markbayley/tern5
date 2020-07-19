@@ -31,6 +31,7 @@ function ViewImages() {
           style={{ padding: "6px 7px", border: "1px solid #065f65" }}
           variant="flat"
           size="sm"
+          
         >
           View Images
         </Button>

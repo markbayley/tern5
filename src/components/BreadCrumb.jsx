@@ -8,12 +8,13 @@ import {
 class BreadCrumb extends React.Component {
     render() {
         return (
-    <div style={{ marginTop: "3px", marginBottom: "0px"}} >
+    <div style={{ marginTop: "2px", marginBottom: "0px", borderBottom: "1.5px solid #66b3a6", color: "#66b3a6"}} >
       
-      <Breadcrumb className="" > 
-        <BreadcrumbItem><a  href="#"> Home</a></BreadcrumbItem>
-        <BreadcrumbItem><a href="#"> Site</a></BreadcrumbItem>
-        <BreadcrumbItem active> Image Type</BreadcrumbItem>
+      <Breadcrumb style={{height: "50px"}} className="" > 
+        <BreadcrumbItem>Site</BreadcrumbItem>
+        <BreadcrumbItem>Image Type</BreadcrumbItem>
+        <BreadcrumbItem>Plot</BreadcrumbItem>
+        <BreadcrumbItem active>Date</BreadcrumbItem>
         {/*<Form
           className="right"
           style={{ paddingTop: "5px", color: "#065f65" }}

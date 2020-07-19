@@ -1000,7 +1000,7 @@
 	top: 17%;
 	left: 0%;
     width: 15.3%;
-	z-index: 11;
+
 	
   }
 
@@ -1069,8 +1069,6 @@
 .hvrbox.active .hvrbox-text_mobile {
 	display: block;
 }
-
-
 
 
 

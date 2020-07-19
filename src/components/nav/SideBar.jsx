@@ -2,9 +2,9 @@ import React, { Fragment } from "react";
 import { Accordion, Card, CardTitle, Button, Col, Row } from "react-bootstrap";
 
 import Datepicker from "./Datepicker";
-import IconBar from "./IconBar";
-import TernAPI from "./test/TernAPI";
-import Filter from "./test/Filter";
+import IconBar from "../IconBar";
+import TernAPI from "../test/TernAPI";
+import Filter from "../test/Filter";
 import DatePicker from "react-date-picker";
 
 import { Form, Image } from "react-bootstrap";
