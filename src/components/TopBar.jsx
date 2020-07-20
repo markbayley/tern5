@@ -79,7 +79,7 @@ function Home() {
     <div>
       <MainMenu />
       <MainBanner />
-      {/* <SignIn /> */}
+      <SignIn />
       <MainFooter />
       <BioimagesSubFooter />
     </div>
