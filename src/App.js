@@ -1,28 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import "./index.css";
 import { CONFIG } from "./config.js";
 import { Map, Marker, Popup, Tooltip, TileLayer } from "react-leaflet";
 import L from "leaflet";
-//import Wkt from 'wicket';
-//import wkt_coords from 'wicket';
+// import Wkt from 'wicket';
+// import wkt_coords from 'wicket';
 import "bootstrap/dist/css/bootstrap.min.css";
-//import { DateRangePicker } from 'react-date-range';
-/*import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file*/
+// import { DateRangePicker } from 'react-date-range';
+/* import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file */
 import TopBar from "./components/TopBar";
 import Footer from "./Footer";
 import { Link, animateScroll as scroll } from "react-scroll";
-import {
-  Accordion,
-  Card,
-  Button,
-  Col,
-  Row,
-  Form,
-  Modal,
-  Image,
-} from "react-bootstrap";
+import { Accordion, Card, Button, Col, Row } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
 import MarkerClusterGroup from "react-leaflet-markercluster";
@@ -32,6 +23,7 @@ import Legend from "./Legend";
 import Query from "./Query";
 import BreadCrumb from "./BreadCrumb";
 import Toaster from "./Toaster";
+import SearchEngine from "./components/bio-search/SearchEngine";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -39,127 +31,127 @@ const base_image_url =
 {
   /*Photo Gallery*/
 }
-function SearchResults(props) {
-  return (
-    <Row>
-      {Object.keys(props.value).map((index, value) => (
-        <SearchResult
-          value={props.value[index]}
-          id={props.group + "=" + index}
-          key={index + value}
-          onClick={(i) => props.onClick(i)}
-        />
-      ))}
-    </Row>
-  );
-}
+// function SearchResults(props) {
+//   return (
+//     <Row>
+//       {Object.keys(props.value).map((index, value) => (
+//         <SearchResult
+//           value={props.value[index]}
+//           id={props.group + "=" + index}
+//           key={index + value}
+//           onClick={(i) => props.onClick(i)}
+//         />
+//       ))}
+//     </Row>
+//   );
+// }
 
 {
   /*Photo Gallery Item*/
 }
-function SearchResult(props) {
-  const img_url = props.value.thumbnail_url;
+// function SearchResult(props) {
+//   const img_url = props.value.thumbnail_url;
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  return (
-    <Col xl={3}>
-      <Modal size="lg" show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {" "}
-            Site: {props.value.site_id.label} <br />
-            Image Type: {props.value.image_type.value} <br />
-            Image Count: {props.value.doc_count}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {" "}
-          <Image src={img_url} width="765px" height="465px" />
-          <br />
-          <br />
-          <br />
-          <p>
-            Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-            commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-            ipsam atque a dolores quisquam quisquam adipisci possimus
-            laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-            accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-            reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-            deleniti rem!
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="outline-secondary" onClick={handleClose}>
-            Download
-          </Button>
-        </Modal.Footer>
-      </Modal>
+//   const [show, setShow] = useState(false);
+//   const handleClose = () => setShow(false);
+//   const handleShow = () => setShow(true);
+//   return (
+//     <Col xl={3}>
+//       <Modal size="lg" show={show} onHide={handleClose}>
+//         <Modal.Header closeButton>
+//           <Modal.Title>
+//             {" "}
+//             Site: {props.value.site_id.label} <br />
+//             Image Type: {props.value.image_type.value} <br />
+//             Image Count: {props.value.doc_count}
+//           </Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//           {" "}
+//           <Image src={img_url} width="765px" height="465px" />
+//           <br />
+//           <br />
+//           <br />
+//           <p>
+//             Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
+//             commodi aspernatur enim, consectetur. Cumque deleniti temporibus
+//             ipsam atque a dolores quisquam quisquam adipisci possimus
+//             laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
+//             accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
+//             reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
+//             deleniti rem!
+//           </p>
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button variant="outline-secondary" onClick={handleClose}>
+//             Close
+//           </Button>
+//           <Button variant="outline-secondary" onClick={handleClose}>
+//             Download
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
 
-      <Card id={props.id} style={{ marginTop: "5%" }}>
-        <div class="hvrbox">
-          <Button
-            variant="outline-secondary"
-            style={{ width: "100%" }}
-            onClick={() => props.onClick(props.id)}
-          >
-            <Image
-              className="hvrbox-layer_bottom"
-              onClick={handleShow}
-              src={img_url}
-              style={{ width: "400px", height: "210px" }}
-            />
-            <div class="hvrbox-layer_top">
-              <div class="hvrbox-text">
-                Search These Images?
-                <br />
-                <img src="/img/stack.png" alt="stack" width="100px" /> <br />
-                <span className="center"></span>
-              </div>
-            </div>{" "}
-            <strong>Site:</strong> {props.value.site_id.label} <br />
-            <strong>Image Type:</strong>{" "}
-            {props.value.image_type.value[0].toUpperCase() +
-              props.value.image_type.value.substr(1)}{" "}
-            <strong>Image Count:</strong> {props.value.doc_count}{" "}
-          </Button>
-        </div>
+//       <Card id={props.id} style={{ marginTop: "5%" }}>
+//         <div class="hvrbox">
+//           <Button
+//             variant="outline-secondary"
+//             style={{ width: "100%" }}
+//             onClick={() => props.onClick(props.id)}
+//           >
+//             <Image
+//               className="hvrbox-layer_bottom"
+//               onClick={handleShow}
+//               src={img_url}
+//               style={{ width: "400px", height: "210px" }}
+//             />
+//             <div class="hvrbox-layer_top">
+//               <div class="hvrbox-text">
+//                 Search These Images?
+//                 <br />
+//                 <img src="/img/stack.png" alt="stack" width="100px" /> <br />
+//                 <span className="center"></span>
+//               </div>
+//             </div>{" "}
+//             <strong>Site:</strong> {props.value.site_id.label} <br />
+//             <strong>Image Type:</strong>{" "}
+//             {props.value.image_type.value[0].toUpperCase() +
+//               props.value.image_type.value.substr(1)}{" "}
+//             <strong>Image Count:</strong> {props.value.doc_count}{" "}
+//           </Button>
+//         </div>
 
-        <Form
-          className="center"
-          style={{ paddingTop: "5px", color: "#065f65" }}
-        >
-          {["radio"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                type={type}
-                id={`inline-${type}-1`}
-                inline
-                label="View"
-              />
-              <Form.Check
-                inline
-                label="Select"
-                type={type}
-                id={`inline-${type}-2`}
-              />
-              <Form.Check
-                inline
-                label="Download"
-                type={type}
-                id={`inline-${type}-3`}
-              />
-            </div>
-          ))}
-        </Form>
-      </Card>
-    </Col>
-  );
-}
+//         <Form
+//           className="center"
+//           style={{ paddingTop: "5px", color: "#065f65" }}
+//         >
+//           {["radio"].map((type) => (
+//             <div key={`inline-${type}`} className="mb-3">
+//               <Form.Check
+//                 type={type}
+//                 id={`inline-${type}-1`}
+//                 inline
+//                 label="View"
+//               />
+//               <Form.Check
+//                 inline
+//                 label="Select"
+//                 type={type}
+//                 id={`inline-${type}-2`}
+//               />
+//               <Form.Check
+//                 inline
+//                 label="Download"
+//                 type={type}
+//                 id={`inline-${type}-3`}
+//               />
+//             </div>
+//           ))}
+//         </Form>
+//       </Card>
+//     </Col>
+//   );
+// }
 
 {
   /*Filter SideBar*/
@@ -186,19 +178,19 @@ function ImageFilterType(props) {
   const icons = [
     {
       id: 1,
-      icon: <img src="/img/LAI.svg" />,
+      icon: <img src="/img/LAI.svg" alt="" />,
     },
     {
       id: 2,
-      icon: <img src="/img/LAI.svg" />,
+      icon: <img src="/img/LAI.svg" alt="" />,
     },
     {
       id: 3,
-      icon: <img src="/img/LAI.svg" />,
+      icon: <img src="/img/LAI.svg" alt="" />,
     },
     {
       id: 4,
-      icon: <img src="/img/LAI.svg" />,
+      icon: <img src="/img/LAI.svg" alt="" />,
     },
   ];
 
@@ -228,7 +220,7 @@ function ImageFilterType(props) {
                 .replace("_", " ")
                 .replace("_", " ")
                 .replace("d", "D")}{" "}
-              <img src="/img/quickview.svg" width="40px" />
+              <img src="/img/quickview.svg" width="40px" alt="" />
             </Button>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
@@ -356,8 +348,9 @@ function ImageMarker(props) {
       {" "}
       <br />
       <Popup>
-      <strong><p>You Have Selected This Site!</p></strong>
-     
+        <strong>
+          <p>You Have Selected This Site!</p>
+        </strong>
         <strong>
           Site:{" "}
           <a style={{ textTransform: "capitalize", color: "#065f65" }}>
@@ -371,32 +364,29 @@ function ImageMarker(props) {
             {props.value}
           </a>{" "}
         </strong>{" "}
-        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" />
-        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
-        <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
-        <img src="/img/photopoint.svg" width="25px" margin-right="5px" />
+        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" alt="" />
+        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" alt="" />
+        <img src="/img/phenocam.svg" width="25px" margn-right="5px" alt="" />
+        <img src="/img/photopoint.svg" width="25px" margin-right="5px" alt="" />
         <Toaster />
       </Popup>
-
       <Tooltip>
-        <strong><p>Click The Marker To Search This Site! </p></strong>
-       
-          Site:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.type}{" "}
-          </a>
-    
+        <strong>
+          <p>Click The Marker To Search This Site! </p>
+        </strong>
+        Site:{" "}
+        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+          {props.type}{" "}
+        </a>
         <br />
-       
-          Image Types:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.value}
-          </a>{" "}
-        {" "}
-        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" />
-        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" />
-        <img src="/img/phenocam.svg" width="25px" margn-right="5px" />
-        <img src="/img/photopoint.svg" width="25px" margin-right="5px" />
+        Image Types:{" "}
+        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
+          {props.value}
+        </a>{" "}
+        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" alt="" />
+        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" alt="" />
+        <img src="/img/phenocam.svg" width="25px" margn-right="5px" alt="" />
+        <img src="/img/photopoint.svg" width="25px" margin-right="5px" alt="" />
       </Tooltip>
     </Marker>
   );
@@ -696,10 +686,10 @@ class App extends React.Component {
               <BreadCrumb />
 
               {/*Photo Gallery */}
-              <SearchResults
-                value={this.state.hits}
-                group={this.state.aggregation}
-                onClick={(i) => this.handleFilter(i)}
+              <SearchEngine
+                bioImageDocuments={this.state.hits}
+                aggregation={this.state.aggregation}
+                onBioImageClick={(i) => this.handleFilter(i)}
               />
             </div>
           </Col>
