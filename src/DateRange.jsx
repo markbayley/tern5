@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 //import "./App.css";
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
@@ -30,7 +31,12 @@ class DateRange extends React.Component {
 
   render() {
     return (
-      <div style={{borderRight: "55px solid rgba(149, 219, 199, 0.5)", paddingLeft: "15px"}}>
+      <div
+        style={{
+          borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+          paddingLeft: "15px",
+        }}
+      >
         <h6
           style={{ paddingBottom: "0%", color: "#065f65", fontWeight: "500" }}
         >
@@ -38,9 +44,8 @@ class DateRange extends React.Component {
         </h6>
 
         <DateRangePicker
-          
-          small="true"
-          noBorder="true"
+          small={PropTypes.bool}
+          noBorder={PropTypes.bool}
           startDateAriaLabe="fff"
           keepOpenOnDateSelect="true"
           startDate={this.state.startDate}

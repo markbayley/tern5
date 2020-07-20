@@ -3,7 +3,6 @@ import { Card, Button, Col, Form, Modal, Image } from "react-bootstrap";
 const SearchResult = ({
   bioImageDocument,
   bioImageDocumentId,
-  key,
   onBioImageClick,
 }) => {
   const img_url = bioImageDocument.thumbnail_url;
@@ -49,7 +48,7 @@ const SearchResult = ({
       </Modal>
 
       <Card id={bioImageDocumentId} style={{ marginTop: "5%" }}>
-        <div class="hvrbox">
+        <div className="hvrbox">
           <Button
             variant="outline-secondary"
             style={{ width: "100%" }}
@@ -61,8 +60,8 @@ const SearchResult = ({
               src={img_url}
               style={{ width: "400px", height: "210px" }}
             />
-            <div class="hvrbox-layer_top">
-              <div class="hvrbox-text">
+            <div className="hvrbox-layer_top">
+              <div className="hvrbox-text">
                 Search These Images?
                 <br />
                 <img src="/img/stack.png" alt="stack" width="100px" /> <br />

@@ -24,6 +24,7 @@ import Query from "./Query";
 import BreadCrumb from "./BreadCrumb";
 import Toaster from "./Toaster";
 import SearchEngine from "./components/bio-search/SearchEngine";
+import ImageSearch from "./components/bio-image-search/ImageSearch";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -31,246 +32,129 @@ const base_image_url =
 {
   /*Photo Gallery*/
 }
-// function SearchResults(props) {
-//   return (
-//     <Row>
-//       {Object.keys(props.value).map((index, value) => (
-//         <SearchResult
-//           value={props.value[index]}
-//           id={props.group + "=" + index}
-//           key={index + value}
-//           onClick={(i) => props.onClick(i)}
-//         />
-//       ))}
-//     </Row>
-//   );
-// }
 
 {
   /*Photo Gallery Item*/
 }
-// function SearchResult(props) {
-//   const img_url = props.value.thumbnail_url;
-
-//   const [show, setShow] = useState(false);
-//   const handleClose = () => setShow(false);
-//   const handleShow = () => setShow(true);
-//   return (
-//     <Col xl={3}>
-//       <Modal size="lg" show={show} onHide={handleClose}>
-//         <Modal.Header closeButton>
-//           <Modal.Title>
-//             {" "}
-//             Site: {props.value.site_id.label} <br />
-//             Image Type: {props.value.image_type.value} <br />
-//             Image Count: {props.value.doc_count}
-//           </Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//           {" "}
-//           <Image src={img_url} width="765px" height="465px" />
-//           <br />
-//           <br />
-//           <br />
-//           <p>
-//             Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-//             commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-//             ipsam atque a dolores quisquam quisquam adipisci possimus
-//             laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-//             accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-//             reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-//             deleniti rem!
-//           </p>
-//         </Modal.Body>
-//         <Modal.Footer>
-//           <Button variant="outline-secondary" onClick={handleClose}>
-//             Close
-//           </Button>
-//           <Button variant="outline-secondary" onClick={handleClose}>
-//             Download
-//           </Button>
-//         </Modal.Footer>
-//       </Modal>
-
-//       <Card id={props.id} style={{ marginTop: "5%" }}>
-//         <div class="hvrbox">
-//           <Button
-//             variant="outline-secondary"
-//             style={{ width: "100%" }}
-//             onClick={() => props.onClick(props.id)}
-//           >
-//             <Image
-//               className="hvrbox-layer_bottom"
-//               onClick={handleShow}
-//               src={img_url}
-//               style={{ width: "400px", height: "210px" }}
-//             />
-//             <div class="hvrbox-layer_top">
-//               <div class="hvrbox-text">
-//                 Search These Images?
-//                 <br />
-//                 <img src="/img/stack.png" alt="stack" width="100px" /> <br />
-//                 <span className="center"></span>
-//               </div>
-//             </div>{" "}
-//             <strong>Site:</strong> {props.value.site_id.label} <br />
-//             <strong>Image Type:</strong>{" "}
-//             {props.value.image_type.value[0].toUpperCase() +
-//               props.value.image_type.value.substr(1)}{" "}
-//             <strong>Image Count:</strong> {props.value.doc_count}{" "}
-//           </Button>
-//         </div>
-
-//         <Form
-//           className="center"
-//           style={{ paddingTop: "5px", color: "#065f65" }}
-//         >
-//           {["radio"].map((type) => (
-//             <div key={`inline-${type}`} className="mb-3">
-//               <Form.Check
-//                 type={type}
-//                 id={`inline-${type}-1`}
-//                 inline
-//                 label="View"
-//               />
-//               <Form.Check
-//                 inline
-//                 label="Select"
-//                 type={type}
-//                 id={`inline-${type}-2`}
-//               />
-//               <Form.Check
-//                 inline
-//                 label="Download"
-//                 type={type}
-//                 id={`inline-${type}-3`}
-//               />
-//             </div>
-//           ))}
-//         </Form>
-//       </Card>
-//     </Col>
-//   );
-// }
 
 {
   /*Filter SideBar*/
 }
-function ImageSearch(props) {
-  return (
-    <div>
-      {Object.keys(props.value).map((key, indexer) => (
-        <ImageFilterType
-          value={props.value[key]}
-          header={key}
-          key={key}
-          onClick={(i) => props.onClick(i)}
-        />
-      ))}
-    </div>
-  );
-}
+// function ImageSearch(props) {
+//   return (
+//     <div>
+//       {Object.keys(props.value).map((key, indexer) => (
+//         <ImageFilterType
+//           value={props.value[key]}
+//           header={key}
+//           key={key}
+//           onClick={(i) => props.onClick(i)}
+//         />
+//       ))}
+//     </div>
+//   );
+// }
 
 {
   /*Filter SideBar Toggle*/
 }
-function ImageFilterType(props) {
-  const icons = [
-    {
-      id: 1,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 2,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 3,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 4,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-  ];
+// function ImageFilterType(props) {
+//   const icons = [
+//     {
+//       id: 1,
+//       icon: <img src="/img/LAI.svg" alt="" />,
+//     },
+//     {
+//       id: 2,
+//       icon: <img src="/img/LAI.svg" alt="" />,
+//     },
+//     {
+//       id: 3,
+//       icon: <img src="/img/LAI.svg" alt="" />,
+//     },
+//     {
+//       id: 4,
+//       icon: <img src="/img/LAI.svg" alt="" />,
+//     },
+//   ];
 
-  return (
-    <div style={{ marginLeft: "4%" }} key="{key}">
-      <Accordion>
-        <Card>
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="0"
-            style={{
-              backgroundColor: "#fff",
-              borderRight: "55px solid rgba(149, 219, 199, 0.5)",
-            }}
-          >
-            <Button
-              style={{
-                width: "105%",
-                textTransform: "capitalize",
-                color: "#065f65",
-                fontWeight: "500",
-              }}
-              variant="outline"
-              onClick={() => props.onClick(props.header + "=")}
-            >
-              {props.header
-                .replace("_", " ")
-                .replace("_", " ")
-                .replace("d", "D")}{" "}
-              <img src="/img/quickview.svg" width="40px" alt="" />
-            </Button>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <ul>
-                {Object.keys(props.value).map((key1) => (
-                  <ImageFilter
-                    value={props.value[key1]}
-                    key={props.header + "=" + props.value[key1].key}
-                    onClick={() =>
-                      props.onClick(props.header + "=" + props.value[key1].key)
-                    }
-                  />
-                ))}
-              </ul>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-      <hr
-        style={{
-          border: "0.5px solid #66b3a6",
-          marginTop: "0%",
-          marginBottom: "0.5%",
-        }}
-      ></hr>
-    </div>
-  );
-}
+//   return (
+//     <div style={{ marginLeft: "4%" }} key="{key}">
+//       <Accordion>
+//         <Card>
+//           <Accordion.Toggle
+//             as={Card.Header}
+//             eventKey="0"
+//             style={{
+//               backgroundColor: "#fff",
+//               borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+//             }}
+//           >
+//             <Button
+//               style={{
+//                 width: "105%",
+//                 textTransform: "capitalize",
+//                 color: "#065f65",
+//                 fontWeight: "500",
+//               }}
+//               variant="outline"
+//               onClick={() => props.onClick(props.header + "=")}
+//             >
+//               {props.header
+//                 .replace("_", " ")
+//                 .replace("_", " ")
+//                 .replace("d", "D")}{" "}
+//               <img src="/img/quickview.svg" width="40px" alt="" />
+//             </Button>
+//           </Accordion.Toggle>
+//           <Accordion.Collapse eventKey="0">
+//             <Card.Body>
+//               <ul>
+//                 {Object.keys(props.value).map((key1) => (
+//                   <ImageFilter
+//                     value={props.value[key1]}
+//                     key={props.header + "=" + props.value[key1].key}
+//                     onClick={() =>
+//                       props.onClick(props.header + "=" + props.value[key1].key)
+//                     }
+//                   />
+//                 ))}
+//               </ul>
+//             </Card.Body>
+//           </Accordion.Collapse>
+//         </Card>
+//       </Accordion>
+//       <hr
+//         style={{
+//           border: "0.5px solid #66b3a6",
+//           marginTop: "0%",
+//           marginBottom: "0.5%",
+//         }}
+//       ></hr>
+//     </div>
+//   );
+// }
 
 {
   /*Filter SideBar Item*/
 }
-function ImageFilter(props) {
-  return (
-    <div>
-      <div className="">
-        <div key="{key}">
-          <Button
-            style={{ width: "100%" }}
-            variant="outline-secondary"
-            onClick={props.onClick}
-          >
-            {props.value.label} ({props.value.doc_count})
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
+// function ImageFilter(props) {
+//   return (
+//     <div>
+//       <div className="">
+//         <div key="{key}">
+//           <Button
+//             style={{ width: "100%" }}
+//             variant="outline-secondary"
+//             onClick={props.onClick}
+//           >
+//             {props.value.label} ({props.value.doc_count})
+//           </Button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 function Favourite(props) {
   return (
@@ -538,8 +422,8 @@ class App extends React.Component {
               Filter
             </h5>
             <ImageSearch
-              value={this.state.filters}
-              onClick={(i) => this.handleFilter(i)}
+              imageFilters={this.state.filters}
+              handleFilter={(i) => this.handleFilter(i)}
             />
 
             <DateRange />
@@ -677,6 +561,7 @@ class App extends React.Component {
                       <ImageMarkers
                         value={this.state.hits[index]}
                         location={index}
+                        key={index}
                       />
                     ))}
                   </Map>
