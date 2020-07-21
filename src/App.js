@@ -22,139 +22,17 @@ import DateRange from "./DateRange";
 import Legend from "./Legend";
 import Query from "./Query";
 import BreadCrumb from "./BreadCrumb";
-import Toaster from "./Toaster";
 import SearchEngine from "./components/bio-search/SearchEngine";
 import ImageSearch from "./components/bio-image-search/ImageSearch";
+import ImageMarkerEngine from "./components/bio-image-marker/ImageMarkerEngine";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
-{
-  /*Photo Gallery*/
-}
-
-{
-  /*Photo Gallery Item*/
-}
-
-{
-  /*Filter SideBar*/
-}
-// function ImageSearch(props) {
-//   return (
-//     <div>
-//       {Object.keys(props.value).map((key, indexer) => (
-//         <ImageFilterType
-//           value={props.value[key]}
-//           header={key}
-//           key={key}
-//           onClick={(i) => props.onClick(i)}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-
-{
-  /*Filter SideBar Toggle*/
-}
-// function ImageFilterType(props) {
-//   const icons = [
-//     {
-//       id: 1,
-//       icon: <img src="/img/LAI.svg" alt="" />,
-//     },
-//     {
-//       id: 2,
-//       icon: <img src="/img/LAI.svg" alt="" />,
-//     },
-//     {
-//       id: 3,
-//       icon: <img src="/img/LAI.svg" alt="" />,
-//     },
-//     {
-//       id: 4,
-//       icon: <img src="/img/LAI.svg" alt="" />,
-//     },
-//   ];
-
-//   return (
-//     <div style={{ marginLeft: "4%" }} key="{key}">
-//       <Accordion>
-//         <Card>
-//           <Accordion.Toggle
-//             as={Card.Header}
-//             eventKey="0"
-//             style={{
-//               backgroundColor: "#fff",
-//               borderRight: "55px solid rgba(149, 219, 199, 0.5)",
-//             }}
-//           >
-//             <Button
-//               style={{
-//                 width: "105%",
-//                 textTransform: "capitalize",
-//                 color: "#065f65",
-//                 fontWeight: "500",
-//               }}
-//               variant="outline"
-//               onClick={() => props.onClick(props.header + "=")}
-//             >
-//               {props.header
-//                 .replace("_", " ")
-//                 .replace("_", " ")
-//                 .replace("d", "D")}{" "}
-//               <img src="/img/quickview.svg" width="40px" alt="" />
-//             </Button>
-//           </Accordion.Toggle>
-//           <Accordion.Collapse eventKey="0">
-//             <Card.Body>
-//               <ul>
-//                 {Object.keys(props.value).map((key1) => (
-//                   <ImageFilter
-//                     value={props.value[key1]}
-//                     key={props.header + "=" + props.value[key1].key}
-//                     onClick={() =>
-//                       props.onClick(props.header + "=" + props.value[key1].key)
-//                     }
-//                   />
-//                 ))}
-//               </ul>
-//             </Card.Body>
-//           </Accordion.Collapse>
-//         </Card>
-//       </Accordion>
-//       <hr
-//         style={{
-//           border: "0.5px solid #66b3a6",
-//           marginTop: "0%",
-//           marginBottom: "0.5%",
-//         }}
-//       ></hr>
-//     </div>
-//   );
-// }
-
-{
-  /*Filter SideBar Item*/
-}
-// function ImageFilter(props) {
-//   return (
-//     <div>
-//       <div className="">
-//         <div key="{key}">
-//           <Button
-//             style={{ width: "100%" }}
-//             variant="outline-secondary"
-//             onClick={props.onClick}
-//           >
-//             {props.value.label} ({props.value.doc_count})
-//           </Button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+/*Photo Gallery*/
+/*Photo Gallery Item*/
+/*Filter SideBar*/
+/*Filter SideBar Item*/
 
 function Favourite(props) {
   return (
@@ -165,114 +43,6 @@ function Favourite(props) {
         {props.value.favourites_id})
       </button>
     </li>
-  );
-}
-
-function ImageMarkers(props) {
-  console.log("hello");
-  console.log(props.value);
-  var popup = "";
-  var tooltip = "";
-  var id = props.location;
-  var position = props.value.centre_point;
-  console.log(id);
-  console.log(position);
-  for (var this_key in props.value.image_types) {
-    console.log(this_key);
-    for (var sub_key in props.value.image_types[this_key]) {
-      var site_key = sub_key;
-      console.log(Object.keys(props.value.image_types[this_key]).length);
-      if (
-        sub_key == "total" &&
-        Object.keys(props.value.image_types[this_key]).length == 1
-      ) {
-        site_key = this_key;
-      }
-      popup +=
-        site_key + "(" + props.value.image_types[this_key][sub_key] + ") \r\n";
-      tooltip += props.value.image_types[this_key] + " - " + this_key;
-    }
-    console.log(popup);
-    console.log("this is the popup for " + this_key);
-  }
-
-  return (
-    /*Object.keys(props.value.image_types).map((index) => (
-      <ImageMarker
-        value={props.value.image_types[index]}
-        type={index}
-        site={props.value.supersite_node_code}
-        position={props.value.centre_point}
-        id={props.value.supersite_node_code + index}
-        key={props.value.supersite_node_code + index} />
-    //)) */
-    <ImageMarker
-      value={popup}
-      type={id}
-      site={id}
-      position={position}
-      id={id}
-      key={id}
-      label={id}
-    />
-  );
-}
-
-function ImageMarker(props) {
-  return (
-    <Marker
-      icon={L.divIcon({
-        html: "<div>" + props.value[10] + props.value[11] + "</div>",
-        className: "custom-marker",
-        iconSize: L.point(33, 33, true),
-      })}
-      key={props.id}
-      position={props.position}
-    >
-      {" "}
-      <br />
-      <Popup>
-        <strong>
-          <p>You Have Selected This Site!</p>
-        </strong>
-        <strong>
-          Site:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.type}{" "}
-          </a>
-        </strong>
-        <br />
-        <strong>
-          Image Types:{" "}
-          <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-            {props.value}
-          </a>{" "}
-        </strong>{" "}
-        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" alt="" />
-        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" alt="" />
-        <img src="/img/phenocam.svg" width="25px" margn-right="5px" alt="" />
-        <img src="/img/photopoint.svg" width="25px" margin-right="5px" alt="" />
-        <Toaster />
-      </Popup>
-      <Tooltip>
-        <strong>
-          <p>Click The Marker To Search This Site! </p>
-        </strong>
-        Site:{" "}
-        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-          {props.type}{" "}
-        </a>
-        <br />
-        Image Types:{" "}
-        <a style={{ textTransform: "capitalize", color: "#065f65" }}>
-          {props.value}
-        </a>{" "}
-        <br /> <img src="/img/LAI.svg" width="25px" margin-right="5px" alt="" />
-        <img src="/img/Panoramic.svg" width="25px" margin-right="10px" alt="" />
-        <img src="/img/phenocam.svg" width="25px" margn-right="5px" alt="" />
-        <img src="/img/photopoint.svg" width="25px" margin-right="5px" alt="" />
-      </Tooltip>
-    </Marker>
   );
 }
 
@@ -558,7 +328,7 @@ class App extends React.Component {
 
                     {/* API Markers */}
                     {Object.keys(this.state.hits).map((index) => (
-                      <ImageMarkers
+                      <ImageMarkerEngine
                         value={this.state.hits[index]}
                         location={index}
                         key={index}
