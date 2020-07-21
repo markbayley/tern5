@@ -4,7 +4,7 @@ import React, { Component } from "react";
 class Legend extends Component {
   render() {
     return (
-      <div className="index" style={{ backgroundColor: "white" }}>
+      <div className="index" style={{ backgroundColor: "#fff" }}>
  
         <img src="/img/LAI_circle.svg" width="35px" />Leaf Area Index <img style={{float: 'right'}} src="/img/LAI.svg" width="25px" /> <br />
         <img src="/img/Panorama_circle.svg" width="35px" />Panorama <img style={{float: 'right'}} src="/img/panoramic.svg" width="25px"/> <br />

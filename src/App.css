@@ -980,16 +980,55 @@
 	background-color: "white";
 	width: 200px;
 	height: 150px;
-	position: absolute;
+	position: fixed;
 	padding: 10px;
 	top: 790px;
-	right: 1400px;
+	left: 35px;
 	border-radius: 1px;
 	border: 1px solid #065f65;
 	z-index: 5;
 	opacity: .8;
   }
 
+
+  .mapnav {
+	width: 500px;
+	height: 65px;
+	position: absolute;
+	padding: 10px;
+	top: 17%;
+	right: 0%;
+	border-radius: 1px;
+	border: 1px solid #065f65;
+	z-index: 2;
+	color: #fff;
+	
+  }
+
+  
+  .mapnav-btn {
+	background-color: #6EB3A6;
+	color: #fff;
+	border-radius: 7px;
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	border: none;
+	font-size: 14px;
+	
+}
+
+
+  .mapnav-button {
+	  background-color: #6EB3A6;
+	  color: #fff;
+	  border-radius: 25px;
+	  width: 30px;
+	  height: 30px;
+	  margin: 5px;
+	  border: none;
+	  font-size: 14px;
+  }
 
 
 

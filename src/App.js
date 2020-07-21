@@ -25,6 +25,7 @@ import ViewImages from "./components/buttons/ViewImages";
 import MarkerClusters from "./components/test/MarkerClusters";
 import LoginButton from "./components/buttons/LoginButton";
 import ResetFilter from "./components/buttons/ResetFilter";
+import MapNav from "./components/MapNav";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -33,6 +34,7 @@ const base_image_url =
 function SearchResults(props) {
   return (
     <Row>
+  
       {Object.keys(props.value).map((index, value) => (
         <SearchResult
           value={props.value[index]}
@@ -41,6 +43,7 @@ function SearchResults(props) {
           onClick={(i) => props.onClick(i)}
         />
       ))}
+          
     </Row>
   );
 }
@@ -170,7 +173,7 @@ function SearchResult(props) {
           className="center"
           style={{ paddingTop: "5px", color: "#065f65" }}
         >
-          {["radio"].map((type) => (
+          {["checkbox"].map((type) => (
             <div key={props.id} className="mb-3">
               <Form.Check
                 type={type}
@@ -181,6 +184,10 @@ function SearchResult(props) {
               />
               <Form.Check inline label="Select" type={type} id={props.id} />
               <Form.Check inline label="Download" type={type} id={props.id} />
+
+      
+            {/*{props.value.doc_count} */}
+    
             </div>
           ))}
         </Form>
@@ -192,25 +199,28 @@ function SearchResult(props) {
 
 { /*Filter SideBar*/ }
 function ImageSearch(props) {
+  
   return (
     <>
     <div > 
-      <IconBar />
+     
       <h5
         style={{
-          marginLeft: "5px",
-          marginTop: "1px",
-          color: "#00565D",
+          marginLeft: "0px",
+          marginTop: "0px",
+          color: "#fff",
+          backgroundColor: "#ED694B",
           //border: "1px solid #065f65",
           //borderRight: "55px solid rgba(149, 219, 199, 0.5)",
          
-          padding: "10px 10px 10px 10px"
+          padding: "20px 10px 20px 10px"
         }}
       >
         Filter <ResetFilter />
       </h5>
       <div >
       {Object.keys(props.value).map((key, indexer) => (
+        
         <ImageFilterType
           value={props.value[key]}
           header={key}
@@ -218,7 +228,9 @@ function ImageSearch(props) {
           onClick={(i) => props.onClick(i)}
           
         />
+        
       ))}
+     
       </div>
       <DateRange />
     
@@ -227,18 +239,27 @@ function ImageSearch(props) {
 <div className="favs" >
 <h5
       style={{
-        marginLeft: "5px",
-        marginTop: "1px",
-        color: "#00565D",
+        marginLeft: "0px",
+        marginTop: "0px",
+        color: "#fff",
+        backgroundColor: "#00565D",
         //border: "1px solid #065f65",
         //borderBottom: "5px solid #66b3a6",
-        padding: "10px 10px 10px 10px",
+        padding: "20px 10px 20px 10px",
       
       }}
 >
   
   Favourites
 </h5>
+<div className="" style={{ backgroundColor: "white", padding: "3% 6%" }}>
+ 
+ <img src="/img/LAI_circle.svg" width="35px" />Leaf Area Index <img style={{float: 'right'}} src="/img/LAI.svg" width="30px" /> <br />
+ <img src="/img/Panorama_circle.svg" width="35px" />Panorama <img style={{float: 'right'}} src="/img/panoramic.svg" width="30px"/> <br />
+ <img src="/img/Phenocam_circle.svg" width="35px" />Phenocam <img style={{float: 'right'}} src="/img/phenocam.svg" width="30px" /> <br />
+ <img src="/img/photopoint_circle.svg" width="35px" />Photopoint <img style={{float: 'right'}} src="/img/photopoint.svg" width="30px" />
+
+</div>
 </div>
 </>
   );
@@ -246,6 +267,7 @@ function ImageSearch(props) {
 
 { /*Filter SideBar Toggle*/ }
 function ImageFilterType(props) {
+
   return (
     <div style={{ marginLeft: "5px" }} key="{key}">
       <Accordion>
@@ -729,7 +751,7 @@ class App extends React.Component {
       <div id="map">
         <TopBar />
         <SearchBar />
-
+        <MapNav />
         <Row>
           {/*Filter SideBar*/}
           <Col 
@@ -787,7 +809,7 @@ class App extends React.Component {
                       url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                     />
 
-                    <MarkerClusters />
+               
 
                     {/* API Markers */}
                     {Object.keys(this.state.hits).map((index) => (
@@ -810,6 +832,7 @@ class App extends React.Component {
                 </div>
               </div>
               {/*End of Leaflet  Map */}
+      
               <BreadCrumb />
 
               <div id="gallery"></div>
@@ -826,7 +849,7 @@ class App extends React.Component {
 
         <Toggle />
 
-        <Legend />
+ 
 
         <Footer />
       </div>
