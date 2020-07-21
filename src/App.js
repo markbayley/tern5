@@ -25,6 +25,7 @@ import BreadCrumb from "./BreadCrumb";
 import SearchEngine from "./components/bio-search/SearchEngine";
 import ImageSearchEngine from "./components/bio-image-search/ImageSearchEngine";
 import ImageMarkerEngine from "./components/bio-image-marker/ImageMarkerEngine";
+import Favourite from "./components/bio-favourites/Favourite";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -34,17 +35,17 @@ const base_image_url =
 /*Filter SideBar*/
 /*Filter SideBar Item*/
 
-function Favourite(props) {
-  return (
-    <li key="{index}">
-      {" "}
-      <button onClick={props.onClick}>
-        {props.value.user_id} {props.value.favourite_name} (
-        {props.value.favourites_id})
-      </button>
-    </li>
-  );
-}
+// function Favourite(props) {
+//   return (
+//     <li key="{index}">
+//       {" "}
+//       <button onClick={props.onClick}>
+//         {props.value.user_id} {props.value.favourite_name} (
+//         {props.value.favourites_id})
+//       </button>
+//     </li>
+//   );
+// }
 
 class App extends React.Component {
   constructor() {
@@ -96,13 +97,15 @@ class App extends React.Component {
 
   fetchSearch() {
     // Where we're fetching data from
-    console.log("fetching");
+    console.log("Fetching Data now .....");
     var search_url = CONFIG.API_BASE_URL + "search?1=1";
     const selectedFilter = this.state.selectedFilter;
     for (const [key, value] of Object.entries(selectedFilter)) {
       search_url += "&" + key + "=" + value;
     }
-    console.log(search_url);
+
+    console.log("ES API. search_url" + search_url);
+
     fetch(search_url)
       // We get the API response and receive data in JSON format...
       .then((response) => response.json())
@@ -155,10 +158,12 @@ class App extends React.Component {
     const favs = favourites.map((favourite, index) => {
       return (
         <Favourite
-          value={favourite}
+          user_id={favourite.user_id}
+          favourite_name={favourite.favourite_name}
+          favourite_id={favourite.favourite_id}
           index={index}
           key={"f" + index}
-          onClick={() => this.handleFavourite(favourite.favourite_name)}
+          handleFavourite={() => this.handleFavourite(favourite.favourite_name)}
         />
       );
     });
@@ -207,7 +212,7 @@ class App extends React.Component {
                   color: "#065f65",
                 }}
               >
-                Favourites
+                My Favourites
               </h5>
               <ul>{favs}</ul>
             </div>
