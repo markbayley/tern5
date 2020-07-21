@@ -23,7 +23,7 @@ import Legend from "./Legend";
 import Query from "./Query";
 import BreadCrumb from "./BreadCrumb";
 import SearchEngine from "./components/bio-search/SearchEngine";
-import ImageSearch from "./components/bio-image-search/ImageSearch";
+import ImageSearchEngine from "./components/bio-image-search/ImageSearchEngine";
 import ImageMarkerEngine from "./components/bio-image-marker/ImageMarkerEngine";
 
 const base_image_url =
@@ -191,7 +191,7 @@ class App extends React.Component {
             >
               Filter
             </h5>
-            <ImageSearch
+            <ImageSearchEngine
               imageFilters={this.state.filters}
               handleFilter={(i) => this.handleFilter(i)}
             />

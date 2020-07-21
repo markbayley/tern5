@@ -1,7 +1,7 @@
 import React from "react";
 import ImageFilterType from "./ImageFilterType";
 
-const ImageSearch = ({ imageFilters, handleFilter }) => {
+const ImageSearchEngine = ({ imageFilters, handleFilter }) => {
   return (
     <div>
       {Object.keys(imageFilters).map((key, indexer) => (
@@ -16,4 +16,4 @@ const ImageSearch = ({ imageFilters, handleFilter }) => {
   );
 };
 
-export default ImageSearch;
+export default ImageSearchEngine;
