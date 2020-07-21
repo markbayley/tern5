@@ -151,7 +151,7 @@ function SearchResult(props) {
               className="hvrbox-layer_bottom"
               onClick={handleShow}
               src={img_url}
-              style={{ width: "400px", height: "210px" }}
+              style={{ width: "100%", height: "210px" }}
             />
             <div className="hvrbox-layer_top">
               <div className="hvrbox-text">
@@ -754,9 +754,9 @@ class App extends React.Component {
         <MapNav />
         <Row>
           {/*Filter SideBar*/}
-          <Col 
+          <Col className="filterbar"
             xl={2}
-            style={{ marginRight: "-.7%", zIndex: "9", height: "190vh" }}
+            style={{ marginRight: "-.7%", zIndex: "9"}}
           >
             <ImageSearch
               value={this.state.filters}
