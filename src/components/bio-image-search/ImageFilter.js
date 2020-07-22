@@ -1,21 +1,21 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const ImageFilter = ({ value, handleFilter }) => {
-  return (
-    <div>
-      <div className="">
-        <div key="key">
-          <Button
-            style={{ width: "100%" }}
-            variant="outline-secondary"
-            onClick={handleFilter}
-          >
-            {value.label} ({value.doc_count})
-          </Button>
-        </div>
-      </div>
-    </div>
+  return ( 
+     <div className="">
+       <div key="{key}">
+         <Form.Group controlId="formBasicCheckbox">
+           <Form.Check
+             type="checkbox"
+             style={{ textTransform: "capitalize" }}
+             label={value.label}
+             onClick={handleFilter}
+           />
+           {/* {value.doc_count} */}
+         </Form.Group>
+       </div>
+     </div>
   );
 };
 export default ImageFilter;

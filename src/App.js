@@ -2,8 +2,7 @@ import React from "react";
 import "./App.css";
 import "./index.css";
 import { CONFIG } from "./config.js";
-import { Map, Marker, Popup, Tooltip, TileLayer } from "react-leaflet";
-import L from "leaflet";
+import { Map, TileLayer } from "react-leaflet";
 // import Wkt from 'wicket';
 // import wkt_coords from 'wicket';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,15 +11,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-date-range/dist/theme/default.css'; // theme css file */
 import TopBar from "./components/TopBar";
 import Footer from "./components/Footer";
-import { Link, animateScroll as scroll } from "react-scroll";
-import { Accordion, Card, Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import SearchBar from "./components/SearchBar";
-import IconBar from "./components/IconBar";
-import MarkerClusterGroup from "react-leaflet-markercluster";
-import Scroll from "./components/test/Scroll";
 import DateRange from "./components/DateRange";
-import Legend from "./components/Legend";
-import Query from "./components/Query";
 import BreadCrumb from "./components/BreadCrumb";
 import SearchEngine from "./components/bio-search/SearchEngine";
 import ImageSearchEngine from "./components/bio-image-search/ImageSearchEngine";
@@ -28,6 +21,9 @@ import ImageMarkerEngine from "./components/bio-image-marker/ImageMarkerEngine";
 import Favourite from "./components/bio-favourites/Favourite";
 import Toggle from "./components/buttons/Toggle";
 import MapNav from "./components/MapNav";
+import FavouriteHeader from "./components/bio-favourites/FavouriteHeader";
+import FilterHeader from "./components/bio-image-search/FilterHeader";
+import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -66,7 +62,7 @@ class App extends React.Component {
       lat: -26.47,
       lng: 134.02,
       zoom: 5,
-      maxZoom: 30,
+      maxZoom: 6,
       minZoom: 5,
     };
   }
@@ -191,42 +187,23 @@ class App extends React.Component {
       <div id="map">
         <TopBar />
         <SearchBar />
-      <MapNav />
+        <MapNav />
         <Row>
           {/*Filter SideBar*/}
-          <Col className="filterbar"
+          <Col
+            className="filterbar"
             xl={2}
-            style={{ marginRight: "-.7%", zIndex: "9"}}
+            style={{ zIndex: "9" , margin: "0", paddingRight: "0"}}
           >
-            <h5
-              style={{
-                marginLeft: "15px",
-                marginTop: "20px",
-                color: "#065f65",
-              }}
-            >
-              Filter
-            </h5>
+            <FilterHeader />
             <ImageSearchEngine
               imageFilters={this.state.filters}
               handleFilter={(i) => this.handleFilter(i)}
             />
 
             <DateRange />
-            <Query />
-
-            <div className="favs">
-              <h5
-                style={{
-                  marginLeft: "15px",
-                  marginTop: "20px",
-                  color: "#065f65",
-                }}
-              >
-                My Favourites
-              </h5>
-              <ul>{favs}</ul>
-            </div>
+            <FavouriteHeader />
+            <Favourite />
           </Col>
 
           {/*Leaflet Map */}
@@ -237,9 +214,8 @@ class App extends React.Component {
             xl={10}
             style={{
               height: "80vh",
-              padding: "0% 0% 0% 0%",
-              marginTop: "0%",
-              marginBottom: "0%",
+              padding: "0%",
+              margin: "0%"      
             }}
           >
             <div className="map-container">
@@ -272,26 +248,31 @@ class App extends React.Component {
                       url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                     />
 
-               
-
                     {/* API Markers */}
                     {Object.keys(this.state.hits).map((index) => (
                       <ImageMarkerEngine
                         value={this.state.hits[index]}
                         location={index}
                         key={index}
+                        onClick={() => {
+                          console.log("test", this.props, this.state);
+                          this.handleFilter("site_id=" + index);
+                          // scroller.scrollTo("gallery", {
+                          //   duration: 1000,
+                          //   smooth: true,
+                          // });
+                        }}
                       />
-                      
                     ))}
                   </Map>
                 </div>
               </div>
               {/*End of Leaflet  Map */}
-      
-              <BreadCrumb />
 
-              <div id="gallery"></div>
+              <BreadCrumb />
+            
               {/*Photo Gallery */}
+              <div id="gallery"></div>
               <SearchEngine
                 bioImageDocuments={this.state.hits}
                 aggregation={this.state.aggregation}
@@ -302,9 +283,7 @@ class App extends React.Component {
           </Col>
         </Row>
 
-      <Toggle />
-
- 
+        <Toggle />
 
         <Footer />
       </div>

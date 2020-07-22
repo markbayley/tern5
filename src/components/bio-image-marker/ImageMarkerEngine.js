@@ -47,6 +47,7 @@ const ImageMarkerEngine = (props) => {
       id={id}
       key={id}
       label={id}
+      onClick={props.onClick}
     />
   );
 };

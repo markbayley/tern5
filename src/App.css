@@ -1006,7 +1006,7 @@
 
 
  .filterbar {
-  margin-right: "-.7%";
+
   z-index: "9";
   height: 190vh; 
  }
@@ -1038,8 +1038,7 @@
 	}
 
 	.filterbar {
-		height: 80vh;
-	
+		height: 80vh;		
 	}
 
 	
