@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 //import "./App.css";
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
@@ -41,11 +42,10 @@ class DateRange extends React.Component {
         
 
         <DateRangePicker
-      
-          small={true}
-          noBorder={true}
-          startDateAriaLabel="#fff"
-          keepOpenOnDateSelect={true}
+          small={PropTypes.bool}
+          noBorder={PropTypes.bool}
+          startDateAriaLabe="fff"
+          keepOpenOnDateSelect="true"
           startDate={this.state.startDate}
           startDateId="start_date_id"
           endDate={this.state.endDate}
