@@ -1,7 +1,7 @@
 import React from "react";
 import { Map, Marker, Popup, Tooltip, TileLayer } from "react-leaflet";
 import L from "leaflet";
-import Toaster from "./../../Toaster";
+import Toaster from "../../Toaster";
 
 const ImageMarker = (props) => {
   return (
