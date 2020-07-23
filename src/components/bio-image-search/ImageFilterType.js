@@ -23,7 +23,7 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
   ];
 
   return (
-    <div style={{ marginLeft: "4%" }} key="key">
+    <div style={{ marginLeft: "1%" }} key="key">
       <Accordion>
         <Card>
           <Accordion.Toggle

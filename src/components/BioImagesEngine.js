@@ -3,17 +3,22 @@ import { CONFIG } from "./../config.js";
 import TopBar from "./TopBar";
 import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
-import BreadCrumb from "./../BreadCrumb";
-import Scroll from "./../Scroll";
-import Legend from "./../Legend";
+import BreadCrumb from "./BreadCrumb";
+// import Scroll from "./Scroll";
+import Legend from "./Legend";
 import Footer from "./Footer";
 import { Col, Row } from "react-bootstrap";
-import DateRange from "./../DateRange";
-import Query from "./../Query";
+import DateRange from "./DateRange";
+import Query from "./Query";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
+import Toggle from "./buttons/Toggle";
+import MapNav from "./MapNav";
+import FavouriteHeader from "./bio-favourites/FavouriteHeader";
+import FilterHeader from "./bio-image-search/FilterHeader";
+import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -100,72 +105,59 @@ const BioImagesEngine = ({ initFilter }) => {
     fetchSearch(initFilter);
   }, [initFilter]);
 
+  const filterSiteID = (id) => {
+    // this.setState({ selectedFilter: { site_id: id } });
+    setSelectedFilter({ site_id: id });
+    console.log("filterSiteID", selectedFilter);
+  };
+
   const handleFilter = (i) => {
-    console.log(i);
+    console.log("in handleFilter(). HELLO MARK", i);
     var arr = i.split("=");
-    selectedFilter[arr[0]] = arr[1];
+    // selectedFilter[arr[0]] = arr[1];
+    setSelectedFilter({ [arr[0]]: arr[1] });
     if (arr[0] !== "_id") {
-      selectedFilter["_id"] = "";
+      // selectedFilter["_id"] = "";
+      setSelectedFilter({ _id: "" });
     }
     setSelectedFilter(selectedFilter);
-    console.log(i);
     fetchSearch(selectedFilter);
-    console.log(bioState.loading);
-    //console.log(args[0]);
-    //alert(i);  //image_type=photopoint
+    console.log("Are we loading? " + bioState.loading);
   };
 
   const handleFavourite = (i) => {
     // const favourites = this.state.favourites;
     // TODO Impliment later!
-    console.log("Favourite handling: " + i);
+    console.log("in handleFavourite() i =" + i);
     alert(i); //image_type=photopoint
   };
 
   return (
-    <div>
+    <div id="map">
       <TopBar />
       <SearchBar />
+      <MapNav />
       <IconBar />
 
       <Row>
         {/*Filter SideBar*/}
         <Col
+          className="filterbar"
           xl={2}
-          style={{ marginRight: "-.7%", zIndex: "9", height: "200vh" }}
+          style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
-          <h5
-            style={{
-              marginLeft: "15px",
-              marginTop: "20px",
-              color: "#065f65",
-            }}
-          >
-            Filter
-          </h5>
+          <FilterHeader />
           <ImageSearchEngine
             imageFilters={bioState.filters}
             handleFilter={(i) => handleFilter(i)}
           />
-
           <DateRange />
-          <Query />
-
-          <div className="favs">
-            <h5
-              style={{
-                marginLeft: "15px",
-                marginTop: "20px",
-                color: "#065f65",
-              }}
-            >
-              My Favourites
-            </h5>
-            <Favourite
-              favourites={favourites}
-              handleFavourite={(i) => handleFavourite(i)}
-            />
-          </div>
+          <FavouriteHeader />
+          {/* <Query /> */}
+          <Favourite
+            favourites={favourites}
+            handleFavourite={(i) => handleFavourite(i)}
+          />
         </Col>
 
         {/*Leaflet Map */}
@@ -176,17 +168,20 @@ const BioImagesEngine = ({ initFilter }) => {
           xl={10}
           style={{
             height: "80vh",
-            padding: "0% 0% 0% 0%",
-            marginTop: "0%",
-            marginBottom: "0%",
+            padding: "0%",
+            margin: "0%",
           }}
         >
           <div className="map-container">
-            <BioMapEngine bioImageDocuments={bioState.hits} />
+            <BioMapEngine
+              bioImageDocuments={bioState.hits}
+              handleFilter={() => handleFilter()}
+            />
             {/*End of Leaflet  Map */}
             <BreadCrumb />
 
             {/*Photo Gallery */}
+            <div id="gallery"></div>
             <SearchEngine
               bioImageDocuments={bioState.hits}
               aggregation={bioState.aggregation}
@@ -195,9 +190,9 @@ const BioImagesEngine = ({ initFilter }) => {
           </div>
         </Col>
       </Row>
-      <Scroll />
-      <Legend />
-
+      {/* <Scroll />
+      <Legend /> */}
+      <Toggle />
       <Footer />
     </div>
   );

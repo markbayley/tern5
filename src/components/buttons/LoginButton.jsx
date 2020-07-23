@@ -21,11 +21,30 @@ function simulateNetworkRequest() {
   
     const handleClick = () => setLoading(true);
 
+
+
     return (
+      <>
+      <style type="text/css">
+      {`
+      .btn-flat {
+        background-color: #fff;
+        color:  #00565D;
+        border: 1px solid #00565D;
+      }
+
+      .btn-flat:hover {
+        background-color: #00565D;
+        color:  #fff;
+        border: 1px solid #00565D;
+      }
+      
+      `}
+      </style>
   
 
-         <Button
-        variant="outline-secondary"
+         <Button variant="flat"
+   
         size="md" 
         disabled={isLoading}
         onClick={!isLoading ? handleClick : null}
@@ -33,6 +52,7 @@ function simulateNetworkRequest() {
       >
         {isLoading ? 'Loading' : 'LOGIN'}
       </Button>
+      </>
  
     );
   }

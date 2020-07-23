@@ -77,11 +77,11 @@ export default function TopBar() {
 function Home() {
   return (
     <div>
-      <MainMenu />
+      {/* <MainMenu />
       <MainBanner />
       <SignIn />
       <MainFooter />
-      <BioimagesSubFooter />
+      <BioimagesSubFooter /> */}
     </div>
   );
 }

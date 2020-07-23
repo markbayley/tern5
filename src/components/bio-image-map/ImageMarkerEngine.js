@@ -1,29 +1,37 @@
 import React from "react";
 import ImageMarker from "./ImageMarker";
 
-const ImageMarkerEngine = (props) => {
+const ImageMarkerEngine = ({
+  props,
+  bioImageDocument,
+  location,
+  handleFilter,
+}) => {
   console.log("hello");
-  console.log(props.value);
+  console.log(bioImageDocument);
   var popup = "";
   var tooltip = "";
-  var id = props.location;
-  var position = props.value.centre_point;
+  var id = location;
+  var position = bioImageDocument.centre_point;
   console.log(id);
   console.log(position);
-  for (var this_key in props.value.image_types) {
+  for (var this_key in bioImageDocument.image_types) {
     console.log(this_key);
-    for (var sub_key in props.value.image_types[this_key]) {
+    for (var sub_key in bioImageDocument.image_types[this_key]) {
       var site_key = sub_key;
-      console.log(Object.keys(props.value.image_types[this_key]).length);
+      console.log(Object.keys(bioImageDocument.image_types[this_key]).length);
       if (
         sub_key == "total" &&
-        Object.keys(props.value.image_types[this_key]).length == 1
+        Object.keys(bioImageDocument.image_types[this_key]).length == 1
       ) {
         site_key = this_key;
       }
       popup +=
-        site_key + "(" + props.value.image_types[this_key][sub_key] + ") \r\n";
-      tooltip += props.value.image_types[this_key] + " - " + this_key;
+        site_key +
+        "(" +
+        bioImageDocument.image_types[this_key][sub_key] +
+        ") \r\n";
+      tooltip += bioImageDocument.image_types[this_key] + " - " + this_key;
     }
     console.log(popup);
     console.log("this is the popup for " + this_key);
@@ -47,6 +55,7 @@ const ImageMarkerEngine = (props) => {
       id={id}
       key={id}
       label={id}
+      onClick={handleFilter}
     />
   );
 };
