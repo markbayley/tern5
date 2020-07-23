@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../App.css';
+// import '../App.css';
 
 const BurgerMenu = () => {
   const [status, setStatus] = useState('close');
@@ -19,4 +19,3 @@ const BurgerMenu = () => {
 };
 
 export default BurgerMenu;
-

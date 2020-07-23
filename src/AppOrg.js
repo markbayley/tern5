@@ -1,13 +1,13 @@
 // TODO REMOVE THIS FILE LATER!
 import React from "react";
-import "./App.css";
-import "./index.css";
+//import "./App.css";
+//mport "./index.css";
 import { CONFIG } from "./config.js";
 import { Map, Marker, TileLayer } from "react-leaflet";
 // import L from "leaflet";
 // import Wkt from 'wicket';
 // import wkt_coords from 'wicket';
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 // import { DateRangePicker } from 'react-date-range';
 /* import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file */

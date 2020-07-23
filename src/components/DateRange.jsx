@@ -31,45 +31,45 @@ class DateRange extends React.Component {
 
   render() {
     return (
-    <>
-      <div  style={{borderRight: "55px solid rgba(149, 219, 199, 0.5)", marginLeft: "30px"}}>
-        <h6 
-          style={{ paddingTop: "10%", color: "#065f65", fontWeight: "500", paddingLeft: "40px" }}
-        > 
-          Date Range
+      <>
+        <div style={{ borderRight: "55px solid rgba(149, 219, 199, 0.5)", marginLeft: "30px" }}>
+          <h6
+            style={{ paddingTop: "10%", color: "#065f65", fontWeight: "500", paddingLeft: "40px" }}
+          >
+            Date Range
         </h6>
 
-        
-
-        <DateRangePicker
-          small={PropTypes.bool}
-          noBorder={PropTypes.bool}
-          startDateAriaLabe="fff"
-          keepOpenOnDateSelect="true"
-          startDate={this.state.startDate}
-          startDateId="start_date_id"
-          endDate={this.state.endDate}
-          endDateId="end_date_id"
-          onDatesChange={({ startDate, endDate }) =>
-            this.hundleDateChange(startDate, endDate)
-          }
-          focusedInput={this.state.focusedInput}
-          onFocusChange={(focusedInput) => this.setState({ focusedInput })}
-        />
-       
-      </div>
-   <hr 
-   style={{
-     border: "0.5px solid #66b3a6",
-     marginTop: "0%",
-     marginBottom: "0.5%",
-     marginLeft: "5px"
-   }}
- ></hr>
 
 
- 
- </>
+          <DateRangePicker
+            //small={PropTypes.bool}
+            //noBorder={PropTypes.bool}
+            startDateAriaLabel="fff"
+            keepOpenOnDateSelect={true}
+            startDate={this.state.startDate}
+            startDateId="start_date_id"
+            endDate={this.state.endDate}
+            endDateId="end_date_id"
+            onDatesChange={({ startDate, endDate }) =>
+              this.hundleDateChange(startDate, endDate)
+            }
+            focusedInput={this.state.focusedInput}
+            onFocusChange={(focusedInput) => this.setState({ focusedInput })}
+          />
+
+        </div>
+        <hr
+          style={{
+            border: "0.5px solid #66b3a6",
+            marginTop: "0%",
+            marginBottom: "0.5%",
+            marginLeft: "5px"
+          }}
+        ></hr>
+
+
+
+      </>
     );
   }
 }
