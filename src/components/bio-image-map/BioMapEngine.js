@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
-import { Map, Marker, TileLayer } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-markercluster";
+import { Map, TileLayer } from "react-leaflet";
+// import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   const [mapInitState, setMapInitState] = useState({

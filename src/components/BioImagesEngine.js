@@ -5,11 +5,11 @@ import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
 import BreadCrumb from "./BreadCrumb";
 // import Scroll from "./Scroll";
-import Legend from "./Legend";
+// import Legend from "./Legend";
 import Footer from "./Footer";
 import { Col, Row } from "react-bootstrap";
 import DateRange from "./DateRange";
-import Query from "./Query";
+// import Query from "./Query";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
@@ -18,10 +18,9 @@ import Toggle from "./buttons/Toggle";
 import MapNav from "./MapNav";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import { Link, scroller, animateScroll as scroll } from "react-scroll";
+// import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
-const base_image_url =
-  "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
+// const base_image_url = "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
 /*Photo Gallery*/
 /*Photo Gallery Item*/
@@ -46,13 +45,13 @@ const BioImagesEngine = ({ initFilter }) => {
     error: null,
   });
 
-  const [mapParams, setMapParams] = useState({
-    lat: -26.47,
-    lng: 134.02,
-    zoom: 5,
-    maxZoom: 30,
-    minZoom: 5,
-  });
+  // const [mapParams, setMapParams] = useState({
+  //   lat: -26.47,
+  //   lng: 134.02,
+  //   zoom: 5,
+  //   maxZoom: 30,
+  //   minZoom: 5,
+  // });
 
   const updateBioState = (bioField, value) => {
     setBioState({ ...bioState, [bioField]: value });
@@ -74,7 +73,10 @@ const BioImagesEngine = ({ initFilter }) => {
   };
 
   const fetchSearch = async (qry) => {
-    console.log("Fetching Data now .....");
+    console.log("Fetching Data now ..... qry=");
+    console.log(qry);
+    console.log("selectedFilter=");
+    console.log(selectedFilter);
     var search_url = CONFIG.API_BASE_URL + "search?1=1";
     for (const [key, value] of Object.entries(qry)) {
       search_url += "&" + key + "=" + value;
@@ -111,18 +113,25 @@ const BioImagesEngine = ({ initFilter }) => {
     console.log("filterSiteID", selectedFilter);
   };
 
-  const handleFilter = (i) => {
-    console.log("in handleFilter(). HELLO MARK", i);
-    var arr = i.split("=");
+  const handleFilter = (filterValue) => {
+    console.log("in handleFilter(). HELLO MARK", filterValue);
+    var arr = filterValue.split("=");
     // selectedFilter[arr[0]] = arr[1];
-    setSelectedFilter({ [arr[0]]: arr[1] });
-    if (arr[0] !== "_id") {
-      // selectedFilter["_id"] = "";
-      setSelectedFilter({ _id: "" });
-    }
-    setSelectedFilter(selectedFilter);
-    fetchSearch(selectedFilter);
-    console.log("Are we loading? " + bioState.loading);
+    const fKey = arr[0];
+    const fValue = arr[1];
+    setSelectedFilter({
+      ...selectedFilter,
+      [fKey]: fValue,
+    });
+    // if (arr[0] !== "_id") {
+    //   // selectedFilter["_id"] = "";
+    //   setSelectedFilter({ _id: "" });
+    // }
+
+    // TODO mosheh - fix this hack!
+    const qry = { [fKey]: fValue };
+    fetchSearch(qry);
+    console.log("Are we loading? " + loading);
   };
 
   const handleFavourite = (i) => {

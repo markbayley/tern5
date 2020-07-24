@@ -21,8 +21,8 @@ const ImageMarkerEngine = ({
       var site_key = sub_key;
       console.log(Object.keys(bioImageDocument.image_types[this_key]).length);
       if (
-        sub_key == "total" &&
-        Object.keys(bioImageDocument.image_types[this_key]).length == 1
+        sub_key === "total" &&
+        Object.keys(bioImageDocument.image_types[this_key]).length === 1
       ) {
         site_key = this_key;
       }
