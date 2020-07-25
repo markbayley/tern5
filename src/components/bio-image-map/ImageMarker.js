@@ -14,8 +14,8 @@ const ImageMarker = (props) => {
         tooltipAnchor: [20, 0],
       })}
       key={props.id}
-      position={props.position}
-      onClick={props.onClick}
+      position={props.sitePosition}
+      onClick={() => props.onClick()}
     >
       {" "}
       <br />
@@ -28,7 +28,7 @@ const ImageMarker = (props) => {
           href="www.link.com"
           style={{ textTransform: "capitalize", color: "#065f65" }}
         >
-          {props.type}
+          {props.siteLocation}
         </a>{" "}
         <br />
         Image Types:{" "}
@@ -148,12 +148,12 @@ const ImageMarker = (props) => {
         <strong>
           <h6>Click the marker to select this site</h6>
         </strong>
-        Selection:{" "}
+        Site Id:{" "}
         <a
           href="www.tern.org"
           style={{ textTransform: "capitalize", color: "#065f65" }}
         >
-          {props.type}{" "}
+          {props.siteLocation}{" "}
         </a>{" "}
         <br />
         Image Types:{" "}

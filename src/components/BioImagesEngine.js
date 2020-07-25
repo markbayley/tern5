@@ -73,10 +73,10 @@ const BioImagesEngine = ({ initFilter }) => {
   };
 
   const fetchSearch = async (qry) => {
-    console.log("Fetching Data now ..... qry=");
+    // console.log("Fetching Data now ..... qry=");
     console.log(qry);
-    console.log("selectedFilter=");
-    console.log(selectedFilter);
+    // console.log("selectedFilter=");
+    // console.log(selectedFilter);
     var search_url = CONFIG.API_BASE_URL + "search?1=1";
     for (const [key, value] of Object.entries(qry)) {
       search_url += "&" + key + "=" + value;
@@ -88,11 +88,12 @@ const BioImagesEngine = ({ initFilter }) => {
 
       // We get the API response and receive data in JSON format...
       const resJSON = await apiRes.json();
+      const splitAggregation = resJSON["aggregation"].split(".");
       setBioState({
         search: resJSON,
         hits: resJSON["hits"],
         filters: resJSON["aggregations"],
-        aggregation: resJSON["aggregation"],
+        aggregation: splitAggregation[0],
       });
     } catch (error) {
       setError({
@@ -115,6 +116,7 @@ const BioImagesEngine = ({ initFilter }) => {
 
   const handleFilter = (filterValue) => {
     console.log("in handleFilter(). HELLO MARK", filterValue);
+    console.log(filterValue);
     var arr = filterValue.split("=");
     // selectedFilter[arr[0]] = arr[1];
     const fKey = arr[0];
@@ -131,7 +133,7 @@ const BioImagesEngine = ({ initFilter }) => {
     // TODO mosheh - fix this hack!
     const qry = { [fKey]: fValue };
     fetchSearch(qry);
-    console.log("Are we loading? " + loading);
+    // console.log("Are we loading? " + loading);
   };
 
   const handleFavourite = (i) => {
@@ -184,7 +186,7 @@ const BioImagesEngine = ({ initFilter }) => {
           <div className="map-container">
             <BioMapEngine
               bioImageDocuments={bioState.hits}
-              handleFilter={() => handleFilter()}
+              handleFilter={handleFilter}
             />
             {/*End of Leaflet  Map */}
             <BreadCrumb />
@@ -194,7 +196,7 @@ const BioImagesEngine = ({ initFilter }) => {
             <SearchEngine
               bioImageDocuments={bioState.hits}
               aggregation={bioState.aggregation}
-              onBioImageClick={(i) => handleFilter(i)}
+              handleFilter={handleFilter}
             />
           </div>
         </Col>

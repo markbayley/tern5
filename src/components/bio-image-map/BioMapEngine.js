@@ -20,6 +20,11 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   //   key: "selection",
   // };
 
+  console.log("in BioMapEngine.bioImageDocuments:");
+  console.log(bioImageDocuments);
+  // console.log("handleFilter:");
+  // console.log(handleFilter);
+
   return (
     <div className=" map-frame">
       <link
@@ -51,12 +56,14 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
           />
 
           {/* API Markers */}
-          {Object.keys(bioImageDocuments).map((index) => (
+          {Object.keys(bioImageDocuments).map((siteLocationAsIndex) => (
             <ImageMarkerEngine
-              bioImageDocument={bioImageDocuments[index]}
-              location={index}
-              key={index}
-              handleFilter={(index) => handleFilter("site_id" + index)}
+              bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
+              siteLocation={siteLocationAsIndex}
+              key={siteLocationAsIndex}
+              handleFilter={() =>
+                handleFilter(`site_id=${siteLocationAsIndex}`)
+              }
             />
           ))}
         </Map>

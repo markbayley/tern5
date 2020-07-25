@@ -2,19 +2,20 @@ import React from "react";
 import ImageMarker from "./ImageMarker";
 
 const ImageMarkerEngine = ({
-  props,
   bioImageDocument,
-  location,
+  siteLocation,
   handleFilter,
 }) => {
-  console.log("hello");
+  console.log("in ImageMarkerEngine. bioImageDocument=");
   console.log(bioImageDocument);
+  console.log("handleFilter:");
+  console.log(handleFilter);
+
   var popup = "";
   var tooltip = "";
-  var id = location;
-  var position = bioImageDocument.centre_point;
-  console.log(id);
-  console.log(position);
+  var sitePosition = bioImageDocument.centre_point;
+  console.log(siteLocation);
+  console.log("in ImageMarkerEngine. siteLocation=" + siteLocation);
   for (var this_key in bioImageDocument.image_types) {
     console.log(this_key);
     for (var sub_key in bioImageDocument.image_types[this_key]) {
@@ -43,18 +44,18 @@ const ImageMarkerEngine = ({
         value={props.value.image_types[index]}
         type={index}
         site={props.value.supersite_node_code}
-        position={props.value.centre_point}
-        id={props.value.supersite_node_code + index}
+        sitePosition={props.value.centre_point}
+        siteLocation={props.value.supersite_node_code + index}
         key={props.value.supersite_node_code + index} />
     //)) */
     <ImageMarker
       value={popup}
-      type={id}
-      site={id}
-      position={position}
-      id={id}
-      key={id}
-      label={id}
+      siteLocation={siteLocation}
+      site={siteLocation}
+      sitePosition={sitePosition}
+      id={siteLocation}
+      key={siteLocation}
+      label={siteLocation}
       onClick={handleFilter}
     />
   );
