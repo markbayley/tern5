@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
-import { Map, TileLayer } from "react-leaflet";
+import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
+import { EditControl } from "react-leaflet-draw";
+
 // import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
@@ -20,8 +22,8 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   //   key: "selection",
   // };
 
-  console.log("in BioMapEngine.bioImageDocuments:");
-  console.log(bioImageDocuments);
+  //console.log("in BioMapEngine.bioImageDocuments:");
+  //console.log(bioImageDocuments);
   // console.log("handleFilter:");
   // console.log(handleFilter);
 
@@ -54,6 +56,16 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
           />
+
+          <FeatureGroup>
+            <EditControl
+              position="topright"
+              // onEdited={this._onEditPath}
+              // onCreated={this._onCreate}
+              // onDeleted={this._onDeleted}
+            />
+            <Circle center={[51.51, -0.06]} radius={200} />
+          </FeatureGroup>
 
           {/* API Markers */}
           {Object.keys(bioImageDocuments).map((siteLocationAsIndex) => (

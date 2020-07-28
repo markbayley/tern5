@@ -19,7 +19,7 @@ function BioimagesBanner() {
     }
 
     function handleSubmit(event) {
-        console.log(term);
+        //console.log(term);
 
         const url =
             "https://api.unsplash.com/search/photos?page=1&query=" +
@@ -28,7 +28,7 @@ function BioimagesBanner() {
             clientId;
 
         axios.get(url).then((response) => {
-            console.log(response);
+            // console.log(response);
             setResult(response.data.results);
         });
     }

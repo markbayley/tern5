@@ -105,20 +105,20 @@ function Favourite(props) {
 }
 
 function ImageMarkers(props) {
-  console.log('hello');
-  console.log(props.value);
+  //console.log('hello');
+  //console.log(props.value);
   var popup = "";
   var tooltip = "";
   var id = props.location;
   var position = props.value.centre_point;
-  console.log(id);
-  console.log(position);
+  //console.log(id);
+  //console.log(position);
   for (var this_key in props.value.image_types) {
     console.log(this_key);
     popup += this_key + "(" + props.value.image_types[this_key] + ") \r\n";
     tooltip += props.value.image_types[this_key] + " - " + this_key;
   }
-  console.log(popup);
+  //console.log(popup);
   return (
     /*Object.keys(props.value.image_types).map((index) => (
       <ImageMarker
@@ -188,13 +188,13 @@ class MapBox extends React.Component {
 
   fetchSearch() {
     // Where we're fetching data from
-    console.log('fetching');
+   //console.log ('fetching');
     var search_url = CONFIG.API_BASE_URL + '?1=1';
     const selectedFilter = this.state.selectedFilter;
     for (const [key, value] of Object.entries(selectedFilter)) {
       search_url += '&' + key + '=' + value;
     }
-    console.log(search_url);
+    //console.log(search_url);
     fetch(search_url)
       // We get the API response and receive data in JSON format...
       .then(response => response.json())
@@ -228,9 +228,9 @@ class MapBox extends React.Component {
       selectedFilter['_id'] = "";
     }
     this.state.selectedFilter = selectedFilter;
-    console.log(i);
+    //console.log(i);
     this.fetchSearch();
-    console.log(this.state.isLoadingSearch);
+    //console.log(this.state.isLoadingSearch);
     //console.log(args[0]);
     //alert(i);  //image_type=photopoint
   }
@@ -238,7 +238,7 @@ class MapBox extends React.Component {
   handleFavourite(i) {
     const favourites = this.state.favourites;
 
-    console.log(i);
+    //console.log(i);
     //console.log(args[0]);
     alert(i);  //image_type=photopoint
   }

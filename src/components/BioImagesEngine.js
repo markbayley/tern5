@@ -34,7 +34,7 @@ const BioImagesEngine = ({ initFilter }) => {
     filters: {},
     search: {},
   });
-  const [selectedFilter, setSelectedFilter] = useState({});
+  const [selectedFilter, setSelectedFilter] = useState(initFilter);
 
   const [loading, setLoading] = useState(false);
 
@@ -72,13 +72,10 @@ const BioImagesEngine = ({ initFilter }) => {
     setLoading(false);
   };
 
-  const fetchSearch = async (qry) => {
-    // console.log("Fetching Data now ..... qry=");
-    console.log(qry);
-    // console.log("selectedFilter=");
-    // console.log(selectedFilter);
+  const fetchSearch = async () => {
+    console.log("in fetchSearch(). selectedFilter=", selectedFilter);
     var search_url = CONFIG.API_BASE_URL + "search?1=1";
-    for (const [key, value] of Object.entries(qry)) {
+    for (const [key, value] of Object.entries(selectedFilter)) {
       search_url += "&" + key + "=" + value;
     }
     console.log("ES API. search_url" + search_url);
@@ -105,8 +102,9 @@ const BioImagesEngine = ({ initFilter }) => {
   };
 
   useEffect(() => {
-    fetchSearch(initFilter);
-  }, [initFilter]);
+    console.log("in useEffect(). selectedFilter=", selectedFilter);
+    fetchSearch();
+  }, [selectedFilter]);
 
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
@@ -114,26 +112,23 @@ const BioImagesEngine = ({ initFilter }) => {
     console.log("filterSiteID", selectedFilter);
   };
 
+  const resetFilter = () => {
+    console.log("RESETING FILTER!!");
+    setSelectedFilter({});
+  };
+
   const handleFilter = (filterValue) => {
     console.log("in handleFilter(). HELLO MARK", filterValue);
-    console.log(filterValue);
     var arr = filterValue.split("=");
-    // selectedFilter[arr[0]] = arr[1];
     const fKey = arr[0];
     const fValue = arr[1];
-    setSelectedFilter({
-      ...selectedFilter,
-      [fKey]: fValue,
-    });
+    const miniFilter = { [fKey]: fValue };
+    const updatedFilter = { ...selectedFilter, ...miniFilter };
+    setSelectedFilter(updatedFilter);
     // if (arr[0] !== "_id") {
     //   // selectedFilter["_id"] = "";
     //   setSelectedFilter({ _id: "" });
     // }
-
-    // TODO mosheh - fix this hack!
-    const qry = { [fKey]: fValue };
-    fetchSearch(qry);
-    // console.log("Are we loading? " + loading);
   };
 
   const handleFavourite = (i) => {
@@ -157,7 +152,7 @@ const BioImagesEngine = ({ initFilter }) => {
           xl={2}
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
-          <FilterHeader />
+          <FilterHeader resetFilter={() => resetFilter()} />
           <ImageSearchEngine
             imageFilters={bioState.filters}
             handleFilter={(i) => handleFilter(i)}
@@ -201,8 +196,6 @@ const BioImagesEngine = ({ initFilter }) => {
           </div>
         </Col>
       </Row>
-      {/* <Scroll />
-      <Legend /> */}
       <Toggle />
       <Footer />
     </div>

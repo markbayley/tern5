@@ -42,7 +42,7 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
                 fontWeight: "500",
               }}
               variant="outline"
-              onClick={() => handleFilter(header + "=")}
+              // onClick={() => handleFilter(header + "=")}
             >
               {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
               <img src="/img/quickview.svg" width="40px" alt="" />

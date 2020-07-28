@@ -34,7 +34,7 @@ class SideBar extends React.Component {
     this.setState({
       topic: event.target.value,
     });
-    console.log(event.target.value);
+    //console.log(event.target.value);
   };
 
   render() {

@@ -25,7 +25,7 @@ class Query extends React.Component {
           onChange={(e) => this.handleChange(e.target.value)}
           onKeyPress={(event) => {
             if (event.key === "Enter") this.search();
-            console.log(data);
+            //console.log(data);
           }}
         />
 

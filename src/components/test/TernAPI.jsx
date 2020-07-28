@@ -18,7 +18,7 @@ function TernAPI() {
     }
 
     function handleSubmit(event) {
-        console.log(search_string);
+       // console.log(search_string);
 
         const url =
           
@@ -27,7 +27,7 @@ function TernAPI() {
        
 
         axios.get(url).then((response) => {
-            console.log(response);
+           // console.log(response);
             setResult(response.data.results);
         });
     }
