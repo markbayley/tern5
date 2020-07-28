@@ -15,7 +15,7 @@ import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import Toggle from "./buttons/Toggle";
-import MapNav from "./MapNav";
+
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
@@ -142,7 +142,7 @@ const BioImagesEngine = ({ initFilter }) => {
     <div id="map">
       <TopBar />
       <SearchBar />
-      <MapNav />
+    
       <IconBar />
 
       <Row>

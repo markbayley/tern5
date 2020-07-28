@@ -41,6 +41,7 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
           center={mapInitPosition}
           zoom={mapInitState.zoom}
           style={{ zIndex: "1" }}
+          scrollWheelZoom={false}
         >
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'

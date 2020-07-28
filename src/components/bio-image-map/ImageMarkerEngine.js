@@ -57,6 +57,11 @@ const ImageMarkerEngine = ({
       key={siteLocation}
       label={siteLocation}
       onClick={handleFilter}
+
+      name={bioImageDocument.site_id.label}
+      images={bioImageDocument.image_type.label}
+      plot={bioImageDocument.plot.label}
+      date={bioImageDocument.site_visit_id}
     />
   );
 };
