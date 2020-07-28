@@ -9,7 +9,7 @@ const ImageFilter = ({ key, value, handleFilter }) => {
           <Form.Check
             type="checkbox"
             style={{ textTransform: "capitalize" }}
-            label={value.label}
+            label={value.label + " (" + value.doc_count + " Images)"}
             onClick={handleFilter}
           />
           {/* {value.doc_count} */}

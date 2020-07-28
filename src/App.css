@@ -39,6 +39,7 @@
 	height: 100vh !important;
 	z-index: 1;
 	max-width: 100%;
+	overflow-anchor: none;
   }
   a {
 	color: #e36a51;

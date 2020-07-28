@@ -36,10 +36,10 @@ const SearchResult = ({
 
       <Col xl={3}>
         <Modal size="lg" show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header closeButton style={{paddingBottom: "10%"}}>
             <Modal.Title>
               {" "}
-              <Col sm={2} style={{ position: "absolute", left: "0%" }}>
+              <Col sm={2} style={{ position: "absolute", left: "0%"}}>
                 <Navbar.Brand>
                   <div className="site-branding">
                     <Link to="/">
@@ -48,15 +48,20 @@ const SearchResult = ({
                   </div>
                 </Navbar.Brand>
               </Col>
-              <Col
-                style={{ position: "relative", left: "230%", width: "100%" }}
+              <Col  sm={5} style={{  position: "absolute", right: "4%", textAlign: 'right', color: "#043E4F"}}
+              
               >
-                <h6>
-                Site: {bioImageDocument.site_id.label} <br />
-                Image Type: {bioImageDocument.image_type.value} <br />
-                Image Count: {bioImageDocument.doc_count} <br />
-                Plot: {bioImageDocument.plot.value}{" "} <br />
-                Date: {bioImageDocument.site_visit_id}{" "}
+                <h6 style={{textTransform: "capitalize" }}>
+               {bioImageDocument.site_id.label.replace("_", " ").replace("=", " ").replace("value", " ").replace(".", " ").replace("id", " ").replace("_", " ")
+                .replace("alic", "Alice Mulga").replace("capetrib", "Cape Tribulation").replace("cblp", "Cumberland").replace("clpm", "Calperum Mallee")
+                .replace("fnqr robson", "Robson Creek").replace("gwwl", "Great Western Woodlands").replace("lfld", "Litchfield").replace("mgrl", "Mitchell Grass Rangeland")
+               } <br />
+                {bioImageDocument.image_type.value.replace("lai", "Leaf Area Index").replace("na", " ")} <br />
+               
+                Plot: {bioImageDocument.plot.value.replace("_", " ").replace("=", " ").replace("value", " ").replace(".", " ").replace("id", " ").replace("_", " ")}{" "} <br />
+                Date: {bioImageDocument.site_visit_id}{" "} <br />
+                {/* ID: {bioImageDocumentId.slice(-8)} */}
+                1/{bioImageDocument.doc_count} 
                 </h6>
               </Col>
             </Modal.Title>
@@ -90,10 +95,7 @@ const SearchResult = ({
               ))}
             </Form>
             <p>
-              Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae
-              unde commodi aspernatur enim, consectetur. Cumque deleniti
-              temporibus ipsam atque a dolores quisquam quisquam adipisci
-              possimus.
+             
             </p>
           </Modal.Body>
           <Modal.Footer>
