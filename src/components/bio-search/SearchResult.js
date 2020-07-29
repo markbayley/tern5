@@ -53,10 +53,10 @@ const SearchResult = ({
               >
                 <h6 style={{textTransform: "capitalize" }}>
                {bioImageDocument.site_id.label.replace("_", " ").replace("=", " ").replace("value", " ").replace(".", " ").replace("id", " ").replace("_", " ")
-                .replace("alic", "Alice Mulga").replace("capetrib", "Cape Tribulation").replace("cblp", "Cumberland").replace("clpm", "Calperum Mallee")
+                .replace("alic", "Alice Mulga").replace("capetrib", "Cape Tribulation").replace("cblp", "Cumberland Plain").replace("clpm", "Calperum Mallee")
                 .replace("fnqr robson", "Robson Creek").replace("gwwl", "Great Western Woodlands").replace("lfld", "Litchfield").replace("mgrl", "Mitchell Grass Rangeland")
                } <br />
-                {bioImageDocument.image_type.value.replace("lai", "Leaf Area Index").replace("na", " ")} <br />
+                {bioImageDocument.image_type.value.replace("lai", "Leaf Area Index")} <br />
                
                 Plot: {bioImageDocument.plot.value.replace("_", " ").replace("=", " ").replace("value", " ").replace(".", " ").replace("id", " ").replace("_", " ")}{" "} <br />
                 Date: {bioImageDocument.site_visit_id}{" "} <br />
@@ -127,9 +127,9 @@ const SearchResult = ({
              <div className="hvrbox-layer_top">
               <div className="hvrbox-text" style={{textTransform: "capitalize" }}>
                 Search {bioImageDocumentId.replace("_", " ").replace("=", " ").replace("value", " ").replace(".", " ").replace("id", " ").replace("_", " ")
-                .replace("alic", "Alice Mulga").replace("capetrib", "Cape Tribulation").replace("cblp", "Cumberland").replace("clpm", "Calperum Mallee")
+                .replace("alic", "Alice Mulga").replace("capetrib", "Cape Tribulation").replace("cblp", "Cumberland Plain").replace("clpm", "Calperum Mallee")
                 .replace("fnqr robson", "Robson Creek").replace("gwwl", "Great Western Woodlands").replace("lfld", "Litchfield").replace("mgrl", "Mitchell Grass Rangeland")
-                .replace("lai", "Leaf Area Index").replace("na", " ")}?
+                .replace("lai ", "Leaf Area Index")}?
                 <br />
                 <img src="/img/icons/Bioimages icon.svg" alt="bioimages icon" width="100px" /> <br />
                 <span className="center"></span>
