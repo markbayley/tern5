@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 //import "./App.css";
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
@@ -32,20 +32,28 @@ class DateRange extends React.Component {
   render() {
     return (
       <>
-        <div style={{ borderRight: "55px solid rgba(149, 219, 199, 0.5)", marginLeft: "30px" }}>
+        <div
+          style={{
+            borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+            marginLeft: "30px",
+          }}
+        >
           <h6
-            style={{ paddingTop: "10%", color: "#065f65", fontWeight: "500", paddingLeft: "40px" }}
+            style={{
+              paddingTop: "10%",
+              color: "#065f65",
+              fontWeight: "500",
+              paddingLeft: "40px",
+            }}
           >
             Date Range
-        </h6>
-
-
+          </h6>
 
           <DateRangePicker
-            //small={PropTypes.bool}
-            //noBorder={PropTypes.bool}
-            startDateAriaLabel="fff"
+            small={true}
+            noBorder={true}
             keepOpenOnDateSelect={true}
+            startDateAriaLabel="fff"
             startDate={this.state.startDate}
             startDateId="start_date_id"
             endDate={this.state.endDate}
@@ -56,19 +64,15 @@ class DateRange extends React.Component {
             focusedInput={this.state.focusedInput}
             onFocusChange={(focusedInput) => this.setState({ focusedInput })}
           />
-
         </div>
         <hr
           style={{
             border: "0.5px solid #66b3a6",
             marginTop: "0%",
             marginBottom: "0.5%",
-            marginLeft: "5px"
+            marginLeft: "5px",
           }}
         ></hr>
-
-
-
       </>
     );
   }

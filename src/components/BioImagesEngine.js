@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CONFIG } from "./../config.js";
-import { TopBar } from 'tern-react';
+import { TopBar } from "tern-react";
 // import TopBar from "./TopBar";
 import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
 import BreadCrumb from "./BreadCrumb";
 // import Scroll from "./Scroll";
-import Legend from "./Legend";
+// import Legend from "./Legend";
 import Footer from "./Footer";
 import { Col, Row } from "react-bootstrap";
 import DateRange from "./DateRange";
-import Query from "./Query";
+// import Query from "./Query";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import Toggle from "./buttons/Toggle";
-import MapNav from "./MapNav";
+
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import { Link, scroller, animateScroll as scroll } from "react-scroll";
+// import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 import { fetchSearch } from "../redux";
 
@@ -32,7 +32,13 @@ const base_image_url =
 /*Filter SideBar*/
 /*Filter SideBar Item*/
 
-const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }) => {
+const BioImagesEngine = ({
+  initFilter,
+  hits,
+  aggregation,
+  filters,
+  fetchSearch,
+}) => {
   //const [bioState, setBioState] = useState({
   //   hits: [],
   //   aggregation: null,
@@ -50,13 +56,13 @@ const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }
     error: null,
   });
 
-  const [mapParams, setMapParams] = useState({
-    lat: -26.47,
-    lng: 134.02,
-    zoom: 5,
-    maxZoom: 30,
-    minZoom: 5,
-  });
+  // const [mapParams, setMapParams] = useState({
+  //   lat: -26.47,
+  //   lng: 134.02,
+  //   zoom: 5,
+  //   maxZoom: 30,
+  //   minZoom: 5,
+  // });
 
   // const updateBioState = (bioField, value) => {
   //   setBioState({ ...bioState, [bioField]: value });
@@ -106,8 +112,9 @@ const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }
   // };
 
   useEffect(() => {
-    fetchSearch(initFilter);
-  }, [initFilter]);
+    console.log("in useEffect(). selectedFilter=", selectedFilter);
+    fetchSearch();
+  }, [selectedFilter]);
 
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
@@ -115,18 +122,23 @@ const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }
     console.log("filterSiteID", selectedFilter);
   };
 
-  const handleFilter = (i) => {
-    console.log("in handleFilter(). HELLO MARK", i);
-    var arr = i.split("=");
-    // selectedFilter[arr[0]] = arr[1];
-    setSelectedFilter({ [arr[0]]: arr[1] });
-    if (arr[0] !== "_id") {
-      // selectedFilter["_id"] = "";
-      setSelectedFilter({ _id: "" });
-    }
-    setSelectedFilter(selectedFilter);
-    fetchSearch(selectedFilter);
-    console.log("Are we loading? " + loading);
+  const resetFilter = () => {
+    console.log("RESETING FILTER!!");
+    setSelectedFilter({});
+  };
+
+  const handleFilter = (filterValue) => {
+    console.log("in handleFilter(). HELLO MARK", filterValue);
+    var arr = filterValue.split("=");
+    const fKey = arr[0];
+    const fValue = arr[1];
+    const miniFilter = { [fKey]: fValue };
+    const updatedFilter = { ...selectedFilter, ...miniFilter };
+    setSelectedFilter(updatedFilter);
+    // if (arr[0] !== "_id") {
+    //   // selectedFilter["_id"] = "";
+    //   setSelectedFilter({ _id: "" });
+    // }
   };
 
   const handleFavourite = (i) => {
@@ -140,7 +152,7 @@ const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }
     <div id="map">
       <TopBar />
       <SearchBar />
-      <MapNav />
+
       <IconBar />
 
       <Row>
@@ -150,7 +162,7 @@ const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }
           xl={2}
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
-          <FilterHeader />
+          <FilterHeader resetFilter={() => resetFilter()} />
           <ImageSearchEngine
             imageFilters={filters}
             handleFilter={(i) => handleFilter(i)}
@@ -189,20 +201,16 @@ const BioImagesEngine = ({ initFilter, hits, aggregation, filters, fetchSearch }
             <SearchEngine
               bioImageDocuments={hits}
               aggregation={aggregation}
-              onBioImageClick={(i) => handleFilter(i)}
+              handleFilter={handleFilter}
             />
           </div>
         </Col>
       </Row>
-      {/* <Scroll />
-      <Legend /> */}
       <Toggle />
       <Footer />
-    </div >
+    </div>
   );
 };
-
-
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -210,17 +218,19 @@ function mapStateToProps(state, ownProps) {
     hits: state.search.hits,
     filters: state.search.filters,
     aggregation: state.search.aggregation,
-  }
+  };
 }
 
 const mapDispatchToProps = {
   fetchSearch,
-}
+};
 
-const ConnectedBioImagesEngine = connect(mapStateToProps, mapDispatchToProps)(BioImagesEngine);
+const ConnectedBioImagesEngine = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BioImagesEngine);
 
 // export default App;
 export default ConnectedBioImagesEngine;
-
 
 // export default BioImagesEngine;

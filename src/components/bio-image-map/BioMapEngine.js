@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
-import { Map, Marker, TileLayer } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-markercluster";
+import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
+import { EditControl } from "react-leaflet-draw";
+
+// import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   const [mapInitState, setMapInitState] = useState({
@@ -20,6 +22,11 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   //   key: "selection",
   // };
 
+  //console.log("in BioMapEngine.bioImageDocuments:");
+  //console.log(bioImageDocuments);
+  // console.log("handleFilter:");
+  // console.log(handleFilter);
+
   return (
     <div className=" map-frame">
       <link
@@ -34,6 +41,7 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
           center={mapInitPosition}
           zoom={mapInitState.zoom}
           style={{ zIndex: "1" }}
+          scrollWheelZoom={false}
         >
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
@@ -50,13 +58,25 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
             url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
           />
 
+          <FeatureGroup>
+            <EditControl
+              position="topright"
+              // onEdited={this._onEditPath}
+              // onCreated={this._onCreate}
+              // onDeleted={this._onDeleted}
+            />
+            <Circle center={[51.51, -0.06]} radius={200} />
+          </FeatureGroup>
+
           {/* API Markers */}
-          {Object.keys(bioImageDocuments).map((index) => (
+          {Object.keys(bioImageDocuments).map((siteLocationAsIndex) => (
             <ImageMarkerEngine
-              bioImageDocument={bioImageDocuments[index]}
-              location={index}
-              key={index}
-              handleFilter={(index) => handleFilter("site_id" + index)}
+              bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
+              siteLocation={siteLocationAsIndex}
+              key={siteLocationAsIndex}
+              handleFilter={() =>
+                handleFilter(`site_id=${siteLocationAsIndex}`)
+              }
             />
           ))}
         </Map>

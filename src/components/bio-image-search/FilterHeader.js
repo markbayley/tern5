@@ -1,7 +1,7 @@
 import React from "react";
 import ResetFilter from "../buttons/ResetFilter";
 
-const FilterHeader = () => {
+const FilterHeader = ({resetFilter}) => {
   return (
     <h5
       style={{
@@ -12,7 +12,7 @@ const FilterHeader = () => {
         marginBottom: "1px"
       }}
     >
-      Filter <ResetFilter />
+      Filter Reset <ResetFilter resetFilter={resetFilter}/>
     </h5>
   );
 };

@@ -19,7 +19,7 @@ function Api() {
     }
 
     function handleSubmit(event) {
-        console.log(term);
+        //console.log(term);
 
         const url =
             "https://api.unsplash.com/search/photos?page=1&query=" +
