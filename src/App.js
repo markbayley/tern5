@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-// import "./App.css";
-// import "./index.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import BioImagesEngine from "./components/BioImagesEngine";
 
 function App() {

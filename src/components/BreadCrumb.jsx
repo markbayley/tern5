@@ -1,23 +1,24 @@
-import React from 'react';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import {
-  Form,
-} from "react-bootstrap";
-
+import React from "react";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Form } from "react-bootstrap";
 
 class BreadCrumb extends React.Component {
-    render() {
-        return (
-
-          
-    <div style={{ marginTop: "2px", marginBottom: "0px", borderBottom: "1.5px solid #66b3a6", color: "#66b3a6"}} >
-      
-      <Breadcrumb style={{height: "50px", margin: "0%"}} className="" > 
-        <BreadcrumbItem >Site</BreadcrumbItem>
-        <BreadcrumbItem>Image Type</BreadcrumbItem>
-        <BreadcrumbItem>Plot</BreadcrumbItem>
-        <BreadcrumbItem active>Date</BreadcrumbItem>
-        {/*<Form
+  render() {
+    return (
+      <div
+        style={{
+          marginTop: "2px",
+          marginBottom: "0px",
+          borderBottom: "1.5px solid #66b3a6",
+          color: "#66b3a6",
+        }}
+      >
+        <Breadcrumb style={{ height: "50px", margin: "0%" }} className="">
+          <BreadcrumbItem>Site</BreadcrumbItem>
+          <BreadcrumbItem>Image Type</BreadcrumbItem>
+          <BreadcrumbItem>Plot</BreadcrumbItem>
+          <BreadcrumbItem active>Date</BreadcrumbItem>
+          {/*<Form
           className="right"
           style={{ paddingTop: "5px", color: "#065f65" }}
         >
@@ -32,13 +33,10 @@ class BreadCrumb extends React.Component {
             </div>
           ))}
         </Form> */}
-    
-      </Breadcrumb>
-     
-  
-    </div>
-  );
-}
+        </Breadcrumb>
+      </div>
+    );
+  }
 }
 
 export default BreadCrumb;

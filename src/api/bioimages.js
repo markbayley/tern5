@@ -1,42 +1,42 @@
-import axios from 'axios';
-import { CANCEL } from 'redux-saga';
+import axios from "axios";
+import { CANCEL } from "redux-saga";
 // import { getConfig } from '../config';
-import { CONFIG } from '../config';
-
+import { CONFIG } from "../config";
 
 let client;
 
 // axios client factory ...
 // useful in case we want to setup custom interceptors for e.g. regular token refresh etc...
 function getClient() {
-    if (!client) {
-        client = axios.create({
-            baseURL: CONFIG.API_BASE_URL,
-        });
-    }
-    return client;
+  if (!client) {
+    client = axios.create({
+      baseURL: CONFIG.API_BASE_URL,
+      validateStatus: (status) => {
+        return status === 200 || status === 403;
+      },
+    });
+  }
+  return client;
 }
-
 
 // helper method to invoke ajax call via axios, and set up a cancel token to cancel pending requests if needed.
 function callAPI(options) {
-    // returns a cancelable promise
-    const cancel = axios.CancelToken.source();
-    const opts = {
-        ...options,
-        cancelToken: cancel.token,
-    };
-    const promise = getClient().request(opts);
-    promise[CANCEL] = cancel.cancel;
-    return promise;
+  // returns a cancelable promise
+  const cancel = axios.CancelToken.source();
+  const opts = {
+    ...options,
+    cancelToken: cancel.token,
+  };
+  const promise = getClient().request(opts);
+  promise[CANCEL] = cancel.cancel;
+  return promise;
 }
 
-
 export function fetchFavourites() {
-    // Where we're fetching data from
-    return callAPI({
-        url: 'favourites',
-    })
+  // Where we're fetching data from
+  return callAPI({
+    url: "favourites",
+  });
 }
 
 // fetch(CONFIG.API_BASE_URL + "favourites")
@@ -53,15 +53,13 @@ export function fetchFavourites() {
 //       .catch((error) => this.setState({ error, isLoading: false }));
 //   }
 
-
 export function fetchSearch(params) {
-    // Where we're fetching data from
-    const { selectedFilter } = params;
-
-    return callAPI({
-        url: 'search',
-        params: selectedFilter,
-    })
+  // Where we're fetching data from
+  const { selectedFilter } = params;
+  return callAPI({
+    url: "search",
+    params: selectedFilter,
+  });
 }
 
 //     fetch(search_url)

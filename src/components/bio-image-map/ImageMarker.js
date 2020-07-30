@@ -144,45 +144,50 @@ const ImageMarker = (props) => {
           </>
         </Link>
       </Popup>
-      <Tooltip >
-        <div style={{padding: "3px 7px"}}>
+      <Tooltip>
         <strong>
           <h6>Click the marker to select this site</h6>
         </strong>
-        Site:{" "}
+        Site Id:{" "}
         <a
           href="www.tern.org"
           style={{ textTransform: "capitalize", color: "#065f65" }}
         >
-          {props.name}{" "}
+          {props.siteLocation}{" "}
         </a>{" "}
         <br />
-        Image Type:{" "}
+        Image Types:{" "}
         <a
           href="www.tern.org"
           style={{ textTransform: "capitalize", color: "#065f65" }}
         >
-          {props.images}
+          {props.value}
         </a>{" "}
         <br />
-        Plot:{" "}
-        <a
-          href="www.tern.org"
-          style={{ textTransform: "capitalize", color: "#065f65" }}
-        >
-          {props.plot}
-        </a>{" "}
-        <br />
-        Date:{" "}
-        <a
-          href="www.tern.org"
-          style={{ textTransform: "capitalize", color: "#065f65" }}
-        >
-          {props.date}
-        </a>{" "}
-        <br />
-        </div>
-      
+        <img
+          src="/img/LAI.svg"
+          width="25px"
+          margin-right="5px"
+          alt="leaf area index"
+        />
+        <img
+          src="/img/Panoramic.svg"
+          width="25px"
+          margin-right="10px"
+          alt="panorama"
+        />
+        <img
+          src="/img/phenocam.svg"
+          width="25px"
+          margn-right="5px"
+          alt="phenocam"
+        />
+        <img
+          src="/img/photopoint.svg"
+          width="25px"
+          margin-right="5px"
+          alt="photopoint"
+        />
       </Tooltip>
     </Marker>
   );
