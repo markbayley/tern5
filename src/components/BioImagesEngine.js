@@ -18,6 +18,10 @@ import Toggle from "./buttons/Toggle";
 
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
+import SearchBar2 from "./SearchBar2.jsx";
+import SearchBar3 from "./SearchBar3.jsx";
+
+
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 // const base_image_url = "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -142,6 +146,7 @@ const BioImagesEngine = ({ initFilter }) => {
     <div id="map">
       <TopBar />
       <SearchBar />
+  
     
       <IconBar />
 
@@ -159,7 +164,7 @@ const BioImagesEngine = ({ initFilter }) => {
           />
           <DateRange />
           <FavouriteHeader />
-          {/* <Query /> */}
+      
           <Favourite
             favourites={favourites}
             handleFavourite={(i) => handleFavourite(i)}

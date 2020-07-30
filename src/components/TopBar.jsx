@@ -19,12 +19,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export default function TopBar() {
   return (
     <Router>
+
       <div>
         <div className="above-header">
           <div className="container">
             <div className="above-header-section-wrap d-flex">
-              <Row style={{ marginRight: "3%", paddingTop: ".5%" }}>
-                <Col style={{ marginRight: "15px" }}>
+              <Col xl={5} className="links" >
+              <Row >
+                <Col>
                   {" "}
                   <TERNDataDropdown />
                 </Col>
@@ -32,14 +34,15 @@ export default function TopBar() {
                   {" "}
                   <DataVisualiserDropdown />
                 </Col>
-                <Col style={{ marginLeft: "40px" }}>
+                <Col style={{ marginLeft: "30px" }}>
                   {" "}
                   <CoESRADropdown />
                 </Col>
-                <Col>
+                <Col  style={{ marginLeft: "-20px" }}>
                   <CommunityDropdown />
                 </Col>
               </Row>
+              </Col>
               <div className="above-header-section above-header-section-1">
                 <div className="user-select">
                   <Link to="/">
@@ -51,7 +54,7 @@ export default function TopBar() {
               <div className="above-header-section above-header-section-2">
                 <div id="data">
                   {" "}
-                  <Link to="/data" style={{ color: "#fff", fontSize: "16px" }}>
+                  <Link to="/data" style={{ color: "#fff", fontSize: "15px" }}>
                     <p className="center">Data</p>
                   </Link>
                 </div>

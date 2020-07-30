@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Col, Form, Modal, Image, Navbar } from "react-bootstrap";
+import { Card, Button, Col, Form, Modal, Image, Navbar, Carousel } from "react-bootstrap";
 import { Link } from "react-scroll";
 const SearchResult = ({
   bioImageDocument,
@@ -43,7 +43,7 @@ const SearchResult = ({
                 <Navbar.Brand>
                   <div className="site-branding">
                     <Link to="/">
-                      <img src="img/logo@3x.png" alt="" />
+                      <img src="/img/logo@3x.png" alt="" />
                     </Link>
                   </div>
                 </Navbar.Brand>
@@ -74,8 +74,31 @@ const SearchResult = ({
             }}
           ></hr>
           <Modal.Body>
+          <Carousel>
+  <Carousel.Item>
+  <Image src={img_url} width="765px" height="465px"  className="d-block w-100"/>
+    <Carousel.Caption>
+
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+  <Image src={img_url} width="765px" height="465px"  className="d-block w-100"/>
+  
+
+    <Carousel.Caption>
+   
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+  <Image src={img_url} width="765px" height="465px"  className="d-block w-100"/>
+
+    <Carousel.Caption>
+
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
             {" "}
-            <Image src={img_url} width="765px" height="465px" />
+           
             <br />
             <br />
             <Form

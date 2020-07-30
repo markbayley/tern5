@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
 import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
-
-// import MarkerClusterGroup from "react-leaflet-markercluster";
+import { groupBy } from "lodash";
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import { Marker } from "react-leaflet";
 
 const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   const [mapInitState, setMapInitState] = useState({
@@ -11,7 +12,7 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
     lng: 134.02,
     zoom: 5,
     maxZoom: 30,
-    minZoom: 5,
+    minZoom: 5
   });
 
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
@@ -26,6 +27,16 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
   //console.log(bioImageDocuments);
   // console.log("handleFilter:");
   // console.log(handleFilter);
+
+  // console.log(
+  //   bioImageDocuments,
+  //   Object.keys(bioImageDocuments),
+  //   groupBy(Object.values(bioImageDocuments), value => value.site_id.value)
+  // );
+
+  const groupedBySites = Object.entries(
+    groupBy(Object.values(bioImageDocuments), value => value.site_id.value)
+  );
 
   return (
     <div className=" map-frame">
@@ -43,15 +54,15 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
           style={{ zIndex: "1" }}
           scrollWheelZoom={false}
         >
-          <TileLayer
+          {/* <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          />
-
+          /> */}
+          {/* 
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          />
+          /> */}
 
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
@@ -69,19 +80,42 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
           </FeatureGroup>
 
           {/* API Markers */}
-          {Object.keys(bioImageDocuments).map((siteLocationAsIndex) => (
-            <ImageMarkerEngine
-              bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
-              siteLocation={siteLocationAsIndex}
-              key={siteLocationAsIndex}
-              handleFilter={() =>
-                handleFilter(`site_id=${siteLocationAsIndex}`)
-              }
-            />
-          ))}
+          {groupedBySites.map(([siteLocationAsIndex, hits]) => {
+            console.log(hits);
+            if (hits.length > 1) {
+              // render cluster
+              return (
+                <MarkerClusterGroup>
+                  {hits.map(hit => (
+                    // <Marker position={hit.centre_point} />
+                    <ImageMarkerEngine
+                      bioImageDocument={hit}
+                      siteLocation={siteLocationAsIndex}
+                      key={siteLocationAsIndex}
+                      handleFilter={() =>
+                        handleFilter(`site_id=${siteLocationAsIndex}`)
+                      }
+                    />
+                  ))}
+                </MarkerClusterGroup>
+              );
+            } else {
+              return (
+                <ImageMarkerEngine
+                  bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
+                  siteLocation={siteLocationAsIndex}
+                  key={siteLocationAsIndex}
+                  handleFilter={() =>
+                    handleFilter(`site_id=${siteLocationAsIndex}`)
+                  }
+                />
+              );
+            }
+          })}
         </Map>
       </div>
     </div>
   );
 };
 export default BioMapEngine;
+
