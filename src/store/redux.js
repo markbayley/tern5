@@ -1,9 +1,8 @@
 import { createAction, combineReducers, createReducer } from "@reduxjs/toolkit";
 
 // const fetchFeatures = createAction('FETCH_FEATURES');
-export const fetchSearch = createAction("FETCH_SEARCH");
-// export const fetchSearchAsync = createAction("FETCH_SEARCH_ASYNC");
-export const fetchSearchDone = createAction("FETCH_SEARCH_DONE");
+export const fetchSearchAction = createAction("FETCH_SEARCH");
+export const fetchSearchDoneAction = createAction("FETCH_SEARCH_DONE");
 
 const initialState = {
   isLoadingSearch: true,
@@ -13,11 +12,11 @@ const initialState = {
 };
 
 const searchReducer = createReducer(initialState, {
-  [fetchSearch.type]: (state, action) => {
-    console.log("in searchReducer. fetchSearch.type", fetchSearch.type);
+  [fetchSearchAction.type]: (state, action) => {
+    console.log("in searchReducer. fetchSearch.type", fetchSearchAction.type);
     state.isLoadingSearch = true;
   },
-  [fetchSearchDone.type]: (state, action) => {
+  [fetchSearchDoneAction.type]: (state, action) => {
     console.log("update state, action=", action);
     console.log("update state=", state);
     state.isLoadingSearch = false;

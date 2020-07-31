@@ -22,7 +22,7 @@ import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
-import { fetchSearch } from "../store/redux";
+import { fetchSearchAction } from "../store/redux";
 
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -110,18 +110,13 @@ const BioImagesEngine = (props) => {
 
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
-    props.fetchSearch();
+    props.fetchSearch({ site_id: "Alice" });
   }, [props.initFilter]);
 
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
     //setSelectedFilter({ site_id: id });
     console.log("filterSiteID", selectedFilter);
-  };
-
-  const resetFilter = () => {
-    console.log("RESETING FILTER!!");
-    //setSelectedFilter({});
   };
 
   const handleFilter = (filterValue) => {
@@ -160,7 +155,8 @@ const BioImagesEngine = (props) => {
             xl={2}
             style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
           >
-            <FilterHeader resetFilter={() => resetFilter()} />
+            {/* <FilterHeader resetFilter={() => resetFilter()} /> */}
+            <FilterHeader />
             <ImageSearchEngine
               imageFilters={props.filters}
               handleFilter={(i) => handleFilter(i)}
@@ -212,7 +208,6 @@ const BioImagesEngine = (props) => {
     return (
       <div>
         <p>Loading....</p>
-        {/* <button onClick={props.fetchSearch}>Load</button> */}
       </div>
     );
   }
@@ -233,7 +228,7 @@ function mapStateToProps(state, ownProps) {
 // };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSearch: () => dispatch(fetchSearch({})),
+    fetchSearch: (action) => dispatch(fetchSearchAction(action)),
   };
 };
 
