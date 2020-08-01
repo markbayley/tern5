@@ -12,8 +12,8 @@ import {
   Modal,
 } from "react-bootstrap";
 import axios from "axios";
-import LoginButton from "./buttons/LoginButton";
-import RegisterButton from "./buttons/RegisterButton";
+import LoginButton from "../buttons/LoginButton";
+import RegisterButton from "../buttons/RegisterButton";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 

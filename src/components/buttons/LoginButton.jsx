@@ -19,7 +19,7 @@ function LoginButton() {
   const handleClick = () => setLoading(true);
 
   return (
-    <Button
+    <Button 
       variant="flat"
       size="md"
       disabled={isLoading}

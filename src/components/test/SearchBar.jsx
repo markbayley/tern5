@@ -60,7 +60,7 @@ function SearchBar() {
                     </Col>
              </Row>
 
-
+            <Col md={12}>
             <InputGroup inline className="searchbar" style={{ height: "80px", marginLeft: "25%", paddingLeft: "2%" }}>
                 <img src="/img/icons/search-bioimages-icon.svg" alt="bioimages search icon" style={{ width: "8%", paddingTop: "2%", marginRight: "0%" }} />
 
@@ -82,7 +82,7 @@ function SearchBar() {
                     style={{ marginLeft: "0%", height: "50px", width: "50px", border: "1px solid red" }}>
                 </Button>
             </InputGroup>
-
+            </Col>
           
            
 

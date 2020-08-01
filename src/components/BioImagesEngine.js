@@ -18,8 +18,8 @@ import Toggle from "./buttons/Toggle";
 
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import SearchBar2 from "./SearchBar2.jsx";
-import SearchBar3 from "./SearchBar3.jsx";
+import SearchBar3 from "./test/SearchBar3.jsx";
+
 
 
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
@@ -146,6 +146,7 @@ const BioImagesEngine = ({ initFilter }) => {
     <div id="map">
       <TopBar />
       <SearchBar />
+    
   
     
       <IconBar />
@@ -154,6 +155,10 @@ const BioImagesEngine = ({ initFilter }) => {
         {/*Filter SideBar*/}
         <Col
           className="filterbar"
+         
+          sm={12}
+          md={4}
+          lg={3}
           xl={2}
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
@@ -174,8 +179,8 @@ const BioImagesEngine = ({ initFilter }) => {
         {/*Leaflet Map */}
         <Col
           sm={12}
-          md={12}
-          lg={10}
+          md={8}
+          lg={9}
           xl={10}
           style={{
             height: "80vh",

@@ -14,17 +14,6 @@ import {
 import axios from "axios";
 import LoginButton from "./buttons/LoginButton";
 import RegisterButton from "./buttons/RegisterButton";
-
-//import MainBanner from './banners/MainBanner';
-//import SignIn from './signin/SignIn';
-//import MainFooter from './footers/MainFooter';
-
-//import BioimagesSubFooter from './footers/BioimagesSubFooter'
-//import MapSearch from './MapSearch';
-
-//import TernAPI from './test/TernAPI';
-//import Query from './test/Query';
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 {
@@ -69,8 +58,8 @@ function SearchBar() {
           expand="lg"
           style={{ height: "4%", borderBottom: "1.5px solid #6EB3A6" }}
         >
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+          {/* <Navbar.Collapse id="basic-navbar-nav"> */}
             <Col sm={2} style={{ position: "absolute", left: "0%"}}>
               <Navbar.Brand>
                 <div className="site-branding">
@@ -81,21 +70,9 @@ function SearchBar() {
               </Navbar.Brand>
             </Col>
 
-            <Container>
-              <Col
-                style={{
-                  height: "100px",
-                 
-                 
-                }}
-              >
+            <Container style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100px',   color: "#6EB3A6"}}>
+            
                 <h3
-                  style={{
-                    position: "absolute",
-                    right: "83%",
-                    top: "30%",
-                    color: "#6EB3A6",
-                  }}
                 >
                   <Image
                     className="icon"
@@ -109,7 +86,7 @@ function SearchBar() {
                   />
                   Bioimages
                 </h3>
-
+               
                 {/*Search Input */}
                 <InputGroup
                   inline="true"
@@ -119,9 +96,7 @@ function SearchBar() {
                     width: "455px",
                     paddingLeft: "2%",
 
-                    position: "absolute",
-                    right: "28%",
-                    top: "19%",
+                  
                   }}
                 >
                   <Image
@@ -162,15 +137,14 @@ function SearchBar() {
                   ></Button>
                 </InputGroup>
                 {/*End of Search Input */}
-              </Col>
+        
 
               {/*Login Buttons */}
+              <div>
               <Link to="/login" 
               style={{ 
                   
-                    position: "absolute",
-                    right: "24.2%",
-                    top: "33%"}}>
+                 }}>
                 {" "}
                 <LoginButton />{" "}
               </Link>
@@ -178,14 +152,13 @@ function SearchBar() {
               <Link to="/login" 
               style={{ 
                
-                position: "absolute",
-                right: "18.9%",
-                top: "33%" }}>
+               }}>
                 {" "}
                 <RegisterButton />{" "}
               </Link>
+              </div>
             </Container>
-          </Navbar.Collapse>
+          {/* </Navbar.Collapse> */}
         </Navbar>
 
         {/*Search Results */}

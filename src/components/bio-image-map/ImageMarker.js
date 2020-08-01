@@ -147,7 +147,7 @@ const ImageMarker = (props) => {
       <Tooltip >
         <div style={{padding: "3px 7px"}}>
         <strong>
-          <h6>Click the marker to select this site</h6>
+          <h6>Click marker to select.</h6>
         </strong>
         Site:{" "}
         <a

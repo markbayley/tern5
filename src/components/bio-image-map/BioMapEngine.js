@@ -81,7 +81,7 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
 
           {/* API Markers */}
           {groupedBySites.map(([siteLocationAsIndex, hits]) => {
-            console.log(hits);
+            console.log('HITS', hits);
             if (hits.length > 1) {
               // render cluster
               return (
@@ -101,6 +101,7 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
               );
             } else {
               return (
+                
                 <ImageMarkerEngine
                   bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
                   siteLocation={siteLocationAsIndex}

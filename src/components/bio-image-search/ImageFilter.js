@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const ImageFilter = ({ key, value, handleFilter }) => {
+const ImageFilter = ({ value, handleFilter }) => {
   return (
     <div className="">
       <div key="{key}">
