@@ -72,8 +72,7 @@ function SearchBar() {
 
             <Container style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100px',   color: "#6EB3A6"}}>
             
-                <h3
-                >
+                <h3 className="biologo">
                   <Image
                     className="icon"
                     src="/img/icons/bioimages-download.svg"

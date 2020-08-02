@@ -18,7 +18,7 @@ import Toggle from "./buttons/Toggle";
 
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import SearchBar3 from "./test/SearchBar3.jsx";
+
 
 
 
