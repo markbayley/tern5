@@ -10,6 +10,7 @@ const SearchEngine = ({ bioImageDocuments, aggregation, handleFilter }) => {
           bioImageDocument={bioImageDocuments[index]}
           bioImageDocumentId={aggregation + "=" + index}
           key={index}
+          id={index}
           handleFilter={handleFilter}
         />
       ))}

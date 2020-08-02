@@ -70,9 +70,9 @@ const BioImagesEngine = () => {
     // const query = {
     //   selectedFilter: { site_id: "alic", image_type: "ancillary" },
     // };
-    console.log("in useEffect(). props.selectedFilter=", selectedFilter);
-    dispatch(fetchSearchAction(selectedFilter));
-  }, []);
+    console.log("in useEffect(). selectedFilter=", selectedFilter);
+    dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
+  }, [selectedFilter]);
 
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
@@ -119,8 +119,8 @@ const BioImagesEngine = () => {
           >
             <FilterHeader />
             <ImageSearchEngine
-              imageFilters={filters}
-              handleFilter={(i) => handleFilter(i)}
+            // imageFilters={filters}
+            // handleFilter={(i) => handleFilter(i)}
             />
             <DateRange />
             <FavouriteHeader />

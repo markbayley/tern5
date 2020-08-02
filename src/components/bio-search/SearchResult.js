@@ -5,7 +5,7 @@ const SearchResult = ({
   bioImageDocument,
   bioImageDocumentId,
   handleFilter,
-  key,
+  id,
 }) => {
   // console.log("KEY IS:" + key);
   // console.log("bioMageDocumentId:" + bioImageDocumentId);

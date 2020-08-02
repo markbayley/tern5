@@ -5,7 +5,7 @@ import { fetchSearchAction, fetchSearchDoneAction } from "../reducer";
 import { bioimages } from "./api";
 
 function* fetchSearchSaga(action) {
-  console.log("SAGA started. action=", action);
+  // console.log("SAGA started. action=", action);
   try {
     const { data } = yield call(bioimages.fetchSearch, action.payload);
     yield put(fetchSearchDoneAction(data));

@@ -2,26 +2,7 @@ import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
 
-const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
-  const icons = [
-    {
-      id: 1,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 2,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 3,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 4,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-  ];
-
+const ImageFilterType = ({ imageFilter, header}) => {
   return (
     <div style={{ marginLeft: "1%" }} key="key">
       <Accordion>
@@ -42,7 +23,6 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
                 fontWeight: "500",
               }}
               variant="outline"
-              // onClick={() => handleFilter(header + "=")}
             >
               {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
               <img src="/img/quickview.svg" width="40px" alt="" />
@@ -55,9 +35,10 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
                   <ImageFilter
                     value={imageFilter[key1]}
                     key={header + "=" + imageFilter[key1].key}
-                    handleFilter={() =>
-                      handleFilter(header + "=" + imageFilter[key1].key)
-                    }
+                    id={header + "=" + imageFilter[key1].key}
+                    // handleFilter={() =>
+                    //   handleFilter(header + "=" + imageFilter[key1].key)
+                    // }
                   />
                 ))}
               </ul>
