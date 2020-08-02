@@ -1,12 +1,17 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { connect } from "react-redux";
-import { fetchSearchAction } from "../../store/redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearchAction } from "../../store/reducer";
 
-const FilterHeader = (props) => {
+const FilterHeader = () => {
+  const dispatch = useDispatch();
+  const selectedFilter = {
+      selectedFilter: {},
+    };;
+
   const resetFilter = () => {
     console.log("Firing.. reseting Filter!!");
-    props.resetFilter(fetchSearchAction({}));
+    dispatch(fetchSearchAction(selectedFilter));
   };
   return (
     <h5
@@ -17,7 +22,6 @@ const FilterHeader = (props) => {
         marginBottom: "1px",
       }}
     >
-      {/* Filter Reset <ResetFilter resetFilter={resetFilter} /> */}
       Filter Reset
       <Button
         style={{ padding: "0px 3px 0px 3px", float: "right" }}
@@ -31,10 +35,4 @@ const FilterHeader = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch, action) => {
-  return {
-    resetFilter: (action) => dispatch(action),
-  };
-};
-const ConnectedFilterHeader = connect(null, mapDispatchToProps)(FilterHeader);
-export default ConnectedFilterHeader;
+export default FilterHeader;

@@ -1,5 +1,7 @@
 import React from "react";
 import ImageFilterType from "./ImageFilterType";
+import { connect } from "react-redux";
+import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 
 const ImageSearchEngine = ({ imageFilters, handleFilter }) => {
   const filterOrder = {
@@ -8,6 +10,21 @@ const ImageSearchEngine = ({ imageFilters, handleFilter }) => {
     image_type_sub: 3,
     plot: 2,
     site_visit_id: 1,
+  };
+
+  const handleFilterX = (filterValue) => {
+    console.log("in handleFilter(). HELLO MARK", filterValue);
+    var arr = filterValue.split("=");
+    const fKey = arr[0];
+    const fValue = arr[1];
+    const miniFilter = { [fKey]: fValue };
+    //const updatedFilter = { ...selectedFilter, ...miniFilter };
+    //setSelectedFilter(updatedFilter);
+
+    // if (arr[0] !== "_id") {
+    //   // selectedFilter["_id"] = "";
+    //   setSelectedFilter({ _id: "" });
+    // }
   };
 
   return (

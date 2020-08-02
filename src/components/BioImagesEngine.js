@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { CONFIG } from "./../config.js";
 // import { TopBar } from "tern-react";
 import TopBar from "./TopBar";
@@ -22,28 +22,26 @@ import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
-import { fetchSearchAction } from "../store/redux";
+import { fetchSearchAction } from "../store/reducer";
 
-const base_image_url =
-  "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
+//const base_image_url ="https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
-/*Photo Gallery*/
-/*Photo Gallery Item*/
-/*Filter SideBar*/
-/*Filter SideBar Item*/
+const BioImagesEngine = () => {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.search.isLoadingSearch);
+  const hits = useSelector((state) => state.search.hits);
+  const filters = useSelector((state) => state.search.filters);
+  const aggregation = useSelector((state) => state.search.aggregation);
+  const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
-// initFilter,
-// hits,
-// aggregation,
-// filters,
-// fetchSearch,
-
-const BioImagesEngine = (props) => {
-  console.log("props=", props);
+  console.log("in BioImagesEngine. hits=", hits);
+  console.log("in BioImagesEngine. filters=", filters);
+  console.log("in BioImagesEngine. aggregation=", aggregation);
+  console.log("in BioImagesEngine. selectedFilter=", selectedFilter);
   //[loading, hits, filters, aggregation] = props;
 
   // const [selectedFilter, setSelectedFilter] = useState({});
-  const selectedFilter = {}; //testing
+  //const selectedFilter = {}; //testing
   //const [loading, setLoading] = useState(false);
 
   const [favourites, setFavourites] = useState([]);
@@ -52,18 +50,6 @@ const BioImagesEngine = (props) => {
     isError: false,
     error: null,
   });
-
-  // const [mapParams, setMapParams] = useState({
-  //   lat: -26.47,
-  //   lng: 134.02,
-  //   zoom: 5,
-  //   maxZoom: 30,
-  //   minZoom: 5,
-  // });
-
-  // const updateBioState = (bioField, value) => {
-  //   setBioState({ ...bioState, [bioField]: value });
-  // };
 
   const fetchFavourites = async () => {
     //setLoading(true);
@@ -80,38 +66,13 @@ const BioImagesEngine = (props) => {
     //setLoading(false);
   };
 
-  // const fetchSearch = async (qry) => {
-  //   console.log("Fetching Data now .....");
-  //   var search_url = CONFIG.API_BASE_URL + "search?1=1";
-  //   for (const [key, value] of Object.entries(qry)) {
-  //     search_url += "&" + key + "=" + value;
-  //   }
-  //   console.log("ES API. search_url" + search_url);
-  //   setLoading(true);
-  //   try {
-  //     const apiRes = await fetch(search_url);
-
-  //     // We get the API response and receive data in JSON format...
-  //     const resJSON = await apiRes.json();
-  //     setBioState({
-  //       search: resJSON,
-  //       hits: resJSON["hits"],
-  //       filters: resJSON["aggregations"],
-  //       aggregation: resJSON["aggregation"],
-  //     });
-  //   } catch (error) {
-  //     setError({
-  //       isError: true,
-  //       error: error,
-  //     });
-  //   }
-  //   setLoading(false);
-  // };
-
   useEffect(() => {
-    console.log("in useEffect(). selectedFilter=", selectedFilter);
-    props.fetchSearch({ site_id: "Alice" });
-  }, [props.initFilter]);
+    // const query = {
+    //   selectedFilter: { site_id: "alic", image_type: "ancillary" },
+    // };
+    console.log("in useEffect(). props.selectedFilter=", selectedFilter);
+    dispatch(fetchSearchAction(selectedFilter));
+  }, []);
 
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
@@ -140,7 +101,8 @@ const BioImagesEngine = (props) => {
     console.log("in handleFavourite() i =" + i);
     alert(i); //image_type=photopoint
   };
-  if (props.loading === false) {
+
+  if (loading === false) {
     return (
       <div id="map">
         <TopBar />
@@ -155,10 +117,9 @@ const BioImagesEngine = (props) => {
             xl={2}
             style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
           >
-            {/* <FilterHeader resetFilter={() => resetFilter()} /> */}
             <FilterHeader />
             <ImageSearchEngine
-              imageFilters={props.filters}
+              imageFilters={filters}
               handleFilter={(i) => handleFilter(i)}
             />
             <DateRange />
@@ -184,7 +145,7 @@ const BioImagesEngine = (props) => {
           >
             <div className="map-container">
               <BioMapEngine
-                bioImageDocuments={props.hits}
+                bioImageDocuments={hits}
                 handleFilter={() => handleFilter()}
               />
               {/*End of Leaflet  Map */}
@@ -193,8 +154,8 @@ const BioImagesEngine = (props) => {
               {/*Photo Gallery */}
               <div id="gallery"></div>
               <SearchEngine
-                bioImageDocuments={props.hits}
-                aggregation={props.aggregation}
+                bioImageDocuments={hits}
+                aggregation={aggregation}
                 handleFilter={handleFilter}
               />
             </div>
@@ -213,31 +174,27 @@ const BioImagesEngine = (props) => {
   }
 };
 
-function mapStateToProps(state, ownProps) {
-  console.log("state=", state);
-  return {
-    loading: state.search.isLoadingSearch,
-    hits: state.search.hits,
-    filters: state.search.filters,
-    aggregation: state.search.aggregation,
-  };
-}
-
-// const mapDispatchToProps = {
-//   fetchSearch,
+// const mapStateToProps = (state, ownProps) => {
+//   console.log("state=", state);
+//   return {
+//     loading: state.search.isLoadingSearch,
+//     hits: state.search.hits,
+//     filters: state.search.filters,
+//     aggregation: state.search.aggregation,
+//     selectedFilter: state.search.selectedFilter,
+//   };
 // };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSearch: (action) => dispatch(fetchSearchAction(action)),
-  };
-};
 
-const ConnectedBioImagesEngine = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BioImagesEngine);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchSearch: (action) => dispatch(fetchSearchAction(action)),
+//   };
+// };
 
-// export default App;
-export default ConnectedBioImagesEngine;
+// const ConnectedBioImagesEngine = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(BioImagesEngine);
 
-// export default BioImagesEngine;
+// export default ConnectedBioImagesEngine;
+export default BioImagesEngine;
