@@ -5,6 +5,10 @@ import { Button } from "react-bootstrap";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 const ImageMarker = (props) => {
+
+  const handleOnClick = () => {
+    
+  }
   return (
     <Marker
       icon={L.divIcon({

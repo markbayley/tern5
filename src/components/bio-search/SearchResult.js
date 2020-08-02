@@ -76,7 +76,8 @@ const SearchResult = ({
               style={{ paddingTop: "5px", color: "#065f65" }}
             >
               {["checkbox"].map((type, index) => (
-                <div key={bioImageDocument.id} className="mb-3">
+                // <div key={bioImageDocument.id} className="mb-3">
+                <div key={index} className="mb-3">
                   <Form.Check
                     inline
                     label="Add To Selected Images?"
@@ -145,8 +146,8 @@ const SearchResult = ({
             className="center"
             style={{ paddingTop: "5px", color: "#065f65" }}
           >
-            {["checkbox"].map((type) => (
-              <div key={bioImageDocument.id} className="mb-3">
+            {["checkbox"].map((type, index) => (
+              <div key={index} className="mb-3">
                 <Form.Check
                   type={type}
                   id={bioImageDocument.id}

@@ -39,15 +39,6 @@ const ImageMarkerEngine = ({
   }
 
   return (
-    /*Object.keys(props.value.image_types).map((index) => (
-      <ImageMarker
-        value={props.value.image_types[index]}
-        type={index}
-        site={props.value.supersite_node_code}
-        sitePosition={props.value.centre_point}
-        siteLocation={props.value.supersite_node_code + index}
-        key={props.value.supersite_node_code + index} />
-    //)) */
     <ImageMarker
       value={popup}
       siteLocation={siteLocation}

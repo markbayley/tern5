@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CONFIG } from "./../config.js";
 // import { TopBar } from "tern-react";
 import TopBar from "./TopBar";
@@ -20,11 +20,7 @@ import Toggle from "./buttons/Toggle";
 import MapNav from "./MapNav";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-// import { Link, scroller, animateScroll as scroll } from "react-scroll";
-
 import { fetchSearchAction } from "../store/reducer";
-
-//const base_image_url ="https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
@@ -66,6 +62,8 @@ const BioImagesEngine = () => {
     //setLoading(false);
   };
 
+  // TODO fix this hook! I dont to render everything all the time!
+  // TODO do something about the selectedFilter value!!
   useEffect(() => {
     // const query = {
     //   selectedFilter: { site_id: "alic", image_type: "ancillary" },
@@ -145,7 +143,7 @@ const BioImagesEngine = () => {
           >
             <div className="map-container">
               <BioMapEngine
-                bioImageDocuments={hits}
+                // bioImageDocuments={hits}
                 handleFilter={() => handleFilter()}
               />
               {/*End of Leaflet  Map */}

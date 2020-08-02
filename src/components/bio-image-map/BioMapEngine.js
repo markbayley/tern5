@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
 import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
+import { useDispatch, useSelector } from "react-redux";
 
 // import MarkerClusterGroup from "react-leaflet-markercluster";
 
-const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
+const BioMapEngine = ({ handleFilter }) => {
   const [mapInitState, setMapInitState] = useState({
     lat: -26.47,
     lng: 134.02,
@@ -13,8 +14,11 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
     maxZoom: 30,
     minZoom: 5,
   });
-
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
+
+  const dispatch = useDispatch();
+  const bioImageDocuments = useSelector((state) => state.search.hits);
+  
   // TODO not used yet - use it later!
   // const selectionRange = {
   //   startDate: new Date(),
