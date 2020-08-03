@@ -69,7 +69,7 @@ function BioimagesBanner() {
                 onChange={handleChange}
                 id="place"
                 type="text"
-                placeholder="Search images by region or by site"
+                placeholder="Search images by site"
                 style={{ fontSize: "22px", width: "45%", color: "#66b3a6" }}
                 aria-label="term"
               />

@@ -134,7 +134,7 @@ function SearchBar() {
                     onChange={handleChange}
                     id="place"
                     type="text"
-                    placeholder="Search images by region or by site"
+                    placeholder="Search images by site"
                     style={{
                       fontSize: "20px",
                       color: "#00565D",
