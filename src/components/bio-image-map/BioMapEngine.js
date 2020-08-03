@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
 import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // import MarkerClusterGroup from "react-leaflet-markercluster";
 
-const BioMapEngine = ({ handleFilter }) => {
+const BioMapEngine = () => {
   const [mapInitState, setMapInitState] = useState({
     lat: -26.47,
     lng: 134.02,
@@ -15,8 +15,6 @@ const BioMapEngine = ({ handleFilter }) => {
     minZoom: 5,
   });
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
-
-  const dispatch = useDispatch();
   const bioImageDocuments = useSelector((state) => state.search.hits);
   
   // TODO not used yet - use it later!
@@ -25,11 +23,6 @@ const BioMapEngine = ({ handleFilter }) => {
   //   endDate: new Date(),
   //   key: "selection",
   // };
-
-  //console.log("in BioMapEngine.bioImageDocuments:");
-  //console.log(bioImageDocuments);
-  // console.log("handleFilter:");
-  // console.log(handleFilter);
 
   return (
     <div className=" map-frame">
@@ -77,9 +70,6 @@ const BioMapEngine = ({ handleFilter }) => {
               bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
               siteLocation={siteLocationAsIndex}
               key={siteLocationAsIndex}
-              handleFilter={() =>
-                handleFilter(`site_id=${siteLocationAsIndex}`)
-              }
             />
           ))}
         </Map>

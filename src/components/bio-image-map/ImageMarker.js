@@ -3,12 +3,23 @@ import { Marker, Popup, Tooltip } from "react-leaflet";
 import L from "leaflet";
 import { Button } from "react-bootstrap";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 
 const ImageMarker = (props) => {
+  const dispatch = useDispatch();
+  const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
-  const handleOnClick = () => {
-    
-  }
+  const handleFilter = () => {
+    console.log("in ImageMarker. handleFitlter()");
+    const addFilter = { site_id: props.siteLocation };
+    // Add filter
+    const updatedFilter = { ...selectedFilter, ...addFilter };
+    console.log("updatedFilter=", updatedFilter);
+    // dispatch(fetchSearchAction({ selectedFilter: updatedFilter }));
+    dispatch(selectedFilterAction(updatedFilter));
+  };
+
   return (
     <Marker
       icon={L.divIcon({
@@ -19,7 +30,7 @@ const ImageMarker = (props) => {
       })}
       key={props.id}
       position={props.sitePosition}
-      onClick={() => props.onClick()}
+      onClick={handleFilter}
     >
       {" "}
       <br />

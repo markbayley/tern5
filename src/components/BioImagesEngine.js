@@ -142,10 +142,7 @@ const BioImagesEngine = () => {
           }}
         >
           <div className="map-container">
-            <BioMapEngine
-              // bioImageDocuments={hits}
-              handleFilter={() => handleFilter()}
-            />
+            <BioMapEngine/>
             {/*End of Leaflet  Map */}
             <BreadCrumb />
 

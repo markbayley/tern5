@@ -6,11 +6,11 @@ import { fetchSearchAction } from "../../store/reducer";
 const FilterHeader = () => {
   const dispatch = useDispatch();
   const selectedFilter = {
-      selectedFilter: {},
-    };;
+    selectedFilter: {},
+  };
 
   const resetFilter = () => {
-    console.log("Firing.. reseting Filter!!");
+    console.log("Firing.. reset all filters!!");
     dispatch(fetchSearchAction(selectedFilter));
   };
   return (
