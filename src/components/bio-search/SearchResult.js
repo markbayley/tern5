@@ -1,20 +1,33 @@
 import React, { useState } from "react";
 import { Card, Button, Col, Form, Modal, Image, Navbar } from "react-bootstrap";
 import { Link } from "react-scroll";
-const SearchResult = ({
-  bioImageDocument,
-  bioImageDocumentId,
-  handleFilter,
-  id,
-}) => {
-  // console.log("KEY IS:" + key);
-  // console.log("bioMageDocumentId:" + bioImageDocumentId);
+import { useDispatch, useSelector } from "react-redux";
+import { selectedFilterAction } from "../../store/reducer";
+
+const SearchResult = ({ bioImageDocument, aggregation, site_id }) => {
+  const dispatch = useDispatch();
+  const selectedFilter = useSelector((state) => state.search.selectedFilter);
+
+  let splitAggregation = null;
+  if (aggregation != null) {
+    const aggreSplit = aggregation.split(".");
+    splitAggregation = aggreSplit[0];
+  }
 
   const img_url = bioImageDocument.thumbnail_url;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleFilter = () => {
+    const fKey = splitAggregation;
+    const fValue = site_id;
+    const addFilter = { [fKey]: fValue };
+    // Add filter
+    const updatedFilter = { ...selectedFilter, ...addFilter };
+    dispatch(selectedFilterAction(updatedFilter));
+  };
 
   return (
     <>
@@ -105,15 +118,12 @@ const SearchResult = ({
           </Modal.Footer>
         </Modal>
 
-        <Card
-          id={bioImageDocumentId}
-          style={{ marginTop: "5%", border: "#fff" }}
-        >
+        <Card id={aggregation} style={{ marginTop: "5%", border: "#fff" }}>
           <div className="hvrbox">
             <Button
               variant="flat"
               style={{ width: "100%", padding: "0px" }}
-              onClick={() => handleFilter(bioImageDocumentId)}
+              onClick={handleFilter}
             >
               <Image
                 className="hvrbox-layer_bottom"
@@ -167,8 +177,6 @@ const SearchResult = ({
                   type={type}
                   id={bioImageDocument.id}
                 />
-
-                {/*{props.value.doc_count} */}
               </div>
             ))}
           </Form>

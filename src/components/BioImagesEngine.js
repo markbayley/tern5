@@ -25,20 +25,7 @@ import { fetchSearchAction } from "../store/reducer";
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.search.isLoadingSearch);
-  const hits = useSelector((state) => state.search.hits);
-  const filters = useSelector((state) => state.search.filters);
-  const aggregation = useSelector((state) => state.search.aggregation);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-
-  console.log("in BioImagesEngine. hits=", hits);
-  console.log("in BioImagesEngine. filters=", filters);
-  console.log("in BioImagesEngine. aggregation=", aggregation);
-  console.log("in BioImagesEngine. selectedFilter=", selectedFilter);
-  //[loading, hits, filters, aggregation] = props;
-
-  // const [selectedFilter, setSelectedFilter] = useState({});
-  //const selectedFilter = {}; //testing
-  //const [loading, setLoading] = useState(false);
 
   const [favourites, setFavourites] = useState([]);
 
@@ -47,8 +34,8 @@ const BioImagesEngine = () => {
     error: null,
   });
 
+  // TODO to be implement properly in its time!
   const fetchFavourites = async () => {
-    //setLoading(true);
     try {
       const apiRes = await fetch(CONFIG.API_BASE_URL + "favourites");
       const resJSON = await apiRes.json();
@@ -59,15 +46,11 @@ const BioImagesEngine = () => {
         error: error,
       });
     }
-    //setLoading(false);
   };
 
   // TODO fix this hook! I dont to render everything all the time!
   // TODO do something about the selectedFilter value!!
   useEffect(() => {
-    // const query = {
-    //   selectedFilter: { site_id: "alic", image_type: "ancillary" },
-    // };
     console.log("in useEffect(). selectedFilter=", selectedFilter);
     dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
   }, [selectedFilter]);
@@ -76,21 +59,6 @@ const BioImagesEngine = () => {
     // this.setState({ selectedFilter: { site_id: id } });
     //setSelectedFilter({ site_id: id });
     console.log("filterSiteID", selectedFilter);
-  };
-
-  const handleFilter = (filterValue) => {
-    console.log("in handleFilter(). HELLO MARK", filterValue);
-    var arr = filterValue.split("=");
-    const fKey = arr[0];
-    const fValue = arr[1];
-    const miniFilter = { [fKey]: fValue };
-    //const updatedFilter = { ...selectedFilter, ...miniFilter };
-    //setSelectedFilter(updatedFilter);
-
-    // if (arr[0] !== "_id") {
-    //   // selectedFilter["_id"] = "";
-    //   setSelectedFilter({ _id: "" });
-    // }
   };
 
   const handleFavourite = (i) => {
@@ -116,10 +84,7 @@ const BioImagesEngine = () => {
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader />
-          <ImageSearchEngine
-          // imageFilters={filters}
-          // handleFilter={(i) => handleFilter(i)}
-          />
+          <ImageSearchEngine />
           <DateRange />
           <FavouriteHeader />
           {/* <Query /> */}
@@ -142,17 +107,13 @@ const BioImagesEngine = () => {
           }}
         >
           <div className="map-container">
-            <BioMapEngine/>
+            <BioMapEngine />
             {/*End of Leaflet  Map */}
             <BreadCrumb />
 
             {/*Photo Gallery */}
             <div id="gallery"></div>
-            <SearchEngine
-              bioImageDocuments={hits}
-              aggregation={aggregation}
-              handleFilter={handleFilter}
-            />
+            <SearchEngine />
           </div>
         </Col>
       </Row>
