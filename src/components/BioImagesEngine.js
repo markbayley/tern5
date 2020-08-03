@@ -100,99 +100,75 @@ const BioImagesEngine = () => {
     alert(i); //image_type=photopoint
   };
 
-  if (loading === false) {
-    return (
-      <div id="map">
-        <TopBar />
-        <SearchBar />
-        <MapNav />
-        <IconBar />
+  // if (loading === false) {
+  return (
+    <div id="map">
+      <TopBar />
+      <SearchBar />
+      <MapNav />
+      <IconBar />
 
-        <Row>
-          {/*Filter SideBar*/}
-          <Col
-            className="filterbar"
-            xl={2}
-            style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
-          >
-            <FilterHeader />
-            <ImageSearchEngine
-            // imageFilters={filters}
-            // handleFilter={(i) => handleFilter(i)}
+      <Row>
+        {/*Filter SideBar*/}
+        <Col
+          className="filterbar"
+          xl={2}
+          style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
+        >
+          <FilterHeader />
+          <ImageSearchEngine
+          // imageFilters={filters}
+          // handleFilter={(i) => handleFilter(i)}
+          />
+          <DateRange />
+          <FavouriteHeader />
+          {/* <Query /> */}
+          <Favourite
+            favourites={favourites}
+            handleFavourite={(i) => handleFavourite(i)}
+          />
+        </Col>
+
+        {/*Leaflet Map */}
+        <Col
+          sm={12}
+          md={12}
+          lg={10}
+          xl={10}
+          style={{
+            height: "80vh",
+            padding: "0%",
+            margin: "0%",
+          }}
+        >
+          <div className="map-container">
+            <BioMapEngine
+              // bioImageDocuments={hits}
+              handleFilter={() => handleFilter()}
             />
-            <DateRange />
-            <FavouriteHeader />
-            {/* <Query /> */}
-            <Favourite
-              favourites={favourites}
-              handleFavourite={(i) => handleFavourite(i)}
+            {/*End of Leaflet  Map */}
+            <BreadCrumb />
+
+            {/*Photo Gallery */}
+            <div id="gallery"></div>
+            <SearchEngine
+              bioImageDocuments={hits}
+              aggregation={aggregation}
+              handleFilter={handleFilter}
             />
-          </Col>
-
-          {/*Leaflet Map */}
-          <Col
-            sm={12}
-            md={12}
-            lg={10}
-            xl={10}
-            style={{
-              height: "80vh",
-              padding: "0%",
-              margin: "0%",
-            }}
-          >
-            <div className="map-container">
-              <BioMapEngine
-                // bioImageDocuments={hits}
-                handleFilter={() => handleFilter()}
-              />
-              {/*End of Leaflet  Map */}
-              <BreadCrumb />
-
-              {/*Photo Gallery */}
-              <div id="gallery"></div>
-              <SearchEngine
-                bioImageDocuments={hits}
-                aggregation={aggregation}
-                handleFilter={handleFilter}
-              />
-            </div>
-          </Col>
-        </Row>
-        <Toggle />
-        <Footer />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <p>Loading....</p>
-      </div>
-    );
-  }
+          </div>
+        </Col>
+      </Row>
+      <Toggle />
+      <Footer />
+    </div>
+  );
+  // } else {
+  //   return (
+  //     <div>
+  //       <p>Loading....</p>
+  //     </div>
+  //   );
+  // }
 };
-
-// const mapStateToProps = (state, ownProps) => {
-//   console.log("state=", state);
-//   return {
-//     loading: state.search.isLoadingSearch,
-//     hits: state.search.hits,
-//     filters: state.search.filters,
-//     aggregation: state.search.aggregation,
-//     selectedFilter: state.search.selectedFilter,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchSearch: (action) => dispatch(fetchSearchAction(action)),
-//   };
-// };
-
-// const ConnectedBioImagesEngine = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(BioImagesEngine);
-
-// export default ConnectedBioImagesEngine;
 export default BioImagesEngine;
