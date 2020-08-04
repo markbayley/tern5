@@ -8,6 +8,7 @@ const SearchResult = ({ bioImageDocument, aggregation, site_id }) => {
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
+  console.log("in SearchResult. bioImageDocument=", bioImageDocument)
   let splitAggregation = null;
   if (aggregation != null) {
     const aggreSplit = aggregation.split(".");

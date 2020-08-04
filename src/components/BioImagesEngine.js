@@ -41,7 +41,7 @@ const BioImagesEngine = () => {
     <div id="map">
       <TopBar />
       <SearchBar />
-      <MapNav />
+      {/* <MapNav /> */}
       <IconBar />
       <Row>
         {/*Filter SideBar*/}
@@ -78,7 +78,7 @@ const BioImagesEngine = () => {
           </div>
         </Col>
       </Row>
-      <Toggle />
+      {/* <Toggle /> */}
       <Footer />
     </div>
   );

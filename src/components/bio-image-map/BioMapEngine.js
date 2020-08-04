@@ -14,6 +14,8 @@ const BioMapEngine = () => {
     maxZoom: 30,
     minZoom: 5,
   });
+  const [showMap, setShowMap] = useState(true);
+  const [showMapButtonLabel, setShowMapButtonLabel] = useState("Hide Map");
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
   const bioImageDocuments = useSelector((state) => state.search.hits);
   
@@ -24,7 +26,21 @@ const BioMapEngine = () => {
   //   key: "selection",
   // };
 
-  return (
+  const hideShowMap = () => {
+    switch(showMapButtonLabel){
+      case "Hide Map":
+        setShowMapButtonLabel("Show Map");
+        break;
+      case "Show Map":
+        setShowMapButtonLabel("Hide Map")
+        break;
+      default:
+        setShowMapButtonLabel("Hide Map");
+    }
+    setShowMap(!showMap);
+  }
+  
+  const BioMap = () => (  
     <div className=" map-frame">
       <link
         rel="stylesheet"
@@ -54,7 +70,7 @@ const BioMapEngine = () => {
             url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
           />
 
-          <FeatureGroup>
+          {/* <FeatureGroup>
             <EditControl
               position="topright"
               // onEdited={this._onEditPath}
@@ -62,7 +78,7 @@ const BioMapEngine = () => {
               // onDeleted={this._onDeleted}
             />
             <Circle center={[51.51, -0.06]} radius={200} />
-          </FeatureGroup>
+          </FeatureGroup> */}
 
           {/* API Markers */}
           {Object.keys(bioImageDocuments).map((siteLocationAsIndex) => (
@@ -74,6 +90,13 @@ const BioMapEngine = () => {
           ))}
         </Map>
       </div>
+    </div>
+  );
+
+  return (
+    <div>
+    <input type="submit" value={showMapButtonLabel} onClick={hideShowMap}/>
+    {showMap? <BioMap/> : null}
     </div>
   );
 };
