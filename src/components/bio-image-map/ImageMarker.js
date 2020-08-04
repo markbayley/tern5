@@ -30,11 +30,11 @@ const ImageMarker = (props) => {
       })}
       key={props.id}
       position={props.sitePosition}
-      onClick={handleFilter}
+      // onClick={handleFilter}
     >
       {" "}
       <br />
-      <Popup>
+      {/* <Popup>
         <strong>
           <h6>{props.label} selected.</h6>
         </strong>
@@ -158,10 +158,10 @@ const ImageMarker = (props) => {
             </Link>
           </>
         </Link>
-      </Popup>
+      </Popup> */}
       <Tooltip>
         <strong>
-          <h6>Click the marker to select this site</h6>
+          {/* <h6>Click the marker to select this site</h6> */}
         </strong>
         Site Id:{" "}
         <a
