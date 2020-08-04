@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ImageMarkerEngine from "./ImageMarkerEngine";
 import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
+import Leaflet from 'leaflet';
 import { useSelector } from "react-redux";
 
 // import MarkerClusterGroup from "react-leaflet-markercluster";
@@ -18,13 +19,17 @@ const BioMapEngine = () => {
   const [showMapButtonLabel, setShowMapButtonLabel] = useState("Hide Map");
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
   const bioImageDocuments = useSelector((state) => state.search.hits);
-  
+  console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
   // TODO not used yet - use it later!
   // const selectionRange = {
   //   startDate: new Date(),
   //   endDate: new Date(),
   //   key: "selection",
   // };
+  //Set map boundary (australia)
+  const corner1 = Leaflet.latLng(-9.820066, 110.240312);
+  const corner2 = Leaflet.latLng(-44.482812, 152.339923);
+  const bounds = Leaflet.latLngBounds(corner1, corner2);
 
   const hideShowMap = () => {
     switch(showMapButtonLabel){
@@ -41,7 +46,7 @@ const BioMapEngine = () => {
   }
   
   const BioMap = () => (  
-    <div className=" map-frame">
+    <div className="map-frame">
       <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -54,6 +59,10 @@ const BioMapEngine = () => {
           center={mapInitPosition}
           zoom={mapInitState.zoom}
           style={{ zIndex: "1" }}
+          scrollWheelZoom={'center'}
+          minZoom={mapInitState.zoom}
+          maxBounds={bounds}
+          
         >
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'

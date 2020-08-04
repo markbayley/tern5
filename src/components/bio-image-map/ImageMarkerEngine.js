@@ -5,6 +5,9 @@ const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
   var popup = "";
   var tooltip = "";
   var sitePosition = bioImageDocument.centre_point;
+
+  console.log("siteLocation", siteLocation)
+  
   for (var this_key in bioImageDocument.image_types) {
     //console.log(this_key);
     for (var sub_key in bioImageDocument.image_types[this_key]) {
