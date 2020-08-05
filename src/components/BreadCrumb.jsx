@@ -9,7 +9,7 @@ const BreadCrumb = (props) => {
         style={{
           marginTop: "2px",
           marginBottom: "0px",
-          borderBottom: "1.5px solid #66b3a6",
+          borderTop: "1.5px solid #66b3a6",
           color: "#043E4F",
           height: "50px"
         }}

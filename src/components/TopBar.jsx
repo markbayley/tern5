@@ -12,7 +12,7 @@ import BioimagesSubFooter from "./footers/BioimagesSubFooter";
 //import MapSearch from './MapSearch';
 import MainMenu from "./signin/MainMenu";
 
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Navbar } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import LandingPage from "./LandingPage/LandingPage";
 
@@ -24,7 +24,9 @@ export default function TopBar() {
         <div className="above-header">
           <div className="container">
             <div className="above-header-section-wrap d-flex">
-              <Col xl={5} className="links" >
+         
+                
+              
               <Row >
                 <Col>
                   {" "}
@@ -38,11 +40,12 @@ export default function TopBar() {
                   {" "}
                   <CoESRADropdown />
                 </Col>
-                <Col  style={{ marginLeft: "-20px" }}>
+                <Col  style={{ marginLeft: "-20px", marginRight: '20px' }}>
                   <CommunityDropdown />
                 </Col>
               </Row>
-              </Col>
+          
+     
               <div className="above-header-section above-header-section-1">
                 <div className="user-select">
                   <Link to="/">
@@ -59,6 +62,8 @@ export default function TopBar() {
                   </Link>
                 </div>
               </div>
+            
+           
             </div>
           </div>
         </div>

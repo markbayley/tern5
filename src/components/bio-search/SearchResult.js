@@ -159,7 +159,7 @@ const SearchResult = ({
 
         <Card
           id={bioImageDocumentId}
-          style={{ marginTop: "5%", border: "#fff" }}
+          style={{ paddingTop: "0%", border: "#fff" }}
         >
           <div className="hvrbox">
             <Button
@@ -206,16 +206,16 @@ const SearchResult = ({
                   <span className="center"></span>
                 </div>
               </div>{" "}
-              <strong>Site:</strong> {bioImageDocument.site_id.label} <br />
+              <strong>Site:</strong> {bioImageDocument.site_id.label}{" "} <br />
               <strong>Image Type:</strong>{" "}
               {bioImageDocument.image_type.value[0].toUpperCase() +
                 bioImageDocument.image_type.value.substr(1)}{" "}
-              <strong>Image Count:</strong> {bioImageDocument.doc_count} <br />
-              <strong>Plot:</strong> {bioImageDocument.plot.value}{" "}
-              <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "}
+              {/* <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "}  */}
+              {/* <strong>Plot:</strong> {bioImageDocument.plot.value}{" "} */}
+              {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
             </Button>
           </div>
-
+         {/* 
           <Form
             className="center"
             style={{ paddingTop: "5px", color: "#065f65" }}
@@ -243,9 +243,9 @@ const SearchResult = ({
                 />
 
                 {/*{props.value.doc_count} */}
-              </div>
+              {/* </div>
             ))}
-          </Form>
+          </Form> */} 
         </Card>
       </Col>
   );

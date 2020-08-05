@@ -19,7 +19,7 @@ const ImageMarker = (props) => {
     >
       {" "}
       <br />
-      <Popup>
+      {/* <Popup>
         <strong>
           <h6>{props.label} selected.</h6>
         </strong>
@@ -143,12 +143,12 @@ const ImageMarker = (props) => {
             </Link>
           </>
         </Link>
-      </Popup>
+      </Popup> */}
       <Tooltip >
         <div style={{padding: "3px 7px"}}>
-        <strong>
-          <h6>Click marker to select.</h6>
-        </strong>
+        {/* <strong>
+          <h6>Click marker to select {props.label}.</h6>
+        </strong> */}
         Site:{" "}
         <a
           href="www.tern.org"

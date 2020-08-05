@@ -70,7 +70,7 @@ function SearchBar() {
               </Navbar.Brand>
             </Col>
 
-            <Container style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100px',   color: "#6EB3A6"}}>
+            <Container style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '85px',   color: "#6EB3A6"}}>
             
                 <h3 className="biologo">
                   <Image

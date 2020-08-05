@@ -175,7 +175,7 @@ body {
 /* SIDEBAR */
 .filterbar {
   z-index: "9";
-  height: 195vh;
+  height: 80vh;
 }
 .accordion:hover { 
   background-color: #B3D4C9;   
@@ -275,6 +275,8 @@ body {
 }
 
 
+
+
 /* GALLERY */
 .hvrbox,
 .hvrbox * {
@@ -347,37 +349,42 @@ body {
 }
 
 @media (max-width: 1024px) {
-
   .filterbar {
     height: 80vh;
   }
-
 }
 
 @media (max-width: 767px) {
-
-
   .links {
     display: none;
   }
-
   .biologo {
     display: none;
   }
-
-
-
 }
 
 @media (max-width: 400px) {
-
   .searchbar {
     display: 'flex';
     justify-content: 'center';
     margin-bottom: '10px';
   }
-
   .biologo {
     display: none;
   }
 }
+
+
+
+.btntoggle:hover {
+  background-color: #B3D4CA;
+  color:  #fff;
+  border: '5px solid #065f65';
+  font-weight: '900';
+}
+
+
+
+
+
+

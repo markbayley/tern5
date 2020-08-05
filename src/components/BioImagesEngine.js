@@ -7,7 +7,7 @@ import BreadCrumb from "./BreadCrumb";
 // import Scroll from "./Scroll";
 // import Legend from "./Legend";
 import Footer from "./Footer";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Button, Image } from "react-bootstrap";
 import DateRange from "./DateRange";
 // import Query from "./Query";
 import Favourite from "./bio-favourites/Favourite";
@@ -19,8 +19,7 @@ import Toggle from "./buttons/Toggle";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 
-
-
+import Side from "./test/Side.jsx";
 
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
@@ -142,20 +141,73 @@ const BioImagesEngine = ({ initFilter }) => {
     alert(i); //image_type=photopoint
   };
 
+  const Toggle = () => {
+    const searchmodes = ["Map", "Images"];
+    const [mySearch, setMySearch] = useState("Map");
+
+    return (
+      <>
+      <div style={{position: 'absolute', right: '.5%', bottom: '6.5%', zIndex: '10'}}  role="group" aria-label="toggle">
+      {searchmodes.map((searchmode) => (
+        <Button  style={{backgroundColor: '',  border: '2px solid rgba(84, 179, 166, 0.9)'}}
+          variant="btntoggle"
+          className="btntoggle"
+        
+          key={searchmode} 
+          onClick={() => setMySearch(searchmode)}
+        > 
+          {searchmode}
+        </Button>
+      ))}
+    </div>
+  
+      <Col
+        sm={12}
+        md={8}
+        lg={9}
+        xl={10}
+        style={{
+          height: "80vh",
+          padding: "0%",
+          margin: "0%",
+        }}
+      >
+
+        {mySearch === "Map" && (
+          <div>
+            <BioMapEngine
+              bioImageDocuments={bioState.hits}
+              handleFilter={handleFilter}
+            />
+          </div>
+        )}
+        {mySearch === "Images" && (
+          <div>
+            <SearchEngine
+              bioImageDocuments={bioState.hits}
+              aggregation={bioState.aggregation}
+              handleFilter={handleFilter}
+            />
+          </div>
+        )}
+      </Col>
+      </>
+  
+    );
+  };
+
   return (
     <div id="map">
       <TopBar />
       <SearchBar />
-    
-  
-    
+      <Side />
+
       <IconBar />
 
       <Row>
         {/*Filter SideBar*/}
         <Col
           className="filterbar"
-         
           sm={12}
           md={4}
           lg={3}
@@ -163,13 +215,14 @@ const BioImagesEngine = ({ initFilter }) => {
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader resetFilter={() => resetFilter()} />
+
           <ImageSearchEngine
             imageFilters={bioState.filters}
             handleFilter={(i) => handleFilter(i)}
           />
           <DateRange />
           <FavouriteHeader />
-      
+
           <Favourite
             favourites={favourites}
             handleFavourite={(i) => handleFavourite(i)}
@@ -177,36 +230,17 @@ const BioImagesEngine = ({ initFilter }) => {
         </Col>
 
         {/*Leaflet Map */}
-        <Col
-          sm={12}
-          md={8}
-          lg={9}
-          xl={10}
-          style={{
-            height: "80vh",
-            padding: "0%",
-            margin: "0%",
-          }}
-        >
-          <div className="map-container">
-            <BioMapEngine
-              bioImageDocuments={bioState.hits}
-              handleFilter={handleFilter}
-            />
-            {/*End of Leaflet  Map */}
-            <BreadCrumb />
 
-            {/*Photo Gallery */}
-            <div id="gallery"></div>
-            <SearchEngine
-              bioImageDocuments={bioState.hits}
-              aggregation={bioState.aggregation}
-              handleFilter={handleFilter}
-            />
-          </div>
-        </Col>
+        <Toggle />
+
+        <div className="map-container">
+          {/*End of Leaflet  Map */}
+
+          {/*Photo Gallery */}
+          <div id="gallery"></div>
+        </div>
       </Row>
-      <Toggle />
+      <BreadCrumb />
       <Footer />
     </div>
   );
