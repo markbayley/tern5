@@ -13,19 +13,19 @@ const initialState = {
 };
 
 const searchReducer = createReducer(initialState, {
-  [fetchSearchAction.type]: (state, action) => {
+  [fetchSearchAction]: (state, action) => {
     //console.log("in searchReducer. action", action);
     state.isLoadingSearch = true;
     state.selectedFilter = action.payload.selectedFilter;
   },
-  [fetchSearchDoneAction.type]: (state, action) => {
+  [fetchSearchDoneAction]: (state, action) => {
     state.isLoadingSearch = false;
     const { hits, aggregation, aggregations } = action.payload;
     state.hits = hits;
     state.filters = aggregations;
     state.aggregation = aggregation;
   },
-  [selectedFilterAction.type]: (state, action) => {
+  [selectedFilterAction]: (state, action) => {
     state.selectedFilter = { ...state.selectedFilter, ...action.payload };
   },
 });
