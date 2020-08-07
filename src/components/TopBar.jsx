@@ -1,51 +1,41 @@
 import React from "react";
-
 import TERNDataDropdown from "./dropdowns/TERNDataDropdown";
 import CommunityDropdown from "./dropdowns/CommunityDropdown";
 import CoESRADropdown from "./dropdowns/CoESRADropdown";
 import DataVisualiserDropdown from "./dropdowns/DataVisualiserDropdown";
-import MainBanner from "./banners/MainBanner";
-import SignIn from "./signin/SignIn";
-import MainFooter from "./footers/MainFooter";
-import NavBar from "./SearchBar";
-import BioimagesSubFooter from "./footers/BioimagesSubFooter";
-//import MapSearch from './MapSearch';
-import MainMenu from "./signin/MainMenu";
-
 import { Col, Row, Navbar } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//import LandingPage from "./LandingPage/LandingPage";
 
 export default function TopBar() {
   return (
     <Router>
-
       <div>
         <div className="above-header">
           <div className="container">
             <div className="above-header-section-wrap d-flex">
-         
-                
-              
-              <Row >
-                <Col>
-                  {" "}
-                  <TERNDataDropdown />
-                </Col>
-                <Col>
-                  {" "}
-                  <DataVisualiserDropdown />
-                </Col>
-                <Col style={{ marginLeft: "30px" }}>
-                  {" "}
-                  <CoESRADropdown />
-                </Col>
-                <Col  style={{ marginLeft: "-20px", marginRight: '20px' }}>
-                  <CommunityDropdown />
-                </Col>
-              </Row>
-          
-     
+              <Navbar expand="lg" style={{ padding: "0%" }}>
+                <Navbar.Toggle aria-controls="basic-navbar-nav"  style={{float: 'left'}}/>
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Row>
+                    <Col>
+                      {" "}
+                      <TERNDataDropdown />
+                    </Col>
+                    <Col>
+                      {" "}
+                      <DataVisualiserDropdown />
+                    </Col>
+                    <Col style={{ marginLeft: "30px" }}>
+                      {" "}
+                      <CoESRADropdown />
+                    </Col>
+                    <Col style={{ marginLeft: "-20px", marginRight: "20px" }}>
+                      <CommunityDropdown />
+                    </Col>
+                  </Row>
+                </Navbar.Collapse>
+              </Navbar>
+
               <div className="above-header-section above-header-section-1">
                 <div className="user-select">
                   <Link to="/">
@@ -62,11 +52,10 @@ export default function TopBar() {
                   </Link>
                 </div>
               </div>
-            
-           
             </div>
           </div>
         </div>
+
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>

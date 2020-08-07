@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 function ResetFilter({ resetFilter }) {
   return (
     <Button
-      style={{ padding: "0px 3px 0px 3px", float: "right" }}
+      style={{ padding: "0px 3px 0px 3px", marginRight: '27px', float: "right" }}
       variant="reset"
       size="sm"
       onClick={resetFilter}

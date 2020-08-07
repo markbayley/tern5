@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import ResetFilter from "../buttons/ResetFilter";
+import { Button } from 'react-bootstrap'
+
+
+
 
 const FilterHeader = ({resetFilter}) => {
+  
+  const searchmodes = ["Map", "Images"];
+  const [mySearch, setMySearch] = useState("Map");
+      
   return (
     <h5
-      style={{
-     
+      style={{   
         color: "#fff",
-        backgroundColor: "#ED694B",
+        backgroundColor: "#00565D",
         padding: "20px 10px 20px 10px",
         marginBottom: "1px"
       }}
     >
-      Filter Reset <ResetFilter resetFilter={resetFilter}/>
+      Filter   
+
+      
+        <ResetFilter resetFilter={resetFilter}/>
     </h5>
   );
 };
 
-export default FilterHeader;
+export default FilterHeader
+

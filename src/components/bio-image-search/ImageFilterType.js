@@ -3,6 +3,7 @@ import { Accordion, Card, Button, Col } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
 import IconButton from "./IconButton";
 
+
 const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
 
   const icons = [
@@ -24,6 +25,9 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
     },
   ];
 
+
+
+  
   return (
     <div
       style={{
@@ -34,6 +38,11 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
       }}
       key="key"
     >
+    
+  
+
+
+
       <Accordion>
         <Card>
           <Accordion.Toggle
@@ -87,6 +96,7 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
       ></hr>
     </div>
   );
+  
 };
 
 export default ImageFilterType;

@@ -165,7 +165,8 @@ const SearchResult = ({
             <Button
               variant="flat"
               style={{ width: "100%", padding: "0px" }}
-              onClick={() => handleFilter(bioImageDocumentId)}
+              // onClick={() => handleFilter(bioImageDocumentId)}
+              onClick={handleShow}
             >
               <Image
                 className="hvrbox-layer_bottom"

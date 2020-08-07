@@ -4,9 +4,9 @@ import ImageFilterType from "./ImageFilterType";
 const ImageSearchEngine = ({ imageFilters, handleFilter }) => {
   const filterOrder = {
     site_id: 5,
-    image_type: 4,
-    image_type_sub: 3,
-    plot: 2,
+    image_type: 3,
+    image_type_sub: 2,
+    plot: 4,
     site_visit_id: 1,
   };
 

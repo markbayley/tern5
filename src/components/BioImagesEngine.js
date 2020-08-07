@@ -14,12 +14,13 @@ import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
-import Toggle from "./buttons/Toggle";
+// import Toggle from "./buttons/Toggle";
 
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 
 import Side from "./test/Side.jsx";
+
 
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
@@ -141,18 +142,19 @@ const BioImagesEngine = ({ initFilter }) => {
     alert(i); //image_type=photopoint
   };
 
+
+  /*Map Image Toggle*/
   const Toggle = () => {
     const searchmodes = ["Map", "Images"];
     const [mySearch, setMySearch] = useState("Map");
 
     return (
       <>
-      <div style={{position: 'absolute', right: '.5%', bottom: '6.5%', zIndex: '10'}}  role="group" aria-label="toggle">
+      <div style={{position: 'absolute', left: '75px', top: '165px', zIndex: '10'}}  role="group" aria-label="toggle">
       {searchmodes.map((searchmode) => (
-        <Button  style={{backgroundColor: '',  border: '2px solid rgba(84, 179, 166, 0.9)'}}
+        <Button  style={{color: '#fff', border: '2px solid rgba(84, 179, 166, 0.9)', borderRadius: '35px'}}
           variant="btntoggle"
-          className="btntoggle"
-        
+          className="btntoggle"   
           key={searchmode} 
           onClick={() => setMySearch(searchmode)}
         > 
@@ -160,19 +162,15 @@ const BioImagesEngine = ({ initFilter }) => {
         </Button>
       ))}
     </div>
-  
-      <Col
-        sm={12}
-        md={8}
-        lg={9}
-        xl={10}
+      <Col fluid 
+        
+        
         style={{
           height: "80vh",
           padding: "0%",
           margin: "0%",
         }}
       >
-
         {mySearch === "Map" && (
           <div>
             <BioMapEngine
@@ -192,26 +190,22 @@ const BioImagesEngine = ({ initFilter }) => {
         )}
       </Col>
       </>
-  
     );
   };
 
   return (
     <div id="map">
       <TopBar />
+    
       <SearchBar />
       <Side />
-
       <IconBar />
+      <Row >
 
-      <Row>
         {/*Filter SideBar*/}
-        <Col
+        <Col   lg='auto'
           className="filterbar"
-          sm={12}
-          md={4}
-          lg={3}
-          xl={2}
+        
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader resetFilter={() => resetFilter()} />

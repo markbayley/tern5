@@ -176,9 +176,18 @@ body {
 .filterbar {
   z-index: "9";
   height: 80vh;
+  width: 20%;
 }
 .accordion:hover { 
   background-color: #B3D4C9;   
+}
+
+
+.btntoggle:hover {
+  background-color: #B3D4CA;
+  color:  #fff;
+  border: '5px solid #065f65';
+  font-weight: '900';
 }
 
 
@@ -341,6 +350,14 @@ body {
 }
 
 
+#links {
+  color: blue;
+}
+
+
+
+
+
 /* MEDIA */
 @media (max-width: 1450px) {
   .site-branding {
@@ -355,11 +372,17 @@ body {
 }
 
 @media (max-width: 767px) {
-  .links {
-    display: none;
-  }
+  
   .biologo {
     display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  #links {
+    color: red;
   }
 }
 
@@ -372,16 +395,10 @@ body {
   .biologo {
     display: none;
   }
+
+
 }
 
-
-
-.btntoggle:hover {
-  background-color: #B3D4CA;
-  color:  #fff;
-  border: '5px solid #065f65';
-  font-weight: '900';
-}
 
 
 

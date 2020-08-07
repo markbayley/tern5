@@ -16,6 +16,7 @@ import LoginButton from "./buttons/LoginButton";
 import RegisterButton from "./buttons/RegisterButton";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+
 {
   /* Connects to another test API unsplash, not the TERN API as yet, need to change over*/
 }
@@ -58,8 +59,8 @@ function SearchBar() {
           expand="lg"
           style={{ height: "4%", borderBottom: "1.5px solid #6EB3A6" }}
         >
-          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-          {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
+          <Navbar.Collapse id="basic-navbar-nav"> */}
             <Col sm={2} style={{ position: "absolute", left: "0%"}}>
               <Navbar.Brand>
                 <div className="site-branding">
@@ -139,7 +140,7 @@ function SearchBar() {
         
 
               {/*Login Buttons */}
-              <div>
+              <div className="login">
               <Link to="/login" 
               style={{ 
                   
@@ -157,6 +158,7 @@ function SearchBar() {
               </Link>
               </div>
             </Container>
+         
           {/* </Navbar.Collapse> */}
         </Navbar>
 
