@@ -8,7 +8,7 @@ const FavouriteHeader = () => {
                 fontSize: "18.5px",
                 color: "#fff",
                 backgroundColor: "#00565D",
-                padding: "20px 10px 20px 10px",
+                padding: "20px 20px 20px 20px",
                 width: '320px'
               }}
             >

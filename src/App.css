@@ -350,9 +350,6 @@ body {
 }
 
 
-#links {
-  color: blue;
-}
 
 
 
@@ -381,9 +378,7 @@ body {
     display: none;
   }
 
-  #links {
-    color: red;
-  }
+
 }
 
 @media (max-width: 400px) {
@@ -399,6 +394,12 @@ body {
 
 }
 
+
+
+.right-centre {
+  display: 'flex';
+  justify-content: 'flex-end';
+}
 
 
 

@@ -150,9 +150,9 @@ const BioImagesEngine = ({ initFilter }) => {
 
     return (
       <>
-      <div style={{position: 'absolute', left: '75px', top: '165px', zIndex: '10'}}  role="group" aria-label="toggle">
+      <div style={{position: 'absolute', right: '75px', top: '80px', zIndex: '10'}}  role="group" aria-label="toggle">
       {searchmodes.map((searchmode) => (
-        <Button  style={{color: '#fff', border: '2px solid rgba(84, 179, 166, 0.9)', borderRadius: '35px'}}
+        <Button  style={{color: '#003d4f', border: '2px solid rgba(84, 179, 166, 0.9)', borderRadius: '35px'}}
           variant="btntoggle"
           className="btntoggle"   
           key={searchmode} 
