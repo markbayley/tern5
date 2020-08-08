@@ -146,22 +146,27 @@ const BioImagesEngine = ({ initFilter }) => {
   /*Map Image Toggle*/
   const Toggle = () => {
     const searchmodes = ["Map", "Images"];
+    const Map = ["Map"];
+    const Images = ["Images"];
     const [mySearch, setMySearch] = useState("Map");
 
     return (
       <>
-      <div style={{position: 'absolute', right: '75px', top: '80px', zIndex: '10'}}  role="group" aria-label="toggle">
+      <div style={{position: 'absolute', right: '75px', top: '150px', zIndex: '10'}} >
       {searchmodes.map((searchmode) => (
-        <Button  style={{color: '#003d4f', border: '2px solid rgba(84, 179, 166, 0.9)', borderRadius: '35px'}}
-          variant="btntoggle"
-          className="btntoggle"   
+        <Button  
+          variant="light"
+          
           key={searchmode} 
           onClick={() => setMySearch(searchmode)}
         > 
           {searchmode}
         </Button>
       ))}
+      
+   
     </div>
+
       <Col fluid 
         
         
@@ -203,7 +208,7 @@ const BioImagesEngine = ({ initFilter }) => {
       <Row >
 
         {/*Filter SideBar*/}
-        <Col   lg='auto'
+        <Col  lg='auto'
           className="filterbar"
         
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
@@ -222,14 +227,14 @@ const BioImagesEngine = ({ initFilter }) => {
             handleFavourite={(i) => handleFavourite(i)}
           />
         </Col>
-
+        <Toggle />
         {/*Leaflet Map */}
 
-        <Toggle />
+     
 
         <div className="map-container">
           {/*End of Leaflet  Map */}
-
+        
           {/*Photo Gallery */}
           <div id="gallery"></div>
         </div>

@@ -9,7 +9,7 @@ const FavouriteHeader = () => {
                 color: "#fff",
                 backgroundColor: "#00565D",
                 padding: "20px 20px 20px 20px",
-                width: '320px'
+                width: '350px'
               }}
             >
               Favourites
