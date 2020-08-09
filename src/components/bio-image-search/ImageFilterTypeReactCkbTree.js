@@ -133,16 +133,17 @@ const ImageFilterTypeReactCkbTree = () => {
     const selectedSites = [];
     selected.map((item) => {
       if (item.includes("site_id_")) {
-        console.log("item=", item);
+        // console.log("item=", item);
         const site = item.split("site_id_");
-        console.log("site=", site[1]);
+        // console.log("site=", site[1]);
         selectedSites.push(site[1]);
       }
     });
     const siteFilter = { site_id: selectedSites[0] };
     const updatedFilter = { ...selectedFilter, ...siteFilter };
     dispatch(selectedFilterAction(updatedFilter));
-    //console.log("Selected sites=", selectedSites);
+    //TODO Add selected image types
+    //TODO Add site visit date
   };
 
   ////////
@@ -351,7 +352,7 @@ const ImageFilterTypeReactCkbTree = () => {
 };
 
 function areEqual(prevProps, nextProps) {
-    return true;
-  }
+  return true;
+}
 // export default ImageFilterTypeReactCkbTree;
 export default React.memo(ImageFilterTypeReactCkbTree, areEqual);
