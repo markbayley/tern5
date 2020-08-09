@@ -1013,7 +1013,7 @@ a {
   height: 200px !important;
   /* border-style: solid; */
   /* border-color: #0f3540; */
-  flex-direction: unset !important;
+  /* flex-direction: unset !important; */
 }
 .tree-nodes {
   /* border-style: solid; */
