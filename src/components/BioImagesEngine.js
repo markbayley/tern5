@@ -47,7 +47,7 @@ const BioImagesEngine = () => {
         {/*Filter SideBar*/}
         <Col
           className="filterbar"
-          xl={2}
+          xl={3}
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader />
@@ -61,7 +61,7 @@ const BioImagesEngine = () => {
           sm={12}
           md={12}
           lg={10}
-          xl={10}
+          xl={9}
           style={{
             height: "80vh",
             padding: "0%",

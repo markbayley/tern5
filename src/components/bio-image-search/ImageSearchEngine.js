@@ -44,8 +44,8 @@ const ImageSearchEngine = () => {
     //       }
     //     })}
     // </div>
-    <div>
-      <ImageFilterTypeReactCkbTree/>
+    <div className="react-checkbox-tree">
+      <ImageFilterTypeReactCkbTree />
     </div>
   );
 };

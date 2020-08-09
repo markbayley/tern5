@@ -337,7 +337,7 @@ const ImageFilterTypeReactCkbTree = () => {
   };
 
   return (
-    <div>
+    <div className="tree-nodes">
       <CheckboxTree
         nodes={nodes}
         checked={checked}

@@ -804,7 +804,7 @@ a {
 
 .map-frame {
   height: 100%;
-  width: 100%;
+  width: auto;
 
   /*   We use outline over border as has issues in some cases */
 }
@@ -974,11 +974,6 @@ a {
   font-size: 14px;
 }
 
-.filterbar {
-  z-index: "9";
-  height: 190vh;
-}
-
 @media (max-width: 1024px) {
   .footer-col {
     width: 50%;
@@ -988,9 +983,9 @@ a {
     display: none;
   }
 
-  .filterbar {
+  /* .filterbar {
     height: 80vh;
-  }
+  } */
 }
 @media (max-width: 767px) {
   .footer-col {
@@ -1005,9 +1000,35 @@ a {
   }
 
   .filterbar {
-    height: 80vh;
+    width: 500px !important;
+    z-index: "9";
+    height: 190vh;
   }
 }
+/* Filter checkbox tree override styles */
+.react-checkbox-tree {
+  width: auto;
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 200px !important;
+  /* border-style: solid; */
+  /* border-color: #0f3540; */
+  flex-direction: unset !important;
+}
+.tree-nodes {
+  /* border-style: solid; */
+  /* border-color: red; */
+  height: auto;
+  width: 400px !important;
+}
+.rct-title {
+  font-size: 1.2em !important;
+}
+.rct-node-icon {
+  color: #065f65 !important;
+}
+/* End checkbox tree css */
+
 @media (max-width: 400px) {
   .above-header-section .above-header-section-1 {
     width: 40% !important;
