@@ -2,7 +2,9 @@ import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
 
-const ImageFilterType = ({ imageFilter, header}) => {
+const ImageFilterType = ({ imageFilter, header }) => {
+  // console.log("header:", header);
+  // console.log("imageFilter", imageFilter);
   return (
     <div style={{ marginLeft: "1%" }} key="key">
       <Accordion>

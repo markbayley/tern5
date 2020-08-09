@@ -7,7 +7,7 @@ const SearchEngine = () => {
   const bioImageDocuments = useSelector((state) => state.search.hits);
   const aggregation = useSelector((state) => state.search.aggregation);
 
-  console.log("In SearchEngine. bioImageDocuments=", bioImageDocuments);
+  // console.log("In SearchEngine. bioImageDocuments=", bioImageDocuments);
   return (
     <Row>
       {Object.keys(bioImageDocuments).map((site_id) => (

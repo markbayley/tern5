@@ -19,7 +19,8 @@ const BioMapEngine = () => {
   const [showMapButtonLabel, setShowMapButtonLabel] = useState("Hide Map");
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
   const bioImageDocuments = useSelector((state) => state.search.hits);
-  console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
+  
+  // console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
   // TODO not used yet - use it later!
   // const selectionRange = {
   //   startDate: new Date(),

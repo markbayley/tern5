@@ -14,7 +14,7 @@ const ImageFilter = ({ id, value }) => {
 
   //Not used yet - experimenting with handleChange!
   const handleFilter = (filterValue) => {
-    console.log("in ImageFilter in handleFilter(). ", filterValue);
+    // console.log("in ImageFilter in handleFilter(). ", filterValue);
     var arr = filterValue.split("=");
     const fKey = arr[0];
     const fValue = arr[1];
