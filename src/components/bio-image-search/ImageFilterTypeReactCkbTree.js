@@ -17,14 +17,14 @@ import {
 } from "react-icons/md";
 
 const ImageFilterTypeReactCkbTree = () => {
-  const filters = useSelector((state) => state.search.filters);
+  const filters = useSelector((state) => state.search.staticFilters);
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
   const [checked, setChecked] = useState([]);
   const [expanded, setExpanded] = useState([]);
 
-  //console.log("filters=", filters);
+  console.log("filters=", filters);
 
   const parseDate = (value) => {
     const y = value.substr(0, 4);
