@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
+import { selectedFilterAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
-import { parseBioImagesDate } from '../../bio_utils/bio_helpers';
+import { parseBioImagesDate } from "../../bio_utils/bio_helpers";
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 import {
@@ -26,9 +26,8 @@ const ImageFilterTypeReactCkbTree = () => {
   const [expanded, setExpanded] = useState([]);
 
   console.log("filters=", filters);
-  
+
   // Create checkbox tree nodes
-  // Image Types for now
   let nodes = [
     {
       value: "Sites",
@@ -121,25 +120,49 @@ const ImageFilterTypeReactCkbTree = () => {
   }
 
   const handleOnChecked = (selected) => {
-    console.log("checked: ", selected);
-    console.log("expanded: ", expanded);
+    // console.log("checked: ", selected);
+    // console.log("expanded: ", expanded);
     setChecked(selected);
 
     //Collect checked sites
-    const selectedSites = [];
+    const selectedFilterItems = {
+      site_id: [],
+      image_type: [],
+      image_type_sub: [],
+      plot: [],
+      site_visit_id: [],
+    };
     selected.map((item) => {
       if (item.includes("site_id_")) {
-        // console.log("item=", item);
         const site = item.split("site_id_");
-        // console.log("site=", site[1]);
-        selectedSites.push(site[1]);
+        selectedFilterItems["site_id"].push(site[1]);
+      }
+      if (item.includes("image_type_")) {
+        const image = item.split("image_type_");
+        selectedFilterItems["image_type"].push(image[1]);
+      }
+      if (item.includes("image_type_sub_")) {
+        const imageSub = item.split("image_type_sub_");
+        selectedFilterItems["image_type_sub"].push(imageSub[1]);
+      }
+      if (item.includes("plot_")) {
+        const plot = item.split("plot_");
+        selectedFilterItems["plot"].push(plot[1]);
+      }
+      if (item.includes("site_visit_id_")) {
+        const siteVisitId = item.split("site_visit_id_");
+        selectedFilterItems["site_visit_id"].push(siteVisitId[1]);
       }
     });
-    const siteFilter = { site_id: selectedSites[0] };
-    const updatedFilter = { ...selectedFilter, ...siteFilter };
+
+    // Note: the extraction below will change once the api can handle
+    // arrays. For now I am just extracting the first item and for that
+    // matter just the first of site name and first of image type.
+    const siteFilter = { site_id: selectedFilterItems["site_id"][0] };
+    const siteImage = { image_type: selectedFilterItems["image_type"][0] };
+    const updatedFilter = { ...selectedFilter, ...siteFilter, ...siteImage };
+
     dispatch(selectedFilterAction(updatedFilter));
-    //TODO Add selected image types
-    //TODO Add site visit date
   };
 
   const icons = {
