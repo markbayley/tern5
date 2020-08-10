@@ -33,7 +33,7 @@ const ImageMarker = (props) => {
       })}
       key={props.id}
       position={props.sitePosition}
-      onClick={handleFilter}
+      //onClick={handleFilter} -mosheh disabled it!
     >
       {" "}
       <br />
