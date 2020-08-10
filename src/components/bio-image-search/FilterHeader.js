@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ResetFilter from "../buttons/ResetFilter";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSearchAction } from "../../store/reducer";
@@ -9,6 +10,9 @@ const FilterHeader = () => {
     selectedFilter: {},
   };
 
+  const searchmodes = ["Map", "Images"];
+  const [mySearch, setMySearch] = useState("Map");
+
   const resetFilter = () => {
     console.log("Firing.. reset all filters!!");
     dispatch(fetchSearchAction(selectedFilter));
@@ -17,20 +21,13 @@ const FilterHeader = () => {
     <h5
       style={{
         color: "#fff",
-        backgroundColor: "#ED694B",
+        backgroundColor: "#00565D",
         padding: "20px 10px 20px 10px",
         marginBottom: "1px",
       }}
     >
-      Filter Reset
-      <Button
-        style={{ padding: "0px 3px 0px 3px", float: "right" }}
-        variant="reset"
-        size="sm"
-        onClick={resetFilter}
-      >
-        <img src="/img/icons/reset-icon-white.png" alt="reset" width="30px" />
-      </Button>
+      Filter
+      <ResetFilter resetFilter={resetFilter} />
     </h5>
   );
 };

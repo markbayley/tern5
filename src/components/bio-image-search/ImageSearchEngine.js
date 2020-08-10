@@ -24,15 +24,6 @@ const ImageSearchEngine = () => {
     //       return filterOrder[a] < filterOrder[b] ? 1 : -1;
     //     })
     //     .map((key) => {
-    //       if (key === "site_id") {
-    //         return (
-    //           <ImageFilterTypeReactCkbTree sites={filters[key]}
-    //             image_types={filters['image_type']}
-    //             image_type_sub={filters['image_type_sub']}
-    //             key={key}
-    //           />
-    //         );
-    //       } else {
     //         return (
     //           <ImageFilterType
     //             imageFilter={filters[key]}
@@ -41,7 +32,6 @@ const ImageSearchEngine = () => {
     //             // handleFilter={(i) => handleFilter(i)}
     //           />
     //         );
-    //       }
     //     })}
     // </div>
     <div className="react-checkbox-tree">

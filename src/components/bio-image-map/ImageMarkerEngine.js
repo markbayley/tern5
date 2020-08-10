@@ -1,13 +1,15 @@
 import React from "react";
 import ImageMarker from "./ImageMarker";
+// import BreadCrumb from "../BreadCrumb";
 
 const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
   var popup = "";
   var tooltip = "";
   var sitePosition = bioImageDocument.centre_point;
 
-  // console.log("siteLocation", siteLocation)
-  
+  console.log("siteLocation", siteLocation)
+  console.log("bioImageDocument", bioImageDocument)
+
   for (var this_key in bioImageDocument.image_types) {
     //console.log(this_key);
     for (var sub_key in bioImageDocument.image_types[this_key]) {
@@ -36,6 +38,10 @@ const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
       id={siteLocation}
       key={siteLocation}
       label={siteLocation}
+      name={bioImageDocument.site_id.label}
+      images={bioImageDocument.image_type.label}
+      plot={bioImageDocument.plot.label}
+      date={bioImageDocument.site_visit_id}
     />
   );
 };

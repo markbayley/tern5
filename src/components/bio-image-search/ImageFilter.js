@@ -63,6 +63,7 @@ const ImageFilter = ({ id, value }) => {
         </Form.Group>
       </div>
     </div>
+    // + " (" + value.doc_count + " Images)"
   );
 };
 export default ImageFilter;

@@ -1,53 +1,110 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TopBar from "./TopBar";
 import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
 import BreadCrumb from "./BreadCrumb";
 import Footer from "./Footer";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Button, Image } from "react-bootstrap";
 import DateRange from "./DateRange";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
-import Toggle from "./buttons/Toggle";
-import MapNav from "./MapNav";
+// import Toggle from "./buttons/Toggle";
+// import MapNav from "./MapNav";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 import { fetchSearchAction } from "../store/reducer";
+import Side from "./test/Side.jsx";
 
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
-  // const loading = useSelector((state) => state.search.isLoadingSearch);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
-  // TODO fix this hook! I dont to render everything all the time!
-  // TODO do something about the selectedFilter value!!
+  // TODO Look at this life cycle again and improve if required
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
     dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
   }, [selectedFilter]);
 
-  //TODO to be implemented later!
+  //TODO to be implemented later - if ever!
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
     //setSelectedFilter({ site_id: id });
     console.log("filterSiteID", selectedFilter);
   };
 
-  // if (loading === false) {
+  /*Map Image Toggle*/
+  const Toggle = () => {
+    const searchmodes = ["Map", "Images"];
+    const [mySearch, setMySearch] = useState("Map");
+
+    return (
+      <>
+        <div
+          style={{
+            position: "absolute",
+            left: "75px",
+            top: "165px",
+            zIndex: "10",
+          }}
+          role="group"
+          aria-label="toggle"
+        >
+          {searchmodes.map((searchmode) => (
+            <Button
+              style={{
+                color: "#fff",
+                border: "2px solid rgba(84, 179, 166, 0.9)",
+                borderRadius: "35px",
+              }}
+              variant="btntoggle"
+              className="btntoggle"
+              key={searchmode}
+              onClick={() => setMySearch(searchmode)}
+            >
+              {searchmode}
+            </Button>
+          ))}
+        </div>
+        <Col
+          fluid style={{
+            height: "80vh",
+            padding: "0%",
+            margin: "0%",
+          }}
+        >
+          {mySearch === "Map" && (
+            <div>
+              <BioMapEngine />
+            </div>
+          )}
+          {mySearch === "Images" && (
+            <div>
+              <SearchEngine
+              // bioImageDocuments={bioState.hits}
+              // aggregation={bioState.aggregation}
+              // handleFilter={handleFilter}
+              />
+            </div>
+          )}
+        </Col>
+      </>
+    );
+  };
+
   return (
     <div id="map">
       <TopBar />
       <SearchBar />
-      {/* <MapNav /> */}
+      <Side />
       <IconBar />
       <Row>
         {/*Filter SideBar*/}
         <Col
+          lg="auto"
           className="filterbar"
-          xl={3}
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader />
@@ -57,37 +114,17 @@ const BioImagesEngine = () => {
           <Favourite />
         </Col>
         {/*Leaflet Map */}
-        <Col
-          sm={12}
-          md={12}
-          lg={10}
-          xl={9}
-          style={{
-            height: "80vh",
-            padding: "0%",
-            margin: "0%",
-          }}
-        >
-          <div className="map-container">
-            <BioMapEngine />
-            {/*End of Leaflet  Map */}
-            <BreadCrumb />
-            {/*Photo Gallery */}
-            <div id="gallery"></div>
-            <SearchEngine />
-          </div>
-        </Col>
+        <Toggle />
+        <div className="map-container">
+          {/*End of Leaflet  Map */}
+
+          {/*Photo Gallery */}
+          <div id="gallery"></div>
+        </div>
       </Row>
-      {/* <Toggle /> */}
+      <BreadCrumb />
       <Footer />
     </div>
   );
-  // } else {
-  //   return (
-  //     <div>
-  //       <p>Loading....</p>
-  //     </div>
-  //   );
-  // }
 };
 export default BioImagesEngine;

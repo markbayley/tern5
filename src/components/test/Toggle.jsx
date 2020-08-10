@@ -56,7 +56,7 @@ const Toggle = () => {
                         className="btn-group"
                         role="group"
                         aria-label="toggle"
-                        m
+                        
                     >
                         {searchmodes.map(searchmode => (
                             <Button style={{fontWeight: "100", color: "#065f65", borderColor: "1px solid #065f65"}}
@@ -67,7 +67,7 @@ const Toggle = () => {
                                 className={"btn btn-light border-dark "}
                                 onClick={() => setMySearch(searchmode)}
                             >
-                                {searchmode.toLocaleUpperCase()}
+                             hi   {searchmode.toLocaleUpperCase()}
                             </Button>
                         ))}
                     </div>

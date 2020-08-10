@@ -1,37 +1,46 @@
 import React from "react";
-import { Accordion, Card, Button } from "react-bootstrap";
+import { Accordion, Card, Button, Col } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
+import IconButton from "./IconButton";
 
 const ImageFilterType = ({ imageFilter, header }) => {
   // console.log("header:", header);
   // console.log("imageFilter", imageFilter);
   return (
-    <div style={{ marginLeft: "1%" }} key="key">
+    <div
+      style={{
+        margin: "0% 1%",
+        textTransform: "capitalize",
+        color: "#065f65",
+        fontWeight: "450",
+      }}
+      key="key"
+    >
       <Accordion>
         <Card>
           <Accordion.Toggle
+            className="accordion"
             as={Card.Header}
             eventKey="0"
+            //onClick={() => handleFilter(header + "=")}
             style={{
-              backgroundColor: "#fff",
-              borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+              // backgroundColor: "#fff",
+              //borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+              textTransform: "capitalize",
+              color: "#065f65",
+              fontWeight: "500",
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            <Button
-              style={{
-                width: "105%",
-                textTransform: "capitalize",
-                color: "#065f65",
-                fontWeight: "500",
-              }}
-              variant="outline"
-            >
-              {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
-              <img src="/img/quickview.svg" width="40px" alt="" />
-            </Button>
+            {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
+            {/*<img src="/img/quickview.svg" width="40px" alt="" />*/}
+            <Col style={{ display: "flex", justifyContent: "flex-end" }}>
+              <IconButton />
+            </Col>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
-            <Card.Body>
+            <Card.Body style={{ paddingBottom: "0px" }}>
               <ul>
                 {Object.keys(imageFilter).map((key1) => (
                   <ImageFilter
@@ -48,6 +57,7 @@ const ImageFilterType = ({ imageFilter, header }) => {
           </Accordion.Collapse>
         </Card>
       </Accordion>
+
       <hr
         style={{
           border: "0.5px solid #66b3a6",

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
+import { parseBioImagesDate } from '../../bio_utils/bio_helpers';
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 import {
@@ -25,15 +26,7 @@ const ImageFilterTypeReactCkbTree = () => {
   const [expanded, setExpanded] = useState([]);
 
   console.log("filters=", filters);
-
-  // Hack to fix the visit date display
-  // format.
-  const parseDate = (value) => {
-    const y = value.substr(0, 4);
-    const m = value.substr(4, 2);
-    const d = value.substr(6, 2);
-    return y + "-" + m + "-" + d;
-  };
+  
   // Create checkbox tree nodes
   // Image Types for now
   let nodes = [
@@ -102,7 +95,8 @@ const ImageFilterTypeReactCkbTree = () => {
     const siteVisitDates = filters["site_visit_id"];
     siteVisitDates.map((visitDate) => {
       const siteVisitKey = "site_visit_id_" + visitDate.key;
-      const label = parseDate(visitDate.label);
+      // const label = parseDate(visitDate.label);
+      const label = parseBioImagesDate(visitDate.label);
       nodes[2].children.push({
         value: siteVisitKey,
         label: label,

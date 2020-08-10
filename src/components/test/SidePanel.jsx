@@ -3,7 +3,7 @@ import { Button, Col } from "react-bootstrap";
 
 import { Accordion, Card, CardTitle } from "react-bootstrap";
 
-import Datepicker from '../Datepicker';
+
   
 
   
@@ -89,7 +89,7 @@ import Datepicker from '../Datepicker';
             </Accordion>
            
 
-            <Datepicker />
+     
 
             <Accordion>
                 <Card style={{border: "white"}}>
