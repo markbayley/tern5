@@ -15,9 +15,9 @@ const initialState = {
 
 const searchReducer = createReducer(initialState, {
   [fetchSearchAction]: (state, action) => {
-    //console.log("in searchReducer. action", action);
     state.isLoadingSearch = true;
-    state.selectedFilter = action.payload.selectedFilter;
+    state.selectedFilter = action.payload;
+    
   },
   [fetchSearchDoneAction]: (state, action) => {
     state.isLoadingSearch = false;

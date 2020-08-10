@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 import IconBar from "./IconBar";
 import BreadCrumb from "./BreadCrumb";
 import Footer from "./Footer";
-import { Col, Row, Button, Image } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import DateRange from "./DateRange";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
@@ -25,7 +25,8 @@ const BioImagesEngine = () => {
   // TODO Look at this life cycle again and improve if required
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
-    dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
+    // dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
+    dispatch(fetchSearchAction(selectedFilter));
   }, [selectedFilter]);
 
   //TODO to be implemented later - if ever!
@@ -45,7 +46,7 @@ const BioImagesEngine = () => {
         <div
           style={{
             position: "absolute",
-            left: "75px",
+            left: "105px",
             top: "165px",
             zIndex: "10",
           }}
@@ -69,7 +70,8 @@ const BioImagesEngine = () => {
           ))}
         </div>
         <Col
-          fluid style={{
+          fluid
+          style={{
             height: "80vh",
             padding: "0%",
             margin: "0%",
@@ -82,11 +84,7 @@ const BioImagesEngine = () => {
           )}
           {mySearch === "Images" && (
             <div>
-              <SearchEngine
-              // bioImageDocuments={bioState.hits}
-              // aggregation={bioState.aggregation}
-              // handleFilter={handleFilter}
-              />
+              <SearchEngine />
             </div>
           )}
         </Col>

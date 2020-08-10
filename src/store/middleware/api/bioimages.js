@@ -55,11 +55,11 @@ export function fetchFavourites() {
 
 export function fetchSearch(params) {
   // Where we're fetching data from
-  const { selectedFilter } = params;
-  console.log("in API fetchSearch(). selectedFilter=", selectedFilter);
+  // const { selectedFilter } = params;
+  console.log("in API fetchSearch(). selectedFilter=", params);
   return callAPI({
     url: "search",
-    params: selectedFilter,
+    params: params,
   });
 }
 

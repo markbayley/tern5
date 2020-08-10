@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import ResetFilter from "../buttons/ResetFilter";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchAction } from "../../store/reducer";
+import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 
 const FilterHeader = () => {
   const dispatch = useDispatch();
-  const selectedFilter = {
-    selectedFilter: {},
-  };
 
   const searchmodes = ["Map", "Images"];
   const [mySearch, setMySearch] = useState("Map");
 
   const resetFilter = () => {
     console.log("Firing.. reset all filters!!");
-    dispatch(fetchSearchAction(selectedFilter));
+    // dispatch(fetchSearchAction(selectedFilter));
+    dispatch(selectedFilterAction({}));
   };
   return (
     <h5
@@ -27,7 +25,8 @@ const FilterHeader = () => {
       }}
     >
       Filter
-      <ResetFilter resetFilter={resetFilter} />
+      {/* Mosheh disabled it - useless with checkbox tree structure now! */}
+      {/* <ResetFilter resetFilter={resetFilter} /> */}
     </h5>
   );
 };
