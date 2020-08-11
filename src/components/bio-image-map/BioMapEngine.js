@@ -20,7 +20,8 @@ const BioMapEngine = () => {
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
   const bioImageDocuments = useSelector((state) => state.search.hits);
 
-  // console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
+  // console.log("In BioMapEngine. bioImageDocumentHits=", bioImageDocuments);
+
   // TODO not used yet - use it later!
   // const selectionRange = {
   //   startDate: new Date(),
@@ -90,11 +91,11 @@ const BioMapEngine = () => {
           </FeatureGroup>
 
           {/* API Markers */}
-          {Object.keys(bioImageDocuments).map((siteLocationAsIndex) => (
+          {bioImageDocuments.map((bioImageDocument) => (
             <ImageMarkerEngine
-              bioImageDocument={bioImageDocuments[siteLocationAsIndex]}
-              siteLocation={siteLocationAsIndex}
-              key={siteLocationAsIndex}
+              bioImageDocument={bioImageDocument["_source"]}
+              siteLocation={bioImageDocument["_source"]["site_id"]["value"]}
+              key={bioImageDocument["_id"]}
             />
           ))}
         </Map>

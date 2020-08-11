@@ -17,17 +17,20 @@ const searchReducer = createReducer(initialState, {
   [fetchSearchAction]: (state, action) => {
     state.isLoadingSearch = true;
     state.selectedFilter = action.payload;
-    
   },
   [fetchSearchDoneAction]: (state, action) => {
     state.isLoadingSearch = false;
-    const { hits, aggregation, aggregations } = action.payload;
-    state.hits = hits;
-    state.filters = aggregations;
-    state.aggregation = aggregation;
-    if (isEmpty(state.staticFilters)) {
-      state.staticFilters = aggregations;
+    // const { hits, aggregation, aggregations } = action.payload;
+    const { hits } = action.payload;
+    console.log("fetch payload=", action.payload);
+    if (hits !== null) {
+      state.hits = hits["hits"];
     }
+    // state.filters = aggregations;
+    // state.aggregation = aggregation;
+    // if (isEmpty(state.staticFilters)) {
+    //   state.staticFilters = aggregations;
+    // }
   },
   [selectedFilterAction]: (state, action) => {
     state.selectedFilter = { ...state.selectedFilter, ...action.payload };

@@ -5,17 +5,28 @@ import { useSelector } from "react-redux";
 
 const SearchEngine = () => {
   const bioImageDocuments = useSelector((state) => state.search.hits);
-  const aggregation = useSelector((state) => state.search.aggregation);
+  //const aggregation = useSelector((state) => state.search.aggregation);
 
   // console.log("In SearchEngine. bioImageDocuments=", bioImageDocuments);
+  // return (
+  //   <Row>
+  //     {bioImageDocuments.map((bioImageDocument) => (
+  //       <SearchResult
+  //         bioImageDocument={bioImageDocument['_source']}
+  //         aggregation={aggregation}
+  //         site_id={bioImageDocument["_source"]["site_id"]["value"]}
+  //         key={bioImageDocument['_id']}
+  //       />
+  //     ))}
+  //   </Row>
+  // );
   return (
     <Row>
-      {Object.keys(bioImageDocuments).map((site_id) => (
+      {bioImageDocuments.map((bioImageDocument) => (
         <SearchResult
-          bioImageDocument={bioImageDocuments[site_id]}
-          aggregation={aggregation}
-          site_id={site_id}
-          key={site_id}
+          bioImageDocument={bioImageDocument["_source"]}
+          site_id={bioImageDocument["_source"]["site_id"]["value"]}
+          key={bioImageDocument["_id"]}
         />
       ))}
     </Row>
