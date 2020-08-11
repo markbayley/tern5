@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedFilterAction } from "../../store/reducer";
+import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
 import { parseBioImagesDate } from "../../bio_utils/bio_helpers";
 import CheckboxTree from "react-checkbox-tree";
@@ -18,15 +18,19 @@ import {
 } from "react-icons/md";
 
 const ImageFilterTypeReactCkbTree = () => {
-  const filters = useSelector((state) => state.search.staticFilters);
+  const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
   const [checked, setChecked] = useState([]);
   const [expanded, setExpanded] = useState([]);
 
-  console.log("filters=", filters);
+  console.log("filters=", facets);
 
+  useEffect(() => {
+    console.log("In useEffect of Facets");
+    dispatch(fetchFacetsAction());
+  }, []);
   // Create checkbox tree nodes
   let nodes = [
     {
@@ -39,86 +43,93 @@ const ImageFilterTypeReactCkbTree = () => {
       label: "Image Types",
       children: [],
     },
-    {
-      value: "Site Visit Date",
-      label: "Site Visit Date",
-      children: [],
-    },
-    {
-      value: "Plots",
-      label: "Plots",
-      children: [],
-    },
   ];
 
-  if (!isEmpty(filters)) {
+  if (!isEmpty(facets)) {
     //Load sites to checkbox tree
-    const sites = filters["site_id"];
+    const sites = facets["site_id"]["buckets"];
     sites.map((site) => {
-      const siteKey = "site_id_" + site.key;
-      nodes[0].children.push({ value: siteKey, label: site.label });
-      // console.log("Number of images: ", data.doc_count);
+      // Get site name
+      let siteNameValue = "Site." + site["key"];
+      let siteNameLabel =
+        site["hits"]["hits"]["hits"][0]["_source"]["site_id"].label;
+      //   let totalSites = site["doc_count"];
+
+      let siteParent = {
+        value: siteNameValue,
+        label: siteNameLabel,
+        children: [],
+      };
+
+      // Get site plots
+      const sitePlots = site["plot"]["buckets"];
+      // For each plot process its
+      //children which are visit date
+
+      let plotParent = {
+        value: "Plots_" + siteNameValue,
+        label: "Plots",
+        children: [],
+      };
+      sitePlots.map((plot) => {
+        let plotNameValue = siteNameValue + "_Plot." + plot["key"];
+        let plotNameLabel = plot["key"];
+        // let totalPlots = plot["doc_count"];
+        //for each plot process plot/site visit date
+        let visitDateParent = {
+          value: "VisitDates_" + plotNameValue,
+          label: "Visit Date",
+          children: [],
+        };
+        plot["site_visit_id"]["buckets"].map((visit) => {
+          //   const totalImagesPerVisit = visit["doc_count"];
+          const plotVisitValue = plotNameValue + "_Visit." + visit["key"];
+          const plotVisitLabel = parseBioImagesDate(visit["key"]);
+          visitDateParent.children.push({
+            value: plotVisitValue,
+            label: plotVisitLabel,
+          });
+        });
+        let tempPlotParent = {
+          value: plotNameValue,
+          label: plotNameLabel,
+          children: [],
+        };
+        tempPlotParent["children"].push(visitDateParent);
+        plotParent.children.push(tempPlotParent);
+      });
+      siteParent.children.push(plotParent);
+      nodes[0].children.push(siteParent);
       return null;
     });
 
     //Load images types and image subtypes to checkbox tree
-    const image_type = filters["image_type"];
-    const image_type_sub = filters["image_type_sub"];
-    image_type.map((image_doc) => {
-      if (image_doc.key === "ancillary") {
-        //get sub types of ancillary
-        let sub_types = [];
-        image_type_sub.map((sub_type) => {
-          const value = sub_type.key.replace(/%20/gi, " ");
-          const label = startCase(sub_type.label.replace(/%20/gi, " "));
-          const imageSubTypeKey = "image_type_sub_" + value;
-          sub_types.push({ value: imageSubTypeKey, label: label });
-          return null;
-        });
-        const ancillaryKey = "image_type_" + image_doc.key;
-        const ancillary = { value: ancillaryKey, label: image_doc.label };
-        ancillary["children"] = sub_types;
-        nodes[1].children.push(ancillary);
-      } else {
-        //for lai,panorama,phenocam and photopoint
-        const anyimageKey = "image_type_" + image_doc.key;
-        nodes[1].children.push({
-          value: anyimageKey,
-          label: image_doc.label,
-        });
-      }
-      return null;
-    });
-
-    //Load Site visit dates to checkbox tree
-    const siteVisitDates = filters["site_visit_id"];
-    siteVisitDates.map((visitDate) => {
-      const siteVisitKey = "site_visit_id_" + visitDate.key;
-      // const label = parseDate(visitDate.label);
-      const label = parseBioImagesDate(visitDate.label);
-      nodes[2].children.push({
-        value: siteVisitKey,
-        label: label,
+    const image_types = facets["image_type"]["buckets"];
+    // const image_type_sub = facets["image_type_sub"];
+    image_types.map((image_type) => {
+      let sub_types = [];
+      image_type["image_type_sub"]["buckets"].map((sub_type) => {
+        //const subTypeCount = sub_type.doc_count;
+        const imageSubTypeValue = sub_type.key.replace(/%20/gi, " ");
+        const imageSubTypeLabel = startCase(imageSubTypeValue);
+        const imageSubTypeKey = "image_type_sub_" + imageSubTypeValue;
+        sub_types.push({ value: imageSubTypeKey, label: imageSubTypeLabel });
+        return null;
       });
-      return null;
-    });
+      const imageTypeValue = "image_type_" + image_type.key;
+      const imageTypeLabel = startCase(image_type.key);
+      const imageTypeParent = { value: imageTypeValue, label: imageTypeLabel };
+      imageTypeParent["children"] = sub_types;
+      nodes[1].children.push(imageTypeParent);
 
-    // Load Site Plots to checkbox tree
-    //Note: Temp - plots should be a sub tree of
-    // Sites. However I cannot link plots to site because
-    // of API limitations - to be fixed!
-    const sitePlots = filters["plot"];
-    sitePlots.map((plot) => {
-      const plotKey = "plot_" + plot.key;
-      nodes[3].children.push({
-        value: plotKey,
-        label: plot.label,
-      });
       return null;
     });
     //console.log("nodes=", nodes);
   }
 
+  //TODO Mosheh 11-08-2020 8:49pm. This handle has not been checked or
+  //modified after the API changed - So not working
+  // properly. I am very tired now I will look at it tommorrow!!
   const handleOnChecked = (selected) => {
     // console.log("checked: ", selected);
     // console.log("expanded: ", expanded);
@@ -198,6 +209,7 @@ const ImageFilterTypeReactCkbTree = () => {
   );
 };
 
+//TODO remove later.
 function areEqual(prevProps, nextProps) {
   return true;
 }

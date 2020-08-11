@@ -13,15 +13,15 @@ import { Link } from "react-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedFilterAction } from "../../store/reducer";
 
-const SearchResult = ({ bioImageDocument, aggregation, site_id }) => {
+const SearchResult = ({ bioImageDocument, site_id }) => {
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
-  let splitAggregation = null;
-  if (aggregation != null) {
-    const aggreSplit = aggregation.split(".");
-    splitAggregation = aggreSplit[0];
-  }
+  // let splitAggregation = null;
+  // if (aggregation != null) {
+  //   const aggreSplit = aggregation.split(".");
+  //   splitAggregation = aggreSplit[0];
+  // }
 
   const img_url = bioImageDocument.thumbnail_url;
 
@@ -29,14 +29,14 @@ const SearchResult = ({ bioImageDocument, aggregation, site_id }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleFilter = () => {
-    const fKey = splitAggregation;
-    const fValue = site_id;
-    const addFilter = { [fKey]: fValue };
-    // Add filter
-    const updatedFilter = { ...selectedFilter, ...addFilter };
-    dispatch(selectedFilterAction(updatedFilter));
-  };
+  // const handleFilter = () => {
+  //   const fKey = splitAggregation;
+  //   const fValue = site_id;
+  //   const addFilter = { [fKey]: fValue };
+  //   // Add filter
+  //   const updatedFilter = { ...selectedFilter, ...addFilter };
+  //   dispatch(selectedFilterAction(updatedFilter));
+  // };
 
   return (
     <Col xl={3} lg={6} md={6}>
@@ -170,7 +170,7 @@ const SearchResult = ({ bioImageDocument, aggregation, site_id }) => {
         </Modal.Footer>
       </Modal>
 
-      <Card id={aggregation} style={{ paddingTop: "0%", border: "#fff" }}>
+      <Card id={site_id} style={{ paddingTop: "0%", border: "#fff" }}>
         <div className="hvrbox">
           <Button
             variant="flat"
@@ -189,8 +189,7 @@ const SearchResult = ({ bioImageDocument, aggregation, site_id }) => {
                 style={{ textTransform: "capitalize" }}
               >
                 Search{" "}
-                {aggregation
-                  .replace("_", " ")
+                {site_id.replace("_", " ")
                   .replace("=", " ")
                   .replace("value", " ")
                   .replace(".", " ")
