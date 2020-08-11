@@ -63,19 +63,10 @@ export function fetchSearch(params) {
   });
 }
 
-//     fetch(search_url)
-//       // We get the API response and receive data in JSON format...
-//       .then((response) => response.json())
-//       // ...then we update the users state
-//       .then((data) =>
-//         this.setState({
-//           search: data,
-//           hits: data["hits"],
-//           filters: data["aggregations"],
-//           isLoadingSearch: false,
-//           aggregation: data["aggregation"],
-//         })
-//       )
-//       // Catch any errors we hit and update the app
-//       .catch((error) => this.setState({ error, isLoading: false }));
-//   }
+export function featchFacets(params) {
+  console.log("in API featchFacets(), params=", params);
+  return callAPI({
+    url: "facet",
+    params: params,
+  });
+}

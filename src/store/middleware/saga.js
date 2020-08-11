@@ -1,6 +1,11 @@
 // import { all, takeLatest, takeEvery, put, call } from "redux-saga/effects";
 import { all, takeLatest, put, call } from "redux-saga/effects";
-import { fetchSearchAction, fetchSearchDoneAction } from "../reducer";
+import {
+  fetchSearchAction,
+  fetchSearchDoneAction,
+  fetchFacetsAction,
+  fetchFacetsDoneAction,
+} from "../reducer";
 
 import { bioimages } from "./api";
 
@@ -14,10 +19,23 @@ function* fetchSearchSaga(action) {
   }
 }
 
+function* fetchFacetsSaga(action) {
+  try {
+    const { data } = yield call(bioimages.featchFacets, action.payload);
+    yield put(fetchFacetsDoneAction(data));
+  } catch (error) {
+    yield put(fetchFacetsDoneAction(error.message));
+  }
+}
+
+function* watchFetchFacetsSaga() {
+  yield takeLatest(fetchFacetsAction.type, fetchFacetsSaga);
+}
+
 function* watchFetchSearchSaga() {
   yield takeLatest(fetchSearchAction.type, fetchSearchSaga);
 }
 
 export function* rootSaga() {
-  yield all([watchFetchSearchSaga()]);
+  yield all([watchFetchSearchSaga(), watchFetchFacetsSaga()]);
 }
