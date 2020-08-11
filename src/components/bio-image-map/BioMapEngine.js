@@ -60,7 +60,7 @@ const BioMapEngine = ({ bioImageDocuments, handleFilter }) => {
 
           <FeatureGroup>
             <EditControl
-              position="topright"
+              position="bottomright"
               // onEdited={this._onEditPath}
               // onCreated={this._onCreate}
               // onDeleted={this._onDeleted}

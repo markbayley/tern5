@@ -19,7 +19,14 @@ import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 
-import Side from "./test/Side.jsx";
+import LeftSideBar from "../animations/LeftSideBar/index.js";
+import BurgerMenu from '../animations/BurgerMenu';
+import BurgerButton from "../animations/LeftSideBar/BurgerButton/index.js";
+
+
+
+
+
 
 
 // import { Link, scroller, animateScroll as scroll } from "react-scroll";
@@ -146,13 +153,11 @@ const BioImagesEngine = ({ initFilter }) => {
   /*Map Image Toggle*/
   const Toggle = () => {
     const searchmodes = ["Map", "Images"];
-    const Map = ["Map"];
-    const Images = ["Images"];
     const [mySearch, setMySearch] = useState("Map");
 
     return (
       <>
-      <div style={{position: 'absolute', right: '75px', top: '150px', zIndex: '10'}} >
+      <div style={{position: 'absolute', right: '5px', top: '80px', zIndex: '10'}} >
       {searchmodes.map((searchmode) => (
         <Button  
           variant="light"
@@ -200,11 +205,14 @@ const BioImagesEngine = ({ initFilter }) => {
 
   return (
     <div id="map">
+       
+       
       <TopBar />
-    
+   
       <SearchBar />
-      <Side />
+ 
       <IconBar />
+      <LeftSideBar />
       <Row >
 
         {/*Filter SideBar*/}
@@ -230,7 +238,7 @@ const BioImagesEngine = ({ initFilter }) => {
         <Toggle />
         {/*Leaflet Map */}
 
-     
+    
 
         <div className="map-container">
           {/*End of Leaflet  Map */}

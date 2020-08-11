@@ -8,9 +8,7 @@ const BurgerButton = ({ onClick }) => {
       role="button"
       onClick={onClick}
     >
-      <i></i>
-      <i></i>
-      <i></i>
+      <img src="img/chevron.png" height="30px"/>
     </div>
   );
 };
