@@ -1,16 +1,21 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 import SearchResult from "./SearchResult";
+import { useSelector } from "react-redux";
 
-const SearchEngine = ({ bioImageDocuments, aggregation, handleFilter }) => {
+const SearchEngine = () => {
+  const bioImageDocuments = useSelector((state) => state.search.hits);
+  const aggregation = useSelector((state) => state.search.aggregation);
+
+  // console.log("In SearchEngine. bioImageDocuments=", bioImageDocuments);
   return (
     <Row>
-      {Object.keys(bioImageDocuments).map((index) => (
+      {Object.keys(bioImageDocuments).map((site_id) => (
         <SearchResult
-          bioImageDocument={bioImageDocuments[index]}
-          bioImageDocumentId={aggregation + "=" + index}
-          key={index}
-          handleFilter={handleFilter}
+          bioImageDocument={bioImageDocuments[site_id]}
+          aggregation={aggregation}
+          site_id={site_id}
+          key={site_id}
         />
       ))}
     </Row>

@@ -34,17 +34,17 @@ function SearchBar() {
 
   function handleSubmit(event) {
     console.log(term);
+    alert("Sorry! Not yet implemented! Waiting for API endpoint :-)");
+    // const url =
+    //   "https://api.unsplash.com/search/photos?page=2&per_page=15&query=" +
+    //   term +
+    //   "&client_id=" +
+    //   clientId;
 
-    const url =
-      "https://api.unsplash.com/search/photos?page=2&per_page=15&query=" +
-      term +
-      "&client_id=" +
-      clientId;
-
-    axios.get(url).then((response) => {
-      console.log(response);
-      setResult(response.data.results);
-    });
+    // axios.get(url).then((response) => {
+    //   console.log(response);
+    //   setResult(response.data.results);
+    // });
   }
 
   const [show, setShow] = useState(false);
@@ -81,7 +81,6 @@ function SearchBar() {
                       marginBottom: "3%",
                       height: "35px",
                       marginTop: "0%",
-                      
                     }}
                   />
                   Bioimages
@@ -106,14 +105,13 @@ function SearchBar() {
                     style={{
                       width: "8%",
                       paddingTop: "2%",
-
                     }}
                   />
                   <FormControl
                     onChange={handleChange}
                     id="place"
                     type="text"
-                    placeholder="Search images by region or by site"
+                    placeholder="Search images by site"
                     style={{
                       fontSize: "20px",
                       color: "#00565D",
@@ -131,8 +129,7 @@ function SearchBar() {
                       width: "33px",
                       marginTop: "3.7%",
                       marginRight: "20px",
-                     borderRadius: "50px",
-
+                      borderRadius: "50px",
                     }}
                   ></Button>
                 </InputGroup>

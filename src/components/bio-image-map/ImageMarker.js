@@ -3,8 +3,26 @@ import { Marker, Popup, Tooltip } from "react-leaflet";
 import L from "leaflet";
 import { Button } from "react-bootstrap";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
+import { parseBioImagesDate } from "../../bio_utils/bio_helpers";
 
 const ImageMarker = (props) => {
+  const dispatch = useDispatch();
+  const selectedFilter = useSelector((state) => state.search.selectedFilter);
+
+  const formatedSiteVisitDate = parseBioImagesDate(props.date);
+
+  const handleFilter = () => {
+    console.log("in ImageMarker. handleFitlter()");
+    const addFilter = { site_id: props.siteLocation };
+    // Add filter
+    const updatedFilter = { ...selectedFilter, ...addFilter };
+    console.log("updatedFilter=", updatedFilter);
+    // dispatch(fetchSearchAction({ selectedFilter: updatedFilter }));
+    dispatch(selectedFilterAction(updatedFilter));
+  };
+
   return (
     <Marker
       icon={L.divIcon({
@@ -15,7 +33,7 @@ const ImageMarker = (props) => {
       })}
       key={props.id}
       position={props.sitePosition}
-      onClick={() => props.onClick()}
+      //onClick={handleFilter} -mosheh disabled it!
     >
       {" "}
       <br />
@@ -144,45 +162,44 @@ const ImageMarker = (props) => {
           </>
         </Link>
       </Popup> */}
-      <Tooltip >
-        <div style={{padding: "3px 7px"}}>
-        {/* <strong>
+      <Tooltip>
+        <div style={{ padding: "3px 7px" }}>
+          {/* <strong>
           <h6>Click marker to select {props.label}.</h6>
         </strong> */}
-        Site:{" "}
-        <a
-          href="www.tern.org"
-          style={{ textTransform: "capitalize", color: "#065f65" }}
-        >
-          {props.name}{" "}
-        </a>{" "}
-        <br />
-        Image Type:{" "}
-        <a
-          href="www.tern.org"
-          style={{ textTransform: "capitalize", color: "#065f65" }}
-        >
-          {props.images}
-        </a>{" "}
-        <br />
-        Plot:{" "}
-        <a
-          href="www.tern.org"
-          style={{ textTransform: "capitalize", color: "#065f65" }}
-        >
-          {props.plot}
-        </a>{" "}
-        <br />
-        Date:{" "}
-        <a
-          href="www.tern.org"
-          style={{ textTransform: "capitalize", color: "#065f65" }}
-        >
-          {props.date}
-        </a>{" "}
-        <br />
+          Site:{" "}
+          <a
+            href="www.tern.org"
+            style={{ textTransform: "capitalize", color: "#065f65" }}
+          >
+            {props.name}{" "}
+          </a>{" "}
+          <br />
+          Image Type:{" "}
+          <a
+            href="www.tern.org"
+            style={{ textTransform: "capitalize", color: "#065f65" }}
+          >
+            {props.images}
+          </a>{" "}
+          <br />
+          Plot:{" "}
+          <a
+            href="www.tern.org"
+            style={{ textTransform: "capitalize", color: "#065f65" }}
+          >
+            {props.plot}
+          </a>{" "}
+          <br />
+          Date:{" "}
+          <a
+            href="www.tern.org"
+            style={{ textTransform: "capitalize", color: "#065f65" }}
+          >
+            {formatedSiteVisitDate}
+          </a>{" "}
+          <br />
         </div>
-      
       </Tooltip>
     </Marker>
   );

@@ -3,31 +3,9 @@ import { Accordion, Card, Button, Col } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
 import IconButton from "./IconButton";
 
-
-const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
-
-  const icons = [
-    {
-      id: 1,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 2,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 3,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-    {
-      id: 4,
-      icon: <img src="/img/LAI.svg" alt="" />,
-    },
-  ];
-
-
-
-  
+const ImageFilterType = ({ imageFilter, header }) => {
+  // console.log("header:", header);
+  // console.log("imageFilter", imageFilter);
   return (
     <div
       style={{
@@ -38,11 +16,6 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
       }}
       key="key"
     >
-    
-  
-
-
-
       <Accordion>
         <Card>
           <Accordion.Toggle
@@ -60,10 +33,7 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
               alignItems: "center",
             }}
           >
-            {header
-              .replace("_", " ")
-              .replace("_", " ")
-              .replace("d", "D")}{" "}
+            {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
             {/*<img src="/img/quickview.svg" width="40px" alt="" />*/}
             <Col style={{ display: "flex", justifyContent: "flex-end" }}>
               <IconButton />
@@ -76,9 +46,10 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
                   <ImageFilter
                     value={imageFilter[key1]}
                     key={header + "=" + imageFilter[key1].key}
-                    handleFilter={() =>
-                      handleFilter(header + "=" + imageFilter[key1].key)
-                    }
+                    id={header + "=" + imageFilter[key1].key}
+                    // handleFilter={() =>
+                    //   handleFilter(header + "=" + imageFilter[key1].key)
+                    // }
                   />
                 ))}
               </ul>
@@ -86,7 +57,7 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-      
+
       <hr
         style={{
           border: "0.5px solid #66b3a6",
@@ -96,7 +67,6 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
       ></hr>
     </div>
   );
-  
 };
 
 export default ImageFilterType;

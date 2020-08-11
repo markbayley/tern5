@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
 import { Button, Col, Row, Form, Modal, Image, Navbar } from "react-bootstrap";
 
 function GalleryModal(props) {
-    const img_url = props.value.thumbnail_url;
+  const img_url = props.value.thumbnail_url;
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    return (
-        <>
-           <Modal size="lg" show={show} onHide={handleClose}>
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             {" "}
@@ -74,9 +74,8 @@ function GalleryModal(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-            
-        </>
-    )
+    </>
+  );
 }
 
-export default GalleryModal
+export default GalleryModal;

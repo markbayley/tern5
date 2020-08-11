@@ -1,0 +1,74 @@
+@import "~tern-react/dist/scss/colors.scss";
+
+.main-header {
+  .bioimages-branding {
+    color: $green-mid;
+  }
+
+  .searchbar {
+    background-image: url(/img/icons/search-bar2.png);
+    background-repeat: round;
+    color: $green-dark;
+
+    // width: 100%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
+    &:hover {
+      transition: background 5s;
+    }
+
+    img {
+      width: 8%;
+    }
+
+    input#place {
+      font-size: 20px;
+      color: $green-dark;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      width: 84%;
+
+      &::placeholder {
+        color: $green-light;
+        opacity: 1;
+      }
+
+      &:focus {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+
+    .searchbutton {
+      background-image: url(/img/icons/search-arrow.svg);
+      background-repeat: no-repeat;
+      background-color: white;
+      width: 33px;
+      height: 33px;
+      border-radius: 50px;
+
+      &:hover {
+        background-image: url(/img/icons/search-arrow-light.svg);
+        background-repeat: no-repeat;
+        background-color: $green-mid;
+        transition: background 1s;
+      }
+    }
+  }
+
+  .loginbutton {
+    color: $green-dark;
+    border: 1px solid $green-dark;
+
+    &:hover {
+      background-color: $green-dark;
+      color: white;
+    }
+  }
+}

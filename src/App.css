@@ -283,8 +283,66 @@ body {
   z-index: 11;
 }
 
+  /* .filterbar {
+    height: 80vh;
+  } */
+@media (max-width: 767px) {
+  .footer-col {
+    float: none;
+    text-align: center;
+    width: 100%;
+  }
+  .footer-column-2,
+  .footer-column-3,
+  .footer-column-4 {
+    display: none;
+  }
 
+  .filterbar {
+    width: 500px !important;
+    z-index: "9";
+    height: 190vh;
+  }
+}
+/* Filter checkbox tree override styles */
+.react-checkbox-tree {
+  width: auto;
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 200px !important;
+  /* border-style: solid; */
+  /* border-color: #0f3540; */
+  /* flex-direction: unset !important; */
+}
+.tree-nodes {
+  /* border-style: solid; */
+  /* border-color: red; */
+  height: auto;
+  width: 400px !important;
+}
+.rct-title {
+  font-size: 1.2em !important;
+}
+.rct-node-icon {
+  color: #065f65 !important;
+}
+/* End checkbox tree css */
 
+@media (max-width: 400px) {
+  .above-header-section .above-header-section-1 {
+    width: 40% !important;
+  }
+  .above-header-section .above-header-section-2 {
+    width: 60% !important;
+  }
+  .above-header-section .user-select a {
+    padding: 5px 27px 3px 59px;
+    background-position: 10px center;
+    font-size: 14px;
+    padding-left: 40px;
+    padding-right: 15px;
+  }
+}
 
 /* GALLERY */
 .hvrbox,
