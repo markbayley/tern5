@@ -21,7 +21,7 @@ function* fetchSearchSaga(action) {
 
 function* fetchFacetsSaga(action) {
   try {
-    const { data } = yield call(bioimages.featchFacets, action.payload);
+    const { data } = yield call(bioimages.fetchFacets, action.payload);
     yield put(fetchFacetsDoneAction(data));
   } catch (error) {
     yield put(fetchFacetsDoneAction(error.message));
