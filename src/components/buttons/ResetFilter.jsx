@@ -1,10 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import './buttons.scss';
+
 
 function ResetFilter({ resetFilter }) {
   return (
-    <Button
-      style={{ padding: "0px 3px 0px 3px", marginRight: '27px', float: "right" }}
+    <Button 
+      style={{ padding: "3px 3px 0px 3px", marginRight: '20px', float: "right"}}
       variant="reset"
       size="sm"
       onClick={resetFilter}

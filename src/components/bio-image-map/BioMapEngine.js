@@ -65,7 +65,7 @@ const BioMapEngine = () => {
           minZoom={mapInitState.zoom}
           maxBounds={bounds}
         >
-          <TileLayer
+          {/* <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
           />
@@ -73,7 +73,7 @@ const BioMapEngine = () => {
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          />
+          /> */}
 
           <TileLayer
             attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
@@ -82,7 +82,7 @@ const BioMapEngine = () => {
 
           <FeatureGroup>
             <EditControl
-              position="topright"
+              position="bottomright"
               // onEdited={this._onEditPath}
               // onCreated={this._onCreate}
               // onDeleted={this._onDeleted}

@@ -13,9 +13,7 @@ const BurgerMenu = () => {
         role="button"
         onClick={() => setStatus(status === 'open' ? 'close' : 'open')}
       >
-        <i className={status}></i>
-        <i className={status}></i>
-        <i className={status}></i>
+       
       </div>
     </nav>
   );
