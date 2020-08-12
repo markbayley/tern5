@@ -1,5 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import './buttons.scss';
+
 
 function ResetFilter({ resetFilter }) {
   return (

@@ -12,9 +12,10 @@ import {
   Modal,
 } from "react-bootstrap";
 import axios from "axios";
-import LoginButton from "./buttons/LoginButton";
-import RegisterButton from "./buttons/RegisterButton";
+import LoginButton from "../buttons/LoginButton";
+import RegisterButton from "../buttons/RegisterButton";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 
 {
@@ -81,6 +82,7 @@ function SearchBar() {
                       marginBottom: "3%",
                       height: "35px",
                       marginTop: "0%",
+                     
                     }}
                   />
                   Bioimages
@@ -93,7 +95,7 @@ function SearchBar() {
                   style={{
                     height: "65px",
                     width: "455px",
-                    paddingLeft: "2%",
+                    paddingLeft: "1.3%",
 
                   
                   }}
@@ -111,7 +113,7 @@ function SearchBar() {
                     onChange={handleChange}
                     id="place"
                     type="text"
-                    placeholder="Search images by site"
+                    placeholder="Search images by site or image type"
                     style={{
                       fontSize: "20px",
                       color: "#00565D",

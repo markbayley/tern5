@@ -34,6 +34,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: hidden; /* Hide horizontal scrollbar */
 
   width: 100vw;
   height: 100vh !important;
@@ -108,6 +109,7 @@ body {
 }
 .above-header .above-header-section-wrap {
   justify-content: flex-end;
+  padding-right: 15px;
 }
 #data {
   color: #fff !important;
@@ -309,7 +311,7 @@ body {
   width: auto;
   overflow-y: auto;
   overflow-x: auto;
-  height: 200px !important;
+  height: 310px !important;
   /* border-style: solid; */
   /* border-color: #0f3540; */
   /* flex-direction: unset !important; */
@@ -318,10 +320,10 @@ body {
   /* border-style: solid; */
   /* border-color: red; */
   height: auto;
-  width: 400px !important;
+  width: 350px !important;
 }
 .rct-title {
-  font-size: 1.2em !important;
+  font-size: 1.03em !important;
 }
 .rct-node-icon {
   color: #065f65 !important;
@@ -484,6 +486,7 @@ body {
   position: fixed;
   z-index: 200;
 }
+
 
 
 

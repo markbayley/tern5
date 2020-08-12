@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import './buttons.scss';
+
 
 function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 2000));
@@ -19,23 +21,6 @@ function simulateNetworkRequest() {
     const handleClick = () => setLoading(true);
 
     return (
-      <>
-      <style type="text/css">
-      {`
-      .btn-flat {
-        background-color: #fff;
-        color:  #00565D;
-        border: 1px solid #00565D;
-      }
-
-      .btn-flat:hover {
-        background-color: #00565D;
-        color:  #fff;
-        border: 1px solid #00565D;
-      }
-      
-      `}
-      </style>
       <Button 
         variant="flat"
         size="md" 
@@ -45,7 +30,7 @@ function simulateNetworkRequest() {
       >
       REGISTER
       </Button>
-      </>
+  
     );
   }
 

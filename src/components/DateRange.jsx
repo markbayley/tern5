@@ -51,6 +51,9 @@ class DateRange extends React.Component {
           </h6>
 
           <DateRangePicker
+            small={true}
+            noBorder={true}
+            keepOpenOnDateSelect={true}
             startDateAriaLabel="fff"
             startDate={this.state.startDate}
             startDateId="start_date_id"
