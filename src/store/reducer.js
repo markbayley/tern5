@@ -40,7 +40,8 @@ const searchReducer = createReducer(initialState, {
     // }
   },
   [selectedFilterAction]: (state, action) => {
-    state.selectedFilter = { ...state.selectedFilter, ...action.payload };
+    // state.selectedFilter = { ...state.selectedFilter, ...action.payload };
+    state.selectedFilter = {...action.payload };
   },
   [fetchFacetsDoneAction]: (state, action) => {
     const { aggregations } = action.payload;

@@ -31,6 +31,7 @@ const ImageFilterTypeReactCkbTree = () => {
     console.log("In useEffect of Facets");
     dispatch(fetchFacetsAction());
   }, []);
+  
   // Create checkbox tree nodes
   let nodes = [
     {
@@ -39,18 +40,21 @@ const ImageFilterTypeReactCkbTree = () => {
       children: [],
     },
     {
-      value: "Image Types",
+      value: "ImageTypes",
       label: "Image Types",
       children: [],
     },
   ];
+
+  const sitesPrefix = "Sites.";
+  const imageTypesPrefix = "ImagesTypes.";
 
   if (!isEmpty(facets)) {
     //Load sites to checkbox tree
     const sites = facets["site_id"]["buckets"];
     sites.map((site) => {
       // Get site name
-      let siteNameValue = "Site." + site["key"];
+      let siteNameValue = site["key"];
       let siteNameLabel =
         site["hits"]["hits"]["hits"][0]["_source"]["site_id"].label;
       //   let totalSites = site["doc_count"];
@@ -72,7 +76,7 @@ const ImageFilterTypeReactCkbTree = () => {
         children: [],
       };
       sitePlots.map((plot) => {
-        let plotNameValue = siteNameValue + "_Plot." + plot["key"];
+        let plotNameValue = siteNameValue + "." + plot["key"];
         let plotNameLabel = plot["key"];
         // let totalPlots = plot["doc_count"];
         //for each plot process plot/site visit date
@@ -83,7 +87,7 @@ const ImageFilterTypeReactCkbTree = () => {
         };
         plot["site_visit_id"]["buckets"].map((visit) => {
           //   const totalImagesPerVisit = visit["doc_count"];
-          const plotVisitValue = plotNameValue + "_Visit." + visit["key"];
+          const plotVisitValue = sitesPrefix + plotNameValue + "." + visit["key"];
           const plotVisitLabel = parseBioImagesDate(visit["key"]);
           visitDateParent.children.push({
             value: plotVisitValue,
@@ -105,20 +109,19 @@ const ImageFilterTypeReactCkbTree = () => {
 
     //Load images types and image subtypes to checkbox tree
     const image_types = facets["image_type"]["buckets"];
-    // const image_type_sub = facets["image_type_sub"];
     image_types.map((image_type) => {
+      const imageTypeValue = image_type.key;
+      const imageTypeLabel = startCase(image_type.key);
+      const imageTypeParent = { value: imageTypeValue, label: imageTypeLabel };
+
       let sub_types = [];
       image_type["image_type_sub"]["buckets"].map((sub_type) => {
         //const subTypeCount = sub_type.doc_count;
-        const imageSubTypeValue = sub_type.key.replace(/%20/gi, " ");
-        const imageSubTypeLabel = startCase(imageSubTypeValue);
-        const imageSubTypeKey = "image_type_sub_" + imageSubTypeValue;
-        sub_types.push({ value: imageSubTypeKey, label: imageSubTypeLabel });
+        const imageSubTypeValue = imageTypesPrefix + imageTypeValue +"." + sub_type.key.replace(/%20/gi, " ");
+        const imageSubTypeLabel = startCase(sub_type.key.replace(/%20/gi, " "));
+        sub_types.push({ value: imageSubTypeValue, label: imageSubTypeLabel });
         return null;
       });
-      const imageTypeValue = "image_type_" + image_type.key;
-      const imageTypeLabel = startCase(image_type.key);
-      const imageTypeParent = { value: imageTypeValue, label: imageTypeLabel };
       imageTypeParent["children"] = sub_types;
       nodes[1].children.push(imageTypeParent);
 
@@ -127,53 +130,62 @@ const ImageFilterTypeReactCkbTree = () => {
     //console.log("nodes=", nodes);
   }
 
-  //TODO Mosheh 11-08-2020 8:49pm. This handle has not been checked or
-  //modified after the API changed - So not working
-  // properly. I am very tired now I will look at it tommorrow!!
+  // Collect all the filters selected
+  // in the tree structure
   const handleOnChecked = (selected) => {
-    // console.log("checked: ", selected);
+    console.log("checked: ", selected);
     // console.log("expanded: ", expanded);
     setChecked(selected);
 
     //Collect checked sites
-    const selectedFilterItems = {
+    let selectedFilterItems = {
       site_id: [],
-      image_type: [],
-      image_type_sub: [],
       plot: [],
       site_visit_id: [],
+      image_type: [],
+      image_type_sub: [],
     };
     selected.map((item) => {
-      if (item.includes("site_id_")) {
-        const site = item.split("site_id_");
-        selectedFilterItems["site_id"].push(site[1]);
+      if (item.includes(sitesPrefix)) {
+        const selectedSite = item.split(".");
+        selectedFilterItems["site_id"].indexOf(selectedSite[1]) === -1 && selectedFilterItems["site_id"].push(selectedSite[1]);
+        selectedFilterItems["plot"].indexOf(selectedSite[2]) === -1 && selectedFilterItems["plot"].push(selectedSite[2]);
+        selectedFilterItems["site_visit_id"].indexOf(selectedSite[3]) === -1 && selectedFilterItems["site_visit_id"].push(selectedSite[3]);
       }
-      if (item.includes("image_type_")) {
-        const image = item.split("image_type_");
-        selectedFilterItems["image_type"].push(image[1]);
-      }
-      if (item.includes("image_type_sub_")) {
-        const imageSub = item.split("image_type_sub_");
-        selectedFilterItems["image_type_sub"].push(imageSub[1]);
-      }
-      if (item.includes("plot_")) {
-        const plot = item.split("plot_");
-        selectedFilterItems["plot"].push(plot[1]);
-      }
-      if (item.includes("site_visit_id_")) {
-        const siteVisitId = item.split("site_visit_id_");
-        selectedFilterItems["site_visit_id"].push(siteVisitId[1]);
+      if (item.includes(imageTypesPrefix)) {
+        const selectedImageType = item.split(".");
+        selectedFilterItems["image_type"].indexOf(selectedImageType[1]) === -1 && selectedFilterItems["image_type"].push(selectedImageType[1]);
+        selectedFilterItems["image_type_sub"].indexOf(selectedImageType[2]) === -1 && selectedFilterItems["image_type_sub"].push(selectedImageType[2]);
       }
     });
 
-    // Note: the extraction below will change once the api can handle
-    // arrays. For now I am just extracting the first item and for that
-    // matter just the first of site name and first of image type.
-    const siteFilter = { site_id: selectedFilterItems["site_id"][0] };
-    const siteImage = { image_type: selectedFilterItems["image_type"][0] };
-    const updatedFilter = { ...selectedFilter, ...siteFilter, ...siteImage };
+   console.log('selectedFilterItems=', selectedFilterItems);
 
-    dispatch(selectedFilterAction(updatedFilter));
+  //  let updatedFilter = {...selectedFilter};
+   let updatedFilter = {};
+   if (selectedFilterItems["site_id"].length !== 0){
+     const siteFilter = { site_id: selectedFilterItems["site_id"].join() };
+     updatedFilter = {...updatedFilter, ...siteFilter}
+   }
+   if (selectedFilterItems["plot"].length !== 0){
+    const plotFilter = { plot: selectedFilterItems["plot"].join() };
+    updatedFilter = {...updatedFilter, ...plotFilter};
+   }
+   if (selectedFilterItems["site_visit_id"].length !== 0){
+     const siteVisitIdFilter = { site_visit_id: selectedFilterItems["site_visit_id"].join() };
+     updatedFilter = {...updatedFilter, ...siteVisitIdFilter};
+   } 
+   if (selectedFilterItems["image_type"].length !== 0){
+     const imageTypeFilter = { image_type: selectedFilterItems["image_type"].join() };
+     updatedFilter = {...updatedFilter, ...imageTypeFilter};
+   }
+   if (selectedFilterItems["image_type_sub"].length !== 0){
+     const imageTypeSubFilter = { image_type_sub: selectedFilterItems["image_type_sub"].join() };
+     updatedFilter = {...updatedFilter, ...imageTypeSubFilter};
+   }
+
+   console.log('updatedFilter=', updatedFilter);
+   dispatch(selectedFilterAction(updatedFilter));
   };
 
   const icons = {
