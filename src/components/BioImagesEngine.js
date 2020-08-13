@@ -16,7 +16,6 @@ import FilterHeader from "./bio-image-search/FilterHeader";
 import { fetchSearchAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 
-
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
@@ -42,41 +41,43 @@ const BioImagesEngine = () => {
     // && <img src="/img/map.png" width="40px"/>
     return (
       <>
-      <div style={{position: 'absolute', right: '85px', top: '80px', zIndex: '10'}} >
-      {searchmodes.map((searchmode) => (
-        <Button  
-          variant="round"
-          style={{borderRadius: "20px"}}
-          key={searchmode} 
-          onClick={() => setMySearch(searchmode)}
-        > 
-          {searchmode}
-        </Button>
-      ))}
-      
-    </div>
-      <Col fluid      
-        style={{
-          height: "80vh",
-          padding: "0%",
-          margin: "0%",
-        }}
-      >
-        {mySearch === "Map" && (
-          <div>
-            <BioMapEngine
-          
-            />
-          </div>
-        )}
-        {mySearch === "Images" && (
-          <div>
-            <SearchEngine
-            
-            />
-          </div>
-        )}
-      </Col>
+        <div
+          style={{
+            position: "absolute",
+            right: "85px",
+            top: "80px",
+            zIndex: "10",
+          }}
+        >
+          {searchmodes.map((searchmode) => (
+            <Button
+              variant="round"
+              style={{ borderRadius: "20px" }}
+              key={searchmode}
+              onClick={() => setMySearch(searchmode)}
+            >
+              {searchmode}
+            </Button>
+          ))}
+        </div>
+        <Col
+          style={{
+            height: "80vh",
+            padding: "0%",
+            margin: "0%",
+          }}
+        >
+          {mySearch === "Map" && (
+            <div>
+              <BioMapEngine />
+            </div>
+          )}
+          {mySearch === "Images" && (
+            <div>
+              <SearchEngine />
+            </div>
+          )}
+        </Col>
       </>
     );
   };
@@ -87,32 +88,27 @@ const BioImagesEngine = () => {
       <SearchBar />
       <IconBar />
       <LeftSideBar />
-      <Row >
-
+      <Row>
         {/*Filter SideBar*/}
-        <Col  lg='auto'
+        <Col
+          lg="auto"
           className="filterbar"
-        
           style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader />
 
-          <ImageSearchEngine
-    
-          />
+          <ImageSearchEngine />
           <DateRange />
           <FavouriteHeader />
 
-          <Favourite
-         
-          />
+          <Favourite />
         </Col>
         <Toggle />
         {/*Leaflet Map */}
 
         <div className="map-container">
           {/*End of Leaflet  Map */}
-        
+
           {/*Photo Gallery */}
           <div id="gallery"></div>
         </div>

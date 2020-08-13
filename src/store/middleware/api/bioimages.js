@@ -66,7 +66,7 @@ export function fetchSearch(params) {
 export function fetchFacets(params) {
   console.log("in API fetchFacets(), params=", params);
   return callAPI({
-    url: "facet",
+    url: "facet-grouping",
     params: params,
   });
 }

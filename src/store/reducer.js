@@ -16,7 +16,8 @@ const initialState = {
   facets: {},
 };
 
-//TODO Mosheh cleaning it up! Lots changed after API changes.
+//TODO Mosheh cleaning it up! 
+//Lots changed after API changes.
 const searchReducer = createReducer(initialState, {
   [fetchSearchAction]: (state, action) => {
     state.isLoadingSearch = true;
@@ -26,12 +27,12 @@ const searchReducer = createReducer(initialState, {
     state.isLoadingSearch = false;
     // const { hits, aggregation, aggregations } = action.payload;
     const { hits } = action.payload;
-    console.log("fetch payload=", action.payload);
+    // console.log("fetch payload=", action.payload);
     if (hits !== null) {
-      console.log("Loading hits....");
+      // console.log("Loading hits....");
       state.hits = hits["hits"];
     } else {
-      console.log("Hits are still null!");
+      // console.log("Hits are still null!");
     }
     // state.filters = aggregations;
     // state.aggregation = aggregation;
