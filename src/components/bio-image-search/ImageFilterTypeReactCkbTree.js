@@ -26,7 +26,7 @@ const ImageFilterTypeReactCkbTree = () => {
   const [expanded, setExpanded] = useState([]);
 
   console.log("filters=", facets);
-  
+
   useEffect(() => {
     console.log("In useEffect of Facets");
     dispatch(fetchFacetsAction());
@@ -62,7 +62,7 @@ const ImageFilterTypeReactCkbTree = () => {
 
         let siteParent = {
           value: siteNameValue,
-          label: siteNameLabel,
+          label: siteNameLabel + "(" + site["doc_count"] + ")",
           children: [],
         };
 
@@ -73,7 +73,7 @@ const ImageFilterTypeReactCkbTree = () => {
 
         let plotParent = {
           value: "Plots_" + siteNameValue,
-          label: "Plots",
+          label: "Plots (" + sitePlots.length + ")",
           children: [],
         };
         sitePlots.map((plot) => {
@@ -83,7 +83,8 @@ const ImageFilterTypeReactCkbTree = () => {
           //for each plot process plot/site visit date
           let visitDateParent = {
             value: "VisitDates_" + plotNameValue,
-            label: "Visit Date",
+            label:
+              "Visit Date (" + plot["site_visit_id"]["buckets"].length + ")",
             children: [],
           };
           plot["site_visit_id"]["buckets"].map((visit) => {
@@ -211,7 +212,7 @@ const ImageFilterTypeReactCkbTree = () => {
       updatedFilter = { ...updatedFilter, ...imageTypeSubFilter };
     }
 
-    // console.log("updatedFilter=", updatedFilter);
+    console.log("updatedFilter=", updatedFilter);
     dispatch(selectedFilterAction(updatedFilter));
   };
 
