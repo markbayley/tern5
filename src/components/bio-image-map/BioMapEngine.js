@@ -29,7 +29,7 @@ const BioMapEngine = () => {
   //   key: "selection",
   // };
   //Set map boundary (australia)
-  const corner1 = Leaflet.latLng(-9.820066, 110.240312);
+  const corner1 = Leaflet.latLng(-9.820066, 115.240312);
   const corner2 = Leaflet.latLng(-44.482812, 152.339923);
   const bounds = Leaflet.latLngBounds(corner1, corner2);
 

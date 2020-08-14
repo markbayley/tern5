@@ -7,11 +7,13 @@ const BreadCrumb = (props) => {
     return (
       <div
         style={{
+          position: "fixed",
           marginTop: "2px",
           marginBottom: "0px",
           borderTop: "1.5px solid #66b3a6",
           color: "#043E4F",
-          height: "50px"
+          width: "100%"
+         
         }}
       >
         <Breadcrumb  className="">
