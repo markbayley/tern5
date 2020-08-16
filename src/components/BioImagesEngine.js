@@ -70,7 +70,7 @@ const BioImagesEngine = () => {
           ))}
         </div>
         <Col
-          fluid
+          fluid="true"
           style={{
             height: "80vh",
             padding: "0%",

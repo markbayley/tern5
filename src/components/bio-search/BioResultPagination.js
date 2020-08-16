@@ -17,7 +17,7 @@ const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
       pagination.push({ id: i, current: true, ellipsis: false });
     } else {
       if (
-        i < 2 ||
+        i < 10 ||
         i > pages - 1 ||
         i === currentPage - 1 ||
         i === currentPage + 1
