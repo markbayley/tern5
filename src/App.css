@@ -5,18 +5,18 @@
 }
 @font-face {
   font-family: "Uni Neue";
-  src: url("/../public/assets/fonts/fontfabric_-_unineueheavy-webfont.woff2")
+  src: url("/fonts/fontfabric_-_unineueheavy-webfont.woff2")
       format("woff2"),
-    url("/../public/assets/fonts/fontfabric_-_unineueheavy-webfont.woff")
+    url("/fonts/fontfabric_-_unineueheavy-webfont.woff")
       format("woff");
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: "Uni Neue";
-  src: url("/../public/assets/fontfabric_-_unineuelight-webfont.woff2")
+  src: url("/fonts/fontfabric_-_unineuelight-webfont.woff2")
       format("woff2"),
-    url("/../public/assets/fontfabric_-_unineuelight-webfont.woff")
+    url("/fonts/fontfabric_-_unineuelight-webfont.woff")
       format("woff");
   font-weight: 300;
   font-style: normal;
