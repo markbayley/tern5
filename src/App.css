@@ -176,8 +176,8 @@ body {
 .filterbar {
   z-index: "9";
   height: 80vh;
- 
- 
+
+
 }
 .accordion:hover {
   background-color: #b3d4c9;
@@ -417,7 +417,7 @@ body {
     height: 80vh;
   }
 }
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
   .biologo {
     display: none;
   }
@@ -527,7 +527,7 @@ a.search-link.addlinks{
   }
 }
 .navbar-dark .navbar-nav .nav-link{
-  color: #ffffff !important;  
+  color: #ffffff !important;
 }
 .search-for-mobile{
   display: none;
@@ -549,9 +549,9 @@ a.search-link.addlinks{
   .searchbar-wrap{
     width:100%;
     margin:0;
-    padding: 0 15px !important;  
+    padding: 0 15px !important;
   }
-  
+
 }
 
 
@@ -568,6 +568,3 @@ a.search-link.addlinks{
   .main-header> :nth-child(2) { order: 3; }
   .main-header> :nth-child(3) { order: 1; }
 }
-
-
-
