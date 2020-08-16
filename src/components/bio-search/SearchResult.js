@@ -170,7 +170,7 @@ const SearchResult = ({ bioImageDocument, site_id }) => {
         </Modal.Footer>
       </Modal>
 
-      <Card id={site_id} style={{ paddingTop: "0%", border: "#fff" }}>
+      <Card id={site_id} style={{ border: "#fff", marginRight: "-8%" }}>
         <div className="hvrbox">
           <Button
             variant="flat"
@@ -181,14 +181,14 @@ const SearchResult = ({ bioImageDocument, site_id }) => {
               className="hvrbox-layer_bottom"
               onClick={handleShow}
               src={img_url}
-              style={{ width: "100%", height: "210px" }}
+              style={{ width: "100%", height: "210px", padding: "1%" }}
             />
             <div className="hvrbox-layer_top">
               <div
                 className="hvrbox-text"
                 style={{ textTransform: "capitalize" }}
               >
-                Search{" "}
+                View{" "}
                 {site_id.replace("_", " ")
                   .replace("=", " ")
                   .replace("value", " ")

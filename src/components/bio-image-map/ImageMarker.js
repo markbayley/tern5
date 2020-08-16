@@ -163,7 +163,7 @@ const ImageMarker = (props) => {
         </Link>
       </Popup> */}
       <Tooltip>
-        <div style={{ padding: "3px 7px" }}>
+        <div style={{ margin: "0px", padding: "3px 7px", borderLeft: "3px solid #065f65"}}>
           {/* <strong>
           <h6>Click marker to select {props.label}.</h6>
         </strong> */}

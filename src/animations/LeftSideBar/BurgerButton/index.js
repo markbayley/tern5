@@ -7,7 +7,7 @@ const BurgerButton = ({ onClick }) => {
     <Button
       className="LeftSideBar__BurgerButton"
       role="button"
-      variant='flat'
+      variant='toggle'
       onClick={onClick}
   
     >

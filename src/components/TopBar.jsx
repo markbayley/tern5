@@ -3,7 +3,7 @@ import TERNDataDropdown from "./dropdowns/TERNDataDropdown";
 import CommunityDropdown from "./dropdowns/CommunityDropdown";
 import CoESRADropdown from "./dropdowns/CoESRADropdown";
 import DataVisualiserDropdown from "./dropdowns/DataVisualiserDropdown";
-import { Col, Row, Navbar } from "react-bootstrap";
+import { Col, Row, Navbar, NavItem, Nav, NavLink } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function TopBar() {
@@ -14,29 +14,28 @@ export default function TopBar() {
           <div className="container">
             <div className="above-header-section-wrap d-flex">
               <Navbar expand="lg" style={{ padding: "0%" }}>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"  style={{float: 'left'}}/>
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                  <Row>
-                    <Col>
-                      {" "}
-                      <TERNDataDropdown />
-                    </Col>
-                    <Col>
-                      {" "}
-                      <DataVisualiserDropdown />
-                    </Col>
-                    <Col style={{ marginLeft: "30px" }}>
-                      {" "}
-                      <CoESRADropdown />
-                    </Col>
-                    <Col style={{ marginLeft: "-20px", marginRight: "20px" }}>
-                      <CommunityDropdown />
-                    </Col>
-                  </Row>
-                </Navbar.Collapse>
-              </Navbar>
+                      <Nav navbar className="ml-auto">
+                        <NavItem>
+                          <TERNDataDropdown />
+                        </NavItem>
+                        <NavItem>
+                          <DataVisualiserDropdown />
+                        </NavItem>
+                        <NavItem>
+                          <CoESRADropdown />
+                        </NavItem>
+                        <NavItem>
+                          <CommunityDropdown />
+                        </NavItem>
+                      </Nav>
+                    </Navbar.Collapse>
+                
+                    
+                  </Navbar>
 
-              <div className="above-header-section above-header-section-1">
+              <div className="above-header-section above-header-section-1" style={{marginLeft: "15px", maxWidth: "100px"}}>
                 <div className="user-select">
                   <Link to="/">
                     {" "}

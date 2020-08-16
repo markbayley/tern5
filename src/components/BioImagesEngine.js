@@ -89,7 +89,7 @@ const BioImagesEngine = () => {
     <div id="map">
       <TopBar />
       <SearchBar />
-      <IconBar />
+ 
       <LeftSideBar />
       <Row>
         {/*Filter SideBar*/}
