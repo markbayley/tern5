@@ -43,7 +43,6 @@ body {
   overflow-anchor: none;
 }
 
-
 /* TOP BAR */
 .above-header {
   background-color: #0f3540;
@@ -118,16 +117,16 @@ body {
   width: 100px;
 }
 .links {
-  display: 'flex';
-  justify-content: 'space-between';
-  align-items: 'center';
+  display: "flex";
+  justify-content: "space-between";
+  align-items: "center";
 }
 
 /* SEARCHBAR*/
 .site-branding {
-  display: 'flex';
-  justify-content: 'center';
-  align-content: 'center';
+  display: "flex";
+  justify-content: "center";
+  align-content: "center";
 }
 .site-branding img {
   max-width: 300px;
@@ -173,25 +172,22 @@ body {
   opacity: 1;
 }
 
-
 /* SIDEBAR */
 .filterbar {
   z-index: "9";
   height: 80vh;
   width: 20%;
 }
-.accordion:hover { 
-  background-color: #B3D4C9;   
+.accordion:hover {
+  background-color: #b3d4c9;
 }
-
 
 .btntoggle:hover {
   background-color: #fff;
-  color:  #fff;
-  border: '5px solid #065f65';
-  font-weight: '900';
+  color: #fff;
+  border: "5px solid #065f65";
+  font-weight: "900";
 }
-
 
 /* MAP */
 .leaflet-container {
@@ -285,7 +281,7 @@ body {
   z-index: 11;
 }
 
-  /* .filterbar {
+/* .filterbar {
     height: 80vh;
   } */
 @media (max-width: 767px) {
@@ -409,12 +405,6 @@ body {
   display: block;
 }
 
-
-
-
-
-
-
 /* MEDIA */
 @media (max-width: 1450px) {
   .site-branding {
@@ -429,7 +419,6 @@ body {
 }
 
 @media (max-width: 767px) {
-  
   .biologo {
     display: none;
   }
@@ -437,24 +426,18 @@ body {
   .login {
     display: none;
   }
-
-
 }
 
 @media (max-width: 400px) {
   .searchbar {
-    display: 'flex';
-    justify-content: 'center';
-    margin-bottom: '10px';
+    display: "flex";
+    justify-content: "center";
+    margin-bottom: "10px";
   }
   .biologo {
     display: none;
   }
-
-
 }
-
-
 
 #header-wrapper {
   width: 100vw;
@@ -486,9 +469,15 @@ body {
   position: fixed;
   z-index: 200;
 }
-
-
-
-
-
-
+/* PAGINAGATION TEST STYLES */
+.biopagination-div {
+  border-style: solid;
+  border-color: red;
+  text-align:center;
+}
+.searchresult-div {
+  /* border-style: solid;
+  border-color: blueviolet; */
+  overflow: hidden;
+  height: auto;
+}

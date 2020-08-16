@@ -61,6 +61,7 @@ const BioImagesEngine = () => {
           ))}
         </div>
         <Col
+          fluid
           style={{
             height: "80vh",
             padding: "0%",
@@ -73,9 +74,11 @@ const BioImagesEngine = () => {
             </div>
           )}
           {mySearch === "Images" && (
-            <div>
-              <SearchEngine />
-            </div>
+            <>
+              <div className="searchresult-div">
+                <SearchEngine />
+              </div>
+            </>
           )}
         </Col>
       </>
