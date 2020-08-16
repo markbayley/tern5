@@ -33,11 +33,8 @@ const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
     }
   }
 
-  console.log("pagination size=", pages);
   const changePage = (page, e) => {
     e.preventDefault();
-    console.log("page=", page);
-
     if (page !== currentPage) {
       dispatch(selectedFilterAction({ page_num: page }));
     }
