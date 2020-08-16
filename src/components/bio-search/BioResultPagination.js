@@ -33,17 +33,18 @@ const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
     }
   }
 
+  console.log("pagination size=", pages);
   const changePage = (page, e) => {
     e.preventDefault();
+    console.log("page=", page);
+
     if (page !== currentPage) {
-      //setCurrentPage(page);
       dispatch(selectedFilterAction({ page_num: page }));
     }
   };
 
   const goToPrevPage = (e) => {
     e.preventDefault();
-    //setCurrentPage((prevVal) => (prevVal - 1 === 0 ? prevVal : prevVal - 1));
     if (currentPage !== 1) {
       dispatch(selectedFilterAction({ page_num: currentPage - 1 }));
     }
@@ -51,7 +52,6 @@ const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
 
   const goToNextPage = (e) => {
     e.preventDefault();
-    //setCurrentPage((prevVal) => (prevVal === pages ? prevVal : prevVal + 1));
     if (currentPage !== pages) {
       dispatch(selectedFilterAction({ page_num: currentPage + 1 }));
     }
@@ -59,6 +59,7 @@ const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
 
   return {
     pagination,
+    pages,
     prevPage: goToPrevPage,
     nextPage: goToNextPage,
     changePage,

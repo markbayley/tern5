@@ -20,7 +20,7 @@ const SearchEngine = () => {
   const itemsPerPage = selectedFilter["page_size"];
   const startFrom = selectedFilter["page_num"];
 
-  const { pagination, prevPage, nextPage, changePage } = BioResultPagination({
+  const { pagination, pages, prevPage, nextPage, changePage } = BioResultPagination({
     itemsPerPage,
     data,
     startFrom,
@@ -39,23 +39,27 @@ const SearchEngine = () => {
         ))}
       </Row>
       <Row>
-        <Pagination.Prev onClick={prevPage} />
-        {pagination.map((page) => {
-          if (!page.ellipsis) {
-            return (
-              <Pagination.Item
-                key={page.id}
-                active={page.current ? true : false}
-                onClick={(e) => changePage(page.id, e)}
-              >
-                {page.id}
-              </Pagination.Item>
-            );
-          } else {
-            return <Pagination.Ellipsis key={page.id} />;
-          }
-        })}
-        <Pagination.Next onClick={nextPage} />
+        <Pagination>
+          <Pagination.First onClick={(e) => changePage(1, e)} />
+          <Pagination.Prev onClick={prevPage} />
+          {pagination.map((page) => {
+            if (!page.ellipsis) {
+              return (
+                <Pagination.Item
+                  key={page.id}
+                  active={page.current ? true : false}
+                  onClick={(e) => changePage(page.id, e)}
+                >
+                  {page.id}
+                </Pagination.Item>
+              );
+            } else {
+              return <Pagination.Ellipsis key={page.id} />;
+            }
+          })}
+          <Pagination.Next onClick={nextPage} />
+          <Pagination.Last onClick={(e) => changePage(pages, e)} />
+        </Pagination>
       </Row>
     </>
   );
