@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectedFilterAction } from "../../store/reducer";
 
-const BioResultPagination = (initialState) => {
-  const dispatch = useDispatch();
-
-  const { itemsPerPage, startFrom, totalImages } = initialState;
-
+const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
   const perPage = itemsPerPage ? itemsPerPage : 10;
   const pages = Math.ceil(totalImages / perPage);
   const pagination = [];
-  const [currentPage, setCurrentPage] = useState(
-    startFrom <= pages ? startFrom : 1
-  );
+
+  let currentPage = startFrom <= pages ? startFrom : 1;
+  const dispatch = useDispatch();
 
   let ellipsisLeft = false;
   let ellipsisRight = false;
@@ -40,14 +36,14 @@ const BioResultPagination = (initialState) => {
   const changePage = (page, e) => {
     e.preventDefault();
     if (page !== currentPage) {
-      setCurrentPage(page);
+      //setCurrentPage(page);
       dispatch(selectedFilterAction({ page_num: page }));
     }
   };
 
   const goToPrevPage = (e) => {
     e.preventDefault();
-    setCurrentPage((prevVal) => (prevVal - 1 === 0 ? prevVal : prevVal - 1));
+    //setCurrentPage((prevVal) => (prevVal - 1 === 0 ? prevVal : prevVal - 1));
     if (currentPage !== 1) {
       dispatch(selectedFilterAction({ page_num: currentPage - 1 }));
     }
@@ -55,7 +51,7 @@ const BioResultPagination = (initialState) => {
 
   const goToNextPage = (e) => {
     e.preventDefault();
-    setCurrentPage((prevVal) => (prevVal === pages ? prevVal : prevVal + 1));
+    //setCurrentPage((prevVal) => (prevVal === pages ? prevVal : prevVal + 1));
     if (currentPage !== pages) {
       dispatch(selectedFilterAction({ page_num: currentPage + 1 }));
     }

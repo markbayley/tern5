@@ -1,12 +1,12 @@
 import { createAction, combineReducers, createReducer } from "@reduxjs/toolkit";
 import { isEmpty } from "lodash";
-import { featchFacets } from "./middleware/api/bioimages";
-// const fetchFeatures = createAction('FETCH_FEATURES');
 export const fetchSearchAction = createAction("FETCH_SEARCH");
 export const fetchSearchDoneAction = createAction("FETCH_SEARCH_DONE");
 export const selectedFilterAction = createAction("SELECTED_FILTER");
 export const fetchFacetsAction = createAction("FETCH_FACETS");
 export const fetchFacetsDoneAction = createAction("FETCH_FACETS_DONE");
+export const selectedMapImagesModeAction = createAction("MAP_IMAGES_MODE");
+
 const initialState = {
   isLoadingSearch: true,
   hits: [],
@@ -15,6 +15,7 @@ const initialState = {
   aggregation: null,
   selectedFilter: { page_size: 10, page_num: 1 },
   facets: {},
+  selectedMapImagesMode: "Map",
 };
 
 //TODO Mosheh cleaning it up!
@@ -49,6 +50,9 @@ const searchReducer = createReducer(initialState, {
     if (isEmpty(state.facets)) {
       state.facets = aggregations;
     }
+  },
+  [selectedMapImagesModeAction]: (state, action) => {
+    state.selectedMapImagesMode = action.payload;
   },
 });
 

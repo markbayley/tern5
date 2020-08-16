@@ -13,13 +13,18 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import { fetchSearchAction } from "../store/reducer";
+import {
+  fetchSearchAction,
+  selectedMapImagesModeAction,
+} from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-
+  const selectedMapImagesMode = useSelector(
+    (state) => state.search.selectedMapImagesMode
+  );
   // TODO Look at this life cycle again and improve if required
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
@@ -37,8 +42,12 @@ const BioImagesEngine = () => {
   /*Map Image Toggle*/
   const Toggle = () => {
     const searchmodes = ["Map", "Images"];
-    const [mySearch, setMySearch] = useState("Map");
-    // && <img src="/img/map.png" width="40px"/>
+    //const [mySearch, setMySearch] = useState(selectedMapImagesMode);
+
+    const setMapImagesMode = (mode) => {
+      dispatch(selectedMapImagesModeAction(mode))
+    }
+
     return (
       <>
         <div
@@ -54,7 +63,7 @@ const BioImagesEngine = () => {
               variant="round"
               style={{ borderRadius: "20px" }}
               key={searchmode}
-              onClick={() => setMySearch(searchmode)}
+              onClick={() => setMapImagesMode(searchmode)}
             >
               {searchmode}
             </Button>
@@ -68,12 +77,12 @@ const BioImagesEngine = () => {
             margin: "0%",
           }}
         >
-          {mySearch === "Map" && (
+          {selectedMapImagesMode === "Map" && (
             <div>
               <BioMapEngine />
             </div>
           )}
-          {mySearch === "Images" && (
+          {selectedMapImagesMode === "Images" && (
             <>
               <div className="searchresult-div">
                 <SearchEngine />
@@ -89,7 +98,7 @@ const BioImagesEngine = () => {
     <div id="map">
       <TopBar />
       <SearchBar />
- 
+
       <LeftSideBar />
       <Row>
         {/*Filter SideBar*/}
