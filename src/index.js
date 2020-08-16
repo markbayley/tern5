@@ -6,13 +6,25 @@ import { store } from "./store/configureStore";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  // </React.StrictMode>
-  document.getElementById("root")
-);
+
+import axios from "axios";
+import { CONFIG } from "./config";
+
+
+axios({
+  method: 'GET',
+  url: "/config/config.json",
+}).then(function (response) {
+  Object.assign(CONFIG, response.data)
+  ReactDOM.render(
+    // <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    // </React.StrictMode>
+    document.getElementById("root")
+  );
+})
+
 
 registerServiceWorker();
