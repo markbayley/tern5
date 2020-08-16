@@ -61,7 +61,6 @@ const BioImagesEngine = () => {
           ))}
         </div>
         <Col
-          fluid
           style={{
             height: "80vh",
             padding: "0%",
@@ -87,19 +86,14 @@ const BioImagesEngine = () => {
     <div id="map">
       <TopBar />
       <SearchBar />
-      <IconBar />
+ 
       <LeftSideBar />
       <Row>
         {/*Filter SideBar*/}
         <Col
-          md="auto"
+          lg="auto"
           className="filterbar"
-          style={{
-            zIndex: "9",
-            margin: "0",
-            paddingRight: "0",
-            backgroundColor: "#fff",
-          }}
+          style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
         >
           <FilterHeader />
 

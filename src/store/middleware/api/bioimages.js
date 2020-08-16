@@ -63,10 +63,10 @@ export function fetchSearch(params) {
   });
 }
 
-export function featchFacets(params) {
-  console.log("in API featchFacets(), params=", params);
+export function fetchFacets(params) {
+  console.log("in API fetchFacets(), params=", params);
   return callAPI({
-    url: "facet",
+    url: "facet-grouping",
     params: params,
   });
 }
