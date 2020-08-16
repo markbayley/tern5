@@ -44,6 +44,11 @@ const searchReducer = createReducer(initialState, {
   [selectedFilterAction]: (state, action) => {
     state.selectedFilter = { ...state.selectedFilter, ...action.payload };
     // state.selectedFilter = { ...action.payload };
+    if ("concat-selected" in state.selectedFilter) {
+      if (state.selectedFilter["concat-selected"] === "") {
+        delete state.selectedFilter["concat-selected"];
+      }
+    }
   },
   [fetchFacetsDoneAction]: (state, action) => {
     const { aggregations } = action.payload;

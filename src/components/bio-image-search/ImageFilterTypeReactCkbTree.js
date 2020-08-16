@@ -77,7 +77,7 @@ const ImageFilterTypeReactCkbTree = () => {
           children: [],
         };
         sitePlots.map((plot) => {
-          let plotNameValue = siteNameValue + "." + plot["key"];
+          let plotNameValue = siteNameValue + "-" + plot["key"];
           let plotNameLabel = plot["key"];
           // let totalPlots = plot["doc_count"];
           //for each plot process plot/site visit date
@@ -90,7 +90,7 @@ const ImageFilterTypeReactCkbTree = () => {
           plot["site_visit_id"]["buckets"].map((visit) => {
             //   const totalImagesPerVisit = visit["doc_count"];
             const plotVisitValue =
-              sitesPrefix + plotNameValue + "." + visit["key"];
+              sitesPrefix + plotNameValue + "-" + visit["key"];
             const plotVisitLabel = parseBioImagesDate(visit["key"]);
             visitDateParent.children.push({
               value: plotVisitValue,
@@ -195,7 +195,7 @@ const ImageFilterTypeReactCkbTree = () => {
     // console.log("selectedFilterItems=", selectedFilterItems);
 
     //  let updatedFilter = {...selectedFilter};
-    let updatedFilter = {};
+    let updatedFilter = {"concat-selected": ""};
     if (selectedFilterItems["site_id"].length !== 0) {
       const siteFilter = { "concat-selected": selectedFilterItems["site_id"].join() };
       updatedFilter = { ...updatedFilter, ...siteFilter };
