@@ -13,10 +13,7 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import {
-  fetchSearchAction,
-  selectedMapImagesModeAction,
-} from "../store/reducer";
+import {fetchSearchAction, selectedMapImagesModeAction} from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 
 const BioImagesEngine = () => {
@@ -26,11 +23,10 @@ const BioImagesEngine = () => {
     (state) => state.search.selectedMapImagesMode
   );
   // TODO Look at this life cycle again and improve if required
-  useEffect(() => {
-    console.log("in useEffect(). selectedFilter=", selectedFilter);
-    // dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
-    dispatch(fetchSearchAction(selectedFilter));
-  }, [selectedFilter]);
+  // useEffect(() => {
+  //   console.log("in useEffect(). selectedFilter=", selectedFilter);
+  //   dispatch(fetchSearchAction(selectedFilter));
+  // }, [selectedFilter]);
 
   //TODO to be implemented later - if ever!
   const filterSiteID = (id) => {
