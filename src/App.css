@@ -5,19 +5,15 @@
 }
 @font-face {
   font-family: "Uni Neue";
-  src: url("/fonts/fontfabric_-_unineueheavy-webfont.woff2")
-      format("woff2"),
-    url("/fonts/fontfabric_-_unineueheavy-webfont.woff")
-      format("woff");
+  src: url("/fonts/fontfabric_-_unineueheavy-webfont.woff2") format("woff2"),
+    url("/fonts/fontfabric_-_unineueheavy-webfont.woff") format("woff");
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: "Uni Neue";
-  src: url("/fonts/fontfabric_-_unineuelight-webfont.woff2")
-      format("woff2"),
-    url("/fonts/fontfabric_-_unineuelight-webfont.woff")
-      format("woff");
+  src: url("/fonts/fontfabric_-_unineuelight-webfont.woff2") format("woff2"),
+    url("/fonts/fontfabric_-_unineuelight-webfont.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
@@ -139,7 +135,7 @@ body {
 }
 .searchbar:hover {
   background-image: url(/images/search-bar2-dark.png);
-  transition: background .3s;
+  transition: background 0.3s;
 }
 .searchbutton {
   background-image: url(/img/icons/search-arrow.svg);
@@ -149,7 +145,7 @@ body {
   background-image: url(/img/icons/search-arrow-light.svg);
   background-repeat: no-repeat;
   background-color: #065f65;
-  transition: background .01s;
+  transition: background 0.01s;
 }
 .searchicon {
   background-image: url(/img/icons/search-bioimages-icon.svg);
@@ -172,13 +168,26 @@ body {
   opacity: 1;
 }
 
-/* SIDEBAR */
-.filterbar {
-  z-index: "9";
-  height: 80vh;
 
 
+
+
+
+
+@media (max-width: 1024px) {
+  .filterbar {
+    height: 80vh;
+  }
 }
+
+@media (max-width: 767px) {
+  .filterbar {
+    width: 500px !important;
+    z-index: "9";
+    height: 190vh;
+  }
+}
+
 .accordion:hover {
   background-color: #b3d4c9;
 }
@@ -281,9 +290,6 @@ body {
   z-index: 11;
 }
 
-/* .filterbar {
-    height: 80vh;
-  } */
 @media (max-width: 767px) {
   .footer-col {
     float: none;
@@ -294,12 +300,6 @@ body {
   .footer-column-3,
   .footer-column-4 {
     display: none;
-  }
-
-  .filterbar {
-    width: 500px !important;
-    z-index: "9";
-    height: 190vh;
   }
 }
 
@@ -326,8 +326,6 @@ body {
   color: #065f65 !important;
 }
 /* End checkbox tree css */
-
-
 
 /* GALLERY */
 .hvrbox,
@@ -398,16 +396,11 @@ body {
     display: none;
   }
 }
-@media (max-width: 1024px) {
-  .filterbar {
-    height: 80vh;
-  }
-}
-@media (max-width: 768px) { 
+
+@media (max-width: 768px) {
   .biologo {
     display: none;
   }
-
 }
 @media (max-width: 400px) {
   .searchbar {
@@ -469,10 +462,9 @@ body {
 .dropdown-toggle {
   padding: 6px 12px;
 }
-.navbar-toggler{
+.navbar-toggler {
   float: left !important;
-  border:none !important;
- 
+  border: none !important;
 }
 .navbar {
   padding-top: 0 !important;
@@ -523,7 +515,7 @@ a.search-link.addlinks {
     display: none !important;
   }
 }
-.navbar-dark .navbar-nav .nav-link{
+.navbar-dark .navbar-nav .nav-link {
   color: #ffffff !important;
 }
 .search-for-mobile {
@@ -541,23 +533,14 @@ a.search-link.addlinks {
     font-size: 12px;
   }
 }
-@media(max-width:768px){
-  .searchbar-wrap{
-    width:100%;
-    margin:0;
+@media (max-width: 768px) {
+  .searchbar-wrap {
+    width: 100%;
+    margin: 0;
     padding: 0 15px !important;
   }
-
 }
 
-/* .above-header-section {
-  height: 56px;
-  display: inline-flex !important;
-  align-items: center;
-} */
-.filterbar {
-  position: relative;
-}
 @media (max-width: 768px) {
   .main-header > :nth-child(1) {
     order: 1;
@@ -575,30 +558,28 @@ a.search-link.addlinks {
   margin-top: 10px;
 }
 
-@media(max-width:1520px){
-     .toggle {
-      display: none;
-     }
+@media (max-width: 1520px) {
+  .toggle {
+    display: none;
+  }
 }
-@media(max-width:998px){
+@media (max-width: 998px) {
   .login {
-   display: none;
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .mobile-sidebar {
+    display: none;
   }
 }
 
 .scroll {
-float:left;
-overflow-x: auto;
-height: 1000px;
+  float: left;
+  overflow-x: auto;
+  height: 2000px;
 }
-.scroll2 {
-overflow-y: auto;
-overflow-x: hidden;
+.scroll-images {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-@media(min-width: 768px){
-  .mobile-sidebar {
-   display: none;
-  }
-}
-
-

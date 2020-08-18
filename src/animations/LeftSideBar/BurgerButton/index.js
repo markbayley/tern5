@@ -12,7 +12,6 @@ const BurgerButton = ({ onClick, searchmode }) => {
       role="button"
       variant='toggle'
       onClick={onClick}
-  
     >
     {isShowSidebar && <img src="img/chevronright.png" height="30px"/>}
     {!isShowSidebar && (searchmode === 'Map' ? <><img src="img/chevron.png" height="30px"/>Images </> : <><img src="img/chevron.png" height="30px"/>Map </>)}

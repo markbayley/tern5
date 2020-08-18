@@ -18,8 +18,6 @@ import {
   selectedMapImagesModeAction,
 } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
-
-import { Card, Form, Modal, Image, Navbar, Carousel } from "react-bootstrap";
 import MobileSidebar from "./MobileSidebar";
 
 const BioImagesEngine = () => {
@@ -42,36 +40,23 @@ const BioImagesEngine = () => {
     console.log("filterSiteID", selectedFilter);
   };
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const searchmodes = ["Map", "Images"];
   const [mySearch, setMySearch] = useState("Map");
 
   return (
-    <div id="map">
-
-
+    <div>
       <TopBar />
       <SearchBar />
-
+      <IconBar />
       <LeftSideBar searchmode={mySearch} />
       <Row>
         {/*Filter SideBar*/}
-        <Col
-          sm="auto"
-          className="filterbar"
-          style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
-        >
+        <Col xs="auto" className="filterbar">
           <FilterHeader />
-
           <ImageSearchEngine />
           <DateRange />
-         <MobileSidebar />
-
+          <MobileSidebar />
           <FavouriteHeader />
-
           <Favourite />
         </Col>
         <Toggle
@@ -79,14 +64,7 @@ const BioImagesEngine = () => {
           setMySearch={setMySearch}
           searchmodes={searchmodes}
         />
-        {/*Leaflet Map */}
-
-        {/* <div className="map-container"> */}
-          {/*End of Leaflet  Map */}
-
-          {/*Photo Gallery */}
-          {/* <div id="gallery"></div>
-        </div>  */}
+        {/* <div > */}
       </Row>
       <BreadCrumb />
       {/* <Footer /> */}
@@ -121,18 +99,21 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
         ))}
       </div>
       <Col
-        className="scroll2"
+        className="scroll-images"
         style={{
           height: "80vh",
           padding: "0%",
           margin: "0%",
+          width: "80vw"
         }}
       >
+          {/*Leaflet Map */}
         {searchmode === "Map" && (
-          <div>
+          <div >
             <BioMapEngine />
           </div>
         )}
+          {/*Photo Gallery */}
         {searchmode === "Images" && (
           <div>
             <SearchEngine />

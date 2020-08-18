@@ -38,7 +38,7 @@ const SearchEngine = () => {
           />
         ))}
       </Row>
-      <Row style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '30px'}}>
+      <Row style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '30px', paddingTop: "15px"}}>
         <Pagination>
           <Pagination.First onClick={(e) => changePage(1, e)} />
           <Pagination.Prev onClick={prevPage} />
