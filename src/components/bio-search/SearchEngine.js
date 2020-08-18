@@ -28,8 +28,8 @@ const SearchEngine = () => {
   });
 
   return (
-    <>
-      <Row>
+    <div>
+      <Row >
         {data.map((bioImageDocument) => (
           <SearchResult
             bioImageDocument={bioImageDocument["_source"]}
@@ -38,7 +38,7 @@ const SearchEngine = () => {
           />
         ))}
       </Row>
-      <Row>
+      <Row style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '30px'}}>
         <Pagination>
           <Pagination.First onClick={(e) => changePage(1, e)} />
           <Pagination.Prev onClick={prevPage} />
@@ -61,7 +61,8 @@ const SearchEngine = () => {
           <Pagination.Last onClick={(e) => changePage(pages, e)} />
         </Pagination>
       </Row>
-    </>
+    
+    </div>
   );
 };
 

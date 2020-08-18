@@ -13,7 +13,7 @@ const initialState = {
   totalDocuments: null,
   filters: {},
   aggregation: null,
-  selectedFilter: { page_size: 10, page_num: 1 },
+  selectedFilter: { page_size: 32, page_num: 1 },
   facets: {},
   selectedMapImagesMode: "Map",
 };

@@ -588,3 +588,18 @@ height: 1000px;
 }
 
 
+.scroll2 {
+ 
+
+overflow-y: auto;
+overflow-x: hidden;
+
+}
+
+@media(min-width: 768px){
+  .mobile-sidebar {
+   display: none;
+  }
+}
+
+
