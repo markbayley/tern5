@@ -3,13 +3,13 @@ import BurgerButton  from '../BurgerButton';
 import { LeftSideBarContext } from '../index';
 import './style.scss';
 
-const TopSection = () => {
+const TopSection = ({searchmode}) => {
   const { setIsShowSidebar } = useContext(LeftSideBarContext);
   return (
     <div className="LeftSideBar__TopSection">
       <BurgerButton
         onClick={() => setIsShowSidebar(true)}
-      
+        searchmode={searchmode}
       />
     
     </div>

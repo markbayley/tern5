@@ -1,15 +1,15 @@
-$left-sidebar-width: 16em;
+$left-sidebar-width: 20em;
 
 .LeftSideBar__LeftSection {
   position: fixed;
-  margin-left: 87%;
+  margin-left: 84.5%;
   margin-top: 150px;
-  width: 250px;
+  width: 300px;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 230px;
+  height: 25vh;
   background-color: white;
   -webkit-box-shadow: 0px 0px 11px -2px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 11px -2px rgba(0,0,0,0.75);
@@ -17,6 +17,7 @@ $left-sidebar-width: 16em;
   transition:all ease 0.5s;
   z-index: 5;
   padding: 0px;
+  // opacity: .95;
   
 
   .LeftSideBar__LeftSection__topWrapper {

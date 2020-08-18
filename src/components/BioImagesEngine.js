@@ -15,6 +15,7 @@ import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 import {fetchSearchAction, selectedMapImagesModeAction} from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
+import MobileSidebar from "./MobileSidebar";
 
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
@@ -35,90 +36,86 @@ const BioImagesEngine = () => {
     console.log("filterSiteID", selectedFilter);
   };
 
-  /*Map Image Toggle*/
-  const Toggle = () => {
-    const searchmodes = ["Map", "Images"];
-    //const [mySearch, setMySearch] = useState(selectedMapImagesMode);
-
-    const setMapImagesMode = (mode) => {
-      dispatch(selectedMapImagesModeAction(mode))
-    }
-
-    return (
-      <>
-        <div
-          style={{
-            position: "absolute",
-            right: "85px",
-            top: "80px",
-            zIndex: "10",
-          }}
-        >
-          {searchmodes.map((searchmode) => (
-            <Button
-              variant="round"
-              style={{ borderRadius: "20px" }}
-              key={searchmode}
-              onClick={() => setMapImagesMode(searchmode)}
-            >
-              {searchmode}
-            </Button>
-          ))}
-        </div>
-        <Col
-          fluid="true"
-          style={{
-            height: "80vh",
-            padding: "0%",
-            margin: "0%",
-          }}
-        >
-          {selectedMapImagesMode === "Map" && (
-            <div>
-              <BioMapEngine />
-            </div>
-          )}
-          {selectedMapImagesMode === "Images" && (
-            <>
-              <div className="searchresult-div">
-                <SearchEngine />
-              </div>
-            </>
-          )}
-        </Col>
-      </>
-    );
-  };
+  const searchmodes = ["Map", "Images"];
+  const [mySearch, setMySearch] = useState("Map");
 
   return (
-    <div id="map">
+    <div>
       <TopBar />
       <SearchBar />
-
-      <LeftSideBar />
+      <IconBar />
+      <LeftSideBar searchmode={mySearch} />
       <Row>
         {/*Filter SideBar*/}
-        <Col
-          lg="auto"
-          className="filterbar"
-          style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
-        >
+        <Col xs="auto" className="filterbar">
           <FilterHeader />
-
           <ImageSearchEngine />
           <DateRange />
+          <MobileSidebar />
           <FavouriteHeader />
-
           <Favourite />
         </Col>
-        <Toggle />
-        {/* <div className="map-container">
-          <div id="gallery"></div>
-        </div> */}
+        <Toggle
+          searchmode={mySearch}
+          setMySearch={setMySearch}
+          searchmodes={searchmodes}
+        />
+        {/* <div > */}
       </Row>
       <BreadCrumb />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
 export default BioImagesEngine;
+
+/*Map Image Toggle*/
+function Toggle({ searchmode, setMySearch, searchmodes }) {
+  // && <img src="/img/map.png" width="40px"/>
+  return (
+    <>
+      <div
+        className="toggle"
+        style={{
+          position: "absolute",
+          right: "5%",
+          top: "80px",
+          zIndex: "10",
+        }}
+      >
+        {searchmodes.map((searchmode) => (
+          <Button
+            variant="round"
+            style={{ borderRadius: "20px" }}
+            key={searchmode}
+            onClick={() => setMySearch(searchmode)}
+          >
+            {searchmode}
+          </Button>
+        ))}
+      </div>
+      <Col
+        className="scroll-images"
+        style={{
+          height: "80vh",
+          padding: "0%",
+          margin: "0%",
+          width: "80vw"
+        }}
+      >
+          {/*Leaflet Map */}
+        {searchmode === "Map" && (
+          <div >
+            <BioMapEngine />
+          </div>
+        )}
+          {/*Photo Gallery */}
+        {searchmode === "Images" && (
+          <div>
+            <SearchEngine />
+          </div>
+        )}
+      </Col>
+    </>
+  );
+}

@@ -13,7 +13,8 @@ const BreadCrumb = (props) => {
        
           borderTop: "1.5px solid #66b3a6",
           color: "#043E4F",
-          width: "100%"
+          width: "100%",
+          zIndex: 20
          
         }}
       >

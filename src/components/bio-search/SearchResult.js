@@ -13,7 +13,7 @@ import { Link } from "react-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedFilterAction } from "../../store/reducer";
 
-const SearchResult = ({ bioImageDocument, site_id }) => {
+const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
@@ -39,7 +39,7 @@ const SearchResult = ({ bioImageDocument, site_id }) => {
   // };
 
   return (
-    <Col xl={3} lg={6} md={6}>
+    <Col xl={embed ? 12 : 3} lg={embed ? 12 : 6} md={embed ? 12 : 6} sm={12} xs={12}>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton style={{ paddingBottom: "10%" }}>
           <Modal.Title>

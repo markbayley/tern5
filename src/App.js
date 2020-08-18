@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
-import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./custom.scss";
 import BioImagesEngine from "./components/BioImagesEngine";
 
 function App() {

@@ -8,9 +8,13 @@ function Footer() {
         className="justify-content-center"
         activekey="/home"
         style={{
+          position: "fixed",
+          bottom: 0,
+          width: "103%",
           lineHeight: "15px",
           backgroundColor: "#003d4f",
           height: "35px",
+         
         }}
       >
         <Nav.Item style={{ padding: "0 20px 0px 20px", fontSize: "14px" }}>
