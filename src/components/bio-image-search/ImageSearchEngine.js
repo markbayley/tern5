@@ -2,7 +2,7 @@ import React from "react";
 import ImageFilterType from "./ImageFilterType";
 import { useSelector } from "react-redux";
 import ImageFilterTypeReactCkbTree from "./ImageFilterTypeReactCkbTree";
-
+import BioFacets from "./BioFacets";
 // import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 
 const ImageSearchEngine = () => {
@@ -34,8 +34,11 @@ const ImageSearchEngine = () => {
     //         );
     //     })}
     // </div>
-    <div className="react-checkbox-tree">
-      <ImageFilterTypeReactCkbTree />
+    // <div className="react-checkbox-tree">
+    //   <ImageFilterTypeReactCkbTree />
+    // </div>
+    <div className="bio-facets">
+      <BioFacets />
     </div>
   );
 };

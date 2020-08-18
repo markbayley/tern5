@@ -11,6 +11,8 @@ const initialState = {
   isLoadingSearch: true,
   hits: [],
   totalDocuments: null,
+  page_num: null,
+  page_size: null,
   filters: {},
   aggregation: null,
   selectedFilter: { page_size: 10, page_num: 1 },
@@ -28,10 +30,12 @@ const searchReducer = createReducer(initialState, {
   [fetchSearchDoneAction]: (state, action) => {
     state.isLoadingSearch = false;
     // const { hits, aggregation, aggregations } = action.payload;
-    const { hits } = action.payload;
+    const { hits, page_num, page_size } = action.payload;
     if (hits !== null) {
       state.hits = hits["hits"];
       state.totalDocuments = hits["total"]["value"];
+      state.page_num = page_num;
+      state.page_size = page_size;
     } else {
       // console.log("Hits are still null!");
     }
@@ -42,6 +46,7 @@ const searchReducer = createReducer(initialState, {
     // }
   },
   [selectedFilterAction]: (state, action) => {
+    console.log("action.payload", action.payload);
     state.selectedFilter = { ...state.selectedFilter, ...action.payload };
     // state.selectedFilter = { ...action.payload };
     if ("concat-selected" in state.selectedFilter) {
@@ -53,6 +58,7 @@ const searchReducer = createReducer(initialState, {
   [fetchFacetsDoneAction]: (state, action) => {
     const { aggregations } = action.payload;
     if (isEmpty(state.facets)) {
+      console.log("aggregations=", aggregations);
       state.facets = aggregations;
     }
   },

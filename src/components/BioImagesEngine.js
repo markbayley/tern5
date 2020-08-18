@@ -116,14 +116,9 @@ const BioImagesEngine = () => {
           <Favourite />
         </Col>
         <Toggle />
-        {/*Leaflet Map */}
-
-        <div className="map-container">
-          {/*End of Leaflet  Map */}
-
-          {/*Photo Gallery */}
+        {/* <div className="map-container">
           <div id="gallery"></div>
-        </div>
+        </div> */}
       </Row>
       <BreadCrumb />
       <Footer />
