@@ -56,6 +56,7 @@ export function fetchFavourites() {
 export function fetchSearch(params) {
   // Where we're fetching data from
   // const { selectedFilter } = params;
+  // params["page_size"] = 10;
   console.log("in API fetchSearch(). selectedFilter=", params);
   return callAPI({
     url: "search",

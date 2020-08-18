@@ -77,7 +77,7 @@ const ImageFilterTypeReactCkbTree = () => {
           children: [],
         };
         sitePlots.map((plot) => {
-          let plotNameValue = siteNameValue + "." + plot["key"];
+          let plotNameValue = siteNameValue + "-" + plot["key"];
           let plotNameLabel = plot["key"];
           // let totalPlots = plot["doc_count"];
           //for each plot process plot/site visit date
@@ -90,7 +90,7 @@ const ImageFilterTypeReactCkbTree = () => {
           plot["site_visit_id"]["buckets"].map((visit) => {
             //   const totalImagesPerVisit = visit["doc_count"];
             const plotVisitValue =
-              sitesPrefix + plotNameValue + "." + visit["key"];
+              sitesPrefix + plotNameValue + "-" + visit["key"];
             const plotVisitLabel = parseBioImagesDate(visit["key"]);
             visitDateParent.children.push({
               value: plotVisitValue,
@@ -149,13 +149,20 @@ const ImageFilterTypeReactCkbTree = () => {
   // Collect all the filters selected
   // in the tree structure
   const handleOnChecked = (selected) => {
-    // console.log("checked: ", selected);
+     console.log("checked: ", selected);
     // console.log("expanded: ", expanded);
     setChecked(selected);
 
     //Collect checked sites
+    // let selectedFilterItems = {
+    //   site_id: [],
+    //   plot: [],
+    //   site_visit_id: [],
+    //   image_type: [],
+    //   image_type_sub: [],
+    // };
     let selectedFilterItems = {
-      site_id: [],
+      "site_id": [],
       plot: [],
       site_visit_id: [],
       image_type: [],
@@ -163,13 +170,17 @@ const ImageFilterTypeReactCkbTree = () => {
     };
     selected.map((item) => {
       if (item.includes(sitesPrefix)) {
-        const selectedSite = item.split(".");
+        // const selectedSite = item.split(".");
+        // selectedFilterItems["site_id"].indexOf(selectedSite[1]) === -1 &&
+        //   selectedFilterItems["site_id"].push(selectedSite[1]);
+        // selectedFilterItems["plot"].indexOf(selectedSite[2]) === -1 &&
+        //   selectedFilterItems["plot"].push(selectedSite[2]);
+        // selectedFilterItems["site_visit_id"].indexOf(selectedSite[3]) === -1 &&
+        //   selectedFilterItems["site_visit_id"].push(selectedSite[3]);
+        //Sites.alic.asm.20160710
+        const selectedSite = item.split("Sites.")
         selectedFilterItems["site_id"].indexOf(selectedSite[1]) === -1 &&
           selectedFilterItems["site_id"].push(selectedSite[1]);
-        selectedFilterItems["plot"].indexOf(selectedSite[2]) === -1 &&
-          selectedFilterItems["plot"].push(selectedSite[2]);
-        selectedFilterItems["site_visit_id"].indexOf(selectedSite[3]) === -1 &&
-          selectedFilterItems["site_visit_id"].push(selectedSite[3]);
       }
       if (item.includes(imageTypesPrefix)) {
         const selectedImageType = item.split(".");
@@ -184,21 +195,21 @@ const ImageFilterTypeReactCkbTree = () => {
     // console.log("selectedFilterItems=", selectedFilterItems);
 
     //  let updatedFilter = {...selectedFilter};
-    let updatedFilter = {};
+    let updatedFilter = {"concat-selected": ""};
     if (selectedFilterItems["site_id"].length !== 0) {
-      const siteFilter = { site_id: selectedFilterItems["site_id"].join() };
+      const siteFilter = { "concat-selected": selectedFilterItems["site_id"].join() };
       updatedFilter = { ...updatedFilter, ...siteFilter };
     }
-    if (selectedFilterItems["plot"].length !== 0) {
-      const plotFilter = { plot: selectedFilterItems["plot"].join() };
-      updatedFilter = { ...updatedFilter, ...plotFilter };
-    }
-    if (selectedFilterItems["site_visit_id"].length !== 0) {
-      const siteVisitIdFilter = {
-        site_visit_id: selectedFilterItems["site_visit_id"].join(),
-      };
-      updatedFilter = { ...updatedFilter, ...siteVisitIdFilter };
-    }
+    // if (selectedFilterItems["plot"].length !== 0) {
+    //   const plotFilter = { plot: selectedFilterItems["plot"].join() };
+    //   updatedFilter = { ...updatedFilter, ...plotFilter };
+    // }
+    // if (selectedFilterItems["site_visit_id"].length !== 0) {
+    //   const siteVisitIdFilter = {
+    //     site_visit_id: selectedFilterItems["site_visit_id"].join(),
+    //   };
+    //   updatedFilter = { ...updatedFilter, ...siteVisitIdFilter };
+    // }
     if (selectedFilterItems["image_type"].length !== 0) {
       const imageTypeFilter = {
         image_type: selectedFilterItems["image_type"].join(),

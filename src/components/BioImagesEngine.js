@@ -13,7 +13,10 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import { fetchSearchAction } from "../store/reducer";
+import {
+  fetchSearchAction,
+  selectedMapImagesModeAction,
+} from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 
 import {
@@ -30,7 +33,9 @@ import {
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-
+  const selectedMapImagesMode = useSelector(
+    (state) => state.search.selectedMapImagesMode
+  );
   // TODO Look at this life cycle again and improve if required
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);

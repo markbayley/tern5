@@ -1,22 +1,24 @@
 import { createAction, combineReducers, createReducer } from "@reduxjs/toolkit";
 import { isEmpty } from "lodash";
-import { featchFacets } from "./middleware/api/bioimages";
-// const fetchFeatures = createAction('FETCH_FEATURES');
 export const fetchSearchAction = createAction("FETCH_SEARCH");
 export const fetchSearchDoneAction = createAction("FETCH_SEARCH_DONE");
 export const selectedFilterAction = createAction("SELECTED_FILTER");
 export const fetchFacetsAction = createAction("FETCH_FACETS");
 export const fetchFacetsDoneAction = createAction("FETCH_FACETS_DONE");
+export const selectedMapImagesModeAction = createAction("MAP_IMAGES_MODE");
+
 const initialState = {
   isLoadingSearch: true,
   hits: [],
+  totalDocuments: null,
   filters: {},
   aggregation: null,
-  selectedFilter: {},
+  selectedFilter: { page_size: 10, page_num: 1 },
   facets: {},
+  selectedMapImagesMode: "Map",
 };
 
-//TODO Mosheh cleaning it up! 
+//TODO Mosheh cleaning it up!
 //Lots changed after API changes.
 const searchReducer = createReducer(initialState, {
   [fetchSearchAction]: (state, action) => {
@@ -27,10 +29,9 @@ const searchReducer = createReducer(initialState, {
     state.isLoadingSearch = false;
     // const { hits, aggregation, aggregations } = action.payload;
     const { hits } = action.payload;
-    // console.log("fetch payload=", action.payload);
     if (hits !== null) {
-      // console.log("Loading hits....");
       state.hits = hits["hits"];
+      state.totalDocuments = hits["total"]["value"];
     } else {
       // console.log("Hits are still null!");
     }
@@ -41,14 +42,22 @@ const searchReducer = createReducer(initialState, {
     // }
   },
   [selectedFilterAction]: (state, action) => {
-    // state.selectedFilter = { ...state.selectedFilter, ...action.payload };
-    state.selectedFilter = {...action.payload };
+    state.selectedFilter = { ...state.selectedFilter, ...action.payload };
+    // state.selectedFilter = { ...action.payload };
+    if ("concat-selected" in state.selectedFilter) {
+      if (state.selectedFilter["concat-selected"] === "") {
+        delete state.selectedFilter["concat-selected"];
+      }
+    }
   },
   [fetchFacetsDoneAction]: (state, action) => {
     const { aggregations } = action.payload;
     if (isEmpty(state.facets)) {
       state.facets = aggregations;
     }
+  },
+  [selectedMapImagesModeAction]: (state, action) => {
+    state.selectedMapImagesMode = action.payload;
   },
 });
 

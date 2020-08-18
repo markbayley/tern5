@@ -5,18 +5,18 @@
 }
 @font-face {
   font-family: "Uni Neue";
-  src: url("/../public/assets/fonts/fontfabric_-_unineueheavy-webfont.woff2")
+  src: url("/fonts/fontfabric_-_unineueheavy-webfont.woff2")
       format("woff2"),
-    url("/../public/assets/fonts/fontfabric_-_unineueheavy-webfont.woff")
+    url("/fonts/fontfabric_-_unineueheavy-webfont.woff")
       format("woff");
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: "Uni Neue";
-  src: url("/../public/assets/fontfabric_-_unineuelight-webfont.woff2")
+  src: url("/fonts/fontfabric_-_unineuelight-webfont.woff2")
       format("woff2"),
-    url("/../public/assets/fontfabric_-_unineuelight-webfont.woff")
+    url("/fonts/fontfabric_-_unineuelight-webfont.woff")
       format("woff");
   font-weight: 300;
   font-style: normal;
@@ -42,7 +42,6 @@ body {
   max-width: 100%;
   overflow-anchor: none;
 }
-
 
 /* TOP BAR */
 .above-header {
@@ -118,16 +117,16 @@ body {
   width: 100px;
 }
 .links {
-  display: 'flex';
-  justify-content: 'space-between';
-  align-items: 'center';
+  display: "flex";
+  justify-content: "space-between";
+  align-items: "center";
 }
 
 /* SEARCHBAR*/
 .site-branding {
-  display: 'flex';
-  justify-content: 'center';
-  align-content: 'center';
+  display: "flex";
+  justify-content: "center";
+  align-content: "center";
 }
 .site-branding img {
   max-width: 300px;
@@ -173,22 +172,22 @@ body {
   opacity: 1;
 }
 
-
 /* SIDEBAR */
 .filterbar {
   z-index: "9";
   height: 80vh;
+
+
 }
-.accordion:hover { 
-  background-color: #B3D4C9;   
+.accordion:hover {
+  background-color: #b3d4c9;
 }
 .btntoggle:hover {
   background-color: #fff;
-  color:  #fff;
-  border: '5px solid #065f65';
-  font-weight: '900';
+  color: #fff;
+  border: "5px solid #065f65";
+  font-weight: "900";
 }
-
 
 /* MAP */
 .leaflet-container {
@@ -282,7 +281,7 @@ body {
   z-index: 11;
 }
 
-  /* .filterbar {
+/* .filterbar {
     height: 80vh;
   } */
 @media (max-width: 767px) {
@@ -393,7 +392,6 @@ body {
   display: block;
 }
 
-
 /* MEDIA */
 @media (max-width: 1450px) {
   .site-branding {
@@ -413,9 +411,9 @@ body {
 }
 @media (max-width: 400px) {
   .searchbar {
-    display: 'flex';
-    justify-content: 'center';
-    margin-bottom: '10px';
+    display: "flex";
+    justify-content: "center";
+    margin-bottom: "10px";
   }
 }
 
@@ -434,10 +432,6 @@ body {
     padding-right: 15px;
   }
 }
-
-
-
-
 
 #header-wrapper {
   width: 100vw;
@@ -470,11 +464,7 @@ body {
   z-index: 200;
 }
 
-
-
-
 /*----------------  Navbar styles ----------- */
-
 
 .dropdown-toggle{
   padding: 6px 12px;
@@ -535,7 +525,7 @@ a.search-link.addlinks{
   }
 }
 .navbar-dark .navbar-nav .nav-link{
-  color: #ffffff !important;  
+  color: #ffffff !important;
 }
 .search-for-mobile{
   display: none;
@@ -557,9 +547,9 @@ a.search-link.addlinks{
   .searchbar-wrap{
     width:100%;
     margin:0;
-    padding: 0 15px !important;  
+    padding: 0 15px !important;
   }
-  
+
 }
 
 
