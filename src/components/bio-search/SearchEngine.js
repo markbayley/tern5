@@ -39,13 +39,13 @@ const SearchEngine = () => {
         ))}
       </Row>
       <Row style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '30px', paddingTop: "15px"}}>
-        <Pagination>
+        <Pagination className={'pagination'}>
           <Pagination.First onClick={(e) => changePage(1, e)} />
           <Pagination.Prev onClick={prevPage} />
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <Pagination.Item
+                <Pagination.Item    
                   key={page.id}
                   active={page.current ? true : false}
                   onClick={(e) => changePage(page.id, e)}
