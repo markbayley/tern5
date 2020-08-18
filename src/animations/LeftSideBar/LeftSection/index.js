@@ -4,8 +4,12 @@ import BurgerButton from '../BurgerButton';
 import { LeftSideBarContext } from '../index';
 import './style.scss';
 import TopSection from '../TopSection';
+import SearchEngine from '../../../components/bio-search/SearchEngine';
+import {
+  Button,
+} from "react-bootstrap";
 
-const LeftSection = () => {
+const LeftSection = ({searchmode}) => {
   const { isShowSidebar, setIsShowSidebar } = useContext(LeftSideBarContext);
   return (
     <div className={`LeftSideBar__LeftSection LeftSideBar__LeftSection--${isShowSidebar ? 'show' : 'hide'}`}>
@@ -13,26 +17,24 @@ const LeftSection = () => {
       <div className="LeftSideBar__LeftSection__topWrapper">
         <BurgerButton
           onClick={() => setIsShowSidebar(false)}
+          searchmode={searchmode}
         />
       </div>
-      <ul className="LeftSideBar__LeftSection__menuWrapper">
-        <li>
-          <a
-            href="#"
-          >
+      {searchmode === "Map" && (
+            <div className="scroll">
+                <SearchEngine embed />
         
-            <img src="img/map1.png" />
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-          >
-          
-          </a>
-        </li>
-   
-      </ul>
+            </div>
+          )}
+          {searchmode === "Images" && (
+       
+            <Button searchmode={searchmode} onClick={searchmode === "Map"} style={{width: "100%"}} variant='flat'>
+               <img src="img/map1.png" width="100%" />
+               Click the map to view
+             
+            </Button>
+          )}
+      
     
     </div>
   );

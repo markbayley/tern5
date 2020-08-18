@@ -13,7 +13,7 @@ export default function TopBar() {
         <div className="above-header">
           <div className="container">
             <div className="above-header-section-wrap d-flex">
-              <Navbar expand="lg" style={{ padding: "0%" }}>
+              <Navbar expand="md" style={{ padding: "0%" }}>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                       <Nav navbar className="ml-auto">

@@ -5,11 +5,12 @@ import './style.scss';
 
 export const LeftSideBarContext = React.createContext({})
 
-const LeftSideBar = () => {
+const LeftSideBar = ({searchmode}) => {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
+
   return (
     <LeftSideBarContext.Provider
-      value={{ isShowSidebar, setIsShowSidebar }}
+      value={{ isShowSidebar, setIsShowSidebar, searchmode }}
     >
       <div className="LeftSideBar__container">
         <div
@@ -17,8 +18,8 @@ const LeftSideBar = () => {
           role="button"
           onClick={() => setIsShowSidebar(false)}
         ></div>
-        <TopSection />      
-        <LeftSection />
+        <TopSection searchmode={searchmode}/>      
+        <LeftSection searchmode={searchmode}/>
       </div>
     </LeftSideBarContext.Provider>
   );

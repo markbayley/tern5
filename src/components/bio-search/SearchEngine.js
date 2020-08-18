@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 import SearchResult from "./SearchResult";
 import { useSelector } from "react-redux";
 
-const SearchEngine = () => {
+const SearchEngine = ({embed}) => {
   const bioImageDocuments = useSelector((state) => state.search.hits);
   //const aggregation = useSelector((state) => state.search.aggregation);
 
@@ -27,6 +27,7 @@ const SearchEngine = () => {
           bioImageDocument={bioImageDocument["_source"]}
           site_id={bioImageDocument["_source"]["site_id"]["value"]}
           key={bioImageDocument["_id"]}
+          embed={embed}
         />
       ))}
     </Row>
