@@ -81,12 +81,12 @@ const BioImagesEngine = () => {
         />
         {/*Leaflet Map */}
 
-        <div className="map-container">
+        {/* <div className="map-container"> */}
           {/*End of Leaflet  Map */}
 
           {/*Photo Gallery */}
-          <div id="gallery"></div>
-        </div>
+          {/* <div id="gallery"></div>
+        </div>  */}
       </Row>
       <BreadCrumb />
       {/* <Footer /> */}

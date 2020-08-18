@@ -163,8 +163,6 @@ const ImageFilterTypeReactCkbTree = () => {
     // };
     let selectedFilterItems = {
       "site_id": [],
-      plot: [],
-      site_visit_id: [],
       image_type: [],
       image_type_sub: [],
     };
