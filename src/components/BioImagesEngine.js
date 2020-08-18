@@ -182,7 +182,7 @@ const BioImagesEngine = () => {
         </div>
       </Row>
       <BreadCrumb />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -215,7 +215,7 @@ function Toggle({searchmode, setMySearch, searchmodes}) {
           </Button>
         ))}
       </div>
-      <Col
+      <Col className="scroll2"
         style={{
           height: "80vh",
           padding: "0%",

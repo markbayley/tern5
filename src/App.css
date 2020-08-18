@@ -592,9 +592,14 @@ a.search-link.addlinks{
 
 .scroll {
   float:left;
-
-overflow-x: auto;
-height: 1000px;
+  overflow-x: auto;
+  height: 1000px;
 }
+
+.scroll2 {
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  }
 
 
