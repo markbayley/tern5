@@ -104,7 +104,8 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
           height: "80vh",
           padding: "0%",
           margin: "0%",
-          width: "80vw"
+          width: "80vw",
+       
         }}
       >
           {/*Leaflet Map */}

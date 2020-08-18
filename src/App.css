@@ -555,7 +555,9 @@ a.search-link.addlinks {
 
 /* Testing */
 .bio-facets {
-  margin-top: 10px;
+  margin: 20px 10px;
+  
+  color: #065f65;
 }
 
 @media (max-width: 1520px) {

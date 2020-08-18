@@ -36,6 +36,7 @@ class DateRange extends React.Component {
           style={{
             // borderRight: "55px solid rgba(149, 219, 199, 0.5)",
             marginLeft: "23px",
+        
           
           }}
         >

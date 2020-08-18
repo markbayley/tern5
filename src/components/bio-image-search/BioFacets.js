@@ -205,7 +205,7 @@ const BioFacets = () => {
   return (
     <div>
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsSites}
         placeholder="Select Sites"
@@ -214,21 +214,21 @@ const BioFacets = () => {
         onChange={(e) => siteSelect(e)}
       />
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsPlots}
         placeholder="Select Plots"
         isSearchable
       />
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsSiteVisitId}
         placeholder="Select Site Visit Ids"
         isSearchable
       />
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsImageTypes}
         placeholder="Select Image Types"
