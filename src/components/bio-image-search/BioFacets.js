@@ -6,116 +6,6 @@ import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
 import { Spinner } from "react-bootstrap";
 
-// const optionsSites = [
-//   {
-//     label: "Sites",
-//     options: [
-//       {
-//         value: "ali",
-//         label: "Alice Mulgal (1294939)",
-//       },
-//       {
-//         value: "Boya",
-//         label: "Boya (244590)",
-//       },
-//       {
-//         value: "ct",
-//         label: "Cape Tribulation (56794)",
-//       },
-//       {
-//         value: "Cowbay",
-//         label: "Cowbay (504959)",
-//       },
-//     ],
-//   },
-// ];
-// const optionsPlots = [
-//   {
-//     label: "Plots",
-//     options: [
-//       {
-//         label: "core1ha",
-//         value: "core1ha",
-//       },
-//       {
-//         label: "hummock_oblique",
-//         value: "hummock_oblique",
-//       },
-//     ],
-//   },
-// ];
-// const optionsSiteVisitId = [
-//   {
-//     label: "Site Visit Id",
-//     options: [
-//       {
-//         value: "20120217",
-//         label: "2012-02-17",
-//       },
-//       {
-//         value: "20120402",
-//         label: "2012-04-02",
-//       },
-//       {
-//         value: "20120517",
-//         label: "2012-05-17",
-//       },
-//       {
-//         value: "20120615",
-//         label: "2012-06-15",
-//       },
-//       {
-//         value: "20121026",
-//         label: "2012-10-26",
-//       },
-//     ],
-//   },
-// ];
-// const optionsImageTypes = [
-//   {
-//     label: "Ancillary",
-//     options: [
-//       {
-//         value: "Fauna",
-//         label: "Ancillary Fauna",
-//       },
-//       {
-//         value: "Flora",
-//         label: ">Flora",
-//       },
-//       {
-//         value: "Fungi",
-//         label: ">Fungi",
-//       },
-//       {
-//         value: "General",
-//         label: ">General",
-//       },
-//       {
-//         value: "Samford_camera_trap",
-//         label: ">Samford Camera Trap",
-//       },
-//     ],
-//   },
-//   {
-//     value: "Leaf Area Index",
-//     label: "Leaf Area Index",
-//   },
-//   {
-//     value: "Panorama",
-//     label: "Panorama",
-//   },
-//   {
-//     value: "Phenocam",
-//     label: "Phenocam",
-//   },
-//   {
-//     value: "Phtopoint",
-//     label: "Photopoint",
-//   },
-// ];
-const optionsDateRange = [];
-
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
@@ -182,6 +72,7 @@ const BioFacets = () => {
   let optionsPlots = [];
   let optionsSiteVisitId = [];
   let optionsImageTypes = [];
+  // const optionsDateRange = [];
   if (!isEmpty(facets)) {
     optionsSites = getOptionsSites();
     optionsPlots = getOptionsPlots();
@@ -208,7 +99,7 @@ const BioFacets = () => {
         className="mb-3"
         isMulti
         options={optionsSites}
-        placeholder="Select Sites"
+        placeholder="Select Sites..."
         isSearchable
         autoFocus
         onChange={(e) => siteSelect(e)}
@@ -217,21 +108,21 @@ const BioFacets = () => {
         className="mb-3"
         isMulti
         options={optionsPlots}
-        placeholder="Select Plots"
+        placeholder="Select Plots..."
         isSearchable
       />
       <Select
         className="mb-3"
         isMulti
         options={optionsSiteVisitId}
-        placeholder="Select Site Visit Ids"
+        placeholder="Select Site Visit Ids..."
         isSearchable
       />
       <Select
         className="mb-3"
         isMulti
         options={optionsImageTypes}
-        placeholder="Select Image Types"
+        placeholder="Select Image Types..."
         isSearchable
       />
       {/* <Select
