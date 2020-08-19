@@ -13,10 +13,7 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import {
-  fetchSearchAction,
-  selectedMapImagesModeAction,
-} from "../store/reducer";
+import {fetchSearchAction, selectedMapImagesModeAction} from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 import MobileSidebar from "./MobileSidebar";
 

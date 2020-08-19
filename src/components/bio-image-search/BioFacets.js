@@ -4,122 +4,14 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
-import { Spinner } from "react-bootstrap";
-
-// const optionsSites = [
-//   {
-//     label: "Sites",
-//     options: [
-//       {
-//         value: "ali",
-//         label: "Alice Mulgal (1294939)",
-//       },
-//       {
-//         value: "Boya",
-//         label: "Boya (244590)",
-//       },
-//       {
-//         value: "ct",
-//         label: "Cape Tribulation (56794)",
-//       },
-//       {
-//         value: "Cowbay",
-//         label: "Cowbay (504959)",
-//       },
-//     ],
-//   },
-// ];
-// const optionsPlots = [
-//   {
-//     label: "Plots",
-//     options: [
-//       {
-//         label: "core1ha",
-//         value: "core1ha",
-//       },
-//       {
-//         label: "hummock_oblique",
-//         value: "hummock_oblique",
-//       },
-//     ],
-//   },
-// ];
-// const optionsSiteVisitId = [
-//   {
-//     label: "Site Visit Id",
-//     options: [
-//       {
-//         value: "20120217",
-//         label: "2012-02-17",
-//       },
-//       {
-//         value: "20120402",
-//         label: "2012-04-02",
-//       },
-//       {
-//         value: "20120517",
-//         label: "2012-05-17",
-//       },
-//       {
-//         value: "20120615",
-//         label: "2012-06-15",
-//       },
-//       {
-//         value: "20121026",
-//         label: "2012-10-26",
-//       },
-//     ],
-//   },
-// ];
-// const optionsImageTypes = [
-//   {
-//     label: "Ancillary",
-//     options: [
-//       {
-//         value: "Fauna",
-//         label: "Ancillary Fauna",
-//       },
-//       {
-//         value: "Flora",
-//         label: ">Flora",
-//       },
-//       {
-//         value: "Fungi",
-//         label: ">Fungi",
-//       },
-//       {
-//         value: "General",
-//         label: ">General",
-//       },
-//       {
-//         value: "Samford_camera_trap",
-//         label: ">Samford Camera Trap",
-//       },
-//     ],
-//   },
-//   {
-//     value: "Leaf Area Index",
-//     label: "Leaf Area Index",
-//   },
-//   {
-//     value: "Panorama",
-//     label: "Panorama",
-//   },
-//   {
-//     value: "Phenocam",
-//     label: "Phenocam",
-//   },
-//   {
-//     value: "Phtopoint",
-//     label: "Photopoint",
-//   },
-// ];
-const optionsDateRange = [];
 
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
+  const [selectedSites, setSelectedSites] = useState(null);
+  const [selectedPlots, setSelectedPlots] = useState(null);
+  const [storedSiteOptions, setStoredSiteOptions] = useState([]);
 
   console.log("filters=", facets);
 
@@ -182,8 +74,14 @@ const BioFacets = () => {
   let optionsPlots = [];
   let optionsSiteVisitId = [];
   let optionsImageTypes = [];
+  // const optionsDateRange = [];
   if (!isEmpty(facets)) {
-    optionsSites = getOptionsSites();
+    if (storedSiteOptions.length === 0) {
+      optionsSites = getOptionsSites();
+      setStoredSiteOptions(optionsSites);
+    } else {
+      optionsSites = storedSiteOptions;
+    }
     optionsPlots = getOptionsPlots();
     optionsSiteVisitId = getOptionsSiteVisitId();
     optionsImageTypes = getOptionsImageType();
@@ -191,15 +89,58 @@ const BioFacets = () => {
 
   useEffect(() => {
     console.log("In useEffect of Facets");
-    dispatch(fetchFacetsAction({}));
-  }, []);
+    let sites = {};
+    if (selectedSites !== null) {
+      sites = { ...sites, site_id: selectedSites };
+    }
+    console.log("sites=", sites);
+    dispatch(fetchFacetsAction(sites));
+  }, [selectedSites]);
 
   const siteSelect = (siteOptions) => {
     console.log("e=", siteOptions);
-    // alert("Site select!", e);
-    const selectedSites = siteOptions.map((option) => option.value);
-    console.log("selectedSites = ", selectedSites.join());
-    dispatch(selectedFilterAction({ site_id: selectedSites.join() }));
+    let searchParam = {};
+    if (siteOptions !== null) {
+      const selected = siteOptions.map((option) => option.value);
+      if (selected.length !== 0) {
+        searchParam = { ...searchParam, site_id: selected.join() };
+        setSelectedSites(selected.join());
+      } else {
+        setSelectedSites(null);
+      }
+    } else {
+      setSelectedSites(null);
+    }
+
+    if (selectedPlots !== null) {
+      searchParam = { ...searchParam, plot: selectedPlots };
+    }
+    console.log("searchParam = ", searchParam);
+    dispatch(selectedFilterAction(searchParam));
+    // dispatch(fetchFacetsAction(searchParam));
+  };
+
+  const plotSelect = (plotOptions) => {
+    console.log("e=", plotOptions);
+    let searchParam = {};
+    if (plotOptions !== null) {
+      const selected = plotOptions.map((option) => option.value);
+      if (selected.length !== 0) {
+        searchParam = { ...searchParam, plot: selected.join() };
+        setSelectedPlots(selected.join());
+      } else {
+        setSelectedPlots(null);
+      }
+    } else {
+      setSelectedPlots(null);
+    }
+
+    if (selectedSites !== null) {
+      searchParam = { ...searchParam, site_id: selectedSites };
+    }
+    console.log("searchParam = ", searchParam);
+    dispatch(selectedFilterAction(searchParam));
+    // dispatch(fetchFacetsAction(searchParam));
   };
 
   return (
@@ -219,6 +160,7 @@ const BioFacets = () => {
         options={optionsPlots}
         placeholder="Select Plots"
         isSearchable
+        onChange={(e) => plotSelect(e)}
       />
       <Select
         className="mb-4"
@@ -234,13 +176,6 @@ const BioFacets = () => {
         placeholder="Select Image Types"
         isSearchable
       />
-      {/* <Select
-        className="mb-3"
-        isMulti
-        options={optionsSiteVisitId}
-        placeholder="Select Site Visit Id"
-        isSearchable
-      /> */}
     </div>
   );
 };
