@@ -24,10 +24,10 @@ const BioImagesEngine = () => {
     (state) => state.search.selectedMapImagesMode
   );
   // TODO Look at this life cycle again and improve if required
-  // useEffect(() => {
-  //   console.log("in useEffect(). selectedFilter=", selectedFilter);
-  //   dispatch(fetchSearchAction(selectedFilter));
-  // }, [selectedFilter]);
+  useEffect(() => {
+    console.log("in useEffect(). selectedFilter=", selectedFilter);
+    dispatch(fetchSearchAction(selectedFilter));
+  }, [selectedFilter]);
 
   //TODO to be implemented later - if ever!
   const filterSiteID = (id) => {
@@ -100,7 +100,8 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
           height: "80vh",
           padding: "0%",
           margin: "0%",
-          width: "80vw"
+          width: "80vw",
+       
         }}
       >
           {/*Leaflet Map */}

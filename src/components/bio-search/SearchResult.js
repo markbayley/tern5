@@ -188,8 +188,8 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                 className="hvrbox-text"
                 style={{ textTransform: "capitalize" }}
               >
-                View{" "}
-                {site_id.replace("_", " ")
+                View Image?{" "}
+                {/* {site_id.replace("_", " ")
                   .replace("=", " ")
                   .replace("value", " ")
                   .replace(".", " ")
@@ -203,8 +203,8 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                   .replace("gwwl", "Great Western Woodlands")
                   .replace("lfld", "Litchfield")
                   .replace("mgrl", "Mitchell Grass Rangeland")
-                  .replace("lai ", "Leaf Area Index")}
-                ?
+                  .replace("lai ", "Leaf Area Index")} */}
+                
                 <br />
                 <img
                   src="/img/icons/Bioimages icon.svg"

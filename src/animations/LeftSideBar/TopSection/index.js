@@ -5,6 +5,7 @@ import './style.scss';
 
 const TopSection = ({searchmode}) => {
   const { setIsShowSidebar } = useContext(LeftSideBarContext);
+  console.log('ts' , searchmode);
   return (
     <div className="LeftSideBar__TopSection">
       <BurgerButton

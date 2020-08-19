@@ -13,13 +13,13 @@ const SearchEngine = () => {
   const dispatch = useDispatch();
   console.log("totalImages=", totalImages);
   console.log("data=", data);
-  // if (loading) {
-  //   return (
-  //     <Spinner animation="border" role="status">
-  //       <span className="sr-only">Loading...</span>
-  //     </Spinner>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
+  }
 
   const itemsPerPage = selectedFilter["page_size"];
   const startFrom = selectedFilter["page_num"];
@@ -37,10 +37,10 @@ const SearchEngine = () => {
     totalImages,
   });
 
-  useEffect(() => {
-    console.log("in useEffect(). selectedFilter=", selectedFilter);
-    dispatch(fetchSearchAction(selectedFilter));
-  }, []);
+  // useEffect(() => {
+  //   console.log("in useEffect(). selectedFilter=", selectedFilter);
+  //   dispatch(fetchSearchAction(selectedFilter));
+  // }, []);
 
   return (
     <div>
@@ -54,13 +54,13 @@ const SearchEngine = () => {
         ))}
       </Row>
       <Row style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '30px', paddingTop: "15px"}}>
-        <Pagination>
+        <Pagination className={'pagination'}>
           <Pagination.First onClick={(e) => changePage(1, e)} />
           <Pagination.Prev onClick={prevPage} />
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <Pagination.Item
+                <Pagination.Item    
                   key={page.id}
                   active={page.current ? true : false}
                   onClick={(e) => changePage(page.id, e)}

@@ -4,7 +4,6 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
-import { Spinner } from "react-bootstrap";
 
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
@@ -147,37 +146,35 @@ const BioFacets = () => {
   return (
     <div>
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsSites}
-        placeholder="Select Sites..."
+        placeholder="Select Sites"
         isSearchable
         autoFocus
         onChange={(e) => siteSelect(e)}
       />
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsPlots}
-        placeholder="Select Plots..."
+        placeholder="Select Plots"
         isSearchable
         onChange={(e) => plotSelect(e)}
       />
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsSiteVisitId}
-        placeholder="Select Site Visit Ids..."
+        placeholder="Select Site Visit Ids"
         isSearchable
-        isDisabled
       />
       <Select
-        className="mb-3"
+        className="mb-4"
         isMulti
         options={optionsImageTypes}
-        placeholder="Select Image Types..."
+        placeholder="Select Image Types"
         isSearchable
-        isDisabled
       />
     </div>
   );

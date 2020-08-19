@@ -1,7 +1,17 @@
 .filterbar {
-    z-index: "9";
-    height: 80vh;
-    margin: 0px;
-    padding-right: 0px;
-    width: 380px;
+  z-index: "9";
+  height: 80vh;
+  margin: 0px;
+  padding-right: 0px;
+  width: 360px;
+}
+
+.pagination {
+  .page-link {
+    color: #065f65;
   }
+
+  .activeLinkClass{
+    background-color: "red";
+  }
+}

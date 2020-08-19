@@ -47,8 +47,8 @@ const searchReducer = createReducer(initialState, {
   },
   [selectedFilterAction]: (state, action) => {
     console.log("REDUCER. selectedFilterAction. action.payload=", action.payload);
-    // state.selectedFilter = { ...state.selectedFilter, ...action.payload };
-    state.selectedFilter = { ...action.payload };
+    state.selectedFilter = { ...state.selectedFilter, ...action.payload };
+    // state.selectedFilter = { ...action.payload };
     // if ("concat-selected" in state.selectedFilter) {
     //   if (state.selectedFilter["concat-selected"] === "") {
     //     delete state.selectedFilter["concat-selected"];
@@ -57,10 +57,10 @@ const searchReducer = createReducer(initialState, {
   },
   [fetchFacetsDoneAction]: (state, action) => {
     const { aggregations } = action.payload;
-    //if (isEmpty(state.facets)) {
+    // if (isEmpty(state.facets)) {
       console.log("aggregations=", aggregations);
       state.facets = aggregations;
-    //}
+    // }
   },
   [selectedMapImagesModeAction]: (state, action) => {
     state.selectedMapImagesMode = action.payload;
