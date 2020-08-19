@@ -2,15 +2,10 @@
 module.exports = {
   "root": true,
   "env": {
-    // "browser": true,
-    // "node": true,
     "es6": true,
     "es2020": true
   },
-  // TODO: we probably don't need babel-eslint parser
-  // "parser": "babel-eslint",
   "parserOptions": {
-    // "parserOptions": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
