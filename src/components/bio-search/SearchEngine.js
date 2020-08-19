@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Row, Spinner, Pagination } from "react-bootstrap";
 import SearchResult from "./SearchResult";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,20 +6,22 @@ import BioResultPagination from "./BioResultPagination";
 import { fetchSearchAction } from "../../store/reducer";
 
 const SearchEngine = () => {
+  const loading = useSelector((state) => state.search.isLoadingSearch);
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-  const loading = useSelector((state) => state.search.isLoadingSearch);
   const dispatch = useDispatch();
-  console.log("totalImages=", totalImages);
-  console.log("data=", data);
-  if (loading) {
-    return (
-      <Spinner animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
-    );
-  }
+
+  //console.log("totalImages=", totalImages);
+  //console.log("data=", data);
+
+  // if (loading) {
+  //   return (
+  //     <Spinner animation="border" role="status">
+  //       <span className="sr-only">Loading...</span>
+  //     </Spinner>
+  //   );
+  // }
 
   const itemsPerPage = selectedFilter["page_size"];
   const startFrom = selectedFilter["page_num"];
