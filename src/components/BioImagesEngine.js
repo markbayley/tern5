@@ -47,7 +47,7 @@ const BioImagesEngine = () => {
     <div>
       <TopBar />
       <SearchBar />
-      <IconBar />
+  
       <LeftSideBar searchmode={mySearch} />
       <Row>
         {/*Filter SideBar*/}
