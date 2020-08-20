@@ -20,14 +20,21 @@ function LoginButton() {
   const handleClick = () => setLoading(true);
 
   return (
-    <Button 
-      variant="flat"
+    <>
+  
+    <Button
+    style={{borderRadius: "10px"}}
+      variant="login"
       size="md"
       disabled={isLoading}
       onClick={!isLoading ? handleClick : null}
     >
-      {isLoading ? "Loading" : "LOGIN"}
+      <span style={{paddingRight: "5px"}}>
+       <i class="fa fa-user"> </i>
+       </span>
+      {isLoading ? "Loading" : "Login"}
     </Button>
+    </>
   );
 }
 

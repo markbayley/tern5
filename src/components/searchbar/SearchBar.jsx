@@ -149,13 +149,13 @@ function SearchBar() {
                 <LoginButton />{" "}
               </Link>
 
-              <Link to="/login" 
+              {/* <Link to="/login" 
               style={{ 
                
                }}>
                 {" "}
                 <RegisterButton />{" "}
-              </Link>
+              </Link> */}
               </div>
             </Container>
 

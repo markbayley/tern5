@@ -51,7 +51,8 @@ const BioImagesEngine = () => {
       <LeftSideBar searchmode={mySearch} />
       <Row>
         {/*Filter SideBar*/}
-        <Col xs="auto" className="filterbar">
+        <Col xs="auto" className="filterbar" style={{borderRight: "60px solid #B3D4C9" }}>
+        <IconBar />
           <FilterHeader />
           <ImageSearchEngine />
           <DateRange />
@@ -82,15 +83,15 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
         className="toggle"
         style={{
           position: "absolute",
-          right: "5%",
-          top: "80px",
+          left: "500px",
+          top: "150px",
           zIndex: "10",
         }}
       >
         {searchmodes.map((searchmode) => (
           <Button
             variant="round"
-            style={{ borderRadius: "20px" }}
+            style={{ borderRadius: "5px" }}
             key={searchmode}
             onClick={() => setMySearch(searchmode)}
           >

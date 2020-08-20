@@ -4,7 +4,7 @@ import SearchResult from "./SearchResult";
 import { useSelector } from "react-redux";
 import BioResultPagination from "./BioResultPagination";
 
-const SearchEngine = () => {
+const SearchEngine = ({embed}) => {
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
@@ -35,10 +35,11 @@ const SearchEngine = () => {
             bioImageDocument={bioImageDocument["_source"]}
             site_id={bioImageDocument["_source"]["site_id"]["value"]}
             key={bioImageDocument["_id"]}
+            embed={embed}
           />
         ))}
       </Row>
-      <Row style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '30px', paddingTop: "15px"}}>
+      <Row style={{  display: 'flex', justifyContent: 'flex-end', position: "sticky", bottom: 0, paddingRight: "20px"}}>
         <Pagination className={'pagination'}>
           <Pagination.First onClick={(e) => changePage(1, e)} />
           <Pagination.Prev onClick={prevPage} />
