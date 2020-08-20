@@ -7,10 +7,19 @@ const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
   var tooltip = "";
   // var sitePosition = bioImageDocument.centre_point;
   let sitePosition = bioImageDocument["location"]["coordinates"];
+  const locType = bioImageDocument["location"]["type"];
 
   let siteCordinates = [];
-  siteCordinates.push(sitePosition[1]);
-  siteCordinates.push(sitePosition[0]);
+  if (locType === "polygon") {
+    //Take lat/lon from the first coords
+    //TODO Have asked Wilma to look at this if we should be expecting
+    // that some sites have polygons instead of lat/lon
+    siteCordinates.push(sitePosition[0][0][0]);
+    siteCordinates.push(sitePosition[0][0][1]);
+  } else {
+    siteCordinates.push(sitePosition[0]);
+    siteCordinates.push(sitePosition[1]);
+  }
 
   // for (var this_key in bioImageDocument.image_types) {
   //   //console.log(this_key);
@@ -50,4 +59,3 @@ const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
   );
 };
 export default ImageMarkerEngine;
-

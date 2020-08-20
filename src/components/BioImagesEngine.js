@@ -13,10 +13,7 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
-import {
-  fetchSearchAction,
-  selectedMapImagesModeAction,
-} from "../store/reducer";
+import { fetchSearchAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 import MobileSidebar from "./MobileSidebar";
 
@@ -26,10 +23,12 @@ const BioImagesEngine = () => {
   const selectedMapImagesMode = useSelector(
     (state) => state.search.selectedMapImagesMode
   );
+  const searchmodes = ["Map", "Images"];
+  const [mySearch, setMySearch] = useState("Map");
+
   // TODO Look at this life cycle again and improve if required
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
-    // dispatch(fetchSearchAction({ selectedFilter: selectedFilter }));
     dispatch(fetchSearchAction(selectedFilter));
   }, [selectedFilter]);
 
@@ -40,8 +39,56 @@ const BioImagesEngine = () => {
     console.log("filterSiteID", selectedFilter);
   };
 
-  const searchmodes = ["Map", "Images"];
-  const [mySearch, setMySearch] = useState("Map");
+  /*Map Image Toggle*/
+  function Toggle({ searchmode, setMySearch, searchmodes }) {
+    // && <img src="/img/map.png" width="40px"/>
+    return (
+      <>
+        <div
+          className="toggle"
+          style={{
+            position: "absolute",
+            right: "5%",
+            top: "80px",
+            zIndex: "10",
+          }}
+        >
+          {searchmodes.map((searchmode) => (
+            <Button
+              variant="round"
+              style={{ borderRadius: "20px" }}
+              key={searchmode}
+              onClick={() => setMySearch(searchmode)}
+            >
+              {searchmode}
+            </Button>
+          ))}
+        </div>
+        <Col
+          className="scroll-images"
+          style={{
+            height: "80vh",
+            padding: "0%",
+            margin: "0%",
+            width: "80vw",
+          }}
+        >
+          {/*Leaflet Map */}
+          {searchmode === "Map" && (
+            <div>
+              <BioMapEngine />
+            </div>
+          )}
+          {/*Photo Gallery */}
+          {searchmode === "Images" && (
+            <div>
+              <SearchEngine />
+            </div>
+          )}
+        </Col>
+      </>
+    );
+  }
 
   return (
     <div>
@@ -73,55 +120,3 @@ const BioImagesEngine = () => {
   );
 };
 export default BioImagesEngine;
-
-/*Map Image Toggle*/
-function Toggle({ searchmode, setMySearch, searchmodes }) {
-  // && <img src="/img/map.png" width="40px"/>
-  return (
-    <>
-      <div
-        className="toggle"
-        style={{
-          position: "absolute",
-          left: "500px",
-          top: "150px",
-          zIndex: "10",
-        }}
-      >
-        {searchmodes.map((searchmode) => (
-          <Button
-            variant="round"
-            style={{ borderRadius: "5px" }}
-            key={searchmode}
-            onClick={() => setMySearch(searchmode)}
-          >
-            {searchmode}
-          </Button>
-        ))}
-      </div>
-      <Col
-        className="scroll-images"
-        style={{
-          height: "80vh",
-          padding: "0%",
-          margin: "0%",
-          width: "80vw",
-       
-        }}
-      >
-          {/*Leaflet Map */}
-        {searchmode === "Map" && (
-          <div >
-            <BioMapEngine />
-          </div>
-        )}
-          {/*Photo Gallery */}
-        {searchmode === "Images" && (
-          <div>
-            <SearchEngine />
-          </div>
-        )}
-      </Col>
-    </>
-  );
-}
