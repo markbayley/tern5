@@ -5,7 +5,7 @@ import './style.scss';
 
 export const LeftSideBarContext = React.createContext({})
 
-const LeftSideBar = ({searchmode}) => {
+const LeftSideBar = ({searchmode, setMySearch}) => {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
 
   return (
@@ -18,8 +18,8 @@ const LeftSideBar = ({searchmode}) => {
           role="button"
           onClick={() => setIsShowSidebar(false)}
         ></div>
-        <TopSection searchmode={searchmode}/>      
-        <LeftSection searchmode={searchmode}/>
+        <TopSection searchmode={searchmode} setMySearch={setMySearch}/>      
+        <LeftSection searchmode={searchmode} setMySearch={setMySearch}/>
       </div>
     </LeftSideBarContext.Provider>
   );

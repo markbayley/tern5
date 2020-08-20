@@ -9,7 +9,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-const LeftSection = ({searchmode}) => {
+const LeftSection = ({searchmode, setMySearch}) => {
   const { isShowSidebar, setIsShowSidebar } = useContext(LeftSideBarContext);
   return (
     <div className={`LeftSideBar__LeftSection LeftSideBar__LeftSection--${isShowSidebar ? 'show' : 'hide'}`}>
@@ -28,8 +28,10 @@ const LeftSection = ({searchmode}) => {
           )}
           {searchmode === "Images" && (
        
-            <Button searchmode={searchmode} onClick={searchmode === "Map"} style={{width: "100%"}} variant='flat'>
-               <img src="img/map1.png" width="100%" />
+            <Button searchmode={searchmode} setMySearch={setMySearch}
+            onClick={() => setMySearch(searchmode === 'Map')}
+             style={{width: "100%"}} variant='flat'>
+               <img src="img/map1.png" width="100%" alt="map"/>
                Click the map to view
              
             </Button>

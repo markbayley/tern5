@@ -94,11 +94,12 @@ const BioImagesEngine = () => {
     <div>
       <TopBar />
       <SearchBar />
-      <IconBar />
+  
       <LeftSideBar searchmode={mySearch} />
       <Row>
         {/*Filter SideBar*/}
-        <Col xs="auto" className="filterbar">
+        <Col xs="auto" className="filterbar" style={{borderRight: "60px solid #B3D4C9" }}>
+        <IconBar />
           <FilterHeader />
           <ImageSearchEngine />
           <DateRange />

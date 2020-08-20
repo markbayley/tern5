@@ -12,6 +12,7 @@ import {
 import { Link } from "react-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedFilterAction } from "../../store/reducer";
+import './SearchResult.css';
 
 const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,8 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   //   splitAggregation = aggreSplit[0];
   // }
 
-  const img_url = bioImageDocument.thumbnail_url;
+  const img_url_small = bioImageDocument.preview_urls[1].url;
+  const img_url_large = bioImageDocument.preview_urls[0].url;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -39,7 +41,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   // };
 
   return (
-    <Col xl={embed ? 12 : 3} lg={embed ? 12 : 6} md={embed ? 12 : 6} sm={12} xs={12}>
+    <Col xl={embed ? 7 : 3} lg={embed ? 7 : 6} md={embed ? 12 : 6} sm={12} xs={12}>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton style={{ paddingBottom: "10%" }}>
           <Modal.Title>
@@ -111,7 +113,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
           <Carousel>
             <Carousel.Item>
               <Image
-                src={img_url}
+                src={img_url_large}
                 width="765px"
                 height="465px"
                 className="d-block w-100"
@@ -120,7 +122,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
             </Carousel.Item>
             <Carousel.Item>
               <Image
-                src={img_url}
+                src={img_url_large}
                 width="765px"
                 height="465px"
                 className="d-block w-100"
@@ -130,7 +132,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
             </Carousel.Item>
             <Carousel.Item>
               <Image
-                src={img_url}
+                src={img_url_large}
                 width="765px"
                 height="465px"
                 className="d-block w-100"
@@ -170,7 +172,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
         </Modal.Footer>
       </Modal>
 
-      <Card id={site_id} style={{ border: "#fff", marginRight: "-8%" }}>
+      <Card id={site_id} style={{ border: "#fff", margin: "0px -25px 5px 0px" }}>
         <div className="hvrbox">
           <Button
             variant="flat"
@@ -178,10 +180,16 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
             onClick={handleShow}
           >
             <Image
-              className="hvrbox-layer_bottom"
+              className="small_preview"
               onClick={handleShow}
-              src={img_url}
-              style={{ width: "100%", height: "210px", padding: "1%" }}
+              src={img_url_small}
+              style={{ width: "100%", padding: "1%" }}
+            />
+             <Image
+              className="large_preview"
+              onClick={handleShow}
+              src={img_url_large}
+              style={{ width: "100%", padding: "1%" }}
             />
             <div className="hvrbox-layer_top">
               <div
@@ -219,42 +227,44 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
             <strong>Image Type:</strong>{" "}
             {bioImageDocument.image_type.value[0].toUpperCase() +
               bioImageDocument.image_type.value.substr(1)}{" "}
-            {/* <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "}  */}
-            {/* <strong>Plot:</strong> {bioImageDocument.plot.value}{" "} */}
-            {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
-          </Button>
-        </div>
-        {/* 
-          <Form
+                <Form
             className="center"
             style={{ paddingTop: "5px", color: "#065f65" }}
           >
             {["checkbox"].map((type, index) => (
-              <div key={index} className="mb-3">
-                <Form.Check
+              <div style={{ position: "absolute", top: 5, right: -3}} key={index} className="mb-`3">
+                {/* <Form.Check
                   type={type}
                   id={bioImageDocument.id}
                   inline
                   label="View"
                   onClick={handleShow}
-                />
+                /> */}
                 <Form.Check
                   inline
-                  label="Select"
+                
                   type={type}
                   id={bioImageDocument.id}
                 />
-                <Form.Check
+                {/* <Form.Check
                   inline
                   label="Download"
                   type={type}
                   id={bioImageDocument.id}
-                />
+                /> */}
 
                 {/*{props.value.doc_count} */}
-        {/* </div>
+            </div>
             ))}
-          </Form> */}
+          </Form>
+            {/* <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "}  */}
+            {/* <strong>Plot:</strong> {bioImageDocument.plot.value}{" "} */}
+            {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
+          </Button>
+          
+      
+        </div>
+        
       </Card>
     </Col>
   );
