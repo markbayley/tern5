@@ -3,6 +3,7 @@ import { CANCEL } from "redux-saga";
 // import { getConfig } from '../config';
 import { CONFIG } from "../../../config";
 
+// TODO: this is not middleware ... it's API ... move to a different module
 let client;
 
 // axios client factory ...
@@ -19,7 +20,8 @@ function getClient() {
   return client;
 }
 
-// helper method to invoke ajax call via axios, and set up a cancel token to cancel pending requests if needed.
+// helper method to invoke ajax call via axios,
+// and set up a cancel token to cancel pending requests if needed.
 function callAPI(options) {
   // returns a cancelable promise
   const cancel = axios.CancelToken.source();
@@ -57,17 +59,15 @@ export function fetchSearch(params) {
   // Where we're fetching data from
   // const { selectedFilter } = params;
   // params["page_size"] = 10;
-  console.log("in API fetchSearch(). selectedFilter=", params);
   return callAPI({
     url: "search",
-    params: params,
+    params,
   });
 }
 
 export function fetchFacets(params) {
-  console.log("in API fetchFacets(), params=", params);
   return callAPI({
     url: "facet",
-    params: params,
+    params,
   });
 }
