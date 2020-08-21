@@ -12,9 +12,7 @@ function getClient() {
   if (!client) {
     client = axios.create({
       baseURL: CONFIG.API_BASE_URL,
-      validateStatus: (status) => {
-        return status === 200 || status === 403;
-      },
+      validateStatus: (status) => status === 200 || status === 403,
     });
   }
   return client;
