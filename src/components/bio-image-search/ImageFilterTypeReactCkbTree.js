@@ -73,7 +73,7 @@ const ImageFilterTypeReactCkbTree = () => {
           label: `Plots (${sitePlots.length})`,
           children: [],
         };
-        sitePlots.map((plot) => {
+        sitePlots.forEach((plot) => {
           const plotNameValue = `${siteNameValue}-${plot.key}`;
           const plotNameLabel = plot.key;
           // let totalPlots = plot["doc_count"];
@@ -84,7 +84,7 @@ const ImageFilterTypeReactCkbTree = () => {
               `Visit Date (${plot["site_visit_id"].buckets.length})`,
             children: [],
           };
-          plot["site_visit_id"].buckets.map((visit) => {
+          plot["site_visit_id"].buckets.forEach((visit) => {
             //   const totalImagesPerVisit = visit["doc_count"];
             const plotVisitValue = `${sitesPrefix + plotNameValue}-${visit.key}`;
             const plotVisitLabel = parseBioImagesDate(visit.key);
@@ -147,7 +147,7 @@ const ImageFilterTypeReactCkbTree = () => {
       image_type: [],
       image_type_sub: [],
     };
-    selected.map((item) => {
+    selected.forEach((item) => {
       if (item.includes(sitesPrefix)) {
         // const selectedSite = item.split(".");
         // selectedFilterItems["site_id"].indexOf(selectedSite[1]) === -1 &&
