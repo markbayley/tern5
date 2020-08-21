@@ -22,7 +22,7 @@ module.exports = {
   // "plugins": ['import', 'flowtype', 'jsx-a11y', 'react', 'react-hooks'],
   "rules": {
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
-    "import/no-unused-modules": ["error", { "missingExports": true, "unusedExports": true, "ignoreExports": ["src/serviceWorker.js", "src/*.test.js", "src/index.js"] }],  // this rule requires the modules @typescript-eslint/parser and typescript to be installed ;(
+    "import/no-unused-modules": ["error", { "missingExports": true, "unusedExports": true, "ignoreExports": ["src/serviceWorker.js", "src/*.test.js", "src/index.js", "src/setupTests.js"] }],  // this rule requires the modules @typescript-eslint/parser and typescript to be installed ;(
     "import/no-extraneous-dependencies": "error",
     "import/no-unassigned-import": ["error", { "allow": ["**/*.css", "**/*.scss"] }],
     "import/named": "error",
