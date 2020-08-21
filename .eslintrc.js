@@ -16,7 +16,6 @@ module.exports = {
     "react-app",
     "airbnb",
     "airbnb/hooks",
-    "airbnb/whitespace",
     "plugin:jsx-a11y/recommended",
   ],
   // default plugins from react-scripts
@@ -25,7 +24,7 @@ module.exports = {
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "import/no-unused-modules": ["error", { "missingExports": true, "unusedExports": true, "ignoreExports": ["src/serviceWorker.js", "src/*.test.js", "src/index.js"] }],  // this rule requires the modules @typescript-eslint/parser and typescript to be installed ;(
     "import/no-extraneous-dependencies": "error",
-    "import/no-unassigned-import": "error",
+    "import/no-unassigned-import": ["error", { "allow": ["**/*.css", "**/*.scss"] }],
     "import/named": "error",
     "import/default": "error",
 
@@ -36,6 +35,11 @@ module.exports = {
     // styles to warn about, producton builds will fail
     "quotes": ["warn", "double"],
     "no-trailing-spaces": "warn",
+    // allow es properties to be access via bracket notation. (as a side effect allow dangling underscores, and camel case issues)
+    "dot-notation": ["error", { "allowPattern": "^[a-z]*(_[a-z]+)+$" }],
 
+    // disallow reassignment of function parameters
+    // rule: https://eslint.org/docs/rules/no-param-reassign.html
+    'no-param-reassign': ['error', { props: false }],
   }
 }
