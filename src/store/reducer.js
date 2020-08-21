@@ -31,7 +31,7 @@ const searchReducer = createReducer(initialState, {
     state.isLoadingSearch = false;
     // const { hits, aggregation, aggregations } = action.payload;
     const { hits, page_num, page_size } = action.payload;
-    if (hits !== null) {
+    if (hits) { // null, undefined, empty, whatever .... all means no results
       state.hits = hits.hits;
       state.totalDocuments = hits.total.value;
       state.page_num = page_num;
