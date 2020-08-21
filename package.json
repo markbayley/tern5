@@ -50,7 +50,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "cross-env NODE_ENV=production eslint src",
+    "lint": "cross-env NODE_ENV=production eslint --ext .js --ext .jsx src",
     "clean": "rimraf ./build",
     "prebuild": "run-s clean lint"
   },
