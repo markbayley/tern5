@@ -1,11 +1,11 @@
 import { createAction, combineReducers, createReducer } from "@reduxjs/toolkit";
-import { isEmpty } from "lodash";
+
 export const fetchSearchAction = createAction("FETCH_SEARCH");
 export const fetchSearchDoneAction = createAction("FETCH_SEARCH_DONE");
 export const selectedFilterAction = createAction("SELECTED_FILTER");
 export const fetchFacetsAction = createAction("FETCH_FACETS");
 export const fetchFacetsDoneAction = createAction("FETCH_FACETS_DONE");
-export const selectedMapImagesModeAction = createAction("MAP_IMAGES_MODE");
+// export const selectedMapImagesModeAction = createAction("MAP_IMAGES_MODE");
 
 const initialState = {
   isLoadingSearch: true,
@@ -20,8 +20,8 @@ const initialState = {
   selectedMapImagesMode: "Images",
 };
 
-//TODO Mosheh cleaning it up!
-//Lots changed after API changes.
+// TODO Mosheh cleaning it up!
+// Lots changed after API changes.
 const searchReducer = createReducer(initialState, {
   [fetchSearchAction]: (state, action) => {
     state.isLoadingSearch = true;
@@ -32,8 +32,8 @@ const searchReducer = createReducer(initialState, {
     // const { hits, aggregation, aggregations } = action.payload;
     const { hits, page_num, page_size } = action.payload;
     if (hits !== null) {
-      state.hits = hits["hits"];
-      state.totalDocuments = hits["total"]["value"];
+      state.hits = hits.hits;
+      state.totalDocuments = hits.total.value;
       state.page_num = page_num;
       state.page_size = page_size;
     } else {
@@ -46,7 +46,14 @@ const searchReducer = createReducer(initialState, {
     // }
   },
   [selectedFilterAction]: (state, action) => {
-    console.log("REDUCER. selectedFilterAction. action.payload=", action.payload);
+    // console.log("REDUCER. selectedFilterAction. action.payload=", action.payload);
+    // TODO: we should leverage auto immutable state here .....
+    //       use code below that does the same
+    // if (action.payload["concat-selected"] === "") {
+    //   delete action.payload["concat-selected"];
+    // }
+    // state.selectedFilter = action.payload;
+
     state.selectedFilter = { ...state.selectedFilter, ...action.payload };
     // state.selectedFilter = { ...action.payload };
     // if ("concat-selected" in state.selectedFilter) {
@@ -58,13 +65,13 @@ const searchReducer = createReducer(initialState, {
   [fetchFacetsDoneAction]: (state, action) => {
     const { aggregations } = action.payload;
     // if (isEmpty(state.facets)) {
-      console.log("aggregations=", aggregations);
-      state.facets = aggregations;
+    // console.log("aggregations=", aggregations);
+    state.facets = aggregations;
     // }
   },
-  [selectedMapImagesModeAction]: (state, action) => {
-    state.selectedMapImagesMode = action.payload;
-  },
+  // [selectedMapImagesModeAction]: (state, action) => {
+  //   state.selectedMapImagesMode = action.payload;
+  // },
 });
 
 export const rootReducer = combineReducers({
