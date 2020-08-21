@@ -1,43 +1,36 @@
 import React from "react";
 // import PropTypes from "prop-types";
-//import "./App.css";
+// import "./App.css";
+
+// eslint-disable-next-line import/no-unassigned-import
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 
 class DateRange extends React.Component {
-  state = {
-    startDate: null,
-    endDate: null,
-    endDateFormatted: null,
-    startDateFormatted: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: null,
+      endDate: null,
+    };
+  }
+
   hundleDateChange(startDate, endDate) {
     this.setState(() => ({
       endDate,
       startDate,
     }));
-    if (startDate != null) {
-      this.setState(() => ({
-        startDateFormatted: startDate.format("D-MM-Y"),
-      }));
-    }
-    if (endDate != null) {
-      this.setState(() => ({
-        endDateFormatted: endDate.format("D-MM-Y"),
-      }));
-    }
   }
 
   render() {
+    const { startDate, endDate, focusedInput } = this.state;
     return (
       <>
         <div
           style={{
             // borderRight: "55px solid rgba(149, 219, 199, 0.5)",
             marginLeft: "23px",
-        
-          
           }}
         >
           <h6
@@ -45,26 +38,26 @@ class DateRange extends React.Component {
               paddingTop: "15px",
               color: "#065f65",
               fontWeight: "500",
-           
+
             }}
           >
             Date Range
           </h6>
 
           <DateRangePicker
-            small={true}
-            noBorder={true}
-            keepOpenOnDateSelect={true}
+            small
+            noBorder
+            keepOpenOnDateSelect
             startDateAriaLabel="fff"
-            startDate={this.state.startDate}
+            startDate={startDate}
             startDateId="start_date_id"
-            endDate={this.state.endDate}
+            endDate={endDate}
             endDateId="end_date_id"
-            onDatesChange={({ startDate, endDate }) =>
-              this.hundleDateChange(startDate, endDate)
+            onDatesChange={
+              ({ newStartDate, newEndDate }) => this.hundleDateChange(newStartDate, newEndDate)
             }
-            focusedInput={this.state.focusedInput}
-            onFocusChange={(focusedInput) => this.setState({ focusedInput })}
+            focusedInput={focusedInput}
+            onFocusChange={(newFocusedInput) => this.setState({ focusedInput: newFocusedInput })}
           />
         </div>
         <hr
@@ -74,7 +67,7 @@ class DateRange extends React.Component {
             marginBottom: "0%",
             marginLeft: "5px",
           }}
-        ></hr>
+        />
       </>
     );
   }

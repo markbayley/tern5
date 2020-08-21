@@ -3,8 +3,8 @@ import { Row } from "react-bootstrap";
 
 function IconBar() {
   return (
-    <div >
-      <Row style={{ position: "absolute", left: "106%", top: "10.5%"}}>
+    <div>
+      <Row style={{ position: "absolute", left: "106%", top: "10.5%" }}>
         <img src="img/icons/Location.svg" alt="location" height="40px" />
       </Row>
 
