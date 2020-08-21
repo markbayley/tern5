@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import { Button, Image } from "react-bootstrap";
-import './buttons.scss';
-
+import "./buttons.scss";
 
 class Toggle extends Component {
   render() {

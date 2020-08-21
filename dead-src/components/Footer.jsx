@@ -14,7 +14,6 @@ function Footer() {
           lineHeight: "15px",
           backgroundColor: "#003d4f",
           height: "35px",
-         
         }}
       >
         <Nav.Item style={{ padding: "0 20px 0px 20px", fontSize: "14px" }}>
