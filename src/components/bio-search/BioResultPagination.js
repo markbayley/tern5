@@ -3,33 +3,31 @@ import { useDispatch } from "react-redux";
 import { selectedFilterAction } from "../../store/reducer";
 
 const BioResultPagination = ({ itemsPerPage, startFrom, totalImages }) => {
-  const perPage = itemsPerPage ? itemsPerPage : 10;
+  const perPage = itemsPerPage || 10;
   const pages = Math.ceil(totalImages / perPage);
   const pagination = [];
 
-  let currentPage = startFrom <= pages ? startFrom : 1;
+  const currentPage = startFrom <= pages ? startFrom : 1;
   const dispatch = useDispatch();
 
   let ellipsisLeft = false;
   let ellipsisRight = false;
-  for (let i = 1; i <= pages; i++) {
+  for (let i = 1; i <= pages; i += 1) {
     if (i === currentPage) {
       pagination.push({ id: i, current: true, ellipsis: false });
-    } else {
-      if (
-        i < 10 ||
-        i > pages - 1 ||
-        i === currentPage - 1 ||
-        i === currentPage + 1
-      ) {
-        pagination.push({ id: i, current: false, ellipsis: false });
-      } else if (i > 1 && i < currentPage && !ellipsisLeft) {
-        pagination.push({ id: i, current: false, ellipsis: true });
-        ellipsisLeft = true;
-      } else if (i < pages && i > currentPage && !ellipsisRight) {
-        pagination.push({ id: i, current: false, ellipsis: true });
-        ellipsisRight = true;
-      }
+    } else if (
+      i < 10
+      || i > pages - 1
+      || i === currentPage - 1
+      || i === currentPage + 1
+    ) {
+      pagination.push({ id: i, current: false, ellipsis: false });
+    } else if (i > 1 && i < currentPage && !ellipsisLeft) {
+      pagination.push({ id: i, current: false, ellipsis: true });
+      ellipsisLeft = true;
+    } else if (i < pages && i > currentPage && !ellipsisRight) {
+      pagination.push({ id: i, current: false, ellipsis: true });
+      ellipsisRight = true;
     }
   }
 

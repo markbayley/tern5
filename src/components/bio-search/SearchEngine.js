@@ -1,19 +1,17 @@
 import React from "react";
-import { Row, Spinner, Pagination } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { Row, Pagination } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import SearchResult from "./SearchResult";
-import { useSelector, useDispatch } from "react-redux";
 import BioResultPagination from "./BioResultPagination";
-import { fetchSearchAction } from "../../store/reducer";
 
-const SearchEngine = ({embed}) => {
-  const loading = useSelector((state) => state.search.isLoadingSearch);
+const SearchEngine = ({ embed }) => {
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-  const dispatch = useDispatch();
 
-  //console.log("totalImages=", totalImages);
-  //console.log("data=", data);
+  // console.log("totalImages=", totalImages);
+  // console.log("data=", data);
 
   // if (loading) {
   //   return (
@@ -46,42 +44,48 @@ const SearchEngine = ({embed}) => {
 
   return (
     <div>
-      <Row >
+      <Row>
         {data.map((bioImageDocument) => (
           <SearchResult
             bioImageDocument={bioImageDocument["_source"]}
-            site_id={bioImageDocument["_source"]["site_id"]["value"]}
+            site_id={bioImageDocument["_source"]["site_id"].value}
             key={bioImageDocument["_id"]}
             embed={embed}
           />
         ))}
       </Row>
-      <Row style={{  display: 'flex', justifyContent: 'flex-end', position: "sticky", bottom: 0, paddingRight: "20px"}}>
-        <Pagination className={'pagination'}>
+      <Row style={{
+        display: "flex", justifyContent: "flex-end", position: "sticky", bottom: 0, paddingRight: "20px",
+      }}
+      >
+        <Pagination className="pagination">
           <Pagination.First onClick={(e) => changePage(1, e)} />
           <Pagination.Prev onClick={prevPage} />
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <Pagination.Item    
+                <Pagination.Item
                   key={page.id}
-                  active={page.current ? true : false}
+                  active={!!page.current}
                   onClick={(e) => changePage(page.id, e)}
                 >
                   {page.id}
                 </Pagination.Item>
               );
-            } else {
-              return <Pagination.Ellipsis key={page.id} />;
             }
+            return <Pagination.Ellipsis key={page.id} />;
           })}
           <Pagination.Next onClick={nextPage} />
           <Pagination.Last onClick={(e) => changePage(pages, e)} />
         </Pagination>
       </Row>
-    
+
     </div>
   );
+};
+
+SearchEngine.propTypes = {
+  embed: PropTypes.string.isRequired,
 };
 
 export default SearchEngine;
