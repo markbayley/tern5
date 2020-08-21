@@ -1,36 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
+import { selectedFilterAction } from "../../store/reducer";
 
 const ImageFilter = ({ id, value }) => {
   const dispatch = useDispatch();
+  // TODO: triggers a re-render on any filter change ... probably not wanted
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
 
-  const [status, setStatus] = useState(true);
-
-  // console.log("selectedFilter in ImageFilter=", selectedFilter);
-  // console.log("id is ", id);
-
-  //Not used yet - experimenting with handleChange!
-  const handleFilter = (filterValue) => {
-    // console.log("in ImageFilter in handleFilter(). ", filterValue);
-    var arr = filterValue.split("=");
-    const fKey = arr[0];
-    const fValue = arr[1];
-    const miniFilter = { [fKey]: fValue };
-  };
+  // Not used yet - experimenting with handleChange!
 
   // TODO this handle will need to have the api handle
   // multiple filters, i.e. same filter names but different values
   // THe API must be able to handle array type which it does not currently.
   // Something like this: image_type=ancillary,photopoint,phenocam
-  const handleChange = (event, id) => {
+  const handleChange = (event) => {
     // console.log("event.target.value=", event.target.checked);
     // console.log("id=", id);
     // setStatus(false);
 
-    var arr = id.split("=");
+    const arr = id.split("=");
     const fKey = arr[0];
     const fValue = arr[1];
     const addFilter = { [fKey]: fValue };
@@ -39,7 +29,7 @@ const ImageFilter = ({ id, value }) => {
       // Add filter
       updatedFilter = { ...selectedFilter, ...addFilter };
     } else {
-      //Remove filter
+      // Remove filter
       updatedFilter = { ...selectedFilter };
       delete updatedFilter[fValue];
     }
@@ -55,9 +45,9 @@ const ImageFilter = ({ id, value }) => {
             type="checkbox"
             style={{ textTransform: "capitalize" }}
             label={value.label}
-            //checked={status}
+            // checked={status}
             // onClick={() => handleFilter(id)}
-            onChange={(event) => handleChange(event, id)}
+            onChange={(event) => handleChange(event)}
           />
           {/* {value.doc_count} */}
         </Form.Group>
@@ -66,4 +56,10 @@ const ImageFilter = ({ id, value }) => {
     // + " (" + value.doc_count + " Images)"
   );
 };
+
+ImageFilter.propTypes = {
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
 export default ImageFilter;
