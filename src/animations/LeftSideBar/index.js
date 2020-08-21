@@ -5,7 +5,7 @@ import TopSection from "./TopSection";
 import LeftSection from "./LeftSection";
 import "./style.scss";
 
-const LeftSideBar = ({ searchmode, setMySearch }) => {
+const LeftSideBar = ({ searchmode }) => {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
 
   return (
@@ -20,8 +20,8 @@ const LeftSideBar = ({ searchmode, setMySearch }) => {
           tabIndex={0}
           onKeyPress={() => { }}
         />
-        <TopSection searchmode={searchmode} setMySearch={setMySearch} />
-        <LeftSection searchmode={searchmode} setMySearch={setMySearch} />
+        <TopSection searchmode={searchmode} />
+        <LeftSection searchmode={searchmode} />
       </div>
     </LeftSideBarContext.Provider>
   );
@@ -29,7 +29,6 @@ const LeftSideBar = ({ searchmode, setMySearch }) => {
 
 LeftSideBar.propTypes = {
   searchmode: PropTypes.string.isRequired,
-  setMySearch: PropTypes.func.isRequired,
 };
 
 export default LeftSideBar;

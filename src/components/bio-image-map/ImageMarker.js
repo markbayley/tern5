@@ -207,7 +207,7 @@ ImageMarker.propTypes = {
   plot: PropTypes.string.isRequired,
   images: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  sitePosition: PropTypes.string.isRequired,
+  sitePosition: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default ImageMarker;

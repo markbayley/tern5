@@ -50,7 +50,7 @@ const BioMapEngine = () => {
         >
           <TileLayer
             attribution='&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/hot/{z}/{x}/{y}.png"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
           <FeatureGroup>

@@ -7,7 +7,7 @@ import { LeftSideBarContext } from "../LeftSideBarContext";
 import "./style.scss";
 import SearchEngine from "../../../components/bio-search/SearchEngine";
 
-const LeftSection = ({ searchmode, setMySearch }) => {
+const LeftSection = ({ searchmode }) => {
   const { isShowSidebar, setIsShowSidebar } = useContext(LeftSideBarContext);
   return (
     <div className={`LeftSideBar__LeftSection LeftSideBar__LeftSection--${isShowSidebar ? "show" : "hide"}`}>
@@ -28,8 +28,6 @@ const LeftSection = ({ searchmode, setMySearch }) => {
 
         <Button
           searchmode={searchmode}
-          setMySearch={setMySearch}
-          onClick={() => setMySearch(searchmode === "Map")}
           style={{ width: "100%" }}
           variant="flat"
         >
@@ -44,7 +42,6 @@ const LeftSection = ({ searchmode, setMySearch }) => {
 
 LeftSection.propTypes = {
   searchmode: PropTypes.string.isRequired,
-  setMySearch: PropTypes.func.isRequired,
 };
 
 export default LeftSection;

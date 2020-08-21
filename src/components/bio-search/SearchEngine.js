@@ -85,7 +85,11 @@ const SearchEngine = ({ embed }) => {
 };
 
 SearchEngine.propTypes = {
-  embed: PropTypes.string.isRequired,
+  embed: PropTypes.bool,
+};
+
+SearchEngine.defaultProps = {
+  embed: false,
 };
 
 export default SearchEngine;

@@ -268,9 +268,13 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
 };
 
 SearchResult.propTypes = {
-  bioImageDocument: PropTypes.string.isRequired,
+  bioImageDocument: PropTypes.objectOf(PropTypes.any).isRequired,
   site_id: PropTypes.string.isRequired,
-  embed: PropTypes.string.isRequired,
+  embed: PropTypes.bool,
+};
+
+SearchResult.defaultProps = {
+  embed: false,
 };
 
 export default SearchResult;

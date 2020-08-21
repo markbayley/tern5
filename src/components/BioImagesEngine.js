@@ -71,7 +71,7 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
 Toggle.propTypes = {
   searchmode: PropTypes.string.isRequired,
   setMySearch: PropTypes.func.isRequired,
-  searchmodes: PropTypes.string.isRequired,
+  searchmodes: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const BioImagesEngine = () => {

@@ -60,7 +60,7 @@ const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
 };
 
 ImageMarkerEngine.propTypes = {
-  bioImageDocument: PropTypes.string.isRequired,
+  bioImageDocument: PropTypes.objectOf(PropTypes.any).isRequired,
   siteLocation: PropTypes.string.isRequired,
 };
 
