@@ -56,27 +56,30 @@ const SearchEngine = ({embed}) => {
           />
         ))}
       </Row>
-      <Row style={{  display: 'flex', justifyContent: 'flex-end', position: "sticky", bottom: 0, paddingRight: "20px"}}>
+     
+      <Row className={'pagination-row'}>
         <Pagination className={'pagination'}>
-          <Pagination.First onClick={(e) => changePage(1, e)} />
-          <Pagination.Prev onClick={prevPage} />
+          <Pagination.First onClick={(e) => changePage(1, e)} >First</Pagination.First>
+          <Pagination.Prev onClick={prevPage}>Previous</Pagination.Prev>
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <Pagination.Item    
+                <div className={'pagelink'} >
+                <Pagination.Item   
                   key={page.id}
                   active={page.current ? true : false}
                   onClick={(e) => changePage(page.id, e)}
                 >
                   {page.id}
                 </Pagination.Item>
+                </div>
               );
             } else {
               return <Pagination.Ellipsis key={page.id} />;
             }
           })}
-          <Pagination.Next onClick={nextPage} />
-          <Pagination.Last onClick={(e) => changePage(pages, e)} />
+          <Pagination.Next onClick={nextPage} >Next</Pagination.Next>
+          <Pagination.Last onClick={(e) => changePage(pages, e)}>Last</Pagination.Last>
         </Pagination>
       </Row>
     

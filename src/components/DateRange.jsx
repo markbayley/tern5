@@ -36,16 +36,13 @@ class DateRange extends React.Component {
           style={{
             // borderRight: "55px solid rgba(149, 219, 199, 0.5)",
             marginLeft: "23px",
-        
-          
           }}
         >
           <h6
             style={{
               paddingTop: "15px",
               color: "#065f65",
-              fontWeight: "500",
-           
+              fontWeight: "500",   
             }}
           >
             Date Range

@@ -4,6 +4,8 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
+import chroma from 'chroma-js';
+
 
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
@@ -72,6 +74,60 @@ const BioFacets = () => {
     });
     return arrOptions;
   };
+
+
+/* Sidebar Styles */
+  const colourStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white', fontSize: '16px' }),
+    option: (styles, {data, isDisabled, isFocused, isSelected }) => {
+      const color = '#ED694B';
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? data.color
+          : isFocused
+          ? 'B3D4C9'
+          : null,
+        color: isDisabled
+          ? '#ED694B'
+          : isSelected
+          ? chroma.contrast(color, '#ED694B') > 2
+            ? '#ED694B'
+            : '#ED694B'
+          : data.color,
+        fontSize: isFocused
+          ? '16px'
+          : isSelected
+          ? '20px'
+          : data.color,
+        cursor: isDisabled ? 'not-allowed' : 'default',
+  
+        ':active': {
+          backgroundColor: !isDisabled && (isSelected ? data.color : '#ED694B'),
+          color: '#ED694B'
+     
+ 
+        },
+        ':hover': {
+          backgroundColor: '#B3D4C9',
+          // color: '#fff'
+        },
+      };
+    },
+    multiValue: (styles) => {
+      return {
+        ...styles,
+        backgroundColor: '#B3D4C9',
+        color:  '#00565D',
+        fontSize: '18.5px'
+      };
+    },
+  };
+  
+
+
 
   let optionsSites = [];
   let optionsPlots = [];
@@ -264,6 +320,8 @@ const BioFacets = () => {
         isSearchable
         autoFocus
         onChange={(e) => siteSelect(e)}
+        styles={colourStyles}
+        // closeMenuOnSelect={false}
       />
       <Select
         className="mb-4"
@@ -272,6 +330,7 @@ const BioFacets = () => {
         placeholder="Select Plots"
         isSearchable
         onChange={(e) => plotSelect(e)}
+        styles={colourStyles}
       />
       <Select
         className="mb-4"
@@ -280,6 +339,7 @@ const BioFacets = () => {
         placeholder="Select Site Visit Ids"
         isSearchable
         onChange={visitIdSelect}
+        styles={colourStyles}
       />
       <Select
         className="mb-4"
@@ -288,6 +348,7 @@ const BioFacets = () => {
         placeholder="Select Image Types"
         isSearchable
         onChange={imageTypeSelect}
+        styles={colourStyles}
       />
     </div>
   );

@@ -1,4 +1,38 @@
+.btn-login {
+  // background-color: #043E4F;
+  color: #fff;
+  font-family: "museo-sans", sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  // border: 1px solid #00565D;
+  border-radius: 5px; 
+  box-shadow: lightgrey 1px 1px 1px 1px;
+  background-image: linear-gradient(to bottom right, #2a747a, #00565D);
+}
 
+.btn-login:hover {
+  background-color:  #6EB3A6;
+  color: #fff;
+  background-image: linear-gradient(to bottom right, #64acb3, #00565D);
+}
+
+.btn-filter {
+  // background-color: #00565D;
+  color: #fff;
+  font-family: "museo-sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  // border: 1px solid #00565D;
+  border-radius: 10px; 
+  box-shadow: lightgrey 1px 1px 1px 1px;
+  background-image: linear-gradient(to bottom right, #2a747a, #00565D);
+}
+
+.btn-filter:hover {
+  background-image: linear-gradient(to bottom right, #64acb3, #00565D);
+  color: #fff;
+  // background-image: linear-gradient(to bottom right, #B3D4C9, #B3D4C9);
+}
 .btn-flat {
   background-color: #fff;
   color:  #00565D;
@@ -31,20 +65,27 @@
 }
 
 .btn-toggle {
-  background-color: #fff;
+  // background-color: #fff;
   color:  #00565D;
   border: 1px solid #00565D;
   font-family: "museo-sans", sans-serif;
   // border: 1px solid #00565D;
-  border-radius: "0px";
-  font-weight: 200;
+  background-image: linear-gradient(to bottom right, #eee, #fff);
   font-size: 16px;
-
+  border-radius: 5px; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btn-toggle:hover {
-  background-color: #6EB3A6;
-}
+  // background-color: #B3D4C9;
+  font-weight: 400;
+  color:  #00565D;
+  background-image: linear-gradient(to bottom right,  #c9e7dd, #B3D4C9,);
+  &.clicked {
+      background-color: #065f65;
+      border-color: #065f65;
+    }
+  }
 
 
 .btn-mobile {
@@ -62,20 +103,12 @@
 }
 
 
-.btn-login {
-  background-color:  #00565D;
-  color: #fff;
-  font-family: "museo-sans", sans-serif;
-  font-size: 18px;
-  font-weight: 900;
-  // border: 1px solid #00565D;
-  border-radius: "40px";
-}
 
-.btn-login:hover {
-  background-color:  #6EB3A6;
-  color: #fff;
-}
+
+
+
+
+
 
 
 

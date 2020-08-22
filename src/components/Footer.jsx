@@ -3,21 +3,11 @@ import { Nav, Row } from "react-bootstrap";
 
 function Footer() {
   return (
-    <div className="footer">
       <Row
-        className="justify-content-center"
+        className={'footer-row'}
         activekey="/home"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          width: "103%",
-          lineHeight: "15px",
-          backgroundColor: "#003d4f",
-          height: "35px",
-         
-        }}
       >
-        <Nav.Item style={{ padding: "0 20px 0px 20px", fontSize: "14px" }}>
+        <Nav.Item className={'footer-item'}>
           <Nav.Link style={{ color: "white" }} href="/home">
             Access Policy
           </Nav.Link>
@@ -33,7 +23,6 @@ function Footer() {
           </Nav.Link>
         </Nav.Item>
       </Row>
-    </div>
   );
 }
 

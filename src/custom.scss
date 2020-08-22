@@ -1,21 +1,118 @@
-.filterbar {
-  z-index: "9";
+.filter-bar {
   height: 80vh;
   margin: 0px;
   padding-right: 0px;
-  width: 460px;
+  width: 400px;
+  border-right: 60px solid #b3d4c9;
+  z-index: 20;
+  // background-image: linear-gradient(to bottom right, #fff, #B3D4C9);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.pagination {
-  .page-link {
-    color: #065f65;
-  }
-  .page-item {
-    &.active {
-        button, .page-link {
-            background-color: #065f65;
-            border-color: #065f65;
-        }
-    } 
-  }
+.tooltip {
+  margin: 0px;
+  padding: 3px 7px;
+  border-left: 3px solid #065f65;
 }
+
+.filter-line {
+  border: 0.5px solid #66b3a6;
+  margin-top: 0%;
+  margin-bottom: 0.5%;
+}
+
+.filter-type {
+  margin: 0% 1%;
+  text-transform: capitalize;
+  color: #065f65;
+  font-weight: 450;
+}
+
+.accordion {
+  text-transform: capitalize;
+  color: #065f65;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.icon-col {
+  display: flex; 
+  justify-content: flex-end;
+}
+
+.filter-header {
+  color: #fff;
+  // backgroundColor: #00565D;
+  padding: 20px 10px 20px 10px;
+  margin-bottom: 1px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.tooltip-link {
+  text-transform: capitalize;
+  color: #065f65;
+}
+
+.breadcrumb {
+  position: fixed;
+  border-top: 1.5px solid #66b3a6;
+  width: 100%;
+  z-index: 20;
+}
+
+.breadcrumb-row {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 103%;
+  line-height: 15px;
+  height: 35px;
+}
+
+.nav-item {
+  padding: 0 20px 0 20px;
+  font-size: 16px;
+  
+}
+
+.nav-link {
+  color: #043E4F;
+}
+
+.footer-row{
+  position: fixed;
+  bottom: 0;
+  width: 103%;
+  line-height: 15px;
+  background-color: #003d4f;
+  height: 35px;
+}
+
+.footer-item {
+  padding: 0 20px 0px 20px;
+  font-size: 14px;
+}
+
+.map-image-toggle {
+  position: fixed;
+  right: 5%;
+  top: 80px;
+  z-index: 10;
+}
+
+.toggle-result {
+  height: 80vh;
+  padding: 0%;
+  margin: 0%;
+}
+
+
+.thumbnail-text {
+  font-size: 15px;
+}
+
+
+

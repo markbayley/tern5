@@ -16,15 +16,11 @@ const FilterHeader = () => {
     dispatch(selectedFilterAction({}));
   };
   return (
-    <h5
-      style={{
-        color: "#fff",
-        backgroundColor: "#00565D",
-        padding: "20px 10px 20px 10px",
-        marginBottom: "1px",
-      }}
-    >
-      Filter
+    <h5 className={'filter-header'}>
+      <Button variant="filter"><i class="fa fa-filter"></i> Filter</Button>
+      <Button variant="filter"><i class="fa fa-star"></i> Favourites</Button>
+      <Button variant="filter"><i class="fa fa-check-square"></i> Saved</Button>
+     
       {/* Mosheh disabled it - useless with checkbox tree structure now! */}
       {/* <ResetFilter resetFilter={resetFilter} /> */}
     </h5>

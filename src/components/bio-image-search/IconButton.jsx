@@ -7,7 +7,7 @@ class IconButton extends React.Component {
         isCardView: false,
       }
     } 
-    
+
     render() {
       return (
         <a className="outline" onClick={()=>this.setState({ isCardView: !this.state.isCardView })}>
@@ -15,7 +15,6 @@ class IconButton extends React.Component {
             ?   <img src="/img/unselected_circle.svg" width="40px" alt="" />
             :     <img src="/img/quickview.svg" width="40px" alt="" />
           }
-         
         </a>
       );
     }
