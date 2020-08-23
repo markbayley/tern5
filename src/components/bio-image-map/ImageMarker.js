@@ -150,7 +150,7 @@ const ImageMarker = (props) => {
         </Link>
       </Popup> */}
       <Tooltip>
-        <div style={{ margin: "0px", padding: "3px 7px", borderLeft: "3px solid #065f65" }}>
+        <div className="tooltip">
           {/* <strong>
           <h6>Click marker to select {props.label}.</h6>
         </strong> */}
@@ -158,7 +158,7 @@ const ImageMarker = (props) => {
           {" "}
           <a
             href="www.tern.org"
-            style={{ textTransform: "capitalize", color: "#065f65" }}
+            className="tooltip-link"
           >
             {name}
             {" "}
@@ -169,7 +169,7 @@ const ImageMarker = (props) => {
           {" "}
           <a
             href="www.tern.org"
-            style={{ textTransform: "capitalize", color: "#065f65" }}
+            className="tooltip-link"
           >
             {images}
           </a>
@@ -179,7 +179,7 @@ const ImageMarker = (props) => {
           {" "}
           <a
             href="www.tern.org"
-            style={{ textTransform: "capitalize", color: "#065f65" }}
+            className="tooltip-link"
           >
             {plot}
           </a>
@@ -189,7 +189,7 @@ const ImageMarker = (props) => {
           {" "}
           <a
             href="www.tern.org"
-            style={{ textTransform: "capitalize", color: "#065f65" }}
+            className="tooltip-link"
           >
             {formatedSiteVisitDate}
           </a>

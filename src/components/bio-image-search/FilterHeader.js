@@ -1,15 +1,24 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 const FilterHeader = () => (
-  <h5
-    style={{
-      color: "#fff",
-      backgroundColor: "#00565D",
-      padding: "20px 10px 20px 10px",
-      marginBottom: "1px",
-    }}
-  >
-    Filter
+  <h5 className="filter-header">
+    <Button variant="filter">
+      <i className="fa fa-filter" />
+      {" "}
+      Filter
+    </Button>
+    <Button variant="filter">
+      <i className="fa fa-star" />
+      {" "}
+      Favourites
+    </Button>
+    <Button variant="filter">
+      <i className="fa fa-check-square" />
+      {" "}
+      Saved
+    </Button>
+
     {/* Mosheh disabled it - useless with checkbox tree structure now! */}
     {/* <ResetFilter resetFilter={resetFilter} /> */}
   </h5>

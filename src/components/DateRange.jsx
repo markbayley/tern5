@@ -38,7 +38,6 @@ class DateRange extends React.Component {
               paddingTop: "15px",
               color: "#065f65",
               fontWeight: "500",
-
             }}
           >
             Date Range

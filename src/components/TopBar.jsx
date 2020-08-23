@@ -33,7 +33,6 @@ export default function TopBar() {
                     </NavItem>
                   </Nav>
                 </Navbar.Collapse>
-
               </Navbar>
 
               <div className="above-header-section above-header-section-1" style={{ marginLeft: "15px", maxWidth: "100px" }}>

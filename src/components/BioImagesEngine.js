@@ -22,19 +22,10 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
   // && <img src="/img/map.png" width="40px"/>
   return (
     <>
-      <div
-        className="toggle"
-        style={{
-          position: "absolute",
-          right: "5%",
-          top: "80px",
-          zIndex: "10",
-        }}
-      >
+      <div className="toggle">
         {searchmodes.map((smode) => (
           <Button
             variant="round"
-            style={{ borderRadius: "20px" }}
             key={smode}
             onClick={() => setMySearch(smode)}
           >
@@ -42,15 +33,7 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
           </Button>
         ))}
       </div>
-      <Col
-        className="scroll-images"
-        style={{
-          height: "80vh",
-          padding: "0%",
-          margin: "0%",
-          width: "80vw",
-        }}
-      >
+      <Col className="scroll-images">
         {/* Leaflet Map */}
         {searchmode === "Map" && (
           <div>
@@ -94,13 +77,13 @@ const BioImagesEngine = () => {
       <LeftSideBar searchmode={mySearch} />
       <Row>
         {/* Filter SideBar */}
-        <Col xs="auto" className="filterbar" style={{ borderRight: "60px solid #B3D4C9" }}>
+        <Col xs="auto" className="filterbar">
           <IconBar />
           <FilterHeader />
           <ImageSearchEngine />
           <DateRange />
           <MobileSidebar />
-          <FavouriteHeader />
+
           <Favourite />
         </Col>
         <Toggle

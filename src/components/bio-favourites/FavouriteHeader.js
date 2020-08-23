@@ -6,7 +6,7 @@ const FavouriteHeader = () => (
       style={{
         fontSize: "18.5px",
         color: "#fff",
-        backgroundColor: "#00565D",
+        backgroundColor: "#fff",
         padding: "20px 10px 20px 10px",
         // width: "320px",
       }}

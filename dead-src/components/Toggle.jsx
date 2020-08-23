@@ -10,15 +10,7 @@ const Toggle = () => {
   // && <img src="/img/map.png" width="40px"/>
   return (
     <>
-      <div
-        className="toggle"
-        style={{
-          position: "fixed",
-          right: "5%",
-          top: "80px",
-          zIndex: "10",
-        }}
-      >
+      <div className="map-image-toggle">
         {searchmodes.map((searchmode) => (
           <Button
             variant="round"
@@ -30,13 +22,7 @@ const Toggle = () => {
           </Button>
         ))}
       </div>
-      <Col
-        style={{
-          height: "80vh",
-          padding: "0%",
-          margin: "0%",
-        }}
-      >
+      <Col className="toggle-result">
         {mySearch === "Map" && (
           <div>
             <BioMapEngine />

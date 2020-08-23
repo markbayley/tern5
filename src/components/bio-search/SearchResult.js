@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-scroll";
 
-import "./SearchResult.css";
+import "./SearchResult.scss";
 
 const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   const img_url_small = bioImageDocument.preview_urls[1].url;
@@ -23,12 +23,12 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   const handleShow = () => setShow(true);
 
   return (
-    <Col xl={embed ? 7 : 3} lg={embed ? 7 : 6} md={embed ? 12 : 6} sm={12} xs={12}>
+    <Col xl={embed ? 7 : 2} lg={embed ? 7 : 3} md={embed ? 12 : 4} sm={12} xs={12}>
       <Modal size="lg" show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ paddingBottom: "10%" }}>
+        <Modal.Header closeButton className="modal-header">
           <Modal.Title>
             {" "}
-            <Col sm={2} style={{ position: "absolute", left: "0%" }}>
+            <Col sm={2} className="modal-column">
               <Navbar.Brand>
                 <div className="site-branding">
                   <Link to="/">
@@ -38,15 +38,10 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
               </Navbar.Brand>
             </Col>
             <Col
+              className="modal-info"
               sm={5}
-              style={{
-                position: "absolute",
-                right: "4%",
-                textAlign: "right",
-                color: "#043E4F",
-              }}
             >
-              <h6 style={{ textTransform: "capitalize" }}>
+              <h6>
                 {bioImageDocument.site_id.label
                   .replace("_", " ")
                   .replace("=", " ")
@@ -92,52 +87,44 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
             </Col>
           </Modal.Title>
         </Modal.Header>
-        <hr
-          style={{
-            border: "0.5px solid #66b3a6",
-            marginTop: "0%",
-            marginBottom: "0.5%",
-          }}
-        />
+        <hr className="modal-line" />
         <Modal.Body>
           <Carousel>
             <Carousel.Item>
               <Image
+                fluid
                 src={img_url_large}
-                width="765px"
-                height="465px"
+                // width="765px"
+                // height="465px"
                 className="d-block w-100"
               />
               <Carousel.Caption />
             </Carousel.Item>
             <Carousel.Item>
               <Image
+                fluid
                 src={img_url_large}
-                width="765px"
-                height="465px"
+                // width="765px"
+                // height="465px"
                 className="d-block w-100"
               />
-
               <Carousel.Caption />
             </Carousel.Item>
             <Carousel.Item>
               <Image
+                fluid
                 src={img_url_large}
-                width="765px"
-                height="465px"
+                // width="765px"
+                // height="465px"
                 className="d-block w-100"
               />
-
               <Carousel.Caption />
             </Carousel.Item>
           </Carousel>
           {" "}
           <br />
-          <br />
-          <Form
-            className="center"
-            style={{ paddingTop: "5px", color: "#065f65" }}
-          >
+
+          <Form className="center modal-select">
             {["checkbox"].map((type) => (
               // <div key={bioImageDocument.id} className="mb-3">
               <div key={type} className="mb-3">
@@ -154,38 +141,36 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
           <p />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="flat" onClick={handleClose}>
+          <Button variant="login" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="flat" onClick={handleClose}>
+          <Button variant="login" onClick={handleClose}>
             Download
           </Button>
         </Modal.Footer>
       </Modal>
 
-      <Card id={site_id} style={{ border: "#fff", margin: "0px -25px 5px 0px" }}>
+      <Card id={site_id} className="image-card">
         <div className="hvrbox">
           <Button
-            variant="flat"
-            style={{ width: "100%", padding: "0px" }}
+            variant="flat image-card-button"
             onClick={handleShow}
           >
             <Image
+              fluid
               className="small_preview"
               onClick={handleShow}
               src={img_url_small}
-              style={{ width: "100%", padding: "1%" }}
             />
             <Image
+              fluid
               className="large_preview"
               onClick={handleShow}
               src={img_url_large}
-              style={{ width: "100%", padding: "1%" }}
             />
             <div className="hvrbox-layer_top">
               <div
                 className="hvrbox-text"
-                style={{ textTransform: "capitalize" }}
               >
                 View Image?
                 {" "}
@@ -217,20 +202,27 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
               </div>
             </div>
             {" "}
-            <strong>Site:</strong>
-            {bioImageDocument.site_id.label}
-            <br />
-            <strong>Image Type:</strong>
-            {" "}
-            {bioImageDocument.image_type.value[0].toUpperCase()
-              + bioImageDocument.image_type.value.substr(1)}
-            {" "}
-            <Form
-              className="center"
-              style={{ paddingTop: "5px", color: "#065f65" }}
-            >
+            <div className="thumbnail-text">
+              {/* <strong>Site:</strong>  */}
+              {bioImageDocument.site_id.label}
+              <br />
+              {/* <strong>Image Type:</strong> */}
+              {" "}
+              {bioImageDocument.image_type.value[0].toUpperCase()
+                + bioImageDocument.image_type.value.substr(1)}
+              {" "}
+              <img
+                src="/img/phenocam.svg"
+                width="20px"
+                alt="phenocam"
+                style={{
+                  border: ".5px solid orange", borderRadius: "20px", padding: "2px", marginBottom: "5px",
+                }}
+              />
+            </div>
+            <Form className="center image-form">
               {["checkbox"].map((type) => (
-                <div style={{ position: "absolute", top: 5, right: -3 }} key={type} className="mb-`3">
+                <div className="image-checkbox" key={type}>
                   {/* <Form.Check
                   type={type}
                   id={bioImageDocument.id}
@@ -240,7 +232,6 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                 /> */}
                   <Form.Check
                     inline
-
                     type={type}
                     id={bioImageDocument.id}
                   />
@@ -259,7 +250,6 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
             {/* <strong>Plot:</strong> {bioImageDocument.plot.value}{" "} */}
             {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
           </Button>
-
         </div>
 
       </Card>
