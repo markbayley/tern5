@@ -7,6 +7,7 @@ import {
   fetchSearchDoneAction,
   fetchFacetsAction,
   fetchFacetsDoneAction,
+  fetchSearchErrorAction,
 } from "../reducer";
 
 import { bioimages } from "./api";
@@ -17,7 +18,7 @@ function* fetchSearchSaga(action) {
     const { data } = yield call(bioimages.fetchSearch, action.payload);
     yield put(fetchSearchDoneAction(data));
   } catch (error) {
-    yield put(fetchSearchDoneAction(error.message));
+    yield put(fetchSearchErrorAction(error.message));
   }
 }
 
@@ -26,7 +27,7 @@ function* fetchFacetsSaga(action) {
     const { data } = yield call(bioimages.fetchFacets, action.payload);
     yield put(fetchFacetsDoneAction(data));
   } catch (error) {
-    yield put(fetchFacetsDoneAction(error.message));
+    yield put(fetchSearchErrorAction(error.message));
   }
 }
 

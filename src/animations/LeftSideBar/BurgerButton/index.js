@@ -13,20 +13,19 @@ const BurgerButton = ({ onClick, searchmode }) => {
       role="button"
       variant="toggle"
       onClick={onClick}
-
     >
       {isShowSidebar && <i className="fa fa-chevron-right" />}
       {!isShowSidebar && (searchmode === "Map"
         ? (
           <>
             <i className="fa fa-chevron-left" />
-            Images
+            <img src="/img/Images.png" width="40px" alt="" />
           </>
         )
         : (
           <>
             <i className="fa fa-chevron-left" />
-            Map
+            <img src="/img/map.png" width="40px" alt="" />
           </>
         )
       )}

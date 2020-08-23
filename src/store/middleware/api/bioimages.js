@@ -1,6 +1,5 @@
 import axios from "axios";
 import { CANCEL } from "redux-saga";
-// import { getConfig } from '../config';
 import { CONFIG } from "../../../config";
 
 // TODO: this is not middleware ... it's API ... move to a different module
@@ -39,24 +38,8 @@ export function fetchFavourites() {
   });
 }
 
-// fetch(CONFIG.API_BASE_URL + "favourites")
-//       // We get the API response and receive data in JSON format...
-//       .then((response) => response.json())
-//       // ...then we update the users state
-//       .then((data) =>
-//         this.setState({
-//           favourites: data,
-//           isLoading: false,
-//         })
-//       )
-//       // Catch any errors we hit and update the app
-//       .catch((error) => this.setState({ error, isLoading: false }));
-//   }
-
 export function fetchSearch(params) {
   // Where we're fetching data from
-  // const { selectedFilter } = params;
-  // params["page_size"] = 10;
   return callAPI({
     url: "search",
     params,

@@ -17,8 +17,8 @@ const BioMapEngine = () => {
     minZoom: 5,
   });
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
-  const bioImageDocuments = useSelector((state) => state.search.hits);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
+  const bioImageDocuments = useSelector((state) => state.search.hits);
   const dispatch = useDispatch();
 
   // Set map boundary (australia)

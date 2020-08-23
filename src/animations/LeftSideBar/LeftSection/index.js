@@ -6,6 +6,7 @@ import BurgerButton from "../BurgerButton";
 import { LeftSideBarContext } from "../LeftSideBarContext";
 import "./style.scss";
 import SearchEngine from "../../../components/bio-search/SearchEngine";
+import BioMapEngine from "../../../components/bio-image-map/BioMapEngine";
 
 const LeftSection = ({ searchmode }) => {
   const { isShowSidebar, setIsShowSidebar } = useContext(LeftSideBarContext);
@@ -25,15 +26,24 @@ const LeftSection = ({ searchmode }) => {
         </div>
       )}
       {searchmode === "Images" && (
+        <div>
+          <Button
+            searchmode={searchmode}
+            // onClick={() => setMySearch(searchmode === 'Map')}
+            style={{ width: "100%" }}
+            variant="flat"
+          >
+            <img src="img/map1.png" width="100%" alt="map" />
+            Click the map to view
+          </Button>
+          <Button
+            style={{ width: "100%" }}
+            variant="flat"
+          >
+            <BioMapEngine embed />
 
-        <Button
-          searchmode={searchmode}
-          style={{ width: "100%" }}
-          variant="flat"
-        >
-          <img src="img/map1.png" width="100%" alt="map" />
-          Click the map to view
-        </Button>
+          </Button>
+        </div>
       )}
 
     </div>

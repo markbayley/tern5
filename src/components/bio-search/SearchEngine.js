@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect, useDispatch } from "react";
 import PropTypes from "prop-types";
-import { Row, Pagination } from "react-bootstrap";
+import {
+  Row, Pagination, DropdownButton, Dropdown,
+} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
+import {
+  fetchSearchAction,
+  paginationPageSizeAction,
+} from "../../store/reducer";
 
 const SearchEngine = ({ embed }) => {
+  const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
-
-  // console.log("totalImages=", totalImages);
-  // console.log("data=", data);
+  const pageScroll = useSelector((state) => state.search.pagination);
+  const dispatch = useDispatch();
 
   // if (loading) {
   //   return (
@@ -21,8 +26,8 @@ const SearchEngine = ({ embed }) => {
   //   );
   // }
 
-  const itemsPerPage = selectedFilter["page_size"];
-  const startFrom = selectedFilter["page_num"];
+  const itemsPerPage = pageScroll["page_size"];
+  const startFrom = pageScroll["page_num"];
 
   const {
     pagination,
@@ -37,10 +42,13 @@ const SearchEngine = ({ embed }) => {
     totalImages,
   });
 
-  // useEffect(() => {
-  //   console.log("in useEffect(). selectedFilter=", selectedFilter);
-  //   dispatch(fetchSearchAction(selectedFilter));
-  // }, []);
+  const handlePageSizeChange = (value) => {
+    dispatch(paginationPageSizeAction({ page_size: value }));
+  };
+
+  useEffect(() => {
+    dispatch(fetchSearchAction(selectedFilter));
+  }, [dispatch, selectedFilter]);
 
   return (
     <div>
@@ -56,12 +64,20 @@ const SearchEngine = ({ embed }) => {
       </Row>
       <Row className="pagination-row">
         <Pagination className="pagination">
-          <Pagination.First onClick={(e) => changePage(1, e)}>Frist</Pagination.First>
+          <div>
+            <DropdownButton id="dropdown-basic-button" title={`${itemsPerPage} per page`} variant="test">
+              <Dropdown.Item onClick={() => handlePageSizeChange(18)}>18 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(36)}>36 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(54)}>54 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(102)}>102 per page</Dropdown.Item>
+            </DropdownButton>
+          </div>
+          <Pagination.First onClick={(e) => changePage(1, e)}>First</Pagination.First>
           <Pagination.Prev onClick={prevPage}>Previous</Pagination.Prev>
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <div className="pagelink">
+                <div key={page.id} className="pagelink">
                   <Pagination.Item
                     key={page.id}
                     active={!!page.current}
@@ -74,11 +90,12 @@ const SearchEngine = ({ embed }) => {
             }
             return <Pagination.Ellipsis key={page.id} />;
           })}
-          <Pagination.Next onClick={nextPage} >Next</Pagination.Next>
-          <Pagination.Last onClick={(e) => changePage(pages, e)}>Last</Pagination.Last>
+          <Pagination.Next onClick={nextPage}>Next</Pagination.Next>
+          <Pagination.Last onClick={(e) => changePage(pages, e)}>
+            Last
+          </Pagination.Last>
         </Pagination>
       </Row>
-
     </div>
   );
 };

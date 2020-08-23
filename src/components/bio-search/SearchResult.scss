@@ -10,7 +10,7 @@
     .page-link {
       color: #065f65;
     }
-    .page-item {
+    .page-item  {
       &:hover {
         button,
         .page-link {
@@ -26,8 +26,10 @@
         }
       }
     }
+ 
   }
-  
+
+
   
   .scroll-images {
     overflow-y: auto;
@@ -36,10 +38,9 @@
     padding: 0%;
     margin: 0%;
     width: 80vw;
+    padding-right: 1%;
   }
-  
-  
-  
+
   
   .toggle {
       position: absolute;
@@ -104,8 +105,7 @@
         display: block;
         width: 100%;
         padding: 1%; 
-     
-       
+        // max-height: 150px;   
     }
     .large_preview {
         display: none;

@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Button } from "react-bootstrap";
-import TopBar from "./TopBar";
+import TopBar from "./headers/TopBar";
 import SearchBar from "./searchbar/SearchBar";
-import IconBar from "./IconBar";
-import BreadCrumb from "./BreadCrumb";
-import DateRange from "./DateRange";
+import IconBar from "./bio-image-search/IconBar";
+import BreadCrumb from "./footers/BreadCrumb";
+import DateRange from "./bio-image-search/DateRange";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
-import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
+// import { fetchSearchAction, getSelectedFilter } from "../store/reducer";
 import { fetchSearchAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
-import MobileSidebar from "./MobileSidebar";
+import MobileSidebar from "./test/MobileSidebar";
 
 /* Map Image Toggle */
 function Toggle({ searchmode, setMySearch, searchmodes }) {
@@ -58,9 +58,12 @@ Toggle.propTypes = {
 };
 
 const BioImagesEngine = () => {
-  const dispatch = useDispatch();
   // TODO: this triggers a re-render - this component does not depend on selectedFilter
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
+  // const pagination = useSelector((state) => state.search.pagination);
+  const dispatch = useDispatch();
+  // const updateSearchFilter = getSelectedFilter(useStore().getState());
+
   const searchmodes = ["Map", "Images"];
   const [mySearch, setMySearch] = useState("Map");
 
@@ -74,7 +77,7 @@ const BioImagesEngine = () => {
       <TopBar />
       <SearchBar />
 
-      <LeftSideBar searchmode={mySearch} />
+      <LeftSideBar searchmode={mySearch} setMySearch={setMySearch} />
       <Row>
         {/* Filter SideBar */}
         <Col xs="auto" className="filterbar">
@@ -98,4 +101,5 @@ const BioImagesEngine = () => {
     </div>
   );
 };
+
 export default BioImagesEngine;

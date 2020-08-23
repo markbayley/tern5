@@ -18,7 +18,6 @@ const FilterHeader = () => (
       {" "}
       Saved
     </Button>
-
     {/* Mosheh disabled it - useless with checkbox tree structure now! */}
     {/* <ResetFilter resetFilter={resetFilter} /> */}
   </h5>
