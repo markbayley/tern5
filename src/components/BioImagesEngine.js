@@ -81,7 +81,7 @@ const BioImagesEngine = () => {
       <TopBar />
       <SearchBar />
   
-      <LeftSideBar searchmode={mySearch} />
+      <LeftSideBar searchmode={mySearch} setMySearch={setMySearch}/>
       <Row>
         {/*Filter SideBar*/}
         <Col  xs="auto" className={'filter-bar'}>

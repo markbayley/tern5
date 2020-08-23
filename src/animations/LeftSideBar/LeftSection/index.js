@@ -28,7 +28,7 @@ const LeftSection = ({searchmode, setMySearch}) => {
           )}
           {searchmode === "Images" && (
        
-            <Button searchmode={searchmode} setMySearch={setMySearch}
+            <Button searchmode={searchmode}
             onClick={() => setMySearch(searchmode === 'Map')}
              style={{width: "100%"}} variant='flat'>
                <img src="img/map1.png" width="100%" alt="map"/>
