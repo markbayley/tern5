@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
-import { Row, Spinner, Pagination } from "react-bootstrap";
+import {
+  Row,
+  Spinner,
+  Pagination,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 import SearchResult from "./SearchResult";
 import { useSelector, useDispatch } from "react-redux";
 import BioResultPagination from "./BioResultPagination";
-import { fetchSearchAction } from "../../store/reducer";
+import {
+  fetchSearchAction,
+  paginationPageSizeAction,
+} from "../../store/reducer";
 
 const SearchEngine = ({ embed }) => {
   const loading = useSelector((state) => state.search.isLoadingSearch);
@@ -37,8 +46,11 @@ const SearchEngine = ({ embed }) => {
     totalImages,
   });
 
+  const handlePageSizeChange = (value) => {
+    dispatch(paginationPageSizeAction({ page_size: value }));
+  };
+
   useEffect(() => {
-    console.log("in useEffect(). selectedFilter=", selectedFilter);
     dispatch(fetchSearchAction(selectedFilter));
   }, [selectedFilter]);
 
@@ -57,6 +69,14 @@ const SearchEngine = ({ embed }) => {
 
       <Row className={"pagination-row"}>
         <Pagination className={"pagination"}>
+          <div>
+            <DropdownButton id="dropdown-basic-button" title={itemsPerPage + ' per page'}>
+              <Dropdown.Item onClick={() => handlePageSizeChange(32)}>32(default)</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(50)}>50</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(75)}>75</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(100)}>100</Dropdown.Item>
+            </DropdownButton>
+          </div>
           <Pagination.First onClick={(e) => changePage(1, e)}>
             First
           </Pagination.First>

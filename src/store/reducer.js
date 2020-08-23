@@ -9,6 +9,7 @@ export const selectedFilterAction = createAction("SELECTED_FILTER");
 export const fetchFacetsAction = createAction("FETCH_FACETS");
 export const fetchFacetsDoneAction = createAction("FETCH_FACETS_DONE");
 export const paginationAction = createAction("PAGINATION");
+export const paginationPageSizeAction = createAction("PAGINATION_PAGE_SIZE");
 
 const initialState = {
   error: null,
@@ -53,6 +54,11 @@ const searchReducer = createReducer(initialState, {
   [paginationAction]: (state, action) => {
     const updateSelectedFilter = { ...state.selectedFilter, ...action.payload };
     state.selectedFilter = { ...updateSelectedFilter };
+  },
+  [paginationPageSizeAction]: (state, action) => {
+    const updateSize = { ...state.pagination, ...action.payload };
+    state.pagination = { ...updateSize };
+    state.selectedFilter = {...state.selectedFilter, ...state.pagination };
   },
 });
 
