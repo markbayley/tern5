@@ -42,7 +42,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
   // };
 
   return (
-    <Col xl={embed ? 7 : 3} lg={embed ? 7 : 3} md={embed ? 12 : 4} sm={12} xs={12}>
+    <Col xl={embed ? 7 : 2} lg={embed ? 7 : 3} md={embed ? 12 : 4} sm={12} xs={12}>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton className={'modal-header'}>
           <Modal.Title>

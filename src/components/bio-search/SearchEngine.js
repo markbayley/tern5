@@ -70,11 +70,11 @@ const SearchEngine = ({ embed }) => {
       <Row className={"pagination-row"}>
         <Pagination className={"pagination"}>
           <div>
-            <DropdownButton id="dropdown-basic-button" title={itemsPerPage + ' per page'}>
-              <Dropdown.Item onClick={() => handlePageSizeChange(32)}>32(default)</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(50)}>50</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(75)}>75</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(100)}>100</Dropdown.Item>
+            <DropdownButton id="dropdown-basic-button" title={itemsPerPage + ' per page'} variant="test" >
+              <Dropdown.Item onClick={() => handlePageSizeChange(18)}>18 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(36)}>36 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(54)}>54 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(102)}>102 per page</Dropdown.Item>
             </DropdownButton>
           </div>
           <Pagination.First onClick={(e) => changePage(1, e)}>

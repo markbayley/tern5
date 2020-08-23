@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import TopBar from "./TopBar";
+import TopBar from "./headers/TopBar";
 import SearchBar from "./searchbar/SearchBar";
 import IconBar from "./bio-image-search/IconBar";
 import BreadCrumb from "./footers/BreadCrumb";

@@ -15,7 +15,7 @@ import axios from "axios";
 import LoginButton from "../buttons/LoginButton";
 import RegisterButton from "../buttons/RegisterButton";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Toggle from "../Toggle";
+// import Toggle from "../Toggle";
 import { selectedFilterAction } from "../../store/reducer";
 import { useDispatch } from "react-redux";
 

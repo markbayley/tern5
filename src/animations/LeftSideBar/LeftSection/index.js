@@ -37,11 +37,11 @@ const LeftSection = ({searchmode}) => {
              
             </Button>
          
-             {/* <Button 
+             <Button 
              style={{width: "100%"}} variant='flat'>
              <BioMapEngine embed />
             
-             </Button> */}
+             </Button>
          
              
            </div>
