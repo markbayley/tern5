@@ -10,7 +10,7 @@ import chroma from 'chroma-js';
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
+  //const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const [selectedSites, setSelectedSites] = useState(null);
   const [selectedPlots, setSelectedPlots] = useState(null);
   const [selectedVisitIds, setSelectedVisitIds] = useState(null);
@@ -306,7 +306,7 @@ const BioFacets = () => {
       facetParams = { ...facetParams, site_visit_id: selectedVisitIds };
     }
 
-    console.log("searchParam = ", facetParams);
+    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 

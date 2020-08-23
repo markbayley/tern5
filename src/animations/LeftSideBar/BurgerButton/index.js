@@ -1,21 +1,29 @@
-import React, {useContext} from 'react';
-import './style.scss';
-import {Button} from 'react-bootstrap';
-import { LeftSideBarContext } from '../index';
+import React, { useContext } from "react";
+import "./style.scss";
+import { Button } from "react-bootstrap";
+import { LeftSideBarContext } from "../index";
 
 const BurgerButton = ({ onClick, searchmode }) => {
   const { isShowSidebar, setIsShowSidebar } = useContext(LeftSideBarContext);
- 
+
   return (
     <Button
       className="LeftSideBar__BurgerButton"
       role="button"
-      variant='toggle'
+      variant="toggle"
       onClick={onClick}
-  
     >
-    {isShowSidebar && <i class="fa fa-chevron-right"></i>}
-    {!isShowSidebar && (searchmode === 'Map' ? <><i class="fa fa-chevron-left"></i>Data </> : <><i class="fa fa-chevron-left"></i>Map </>)}
+      {isShowSidebar && <i className="fa fa-chevron-right"></i>}
+      {!isShowSidebar &&
+        (searchmode === "Map" ? (
+          <>
+            <i className="fa fa-chevron-left"></i>Data{" "}
+          </>
+        ) : (
+          <>
+            <i className="fa fa-chevron-left"></i>Map{" "}
+          </>
+        ))}
     </Button>
   );
 };

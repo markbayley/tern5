@@ -17,7 +17,6 @@ const initialState = {
   aggregation: null,
   selectedFilter: { page_size: 32, page_num: 1 },
   facets: {},
-  selectedMapImagesMode: "Images",
 };
 
 //TODO Mosheh cleaning it up!
@@ -46,8 +45,9 @@ const searchReducer = createReducer(initialState, {
     // }
   },
   [selectedFilterAction]: (state, action) => {
-    console.log("REDUCER. selectedFilterAction. action.payload=", action.payload);
+    console.log("in REDUCER. selectedFilterAction. action.payload=", action.payload);
     state.selectedFilter = { ...state.selectedFilter, ...action.payload };
+    console.log("in REDUCER. selectedFilterAction. state.selectedFilter=", state.selectedFilter);
     // state.selectedFilter = { ...action.payload };
     // if ("concat-selected" in state.selectedFilter) {
     //   if (state.selectedFilter["concat-selected"] === "") {
@@ -61,9 +61,6 @@ const searchReducer = createReducer(initialState, {
       console.log("aggregations=", aggregations);
       state.facets = aggregations;
     // }
-  },
-  [selectedMapImagesModeAction]: (state, action) => {
-    state.selectedMapImagesMode = action.payload;
   },
 });
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import './buttons.scss';
+import "./buttons.scss";
 
 function simulateNetworkRequest() {
   return new Promise((resolve) => setTimeout(resolve, 2000));
@@ -21,19 +21,18 @@ function LoginButton() {
 
   return (
     <>
-  
-    <Button
-    style={{borderRadius: "10px"}}
-      variant="login"
-      size="md"
-      disabled={isLoading}
-      onClick={!isLoading ? handleClick : null}
-    >
-      <span style={{paddingRight: "5px"}}>
-       <i class="fa fa-user"> </i>
-       </span>
-      {isLoading ? "Loading" : "Login"}
-    </Button>
+      <Button
+        style={{ borderRadius: "10px" }}
+        variant="login"
+        size="md"
+        disabled={isLoading}
+        onClick={!isLoading ? handleClick : null}
+      >
+        <span style={{ paddingRight: "5px" }}>
+          <i className="fa fa-user"> </i>
+        </span>
+        {isLoading ? "Loading" : "Login"}
+      </Button>
     </>
   );
 }
