@@ -1,9 +1,9 @@
-import React, { useEffect, useDispatch } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   Row, Pagination, DropdownButton, Dropdown,
 } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
 import {
