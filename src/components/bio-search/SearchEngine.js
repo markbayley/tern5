@@ -64,7 +64,7 @@ const SearchEngine = ({embed}) => {
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <div className={'pagelink'} >
+                <div key={page.id} className={'pagelink'} >
                 <Pagination.Item   
                   key={page.id}
                   active={page.current ? true : false}
