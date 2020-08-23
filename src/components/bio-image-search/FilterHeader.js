@@ -16,11 +16,17 @@ const FilterHeader = () => {
     dispatch(selectedFilterAction({}));
   };
   return (
-    <h5 className={'filter-header'}>
-      <Button variant="filter"><i class="fa fa-filter"></i> Filter</Button>
-      <Button variant="filter"><i class="fa fa-star"></i> Favourites</Button>
-      <Button variant="filter"><i class="fa fa-check-square"></i> Saved</Button>
-     
+    <h5 className={"filter-header"}>
+      <Button variant="filter">
+        <i className="fa fa-filter"></i> Filter
+      </Button>
+      <Button variant="filter">
+        <i className="fa fa-star"></i> Favourites
+      </Button>
+      <Button variant="filter">
+        <i className="fa fa-check-square"></i> Saved
+      </Button>
+
       {/* Mosheh disabled it - useless with checkbox tree structure now! */}
       {/* <ResetFilter resetFilter={resetFilter} /> */}
     </h5>

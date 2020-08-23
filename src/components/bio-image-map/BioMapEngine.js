@@ -17,11 +17,11 @@ const BioMapEngine = () => {
   const [showMap, setShowMap] = useState(true);
   const [showMapButtonLabel, setShowMapButtonLabel] = useState("Hide Map");
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
-  const bioImageDocuments = useSelector((state) => state.search.hits);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
+  const bioImageDocuments = useSelector((state) => state.search.hits);
   const dispatch = useDispatch();
 
-  console.log("In BioMapEngine. bioImageDocumentHits=", bioImageDocuments);
+  console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
 
   //Set map boundary (australia)
   const corner1 = Leaflet.latLng(-9.820066, 115.240312);
@@ -31,7 +31,7 @@ const BioMapEngine = () => {
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
     dispatch(fetchSearchAction(selectedFilter));
-  }, []);
+  }, [selectedFilter]);
 
 
   const BioMap = () => (
