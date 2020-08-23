@@ -4,8 +4,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
-import chroma from 'chroma-js';
-
+import chroma from "chroma-js";
 
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
@@ -19,6 +18,16 @@ const BioFacets = () => {
   const [storedSiteOptions, setStoredSiteOptions] = useState([]);
 
   console.log("filters=", facets);
+
+  useEffect(() => {
+    console.log("In useEffect of Facets");
+    // let sites = {};
+    // if (selectedSites !== null) {
+    //   sites = { ...sites, site_id: selectedSites };
+    // }
+    // console.log("sites=", sites);
+    dispatch(fetchFacetsAction({}));
+  }, []);
 
   const getOptionsSites = () => {
     const options = facets["site_id"]["buckets"].map((item) => {
@@ -75,60 +84,6 @@ const BioFacets = () => {
     return arrOptions;
   };
 
-
-/* Sidebar Styles */
-  const colourStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white', fontSize: '16px' }),
-    option: (styles, {data, isDisabled, isFocused, isSelected }) => {
-      const color = '#ED694B';
-      return {
-        ...styles,
-        backgroundColor: isDisabled
-          ? null
-          : isSelected
-          ? data.color
-          : isFocused
-          ? 'B3D4C9'
-          : null,
-        color: isDisabled
-          ? '#ED694B'
-          : isSelected
-          ? chroma.contrast(color, '#ED694B') > 2
-            ? '#ED694B'
-            : '#ED694B'
-          : data.color,
-        fontSize: isFocused
-          ? '16px'
-          : isSelected
-          ? '20px'
-          : data.color,
-        cursor: isDisabled ? 'not-allowed' : 'default',
-  
-        ':active': {
-          backgroundColor: !isDisabled && (isSelected ? data.color : '#ED694B'),
-          color: '#ED694B'
-     
- 
-        },
-        ':hover': {
-          backgroundColor: '#B3D4C9',
-          // color: '#fff'
-        },
-      };
-    },
-    multiValue: (styles) => {
-      return {
-        ...styles,
-        backgroundColor: '#B3D4C9',
-        color:  '#00565D',
-        fontSize: '18.5px'
-      };
-    },
-  };
-  
-
-
-
   let optionsSites = [];
   let optionsPlots = [];
   let optionsSiteVisitId = [];
@@ -146,18 +101,9 @@ const BioFacets = () => {
     optionsImageTypes = getOptionsImageType();
   }
 
-  useEffect(() => {
-    console.log("In useEffect of Facets");
-    let sites = {};
-    if (selectedSites !== null) {
-      sites = { ...sites, site_id: selectedSites };
-    }
-    console.log("sites=", sites);
-    dispatch(fetchFacetsAction(sites));
-  }, [selectedSites]);
-
   const dispatchFaceChange = (facetParam) => {
     dispatch(selectedFilterAction(facetParam));
+    dispatch(fetchFacetsAction(facetParam));
   };
 
   const siteSelect = (selectedOptions) => {
@@ -189,9 +135,8 @@ const BioFacets = () => {
       facetParams = { ...facetParams, image_type_sub: selectedImageTypeSubs };
     }
 
-    console.log("searchParam = ", facetParams);
+    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
-    // dispatch(fetchFacetsAction(searchParam));
   };
 
   const plotSelect = (selectedOptions) => {
@@ -223,7 +168,7 @@ const BioFacets = () => {
       facetParams = { ...facetParams, image_type_sub: selectedImageTypeSubs };
     }
 
-    console.log("searchParam = ", facetParams);
+    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 
@@ -255,7 +200,7 @@ const BioFacets = () => {
       facetParams = { ...facetParams, image_type_sub: selectedImageTypeSubs };
     }
 
-    console.log("searchParam = ", facetParams);
+    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 
@@ -308,6 +253,54 @@ const BioFacets = () => {
 
     console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
+  };
+
+  /* Sidebar Styles */
+  const colourStyles = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: "white",
+      fontSize: "16px",
+    }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = "#ED694B";
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? data.color
+          : isFocused
+          ? "B3D4C9"
+          : null,
+        color: isDisabled
+          ? "#ED694B"
+          : isSelected
+          ? chroma.contrast(color, "#ED694B") > 2
+            ? "#ED694B"
+            : "#ED694B"
+          : data.color,
+        fontSize: isFocused ? "16px" : isSelected ? "20px" : data.color,
+        cursor: isDisabled ? "not-allowed" : "default",
+
+        ":active": {
+          backgroundColor: !isDisabled && (isSelected ? data.color : "#ED694B"),
+          color: "#ED694B",
+        },
+        ":hover": {
+          backgroundColor: "#B3D4C9",
+          // color: '#fff'
+        },
+      };
+    },
+    multiValue: (styles) => {
+      return {
+        ...styles,
+        backgroundColor: "#B3D4C9",
+        color: "#00565D",
+        fontSize: "18.5px",
+      };
+    },
   };
 
   return (

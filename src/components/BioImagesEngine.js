@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import TopBar from "./TopBar";
 import SearchBar from "./searchbar/SearchBar";
 import IconBar from "./IconBar";
@@ -13,16 +13,17 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
+// import { fetchSearchAction, getSelectedFilter } from "../store/reducer";
 import { fetchSearchAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 import MobileSidebar from "./MobileSidebar";
 
 const BioImagesEngine = () => {
-  const dispatch = useDispatch();
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-  const selectedMapImagesMode = useSelector(
-    (state) => state.search.selectedMapImagesMode
-  );
+  // const pagination = useSelector((state) => state.search.pagination);
+  const dispatch = useDispatch();
+  //const updateSearchFilter = getSelectedFilter(useStore().getState());
+
   const searchmodes = ["Map", "Images"];
   const [mySearch, setMySearch] = useState("Map");
 
@@ -30,25 +31,24 @@ const BioImagesEngine = () => {
   useEffect(() => {
     console.log("in useEffect(). selectedFilter=", selectedFilter);
     dispatch(fetchSearchAction(selectedFilter));
-  }, [selectedFilter]);
+  }, []);
 
   //TODO to be implemented later - if ever!
   const filterSiteID = (id) => {
     // this.setState({ selectedFilter: { site_id: id } });
     //setSelectedFilter({ site_id: id });
-    console.log("filterSiteID", selectedFilter);
+    // console.log("filterSiteID", selectedFilter);
   };
 
-
   /*Map Image Toggle*/
-  function Toggle ({ searchmode, setMySearch, searchmodes }) {
+  function Toggle({ searchmode, setMySearch, searchmodes }) {
     // && <img src="/img/map.png" width="40px"/>
     return (
       <>
-        <div className={'toggle'}>
+        <div className={"toggle"}>
           {searchmodes.map((searchmode) => (
-            <Button 
-              variant={'toggle'}
+            <Button
+              variant={"toggle"}
               key={searchmode}
               onClick={() => setMySearch(searchmode)}
             >
@@ -56,9 +56,7 @@ const BioImagesEngine = () => {
             </Button>
           ))}
         </div>
-        <Col
-          className={'scroll-images'}
-        >
+        <Col className={"scroll-images"}>
           {/*Leaflet Map */}
           {searchmode === "Map" && (
             <div>
@@ -80,17 +78,17 @@ const BioImagesEngine = () => {
     <div>
       <TopBar />
       <SearchBar />
-  
-      <LeftSideBar searchmode={mySearch} setMySearch={setMySearch}/>
+
+      <LeftSideBar searchmode={mySearch} setMySearch={setMySearch} />
       <Row>
         {/*Filter SideBar*/}
-        <Col  xs="auto" className={'filter-bar'}>
-        <IconBar />
+        <Col xs="auto" className={"filter-bar"}>
+          <IconBar />
           <FilterHeader />
           <ImageSearchEngine />
           <DateRange />
           <MobileSidebar />
-      
+
           <Favourite />
         </Col>
         <Toggle

@@ -17,8 +17,8 @@ const BioMapEngine = () => {
   const [showMap, setShowMap] = useState(true);
   const [showMapButtonLabel, setShowMapButtonLabel] = useState("Hide Map");
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
+  const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const bioImageDocuments = useSelector((state) => state.search.hits);
-  // const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const dispatch = useDispatch();
 
   console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
@@ -28,10 +28,10 @@ const BioMapEngine = () => {
   const corner2 = Leaflet.latLng(-44.482812, 152.339923);
   const bounds = Leaflet.latLngBounds(corner1, corner2);
 
-  // useEffect(() => {
-  //   console.log("in useEffect(). selectedFilter=", selectedFilter);
-  //   dispatch(fetchSearchAction(selectedFilter));
-  // }, []);
+  useEffect(() => {
+    console.log("in useEffect(). selectedFilter=", selectedFilter);
+    dispatch(fetchSearchAction(selectedFilter));
+  }, [selectedFilter]);
 
 
   const BioMap = () => (
