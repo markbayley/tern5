@@ -1,85 +1,43 @@
-import React, { useState } from "react";
-import { Button } from 'reactstrap';
-
-import MapBox from "./MapBox";
-import MapSearch from "../MapSearch";
-
+import React, { useState } from 'react'
+import { Col, Row, Button } from "react-bootstrap";
+import BioMapEngine from '../bio-image-map/BioMapEngine';
+import SearchEngine from '../bio-search/SearchEngine';
 
 
-import SideBar from '../SideBar';
-
-
-
-
+/*Map Image Toggle*/
 const Toggle = () => {
-    const searchmodes = ["map", "filter"];
-    const [mySearch, setMySearch] = useState("");
-
-  
-   
-    
-        
+    const searchmodes = ["Map", "Images"];
+    const [mySearch, setMySearch] = useState("Map");
+    // && <img src="/img/map.png" width="40px"/>
     return (
-        <>
-           
-            <div className="row w-100" >
-                <div className="col mb-3 col-12 text-center" >
-
-                 <div className="col text-center" >
-                 
-
-                    <p >
-                        {mySearch === "map" && (
-                            <div>
-                           
-                           <MapSearch />
-                            
-                              </div>
-                      
-                        )}
-                        {mySearch === "filter" && (
-                         <div>
-                               <MapBox>
-                                  <SideBar />
-                              </MapBox>
-                          
-                            </div>
-                       
-                        )}
-                    
-                    </p>
-                </div>
-                  
-                    <br />
-                  
-                    <div
-                        className="btn-group"
-                        role="group"
-                        aria-label="toggle"
-                        
-                    >
-                        {searchmodes.map(searchmode => (
-                            <Button style={{fontWeight: "100", color: "#065f65", borderColor: "1px solid #065f65"}}
-                        
-                              
-                                type="button"
-                                key={searchmode}
-                                className={"btn btn-light border-dark "}
-                                onClick={() => setMySearch(searchmode)}
-                            >
-                             hi   {searchmode.toLocaleUpperCase()}
-                            </Button>
-                        ))}
-                    </div>
-
-                </div>
-
-
-               
+      <>
+        <div className={'map-image-toggle'}>
+          {searchmodes.map((searchmode) => (
+            <Button
+              variant="round"
+              style={{ borderRadius: "20px" }}
+              key={searchmode}
+              onClick={() => setMySearch(searchmode)}
+            >
+              {searchmode}
+            </Button>
+          ))}
+        </div>
+        <Col className={'toggle-result'}
+        >
+          {mySearch === "Map" && (
+            <div>
+              <BioMapEngine />
             </div>
-        </>
+          )}
+          {mySearch === "Images" && (
+            <div>
+              <SearchEngine />
+            </div>
+          )}
+        </Col>
+      </>
     );
-};
+  };
 
-
-export default Toggle;
+  export default Toggle

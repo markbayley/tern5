@@ -81,7 +81,7 @@
   font-weight: 400;
   color:  #00565D;
   background-image: linear-gradient(to bottom right,  #c9e7dd, #B3D4C9,);
-  &.clicked {
+  &.clicked, button {
       background-color: #065f65;
       border-color: #065f65;
     }

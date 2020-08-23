@@ -15,9 +15,7 @@ import axios from "axios";
 import LoginButton from "../buttons/LoginButton";
 import RegisterButton from "../buttons/RegisterButton";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Toggle from "../Toggle";
-
-
+import Toggle from "../test/Toggle";
 
 {
   /* Connects to another test API unsplash, not the TERN API as yet, need to change over*/
@@ -59,32 +57,26 @@ function SearchBar() {
         <Navbar
           bg="white"
           expand="lg"
-          style={{ height: "4%", borderBottom: "1.5px solid #6EB3A6" }}
+          className={'nav-bar'}
         >
           {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
           <Navbar.Collapse id="basic-navbar-nav"> */}
-            <Col sm={2} style={{ position: "absolute", left: "0%"}}>
+            <Col sm={2} className={'nav-bar-col'}>
               <Navbar.Brand>
                 <div className="site-branding">
                   <Link to="/">
-                    <img src="img/logo@3x.png" alt="" />
+                    <img src="img/logo@3x.png" alt="tern logo" />
                   </Link>
                 </div>
               </Navbar.Brand>
             </Col>
 
-            <Container style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100px',   color: "#6EB3A6"}}>
+            <Container className={'nav-container'}>
             
                 <h3 className="biologo">
                   <Image
-                    className="icon"
+                    className={'bio-icon'}
                     src="/img/icons/bioimages-download.svg"
-                    style={{
-                      marginBottom: "3%",
-                      height: "35px",
-                      marginTop: "0%",
-                     
-                    }}
                   />
                   Bioimages
                 </h3>
@@ -92,48 +84,27 @@ function SearchBar() {
                 {/*Search Input */}
                 <InputGroup
                   inline="true"
-                  className="searchbar"
-                  style={{
-                    height: "65px",
-                    width: "455px",
-                    paddingLeft: "1.3%",
-
-                  
-                  }}
+                  className={'searchbar'}
                 >
                   <Image
                     fluid
                     src="/img/icons/search-bioimages-icon.svg"
                     alt="bioimages search icon"
-                    style={{
-                      width: "8%",
-                      paddingTop: "2%",
-                    }}
+                    className={'search-icon'}
                   />
                   <FormControl
                     onChange={handleChange}
                     id="place"
                     type="text"
                     placeholder="Search images by site or image type"
-                    style={{
-                      fontSize: "20px",
-                      color: "#00565D",
-                      marginTop: "17px",
-                    }}
+                    className={'search-form'}
                     aria-label="term"
                   />
                   <Button
-                    className="searchbutton"
+                    className={'searchbutton'}
                     onClick={handleSubmit}
                     variant="outline"
                     type="submit"
-                    style={{
-                      height: "33px",
-                      width: "33px",
-                      marginTop: "3.7%",
-                      marginRight: "20px",
-                      borderRadius: "50px",
-                    }}
                   ></Button>
                 </InputGroup>
                 {/*End of Search Input */}
@@ -141,27 +112,14 @@ function SearchBar() {
 
               {/*Login Buttons */}
               <div className="login">
-              <Link to="/login" 
-              style={{ 
-                  
-                 }}>
+              <Link to="/login" >
                 {" "}
                 <LoginButton />{" "}
               </Link>
-
-              {/* <Link to="/login" 
-              style={{ 
-               
-               }}>
-                {" "}
-                <RegisterButton />{" "}
-              </Link> */}
               </div>
             </Container>
-
           {/* </Navbar.Collapse> */}
         </Navbar>
-
         {/*Search Results */}
         <Container style={{ paddingLeft: "3%" }}>
           <Row>

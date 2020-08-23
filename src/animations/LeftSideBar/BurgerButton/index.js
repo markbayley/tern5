@@ -15,7 +15,7 @@ const BurgerButton = ({ onClick, searchmode }) => {
   
     >
     {isShowSidebar && <i class="fa fa-chevron-right"></i>}
-    {!isShowSidebar && (searchmode === 'Map' ? <><i class="fa fa-chevron-left"></i>Data </> : <><i class="fa fa-chevron-left"></i>Map </>)}
+    {!isShowSidebar && (searchmode === 'Map' ? <><i class="fa fa-chevron-left"></i><img src="/img/Images.png" width="40px"/> </> : <><i class="fa fa-chevron-left"></i><img src="/img/map.png" width="40px"/></>)}
     </Button>
   );
 };

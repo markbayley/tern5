@@ -1,8 +1,8 @@
 import React from "react";
-import TERNDataDropdown from "./dropdowns/TERNDataDropdown";
-import CommunityDropdown from "./dropdowns/CommunityDropdown";
-import CoESRADropdown from "./dropdowns/CoESRADropdown";
-import DataVisualiserDropdown from "./dropdowns/DataVisualiserDropdown";
+import TERNDataDropdown from "../dropdowns/TERNDataDropdown";
+import CommunityDropdown from "../dropdowns/CommunityDropdown";
+import CoESRADropdown from "../dropdowns/CoESRADropdown";
+import DataVisualiserDropdown from "../dropdowns/DataVisualiserDropdown";
 import { Col, Row, Navbar, NavItem, Nav, NavLink } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 

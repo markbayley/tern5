@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TopBar from "./TopBar";
+import TopBar from "./headers/TopBar";
 import SearchBar from "./searchbar/SearchBar";
-import IconBar from "./IconBar";
-import BreadCrumb from "./BreadCrumb";
-import Footer from "./Footer";
+import IconBar from "./bio-image-search/IconBar";
+import BreadCrumb from "./footers/BreadCrumb";
+import Footer from "./footers/Footer";
 import { Col, Row, Button } from "react-bootstrap";
-import DateRange from "./DateRange";
+import DateRange from "./bio-image-search/DateRange";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
 import BioMapEngine from "./bio-image-map/BioMapEngine";
@@ -15,7 +15,7 @@ import FavouriteHeader from "./bio-favourites/FavouriteHeader";
 import FilterHeader from "./bio-image-search/FilterHeader";
 import { fetchSearchAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
-import MobileSidebar from "./MobileSidebar";
+import MobileSidebar from "./test/MobileSidebar";
 
 const BioImagesEngine = () => {
   const dispatch = useDispatch();
@@ -43,6 +43,7 @@ const BioImagesEngine = () => {
   /*Map Image Toggle*/
   function Toggle ({ searchmode, setMySearch, searchmodes }) {
     // && <img src="/img/map.png" width="40px"/>
+ 
     return (
       <>
         <div className={'toggle'}>

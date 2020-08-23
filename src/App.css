@@ -127,26 +127,12 @@ body {
 .site-branding img {
   max-width: 300px;
 }
-.searchbar {
-  display: "flex";
-  justify-content: "center";
-  background-image: url(/img/icons/search-bar2.png);
-  background-repeat: no-repeat;
-}
+
 .searchbar:hover {
   /* background-image: url(/images/search-bar2-dark.png); */
   /* transition: background 0.3s; */
 }
-.searchbutton {
-  background-image: url(/img/icons/search-arrow.svg);
-  background-repeat: no-repeat;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
-.searchbutton:hover {
-  background-color: #B3D4C9;
-  transition: background 0.01s;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 15px 0 rgba(0, 0, 0, 0.19);
-}
+
 .searchicon {
   background-image: url(/img/icons/search-bioimages-icon.svg);
 }
@@ -201,6 +187,11 @@ body {
 /* MAP */
 .leaflet-container {
   height: 80vh;
+  width: fluid;
+}
+
+.leaflet-container-mini {
+  height: 20vh;
   width: fluid;
 }
 .map-container {
@@ -554,6 +545,10 @@ a.search-link.addlinks {
   }
 }
 
+
+.toggle {
+  z-index: 100 !important;
+}
 /* Testing */
 .bio-facets {
   margin: 20px 10px; 
@@ -562,11 +557,11 @@ a.search-link.addlinks {
 
 @media (max-width: 1520px) {
   .toggle {
-  
+     z-index: 100;
   }
 }
 @media (max-width: 998px) {
-  .login {
+  .biologo {
     display: none;
   }
 }
@@ -585,35 +580,40 @@ a.search-link.addlinks {
 
 
 
-
-.buttonTrue {
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
+.switch {
+  background-color: lightgray;
+  border: 0;
+  border-radius: 50px;
   cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #000;
-  background-color: yellow;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+  height: 10px;
+  position: fixed;
+  top: 10;
+  width: 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-.buttonFalse {
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: red;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+.switch:hover { background-color: lightgray; }
+.switch:focus,
+.switch:active { outline: none; }
+.switch::-moz-focus-inner { border: 0; }
+
+.pin {
+  background-color: white;
+  border-radius: 98px;
+  height: 29px;
+  left: 4px;
+  position: absolute;
+  top: 3px;
+  width: 29px;
+  transition: left ease .5s;
 }
 
+button.on {
+  background-color: green;
+}
+
+button.on .pin {
+  left: 98px;
+}
 
