@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import {
-  Row, Pagination, DropdownButton, Dropdown,
-} from "react-bootstrap";
+// eslint-disable-next-line object-curly-newline
+import { Row, Pagination, DropdownButton, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
@@ -10,6 +9,7 @@ import {
   fetchSearchAction,
   paginationPageSizeAction,
 } from "../../store/reducer";
+import NoResults from "./NoResults";
 
 const SearchEngine = ({ embed }) => {
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
@@ -50,7 +50,7 @@ const SearchEngine = ({ embed }) => {
     dispatch(fetchSearchAction(selectedFilter));
   }, [dispatch, selectedFilter]);
 
-  return (
+  const ShowPagination = () => (
     <div>
       <Row>
         {data.map((bioImageDocument) => (
@@ -65,14 +65,28 @@ const SearchEngine = ({ embed }) => {
       <Row className="pagination-row">
         <Pagination className="pagination">
           <div>
-            <DropdownButton id="dropdown-basic-button" title={`${itemsPerPage} per page`} variant="test">
-              <Dropdown.Item onClick={() => handlePageSizeChange(18)}>18 per page</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(36)}>36 per page</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(54)}>54 per page</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(102)}>102 per page</Dropdown.Item>
+            <DropdownButton
+              id="dropdown-basic-button"
+              title={`${itemsPerPage} per page`}
+              variant="test"
+            >
+              <Dropdown.Item onClick={() => handlePageSizeChange(18)}>
+                18 per page
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(36)}>
+                36 per page
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(54)}>
+                54 per page
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(102)}>
+                102 per page
+              </Dropdown.Item>
             </DropdownButton>
           </div>
-          <Pagination.First onClick={(e) => changePage(1, e)}>First</Pagination.First>
+          <Pagination.First onClick={(e) => changePage(1, e)}>
+            First
+          </Pagination.First>
           <Pagination.Prev onClick={prevPage}>Previous</Pagination.Prev>
           {pagination.map((page) => {
             if (!page.ellipsis) {
@@ -98,6 +112,8 @@ const SearchEngine = ({ embed }) => {
       </Row>
     </div>
   );
+
+  return totalImages === 0 ? <NoResults /> : <ShowPagination />;
 };
 
 SearchEngine.propTypes = {

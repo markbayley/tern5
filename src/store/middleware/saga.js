@@ -1,7 +1,5 @@
-// import { all, takeLatest, takeEvery, put, call } from "redux-saga/effects";
-import {
-  all, takeLatest, put, call,
-} from "redux-saga/effects";
+// eslint-disable-next-line object-curly-newline
+import { all, takeLatest, put, call } from "redux-saga/effects";
 import {
   fetchSearchAction,
   fetchSearchDoneAction,

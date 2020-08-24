@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  Map, TileLayer, FeatureGroup, Circle,
-} from "react-leaflet";
+// eslint-disable-next-line object-curly-newline
+import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import Leaflet from "leaflet";
 import { useSelector, useDispatch } from "react-redux";
 import ImageMarkerEngine from "./ImageMarkerEngine";
 import { fetchSearchAction } from "../../store/reducer";
+import NoResults from "../bio-search/NoResults";
 
 const BioMapEngine = () => {
   const [mapInitState] = useState({
@@ -19,6 +19,7 @@ const BioMapEngine = () => {
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const bioImageDocuments = useSelector((state) => state.search.hits);
+  const totalImages = useSelector((state) => state.search.totalDocuments);
   const dispatch = useDispatch();
 
   // Set map boundary (australia)
@@ -49,16 +50,16 @@ const BioMapEngine = () => {
           maxBounds={bounds}
         >
           <TileLayer
-            attribution='&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors'
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
           <FeatureGroup>
             <EditControl
               position="bottomright"
-            // onEdited={this._onEditPath}
-            // onCreated={this._onCreate}
-            // onDeleted={this._onDeleted}
+              // onEdited={this._onEditPath}
+              // onCreated={this._onCreate}
+              // onDeleted={this._onDeleted}
             />
             <Circle center={[51.51, -0.06]} radius={200} />
           </FeatureGroup>
@@ -76,16 +77,6 @@ const BioMapEngine = () => {
     </div>
   );
 
-  return (
-    <>
-      <BioMap />
-    </>
-  );
-  // return (
-  //   <div>
-  //   <input type="submit" value={showMapButtonLabel} onClick={hideShowMap}/>
-  //   {showMap? <BioMap/> : null}
-  //   </div>
-  // );
+  return <>{totalImages === 0 ? <NoResults /> : <BioMap />}</>;
 };
 export default BioMapEngine;
