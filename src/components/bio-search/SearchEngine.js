@@ -8,7 +8,7 @@ import {
   fetchSearchAction,
   paginationPageSizeAction,
 } from "../../store/reducer";
-import './SearchResult.scss';
+import "./SearchResult.scss";
 import NoResults from "./NoResults";
 
 const SearchEngine = ({ embed }) => {
@@ -65,7 +65,7 @@ const SearchEngine = ({ embed }) => {
       <Row className="pagination-row">
         <Pagination className="pagination">
           <div>
-            <DropdownButton id="dropdown-basic-button" title={itemsPerPage + ' per page'} variant="pageitems" className="pageitems">
+            <DropdownButton id="dropdown-basic-button" title={`${itemsPerPage} per page`} variant="pageitems" className="pageitems">
               <Dropdown.Item onClick={() => handlePageSizeChange(18)}>18 per page</Dropdown.Item>
               <Dropdown.Item onClick={() => handlePageSizeChange(36)}>36 per page</Dropdown.Item>
               <Dropdown.Item onClick={() => handlePageSizeChange(54)}>54 per page</Dropdown.Item>
