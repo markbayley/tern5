@@ -78,6 +78,7 @@ module.exports = {
         },
       },
     ],
+    //"comma-dangle": "off",
     // "no-console": "off",
   },
 };

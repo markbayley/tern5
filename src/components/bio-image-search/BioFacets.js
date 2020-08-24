@@ -9,20 +9,15 @@ import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
-  // const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const [selectedSites, setSelectedSites] = useState(null);
   const [selectedPlots, setSelectedPlots] = useState(null);
   const [selectedVisitIds, setSelectedVisitIds] = useState(null);
   const [selectedImageTypes, setSelectedImageTypes] = useState(null);
   const [selectedImageTypeSubs, setSelectedImageTypeSubs] = useState(null);
   const [storedSiteOptions, setStoredSiteOptions] = useState([]);
+  const [storedPlotOptions, setStoredPlotOptions] = useState([]);
 
   useEffect(() => {
-    // let sites = {};
-    // if (selectedSites !== null) {
-    //   sites = { ...sites, site_id: selectedSites };
-    // }
-    // console.log("sites=", sites);
     dispatch(fetchFacetsAction({}));
   }, [dispatch]);
 
@@ -75,7 +70,9 @@ const BioFacets = () => {
         item["image_type_sub"].buckets.forEach((sub_type) => {
           const subCount = sub_type.doc_count;
           const subValue = `ancillary.${sub_type.key.replace(/%20/gi, " ")}`;
-          const subLabel = `${label}[${startCase(sub_type.key.replace(/%20/gi, " "))}]`;
+          const subLabel = `${label}[${startCase(
+            sub_type.key.replace(/%20/gi, " "),
+          )}]`;
           arrOptions.push({
             label: `${subLabel}(${subCount})`,
             value: subValue,
@@ -88,19 +85,67 @@ const BioFacets = () => {
     return arrOptions;
   };
 
+  const shouldReloadSiteOptions = () => {
+    // Check if there is anything selected in the site options
+    if (selectedSites !== null) return false;
+    if (
+      selectedPlots !== null
+      || selectedVisitIds !== null
+      || selectedImageTypes
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const shouldReloadPlotOptions = () => {
+    if (selectedPlots !== null) return false;
+    if (
+      selectedSites !== null
+      || selectedVisitIds !== null
+      || selectedImageTypes
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   let optionsSites = [];
   let optionsPlots = [];
   let optionsSiteVisitId = [];
   let optionsImageTypes = [];
-  // const optionsDateRange = [];
   if (!isEmpty(facets)) {
+    // Initial app render we want to populate
+    // the store site options
     if (storedSiteOptions.length === 0) {
       optionsSites = getOptionsSites();
       setStoredSiteOptions(optionsSites);
+    }
+    // Reload site option if nothing was selected
+    // The user must have selected stuff below
+    // first (e.g. plots, site visit id or image types)
+    if (shouldReloadSiteOptions()) {
+      optionsSites = getOptionsSites();
     } else {
       optionsSites = storedSiteOptions;
     }
-    optionsPlots = getOptionsPlots();
+
+    // Initial render save plot options to local store
+    if (storedPlotOptions.length === 0) {
+      optionsPlots = getOptionsPlots();
+      setStoredPlotOptions(optionsPlots);
+    }
+    if (shouldReloadPlotOptions()) {
+      optionsPlots = getOptionsPlots();
+      // TODO
+      //  React limits the number of renders to prevent an infinite loop
+      // This solution wont work!!!
+      // setStoredPlotOptions(optionsPlots);
+    } else {
+      optionsPlots = storedPlotOptions;
+    }
+
+    // TODO Do later when I think of a better solution!
     optionsSiteVisitId = getOptionsSiteVisitId();
     optionsImageTypes = getOptionsImageType();
   }
@@ -310,7 +355,7 @@ const BioFacets = () => {
         autoFocus
         onChange={(e) => siteSelect(e)}
         styles={colourStyles}
-      // closeMenuOnSelect={false}
+        // closeMenuOnSelect={false}
       />
       <Select
         className="mb-4"
