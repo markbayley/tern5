@@ -80,7 +80,7 @@ function SearchBar() {
                 alt="bioimages search icon"
                 className="search-icon"
               />
-              <FormControl
+              <FormControl style={{color: '#00565D'}}
                 onChange={handleChange}
                 id="place"
                 type="text"
