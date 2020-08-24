@@ -6,6 +6,7 @@ import { Link, scroller, animateScroll as scroll } from "react-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 import { parseBioImagesDate } from "../../bio_utils/bio_helpers";
+import './Map.scss';
 
 const ImageMarker = (props) => {
   const dispatch = useDispatch();
@@ -163,38 +164,37 @@ const ImageMarker = (props) => {
         </Link>
       </Popup> */}
       <Tooltip>
-        <div className={'tooltip'}>
+        <div className={'tool-tip'}>
           {/* <strong>
           <h6>Click marker to select {props.label}.</h6>
         </strong> */}
           Site:{" "}
-          <a
+          <a className={'tool-tip-link'}
             href="www.tern.org"
-            className={'tooltip-link'}
           >
             {props.name}{" "}
           </a>{" "}
           <br />
           Image Type:{" "}
-          <a
+          <a className={'tool-tip-link'}
             href="www.tern.org"
-            className={'tooltip-link'}
+            className={'too-tip-link'}
           >
             {props.images}
           </a>{" "}
           <br />
           Plot:{" "}
-          <a
+          <a  className={'tool-tip-link'}
             href="www.tern.org"
-            className={'tooltip-link'}
+            className={'tool-tip-link'}
           >
             {props.plot}
           </a>{" "}
           <br />
           Date:{" "}
-          <a
+          <a className={'tool-tip-link'}
             href="www.tern.org"
-            className={'tooltip-link'}
+            className={'tool-tip-link'}
           >
             {formatedSiteVisitDate}
           </a>{" "}
