@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Modal, Navbar, Button, Col } from "react-bootstrap";
-
-
+import {
+  Modal, Navbar, Button, Col,
+} from "react-bootstrap";
 
 function MobileSidebar() {
   const [show, setShow] = useState(false);
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className="mobile-sidebar">
       <Modal size="md" show={show} onHide={handleClose}>
@@ -15,7 +15,7 @@ const handleShow = () => setShow(true);
             {" "}
             <Col sm={2} style={{ position: "absolute", left: "0%" }}>
               <Navbar.Brand>
-                <div className="site-branding"></div>
+                <div className="site-branding" />
               </Navbar.Brand>
             </Col>
             Select an image type below
@@ -27,7 +27,7 @@ const handleShow = () => setShow(true);
             marginTop: "0%",
             marginBottom: "0.5%",
           }}
-        ></hr>
+        />
         <Modal.Body>
           <Button variant="mobile">
             <img src="/img/LAI.svg" width="50%" alt="" />

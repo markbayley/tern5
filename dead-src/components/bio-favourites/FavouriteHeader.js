@@ -1,20 +1,19 @@
 import React from "react";
 
-const FavouriteHeader = () => {
-  return (
-    <div className="favs">
-      <h5
-        style={{
-          fontSize: "18.5px",
-          color: "#fff",
-          backgroundColor: "#fff",
-          padding: "20px 10px 20px 10px",
-          // width: "320px",
-        }}
-      >
-        Favourites
-      </h5>
-      {/* <div className="" style={{ backgroundColor: "white", padding: "3% 6%" }}>
+const FavouriteHeader = () => (
+  <div className="favs">
+    <h5
+      style={{
+        fontSize: "18.5px",
+        color: "#fff",
+        backgroundColor: "#fff",
+        padding: "20px 10px 20px 10px",
+        // width: "320px",
+      }}
+    >
+      Favourites
+    </h5>
+    {/* <div className="" style={{ backgroundColor: "white", padding: "3% 6%" }}>
         <img src="/img/LAI_circle.svg" alt="circle" width="35px" />
         Leaf Area Index{" "}
         <img
@@ -51,8 +50,7 @@ const FavouriteHeader = () => {
           width="30px"
         />
       </div> */}
-    </div>
-  );
-};
+  </div>
+);
 
 export default FavouriteHeader;

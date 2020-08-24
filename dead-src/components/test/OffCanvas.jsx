@@ -1,14 +1,11 @@
-"use strict";
-
 import React, { Component } from "react";
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
-
 
 export default class OffcCanvas extends Component {
   componentWillMount() {
     // sets the initial state
     this.setState({
-      isMenuOpened: false
+      isMenuOpened: false,
     });
   }
 
@@ -16,7 +13,7 @@ export default class OffcCanvas extends Component {
     return (
       <OffCanvas
         width={250}
-      
+
         transitionDuration={300}
         effect={"parallax"}
         isMenuOpened={this.state.isMenuOpened}
@@ -26,17 +23,17 @@ export default class OffcCanvas extends Component {
           className="bodyClass"
           style={{ fontSize: "10px" }}
         >
-         
+
           <p>
             <a href="#" onClick={this.handleClick.bind(this)}>
               Click here
             </a>{" "}
-          
+
           </p>
         </OffCanvasBody>
         <OffCanvasMenu className="menuClass">
-        <a href="#" onClick={this.handleClick.bind(this)}>
-                Toggle Menu
+          <a href="#" onClick={this.handleClick.bind(this)}>
+            Toggle Menu
               </a>
           <p>Placeholder content.</p>
           <ul>
@@ -46,7 +43,7 @@ export default class OffcCanvas extends Component {
             <li>Link 4</li>
             <li>Link 5</li>
             <li>
-            
+
             </li>
           </ul>
         </OffCanvasMenu>

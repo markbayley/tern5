@@ -1,40 +1,27 @@
 import React from "react";
-import { Marker, Popup, Tooltip } from "react-leaflet";
+import PropTypes from "prop-types";
+import { Marker, Tooltip } from "react-leaflet";
 import L from "leaflet";
-import { Button } from "react-bootstrap";
-import { Link, scroller, animateScroll as scroll } from "react-scroll";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchAction, selectedFilterAction } from "../../store/reducer";
 import { parseBioImagesDate } from "../../bio_utils/bio_helpers";
 import './Map.scss';
 
 const ImageMarker = (props) => {
-  const dispatch = useDispatch();
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
-
-  const formatedSiteVisitDate = parseBioImagesDate(props.date);
-
-  const handleFilter = () => {
-    console.log("in ImageMarker. handleFitlter()");
-    const addFilter = { site_id: props.siteLocation };
-    // Add filter
-    const updatedFilter = { ...selectedFilter, ...addFilter };
-    console.log("updatedFilter=", updatedFilter);
-    // dispatch(fetchSearchAction({ selectedFilter: updatedFilter }));
-    dispatch(selectedFilterAction(updatedFilter));
-  };
+  const {
+    id, plot, images, date, name, sitePosition,
+  } = props;
+  const formatedSiteVisitDate = parseBioImagesDate(date);
 
   return (
     <Marker
       icon={L.divIcon({
-        html: `  `,
+        html: "  ",
         className: "custom-marker",
         iconSize: L.point(33, 33, true),
         tooltipAnchor: [20, 0],
       })}
-      key={props.id}
-      position={props.sitePosition}
-      //onClick={handleFilter} -mosheh disabled it!
+      key={id}
+      position={sitePosition}
+    // onClick={handleFilter} -mosheh disabled it!
     >
       {" "}
       <br />
@@ -137,13 +124,13 @@ const ImageMarker = (props) => {
                       color:  #00565D;
                       border: 1px solid #00565D;
                     }
-              
+
                     .btn-flat:hover {
                       background-color: #00565D;
                       color:  #fff;
                       border: 1px solid #00565D;
                     }
-                    
+
                     `}
             </style>
             <Link
@@ -172,24 +159,28 @@ const ImageMarker = (props) => {
           <a className={'tool-tip-link'}
             href="www.tern.org"
           >
-            {props.name}{" "}
-          </a>{" "}
+            {name}
+            {" "}
+          </a>
+          {" "}
           <br />
           Image Type:{" "}
           <a className={'tool-tip-link'}
             href="www.tern.org"
             className={'too-tip-link'}
           >
-            {props.images}
-          </a>{" "}
+            {images}
+          </a>
+          {" "}
           <br />
           Plot:{" "}
           <a  className={'tool-tip-link'}
             href="www.tern.org"
             className={'tool-tip-link'}
           >
-            {props.plot}
-          </a>{" "}
+            {plot}
+          </a>
+          {" "}
           <br />
           Date:{" "}
           <a className={'tool-tip-link'}
@@ -197,11 +188,22 @@ const ImageMarker = (props) => {
             className={'tool-tip-link'}
           >
             {formatedSiteVisitDate}
-          </a>{" "}
+          </a>
+          {" "}
           <br />
         </div>
       </Tooltip>
     </Marker>
   );
 };
+
+ImageMarker.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  plot: PropTypes.string.isRequired,
+  images: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  sitePosition: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
 export default ImageMarker;

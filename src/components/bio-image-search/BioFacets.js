@@ -1,105 +1,194 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
-import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 import { startCase, isEmpty } from "lodash";
 import chroma from "chroma-js";
+import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
+
+let storedSiteOptions = [];
+let storedPlotOptions = [];
+let storedSiteVisitIds = [];
+let storedImageTypes = [];
 
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
-  //const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const [selectedSites, setSelectedSites] = useState(null);
   const [selectedPlots, setSelectedPlots] = useState(null);
   const [selectedVisitIds, setSelectedVisitIds] = useState(null);
   const [selectedImageTypes, setSelectedImageTypes] = useState(null);
   const [selectedImageTypeSubs, setSelectedImageTypeSubs] = useState(null);
-  const [storedSiteOptions, setStoredSiteOptions] = useState([]);
-
-  console.log("filters=", facets);
 
   useEffect(() => {
-    console.log("In useEffect of Facets");
-    // let sites = {};
-    // if (selectedSites !== null) {
-    //   sites = { ...sites, site_id: selectedSites };
-    // }
-    // console.log("sites=", sites);
     dispatch(fetchFacetsAction({}));
-  }, []);
+  }, [dispatch]);
 
   const getOptionsSites = () => {
-    const options = facets["site_id"]["buckets"].map((item) => {
+    const options = facets["site_id"].buckets.map((item) => {
       const count = item.doc_count;
       const value = item.key;
-      const label = item["hits"]["hits"]["hits"][0]["_source"]["site_id"].label;
-      return { label: label + "(" + count + ")", value: value };
+      const { label } = item.hits.hits.hits[0]["_source"]["site_id"];
+      return {
+        label: `${label}(${count})`,
+        value,
+      };
     });
     return options;
   };
 
   const getOptionsPlots = () => {
-    const options = facets["plot"]["buckets"].map((item) => {
+    const options = facets.plot.buckets.map((item) => {
       const count = item.doc_count;
       const value = item.key;
-      const label = item["hits"]["hits"]["hits"][0]["_source"]["plot"].label;
-      return { label: label + "(" + count + ")", value: value };
+      const { label } = item.hits.hits.hits[0]["_source"].plot;
+      return {
+        label: `${label}(${count})`,
+        value,
+      };
     });
     return options;
   };
 
   const getOptionsSiteVisitId = () => {
-    const options = facets["site_visit_id"]["buckets"].map((item) => {
+    const options = facets["site_visit_id"].buckets.map((item) => {
       const count = item.doc_count;
       const value = item.key;
       const label = item.key;
-      return { label: label + "(" + count + ")", value: value };
+      return {
+        label: `${label}(${count})`,
+        value,
+      };
     });
     return options;
   };
 
   const getOptionsImageType = () => {
     const arrOptions = [];
-    facets["image_type"]["buckets"].map((item) => {
+    facets["image_type"].buckets.forEach((item) => {
       const count = item.doc_count;
       const value = item.key;
-      const label =
-        item["hits"]["hits"]["hits"][0]["_source"]["image_type"].label;
+      const { label } = item.hits.hits.hits[0]["_source"]["image_type"];
       if (value === "ancillary") {
-        item["image_type_sub"]["buckets"].map((sub_type) => {
+        item["image_type_sub"].buckets.forEach((sub_type) => {
           const subCount = sub_type.doc_count;
-          const subValue = "ancillary." + sub_type.key.replace(/%20/gi, " ");
-          const subLabel =
-            label + "[" + startCase(sub_type.key.replace(/%20/gi, " ")) + "]";
+          const subValue = `ancillary.${sub_type.key.replace(/%20/gi, " ")}`;
+          const subLabel = `${label}[${startCase(
+            sub_type.key.replace(/%20/gi, " "),
+          )}]`;
           arrOptions.push({
-            label: subLabel + "(" + subCount + ")",
+            label: `${subLabel}(${subCount})`,
             value: subValue,
           });
         });
       } else {
-        arrOptions.push({ label: label + "(" + count + ")", value: value });
+        arrOptions.push({ label: `${label}(${count})`, value });
       }
     });
     return arrOptions;
+  };
+
+  const shouldReloadSiteOptions = () => {
+    // Check if there is anything selected in the site options
+    if (selectedSites !== null) return false;
+    if (
+      selectedPlots !== null
+      || selectedVisitIds !== null
+      || selectedImageTypes
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const shouldReloadPlotOptions = () => {
+    if (selectedPlots !== null) return false;
+    if (
+      selectedSites !== null
+      || selectedVisitIds !== null
+      || selectedImageTypes
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const shouldReloadSiteVisitIdOptions = () => {
+    if (selectedVisitIds !== null) return false;
+    if (
+      selectedSites !== null
+      || selectedPlots !== null
+      || selectedImageTypes
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const shouldReloadImageTypesOptions = () => {
+    if (selectedImageTypes !== null) return false;
+    if (selectedSites !== null || selectedPlots !== null || selectedVisitIds) {
+      return true;
+    }
+    return false;
   };
 
   let optionsSites = [];
   let optionsPlots = [];
   let optionsSiteVisitId = [];
   let optionsImageTypes = [];
-  // const optionsDateRange = [];
-  if (!isEmpty(facets)) {
-    if (storedSiteOptions.length === 0) {
-      optionsSites = getOptionsSites();
-      setStoredSiteOptions(optionsSites);
-    } else {
-      optionsSites = storedSiteOptions;
+
+  const populateFacets = () => {
+    if (!isEmpty(facets)) {
+      // Initial app render we want to populate
+      // the store site options
+      if (storedSiteOptions.length === 0) {
+        optionsSites = getOptionsSites();
+        storedSiteOptions = [...optionsSites];
+      }
+      // Reload site option if nothing was selected
+      // The user must have selected stuff below
+      // first (e.g. plots, site visit id or image types)
+      if (shouldReloadSiteOptions()) {
+        optionsSites = getOptionsSites();
+        storedSiteOptions = [...optionsSites];
+      } else {
+        optionsSites = [...storedSiteOptions];
+      }
+
+      if (storedPlotOptions.length === 0) {
+        optionsPlots = getOptionsPlots();
+        storedPlotOptions = [...optionsPlots];
+      }
+      if (shouldReloadPlotOptions()) {
+        optionsPlots = getOptionsPlots();
+        storedPlotOptions = [...optionsPlots];
+      } else {
+        optionsPlots = storedPlotOptions;
+      }
+
+      if (storedSiteVisitIds.length === 0) {
+        optionsSiteVisitId = getOptionsSiteVisitId();
+        storedSiteVisitIds = [...optionsSiteVisitId];
+      }
+      if (shouldReloadSiteVisitIdOptions()) {
+        optionsSiteVisitId = getOptionsSiteVisitId();
+        storedSiteVisitIds = [...optionsSiteVisitId];
+      } else {
+        optionsSiteVisitId = storedSiteVisitIds;
+      }
+      if (storedImageTypes.length === 0) {
+        optionsImageTypes = getOptionsImageType();
+        storedImageTypes = [...optionsImageTypes];
+      }
+      if (shouldReloadImageTypesOptions()) {
+        optionsImageTypes = getOptionsImageType();
+        storedImageTypes = [...optionsImageTypes];
+      } else {
+        optionsImageTypes = storedImageTypes;
+      }
     }
-    optionsPlots = getOptionsPlots();
-    optionsSiteVisitId = getOptionsSiteVisitId();
-    optionsImageTypes = getOptionsImageType();
-  }
+  };
 
   const dispatchFaceChange = (facetParam) => {
     dispatch(selectedFilterAction(facetParam));
@@ -107,7 +196,6 @@ const BioFacets = () => {
   };
 
   const siteSelect = (selectedOptions) => {
-    console.log("e=", selectedOptions);
     let facetParams = {};
     if (selectedOptions !== null) {
       const selected = selectedOptions.map((option) => option.value);
@@ -135,12 +223,10 @@ const BioFacets = () => {
       facetParams = { ...facetParams, image_type_sub: selectedImageTypeSubs };
     }
 
-    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 
   const plotSelect = (selectedOptions) => {
-    console.log("e=", selectedOptions);
     let facetParams = {};
     if (selectedOptions !== null) {
       const selected = selectedOptions.map((option) => option.value);
@@ -168,12 +254,10 @@ const BioFacets = () => {
       facetParams = { ...facetParams, image_type_sub: selectedImageTypeSubs };
     }
 
-    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 
   const visitIdSelect = (selectedOptions) => {
-    console.log("e=", selectedOptions);
     let facetParams = {};
     if (selectedOptions !== null) {
       const selected = selectedOptions.map((option) => option.value);
@@ -200,19 +284,17 @@ const BioFacets = () => {
       facetParams = { ...facetParams, image_type_sub: selectedImageTypeSubs };
     }
 
-    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 
   const imageTypeSelect = (selectedOptions) => {
-    console.log("e=", selectedOptions);
     let facetParams = {};
     if (selectedOptions !== null) {
       const selected = selectedOptions.map((option) => option.value);
       if (selected.length !== 0) {
         const image_types = [];
         const image_types_sub = [];
-        selected.map((img) => {
+        selected.forEach((img) => {
           if (img.includes("ancillary")) {
             const parts = img.split(".");
             image_types.push(parts[0]);
@@ -251,7 +333,6 @@ const BioFacets = () => {
       facetParams = { ...facetParams, site_visit_id: selectedVisitIds };
     }
 
-    console.log("facetParams = ", facetParams);
     dispatchFaceChange(facetParams);
   };
 
@@ -262,24 +343,26 @@ const BioFacets = () => {
       backgroundColor: "white",
       fontSize: "16px",
     }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    option: (styles, {
+      data, isDisabled, isFocused, isSelected,
+    }) => {
       const color = "#ED694B";
       return {
         ...styles,
         backgroundColor: isDisabled
           ? null
           : isSelected
-          ? data.color
-          : isFocused
-          ? "B3D4C9"
-          : null,
+            ? data.color
+            : isFocused
+              ? "B3D4C9"
+              : null,
         color: isDisabled
           ? "#ED694B"
           : isSelected
-          ? chroma.contrast(color, "#ED694B") > 2
-            ? "#ED694B"
-            : "#ED694B"
-          : data.color,
+            ? chroma.contrast(color, "#ED694B") > 2
+              ? "#ED694B"
+              : "#ED694B"
+            : data.color,
         fontSize: isFocused ? "16px" : isSelected ? "20px" : data.color,
         cursor: isDisabled ? "not-allowed" : "default",
 
@@ -293,16 +376,15 @@ const BioFacets = () => {
         },
       };
     },
-    multiValue: (styles) => {
-      return {
-        ...styles,
-        backgroundColor: "#B3D4C9",
-        color: "#00565D",
-        fontSize: "18.5px",
-      };
-    },
+    multiValue: (styles) => ({
+      ...styles,
+      backgroundColor: "#B3D4C9",
+      color: "#00565D",
+      fontSize: "18.5px",
+    }),
   };
 
+  populateFacets();
   return (
     <div>
       <Select

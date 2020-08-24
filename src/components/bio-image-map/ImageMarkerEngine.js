@@ -1,18 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ImageMarker from "./ImageMarker";
 // import BreadCrumb from "../BreadCrumb";
 
 const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
-  var popup = "";
-  var tooltip = "";
+  let popup = "";
   // var sitePosition = bioImageDocument.centre_point;
-  let sitePosition = bioImageDocument["location"]["coordinates"];
-  const locType = bioImageDocument["location"]["type"];
+  const sitePosition = bioImageDocument.location.coordinates;
+  const locType = bioImageDocument.location.type;
 
-  let siteCordinates = [];
+  const siteCordinates = [];
   if (locType === "polygon") {
-    //Take lat/lon from the first coords
-    //TODO Have asked Wilma to look at this if we should be expecting
+    // Take lat/lon from the first coords
+    // TODO Have asked Wilma to look at this if we should be expecting
     // that some sites have polygons instead of lat/lon
     siteCordinates.push(sitePosition[0][0][1]);
     siteCordinates.push(sitePosition[0][0][0]);
@@ -39,4 +39,10 @@ const ImageMarkerEngine = ({ bioImageDocument, siteLocation }) => {
     />
   );
 };
+
+ImageMarkerEngine.propTypes = {
+  bioImageDocument: PropTypes.objectOf(PropTypes.any).isRequired,
+  siteLocation: PropTypes.string.isRequired,
+};
+
 export default ImageMarkerEngine;

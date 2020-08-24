@@ -1,22 +1,17 @@
 import React, { useEffect } from "react";
-import {
-  Row,
-  Spinner,
-  Pagination,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
-import SearchResult from "./SearchResult";
+import PropTypes from "prop-types";
+import { Row, Pagination, DropdownButton, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
 import {
   fetchSearchAction,
   paginationPageSizeAction,
 } from "../../store/reducer";
 import './SearchResult.scss';
+import NoResults from "./NoResults";
 
 const SearchEngine = ({ embed }) => {
-  const loading = useSelector((state) => state.search.isLoadingSearch);
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
@@ -53,23 +48,22 @@ const SearchEngine = ({ embed }) => {
 
   useEffect(() => {
     dispatch(fetchSearchAction(selectedFilter));
-  }, [selectedFilter]);
+  }, [dispatch, selectedFilter]);
 
-  return (
+  const ShowPagination = () => (
     <div>
       <Row>
         {data.map((bioImageDocument) => (
           <SearchResult
             bioImageDocument={bioImageDocument["_source"]}
-            site_id={bioImageDocument["_source"]["site_id"]["value"]}
+            site_id={bioImageDocument["_source"]["site_id"].value}
             key={bioImageDocument["_id"]}
             embed={embed}
           />
         ))}
       </Row>
-
-      <Row className={"pagination-row"}>
-        <Pagination className={"pagination"}>
+      <Row className="pagination-row">
+        <Pagination className="pagination">
           <div>
             <DropdownButton id="dropdown-basic-button" title={itemsPerPage + ' per page'} variant="pageitems" className="pageitems">
               <Dropdown.Item onClick={() => handlePageSizeChange(18)}>18 per page</Dropdown.Item>
@@ -85,19 +79,18 @@ const SearchEngine = ({ embed }) => {
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
-                <div key={page.id} className={"pagelink"}>
+                <div key={page.id} className="pagelink">
                   <Pagination.Item
                     key={page.id}
-                    active={page.current ? true : false}
+                    active={!!page.current}
                     onClick={(e) => changePage(page.id, e)}
                   >
                     {page.id}
                   </Pagination.Item>
                 </div>
               );
-            } else {
-              return <Pagination.Ellipsis key={page.id} />;
             }
+            return <Pagination.Ellipsis key={page.id} />;
           })}
           <Pagination.Next onClick={nextPage}>Next</Pagination.Next>
           <Pagination.Last onClick={(e) => changePage(pages, e)}>
@@ -107,6 +100,16 @@ const SearchEngine = ({ embed }) => {
       </Row>
     </div>
   );
+
+  return totalImages === 0 ? <NoResults /> : <ShowPagination />;
+};
+
+SearchEngine.propTypes = {
+  embed: PropTypes.bool,
+};
+
+SearchEngine.defaultProps = {
+  embed: false,
 };
 
 export default SearchEngine;

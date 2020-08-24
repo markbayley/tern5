@@ -1,6 +1,4 @@
 import { createAction, combineReducers, createReducer } from "@reduxjs/toolkit";
-import { isEmpty } from "lodash";
-// import { createSelector } from "reselect";
 
 export const fetchSearchAction = createAction("FETCH_SEARCH");
 export const fetchSearchDoneAction = createAction("FETCH_SEARCH_DONE");
@@ -31,12 +29,12 @@ const searchReducer = createReducer(initialState, {
   [fetchSearchDoneAction]: (state, action) => {
     state.isLoadingSearch = false;
     const { hits, page_num, page_size } = action.payload;
-    if (hits !== null) {
-      state.hits = hits["hits"];
-      state.totalDocuments = hits["total"]["value"];
+    if (hits) { // Null, Undefined, Empty, Whatever .... All Means No Results
+      state.hits = hits.hits;
+      state.totalDocuments = hits.total.value;
       // state.page_num = page_num;
       // state.page_size = page_size;
-      state.pagination = { page_size: page_size, page_num: page_num };
+      state.pagination = { page_size, page_num };
     }
   },
   [fetchSearchErrorAction]: (state, action) => {
@@ -58,7 +56,7 @@ const searchReducer = createReducer(initialState, {
   [paginationPageSizeAction]: (state, action) => {
     const updateSize = { ...state.pagination, ...action.payload };
     state.pagination = { ...updateSize };
-    state.selectedFilter = {...state.selectedFilter, ...state.pagination };
+    state.selectedFilter = { ...state.selectedFilter, ...state.pagination };
   },
 });
 
@@ -66,8 +64,8 @@ export const rootReducer = combineReducers({
   search: searchReducer,
 });
 
-//Add Selector function (using memoization)
-//TODO look at it later
+// Add Selector function (using memoization)
+// TODO look at it later
 // export const getSelectedFilter = createSelector(
 //   (state) => state.search.selectedFilter,
 //   (state) => state.search.pagination,

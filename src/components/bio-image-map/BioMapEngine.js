@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from "react";
-import ImageMarkerEngine from "./ImageMarkerEngine";
-import { Map, TileLayer, FeatureGroup, Circle } from "react-leaflet";
+import {
+  Map,
+  TileLayer,
+  FeatureGroup,
+  Circle,
+} from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import Leaflet from "leaflet";
 import { useSelector, useDispatch } from "react-redux";
+import ImageMarkerEngine from "./ImageMarkerEngine";
 import { fetchSearchAction } from "../../store/reducer";
+import NoResults from "../bio-search/NoResults";
 
 const BioMapEngine = () => {
-  const [mapInitState, setMapInitState] = useState({
+  const [mapInitState] = useState({
     lat: -26.47,
     lng: 134.02,
     zoom: 5,
     maxZoom: 30,
     minZoom: 5,
   });
-  const [showMap, setShowMap] = useState(true);
-  const [showMapButtonLabel, setShowMapButtonLabel] = useState("Hide Map");
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const bioImageDocuments = useSelector((state) => state.search.hits);
+  const totalImages = useSelector((state) => state.search.totalDocuments);
   const dispatch = useDispatch();
 
-  console.log("In BioMapEngine. bioImageDocuments=", bioImageDocuments);
-
-  //Set map boundary (australia)
+  // Set map boundary (australia)
   const corner1 = Leaflet.latLng(-9.820066, 115.240312);
   const corner2 = Leaflet.latLng(-44.482812, 152.339923);
   const bounds = Leaflet.latLngBounds(corner1, corner2);
 
   useEffect(() => {
-    console.log("in useEffect(). selectedFilter=", selectedFilter);
     dispatch(fetchSearchAction(selectedFilter));
-  }, [selectedFilter]);
-
+  }, [dispatch, selectedFilter]);
 
   const BioMap = () => (
     <div className="map-frame">
@@ -52,19 +53,9 @@ const BioMapEngine = () => {
           minZoom={mapInitState.zoom}
           maxBounds={bounds}
         >
-          {/* <TileLayer
-            attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          />
-
           <TileLayer
-            attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          /> */}
-
-          <TileLayer
-            attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
           <FeatureGroup>
@@ -81,7 +72,7 @@ const BioMapEngine = () => {
           {bioImageDocuments.map((bioImageDocument) => (
             <ImageMarkerEngine
               bioImageDocument={bioImageDocument["_source"]}
-              siteLocation={bioImageDocument["_source"]["site_id"]["value"]}
+              siteLocation={bioImageDocument["_source"]["site_id"].value}
               key={bioImageDocument["_id"]}
             />
           ))}
@@ -90,16 +81,6 @@ const BioMapEngine = () => {
     </div>
   );
 
-  return (
-    <>
-      <BioMap />
-    </>
-  );
-  // return (
-  //   <div>
-  //   <input type="submit" value={showMapButtonLabel} onClick={hideShowMap}/>
-  //   {showMap? <BioMap/> : null}
-  //   </div>
-  // );
+  return <>{totalImages === 0 ? <NoResults /> : <BioMap />}</>;
 };
 export default BioMapEngine;
