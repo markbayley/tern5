@@ -6,6 +6,11 @@ import { startCase, isEmpty } from "lodash";
 import chroma from "chroma-js";
 import { selectedFilterAction, fetchFacetsAction } from "../../store/reducer";
 
+let storedSiteOptions = [];
+let storedPlotOptions = [];
+let storedSiteVisitIds = [];
+let storedImageTypes = [];
+
 const BioFacets = () => {
   const facets = useSelector((state) => state.search.facets);
   const dispatch = useDispatch();
@@ -14,8 +19,6 @@ const BioFacets = () => {
   const [selectedVisitIds, setSelectedVisitIds] = useState(null);
   const [selectedImageTypes, setSelectedImageTypes] = useState(null);
   const [selectedImageTypeSubs, setSelectedImageTypeSubs] = useState(null);
-  const [storedSiteOptions, setStoredSiteOptions] = useState([]);
-  const [storedPlotOptions, setStoredPlotOptions] = useState([]);
 
   useEffect(() => {
     dispatch(fetchFacetsAction({}));
@@ -110,45 +113,82 @@ const BioFacets = () => {
     return false;
   };
 
+  const shouldReloadSiteVisitIdOptions = () => {
+    if (selectedVisitIds !== null) return false;
+    if (
+      selectedSites !== null
+      || selectedPlots !== null
+      || selectedImageTypes
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const shouldReloadImageTypesOptions = () => {
+    if (selectedImageTypes !== null) return false;
+    if (selectedSites !== null || selectedPlots !== null || selectedVisitIds) {
+      return true;
+    }
+    return false;
+  };
+
   let optionsSites = [];
   let optionsPlots = [];
   let optionsSiteVisitId = [];
   let optionsImageTypes = [];
-  if (!isEmpty(facets)) {
-    // Initial app render we want to populate
-    // the store site options
-    if (storedSiteOptions.length === 0) {
-      optionsSites = getOptionsSites();
-      setStoredSiteOptions(optionsSites);
-    }
-    // Reload site option if nothing was selected
-    // The user must have selected stuff below
-    // first (e.g. plots, site visit id or image types)
-    if (shouldReloadSiteOptions()) {
-      optionsSites = getOptionsSites();
-    } else {
-      optionsSites = storedSiteOptions;
-    }
 
-    // Initial render save plot options to local store
-    if (storedPlotOptions.length === 0) {
-      optionsPlots = getOptionsPlots();
-      setStoredPlotOptions(optionsPlots);
-    }
-    if (shouldReloadPlotOptions()) {
-      optionsPlots = getOptionsPlots();
-      // TODO
-      //  React limits the number of renders to prevent an infinite loop
-      // This solution wont work!!!
-      // setStoredPlotOptions(optionsPlots);
-    } else {
-      optionsPlots = storedPlotOptions;
-    }
+  const populateFacets = () => {
+    if (!isEmpty(facets)) {
+      // Initial app render we want to populate
+      // the store site options
+      if (storedSiteOptions.length === 0) {
+        optionsSites = getOptionsSites();
+        storedSiteOptions = [...optionsSites];
+      }
+      // Reload site option if nothing was selected
+      // The user must have selected stuff below
+      // first (e.g. plots, site visit id or image types)
+      if (shouldReloadSiteOptions()) {
+        optionsSites = getOptionsSites();
+        storedSiteOptions = [...optionsSites];
+      } else {
+        optionsSites = [...storedSiteOptions];
+      }
 
-    // TODO Do later when I think of a better solution!
-    optionsSiteVisitId = getOptionsSiteVisitId();
-    optionsImageTypes = getOptionsImageType();
-  }
+      if (storedPlotOptions.length === 0) {
+        optionsPlots = getOptionsPlots();
+        storedPlotOptions = [...optionsPlots];
+      }
+      if (shouldReloadPlotOptions()) {
+        optionsPlots = getOptionsPlots();
+        storedPlotOptions = [...optionsPlots];
+      } else {
+        optionsPlots = storedPlotOptions;
+      }
+
+      if (storedSiteVisitIds.length === 0) {
+        optionsSiteVisitId = getOptionsSiteVisitId();
+        storedSiteVisitIds = [...optionsSiteVisitId];
+      }
+      if (shouldReloadSiteVisitIdOptions()) {
+        optionsSiteVisitId = getOptionsSiteVisitId();
+        storedSiteVisitIds = [...optionsSiteVisitId];
+      } else {
+        optionsSiteVisitId = storedSiteVisitIds;
+      }
+      if (storedImageTypes.length === 0) {
+        optionsImageTypes = getOptionsImageType();
+        storedImageTypes = [...optionsImageTypes];
+      }
+      if (shouldReloadImageTypesOptions()) {
+        optionsImageTypes = getOptionsImageType();
+        storedImageTypes = [...optionsImageTypes];
+      } else {
+        optionsImageTypes = storedImageTypes;
+      }
+    }
+  };
 
   const dispatchFaceChange = (facetParam) => {
     dispatch(selectedFilterAction(facetParam));
@@ -344,6 +384,7 @@ const BioFacets = () => {
     }),
   };
 
+  populateFacets();
   return (
     <div>
       <Select
