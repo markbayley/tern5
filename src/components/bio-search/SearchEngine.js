@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-// eslint-disable-next-line object-curly-newline
 import { Row, Pagination, DropdownButton, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResult from "./SearchResult";
