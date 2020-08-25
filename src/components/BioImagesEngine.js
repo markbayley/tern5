@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Button } from "react-bootstrap";
-import TopBar from "./headers/TopBar";
 import SearchBar from "./searchbar/SearchBar";
 import IconBar from "./bio-image-search/IconBar";
-import BreadCrumb from "./footers/BreadCrumb";
 import DateRange from "./bio-image-search/DateRange";
 import Favourite from "./bio-favourites/Favourite";
 import ImageSearchEngine from "./bio-image-search/ImageSearchEngine";
@@ -73,8 +71,7 @@ const BioImagesEngine = () => {
   }, [dispatch, selectedFilter]);
 
   return (
-    <div>
-      <TopBar />
+    <>
       <SearchBar />
 
       <LeftSideBar searchmode={mySearch} setMySearch={setMySearch} />
@@ -96,9 +93,7 @@ const BioImagesEngine = () => {
         />
         {/* <div > */}
       </Row>
-      <BreadCrumb />
-      {/* <Footer /> */}
-    </div>
+    </>
   );
 };
 

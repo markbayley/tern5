@@ -5,13 +5,18 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./custom.scss";
 
+import TopBar from "./components/headers/TopBar";
+import BreadCrumb from "./components/footers/BreadCrumb";
+
 import BioImagesEngine from "./components/BioImagesEngine";
 
 function App() {
-  const initFilter = {};
   return (
     <Router>
-      <BioImagesEngine initFilter={initFilter} />
+      <TopBar />
+      <BioImagesEngine />
+      <BreadCrumb />
+      {/* <Footer /> */}
     </Router>
   );
 }
