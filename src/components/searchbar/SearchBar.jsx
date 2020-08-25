@@ -39,6 +39,8 @@ function SearchBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+
   return (
     <Router>
       <div>
@@ -75,7 +77,7 @@ function SearchBar() {
               className="searchbar"
             >
               <Image
-                fluid
+                // fluid
                 src="/img/icons/search-bioimages-icon.svg"
                 alt="bioimages search icon"
                 className="search-icon"
@@ -87,6 +89,7 @@ function SearchBar() {
                 placeholder="Search images by site or image type"
                 className="search-form"
                 aria-label="term"
+             
               />
               <Button
                 className="searchbutton"
@@ -183,3 +186,6 @@ function SearchBar() {
 }
 
 export default SearchBar;
+
+
+
