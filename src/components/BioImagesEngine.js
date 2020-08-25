@@ -19,7 +19,7 @@ function Toggle() {
 
   return (
     <>
-      <div className="toggle">
+      <div className="main-toggle">
         <Button variant="round" onClick={() => dispatch(setSearchModeAction("Map"))}>
           Map
         </Button>
