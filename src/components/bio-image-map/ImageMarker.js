@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Marker, Tooltip } from "react-leaflet";
 import L from "leaflet";
 import { parseBioImagesDate } from "../../bio_utils/bio_helpers";
-import './Map.scss';
+import "./Map.scss";
 
 const ImageMarker = (props) => {
   const {
@@ -151,12 +151,14 @@ const ImageMarker = (props) => {
         </Link>
       </Popup> */}
       <Tooltip>
-        <div className={'tool-tip'}>
+        <div className="tool-tip">
           {/* <strong>
           <h6>Click marker to select {props.label}.</h6>
         </strong> */}
-          Site:{" "}
-          <a className={'tool-tip-link'}
+          Site:
+          {" "}
+          <a
+            className="tool-tip-link"
             href="www.tern.org"
           >
             {name}
@@ -164,28 +166,31 @@ const ImageMarker = (props) => {
           </a>
           {" "}
           <br />
-          Image Type:{" "}
-          <a className={'tool-tip-link'}
+          Image Type:
+          {" "}
+          <a
+            className="tool-tip-link"
             href="www.tern.org"
-            className={'too-tip-link'}
           >
             {images}
           </a>
           {" "}
           <br />
-          Plot:{" "}
-          <a  className={'tool-tip-link'}
+          Plot:
+          {" "}
+          <a
+            className="tool-tip-link"
             href="www.tern.org"
-            className={'tool-tip-link'}
           >
             {plot}
           </a>
           {" "}
           <br />
-          Date:{" "}
-          <a className={'tool-tip-link'}
+          Date:
+          {" "}
+          <a
+            className="tool-tip-link"
             href="www.tern.org"
-            className={'tool-tip-link'}
           >
             {formatedSiteVisitDate}
           </a>

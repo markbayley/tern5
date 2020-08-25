@@ -1,19 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Row, Pagination, DropdownButton, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
 import {
-  fetchSearchAction,
   paginationPageSizeAction,
 } from "../../store/reducer";
-import './SearchResult.scss';
+import "./SearchResult.scss";
 import NoResults from "./NoResults";
 import BioMapEngine from "../bio-image-map/BioMapEngine";
 
 const SearchEngine = ({ embed }) => {
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
   const pageScroll = useSelector((state) => state.search.pagination);
@@ -47,10 +45,6 @@ const SearchEngine = ({ embed }) => {
     dispatch(paginationPageSizeAction({ page_size: value }));
   };
 
-  useEffect(() => {
-    dispatch(fetchSearchAction(selectedFilter));
-  }, [dispatch, selectedFilter]);
-
   const ShowPagination = () => (
     <div>
       <Row>
@@ -67,11 +61,11 @@ const SearchEngine = ({ embed }) => {
       <Row className="pagination-row">
         <Pagination className="pagination">
           <div>
-            <DropdownButton id="dropdown-basic-button" title={itemsPerPage + ' per page'} variant="pageitems" className="pageitems">
-              <Dropdown.Item onClick={() => handlePageSizeChange(24)}>24 per page</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(48)}>48 per page</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(72)}>72 per page</Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(96)}>96 per page</Dropdown.Item>
+            <DropdownButton id="dropdown-basic-button" title={`${itemsPerPage} per page`} variant="pageitems" className="pageitems">
+              <Dropdown.Item onClick={() => handlePageSizeChange(18)}>18 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(36)}>36 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(54)}>54 per page</Dropdown.Item>
+              <Dropdown.Item onClick={() => handlePageSizeChange(102)}>102 per page</Dropdown.Item>
             </DropdownButton>
           </div>
           <Pagination.First onClick={(e) => changePage(1, e)}>
