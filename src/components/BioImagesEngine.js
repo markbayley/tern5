@@ -62,10 +62,10 @@ const BioImagesEngine = () => {
         </Col>
         <Toggle />
         <Col className="scroll-images">
-          {/* Leaflet Map */}
-          {searchMode === "Map" && (<BioMapEngine />)}
-          {/* Photo Gallery */}
-          {searchMode === "Images" && (<SearchEngine />)}
+          {/* Leaflet Map or Photo Gallery */}
+          {searchMode === "Map"
+            ? <BioMapEngine />
+            : <SearchEngine />}
         </Col>
         {/* <div > */}
       </Row>
