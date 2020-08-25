@@ -29,15 +29,12 @@ const DateRange = () => {
   };
 
   useEffect(() => {
-    // eslint says No!! const { start, end } = dateRange;
     if (dateRange.start && dateRange.end) {
       // Note: start and end are Moment types, so need to convert for API
       const dateFrom = dateRange.start.format("YYYY-MM-DD");
       const dateTo = dateRange.end.format("YYYY-MM-DD");
       const dateRangeSearch = { date_from: dateFrom, date_to: dateTo };
       dispatch(selectedFilterAction(dateRangeSearch));
-    } else {
-      // console.log("NOT READY! ", dateRange.start, dateRange.end);
     }
   }, [dateRange, dispatch]);
 
