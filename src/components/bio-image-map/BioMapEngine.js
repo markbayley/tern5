@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Map,
   TileLayer,
@@ -7,9 +7,8 @@ import {
 } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import Leaflet from "leaflet";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ImageMarkerEngine from "./ImageMarkerEngine";
-import { fetchSearchAction } from "../../store/reducer";
 import NoResults from "../bio-search/NoResults";
 
 const BioMapEngine = () => {
@@ -21,19 +20,13 @@ const BioMapEngine = () => {
     minZoom: 5,
   });
   const mapInitPosition = [mapInitState.lat, mapInitState.lng];
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const bioImageDocuments = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
-  const dispatch = useDispatch();
 
   // Set map boundary (australia)
   const corner1 = Leaflet.latLng(-9.820066, 115.240312);
   const corner2 = Leaflet.latLng(-44.482812, 152.339923);
   const bounds = Leaflet.latLngBounds(corner1, corner2);
-
-  useEffect(() => {
-    dispatch(fetchSearchAction(selectedFilter));
-  }, [dispatch, selectedFilter]);
 
   const BioMap = () => (
     <div className="map-frame">
@@ -61,9 +54,9 @@ const BioMapEngine = () => {
           <FeatureGroup>
             <EditControl
               position="bottomright"
-              // onEdited={this._onEditPath}
-              // onCreated={this._onCreate}
-              // onDeleted={this._onDeleted}
+            // onEdited={this._onEditPath}
+            // onCreated={this._onCreate}
+            // onDeleted={this._onDeleted}
             />
             <Circle center={[51.51, -0.06]} radius={200} />
           </FeatureGroup>
