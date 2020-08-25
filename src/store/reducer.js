@@ -9,7 +9,7 @@ export const fetchFacetsDoneAction = createAction("FETCH_FACETS_DONE");
 export const paginationAction = createAction("PAGINATION");
 export const paginationPageSizeAction = createAction("PAGINATION_PAGE_SIZE");
 
-const initialState = {
+const initialSearchState = {
   error: null,
   isLoadingSearch: true,
   hits: [],
@@ -21,7 +21,7 @@ const initialState = {
   facets: {},
 };
 
-const searchReducer = createReducer(initialState, {
+const searchReducer = createReducer(initialSearchState, {
   [fetchSearchAction]: (state, action) => {
     state.isLoadingSearch = true;
     state.selectedFilter = action.payload;
@@ -60,8 +60,24 @@ const searchReducer = createReducer(initialState, {
   },
 });
 
+export const setSearchModeAction = createAction("SET_SEARCH_MODE");
+
+// UI state reducers
+const initialUiState = {
+  searchResults: {
+    searchMode: "Map",
+  },
+};
+
+const uiReducer = createReducer(initialUiState, {
+  [setSearchModeAction]: (state, action) => {
+    state.searchResults.searchMode = action.payload;
+  },
+});
+
 export const rootReducer = combineReducers({
   search: searchReducer,
+  ui: uiReducer,
 });
 
 // Add Selector function (using memoization)

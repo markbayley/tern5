@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Row, Pagination, DropdownButton, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
 import {
-  fetchSearchAction,
   paginationPageSizeAction,
 } from "../../store/reducer";
 import "./SearchResult.scss";
 import NoResults from "./NoResults";
 
 const SearchEngine = ({ embed }) => {
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
   const data = useSelector((state) => state.search.hits);
   const totalImages = useSelector((state) => state.search.totalDocuments);
   const pageScroll = useSelector((state) => state.search.pagination);
@@ -45,10 +43,6 @@ const SearchEngine = ({ embed }) => {
   const handlePageSizeChange = (value) => {
     dispatch(paginationPageSizeAction({ page_size: value }));
   };
-
-  useEffect(() => {
-    dispatch(fetchSearchAction(selectedFilter));
-  }, [dispatch, selectedFilter]);
 
   const ShowPagination = () => (
     <div>
