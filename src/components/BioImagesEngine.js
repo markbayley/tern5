@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Button } from "react-bootstrap";
 import SearchBar from "./searchbar/SearchBar";
@@ -11,60 +10,35 @@ import BioMapEngine from "./bio-image-map/BioMapEngine";
 import SearchEngine from "./bio-search/SearchEngine";
 import FilterHeader from "./bio-image-search/FilterHeader";
 // import { fetchSearchAction, getSelectedFilter } from "../store/reducer";
-import { fetchSearchAction } from "../store/reducer";
+import { fetchSearchAction, setSearchModeAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
 import MobileSidebar from "./test/MobileSidebar";
 
 /* Map Image Toggle */
-function Toggle({ searchmode, setMySearch, searchmodes }) {
-  // && <img src="/img/map.png" width="40px"/>
+function Toggle() {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="toggle">
-        {searchmodes.map((smode) => (
-          <Button
-            variant="round"
-            key={smode}
-            onClick={() => setMySearch(smode)}
-          >
-            {smode}
-          </Button>
-        ))}
+        <Button variant="round" onClick={() => dispatch(setSearchModeAction("Map"))}>
+          Map
+        </Button>
+        <Button variant="round" onClick={() => dispatch(setSearchModeAction("Images"))}>
+          Image
+        </Button>
       </div>
-      <Col className="scroll-images">
-        {/* Leaflet Map */}
-        {searchmode === "Map" && (
-          <div>
-            <BioMapEngine />
-          </div>
-        )}
-        {/* Photo Gallery */}
-        {searchmode === "Images" && (
-          <div>
-            <SearchEngine />
-          </div>
-        )}
-      </Col>
     </>
   );
 }
 
-Toggle.propTypes = {
-  searchmode: PropTypes.string.isRequired,
-  setMySearch: PropTypes.func.isRequired,
-  searchmodes: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
-
 const BioImagesEngine = () => {
+  const dispatch = useDispatch();
+  const searchMode = useSelector((state) => state.ui.searchResults.searchMode);
+
+  // TODO: move these two below somewhere else, or look at url params?
   // TODO: this triggers a re-render - this component does not depend on selectedFilter
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
-  // const pagination = useSelector((state) => state.search.pagination);
-  const dispatch = useDispatch();
-  // const updateSearchFilter = getSelectedFilter(useStore().getState());
-
-  const searchmodes = ["Map", "Images"];
-  const [mySearch, setMySearch] = useState("Map");
-
   // TODO Look at this life cycle again and improve if required
   useEffect(() => {
     dispatch(fetchSearchAction(selectedFilter));
@@ -74,7 +48,7 @@ const BioImagesEngine = () => {
     <>
       <SearchBar />
 
-      <LeftSideBar searchmode={mySearch} setMySearch={setMySearch} />
+      <LeftSideBar searchmode={searchMode} />
       <Row>
         {/* Filter SideBar */}
         <Col xs="auto" className="filter-bar">
@@ -86,11 +60,13 @@ const BioImagesEngine = () => {
 
           <Favourite />
         </Col>
-        <Toggle
-          searchmode={mySearch}
-          setMySearch={setMySearch}
-          searchmodes={searchmodes}
-        />
+        <Toggle />
+        <Col className="scroll-images">
+          {/* Leaflet Map */}
+          {searchMode === "Map" && (<BioMapEngine />)}
+          {/* Photo Gallery */}
+          {searchMode === "Images" && (<SearchEngine />)}
+        </Col>
         {/* <div > */}
       </Row>
     </>
