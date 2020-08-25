@@ -22,7 +22,7 @@ function Toggle({ searchmode, setMySearch, searchmodes }) {
   // && <img src="/img/map.png" width="40px"/>
   return (
     <>
-      <div className="toggle">
+      <div className={'main-toggle'}>
         {searchmodes.map((smode) => (
           <Button
             variant="round"
@@ -85,7 +85,7 @@ const BioImagesEngine = () => {
           <FilterHeader />
           <ImageSearchEngine />
           <DateRange />
-          <MobileSidebar />
+          {/* <MobileSidebar /> */}
 
           <Favourite />
         </Col>

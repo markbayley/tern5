@@ -81,6 +81,6 @@ const BioMapEngine = () => {
     </div>
   );
 
-  return <>{totalImages === 0 ? <> <NoResults />  <BioMap /> </>: <BioMap />}</>;
+  return <>{totalImages === 0 ?  <NoResults /> : <BioMap />}</>;
 };
 export default BioMapEngine;

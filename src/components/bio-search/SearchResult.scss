@@ -28,6 +28,11 @@
   }
 }
 
+.mobile-pagination {
+  display: flex;
+  flex-direction: row;
+}
+
 .btn-pageitems {
   background-color: #065f65;
   color: #fff;
@@ -56,12 +61,7 @@
   padding-right: 1%;
 }
 
-.toggle {
-  position: absolute;
-  left: 25%;
-  bottom: 60px;
-  z-index: 8;
-}
+
 
 /* MODAL */
 .modal-header {
@@ -141,13 +141,7 @@
 
 }
 
-@media (max-width: 1199px) {
-  .no-result {
-    font-size: 16px;
-    height: 25vh;
-    
-  }
-}
+
 
 @media (max-width: 1199px) {
   .small_preview {
@@ -157,6 +151,13 @@
     // max-height: 150px;
   }
   .large_preview {
+    display: none;
+  }
+  .no-result {
+    font-size: 16px;
+    height: 25vh;  
+  }
+  .mobile-pagination{
     display: none;
   }
 }

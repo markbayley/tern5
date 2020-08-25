@@ -546,9 +546,7 @@ a.search-link.addlinks {
 }
 
 
-.toggle {
-  z-index: 8 !important;
-}
+
 /* Testing */
 .bio-facets {
   margin: 20px 10px; 

@@ -78,6 +78,7 @@ const SearchEngine = ({ embed }) => {
             First
           </Pagination.First>
           <Pagination.Prev onClick={prevPage}>Previous</Pagination.Prev>
+          <div className={'mobile-pagination'}>
           {pagination.map((page) => {
             if (!page.ellipsis) {
               return (
@@ -94,6 +95,7 @@ const SearchEngine = ({ embed }) => {
             }
             return <Pagination.Ellipsis key={page.id} />;
           })}
+          </div>
           <Pagination.Next onClick={nextPage}>Next</Pagination.Next>
           <Pagination.Last onClick={(e) => changePage(pages, e)}>
             Last
@@ -103,7 +105,7 @@ const SearchEngine = ({ embed }) => {
     </div>
   );
 
-  return totalImages === 0 ? <><NoResults />  <BioMapEngine/> </> : <ShowPagination />;
+  return totalImages === 0 ? <NoResults />  : <ShowPagination />;
 };
 
 SearchEngine.propTypes = {
