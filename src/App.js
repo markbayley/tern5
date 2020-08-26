@@ -9,14 +9,16 @@ import TopBar from "./components/headers/TopBar";
 import BreadCrumb from "./components/footers/BreadCrumb";
 
 import BioImagesEngine from "./components/BioImagesEngine";
+import Footer from "./components/footers/Footer";
 
 function App() {
   return (
     <Router>
       <TopBar />
       <BioImagesEngine />
-      <BreadCrumb />
-      {/* <Footer /> */}
+
+      {/* <BreadCrumb /> */}
+      <Footer />
     </Router>
   );
 }

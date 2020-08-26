@@ -11,7 +11,9 @@ import FilterHeader from "./bio-image-search/FilterHeader";
 // import { fetchSearchAction, getSelectedFilter } from "../store/reducer";
 import { fetchSearchAction, setSearchModeAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
-import MobileSidebar from "./test/MobileSidebar";
+// import MobileSidebar from "./test/MobileSidebar";
+
+
 
 /* Map Image Toggle */
 function Toggle() {
@@ -55,7 +57,7 @@ const BioImagesEngine = () => {
           <ImageSearchEngine />
           <DateRange />
           {/* <MobileSidebar /> */}
-
+        
           <Favourite />
         </Col>
         <Toggle />
