@@ -59,6 +59,7 @@ class Dates extends React.Component {
         <SingleDatePicker
           small
           noBorder
+          showClearDates
           keepOpenOnDateSelect
           date={this.state.date}
           onDateChange={(date) => this.setState({ date })}

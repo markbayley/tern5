@@ -23,7 +23,13 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
   const handleShow = () => setShow(true);
 
   return (
-    <Col xl={embed ? 7 : 2} lg={embed ? 7 : 3} md={embed ? 12 : 4} sm={12} xs={12}>
+    <Col
+      xl={embed ? 7 : 2}
+      lg={embed ? 7 : 3}
+      md={embed ? 12 : 4}
+      sm={12}
+      xs={12}
+    >
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton className="modal-header">
           <Modal.Title>
@@ -37,10 +43,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
                 </div>
               </Navbar.Brand>
             </Col>
-            <Col
-              className="modal-info"
-              sm={5}
-            >
+            <Col className="modal-info" sm={5}>
               <h6>
                 {bioImageDocument.site_id.label
                   .replace("_", " ")
@@ -56,28 +59,23 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
                   .replace("fnqr robson", "Robson Creek")
                   .replace("gwwl", "Great Western Woodlands")
                   .replace("lfld", "Litchfield")
-                  .replace("mgrl", "Mitchell Grass Rangeland")}
-                {" "}
+                  .replace("mgrl", "Mitchell Grass Rangeland")}{" "}
                 <br />
                 {bioImageDocument.image_type.value.replace(
                   "lai",
-                  "Leaf Area Index",
-                )}
-                {" "}
+                  "Leaf Area Index"
+                )}{" "}
                 <br />
-                Plot:
-                {" "}
+                Plot:{" "}
                 {bioImageDocument.plot.value
                   .replace("_", " ")
                   .replace("=", " ")
                   .replace("value", " ")
                   .replace(".", " ")
                   .replace("id", " ")
-                  .replace("_", " ")}
-                {" "}
+                  .replace("_", " ")}{" "}
                 <br />
                 Date:
-                {" "}
                 {bioImageDocument.site_visit_id}
                 <br />
                 {/* ID: {bioImageDocumentId.slice(-8)} */}
@@ -89,10 +87,9 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
         </Modal.Header>
         <hr className="modal-line" />
         <Modal.Body>
-    
           {" "}
           <br />
-
+       
           <Form className="center modal-select">
             {["checkbox"].map((type) => (
               // <div key={bioImageDocument.id} className="mb-3">
@@ -124,30 +121,23 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
           <Button
             variant="flat image-card-button"
             onClick={showCarousel}
+            // style={{width: "100%", height: "0", paddingTop: "56%", backgroundImage: `url(${img_url_small})`}}
           >
-            {/* <div style={{width: "100%", height: "0", paddingTop: "56%", backgroundImage: `url(${img_url_small})`}}>
-
-
-            </div> */}
             <Image
               fluid
               className="small_preview"
               onClick={handleShow}
               src={img_url_small}
-              
-            /> 
-             <Image
+            />
+            <Image
               fluid
               className="large_preview"
               onClick={handleShow}
               src={img_url_large}
             />
             <div className="hvrbox-layer_top">
-              <div
-                className="hvrbox-text"
-              >
-                View Image?
-                {" "}
+              <div className="hvrbox-text">
+                View Image?{" "}
                 {/* {site_id.replace("_", " ")
                   .replace("=", " ")
                   .replace("value", " ")
@@ -163,34 +153,32 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
                   .replace("lfld", "Litchfield")
                   .replace("mgrl", "Mitchell Grass Rangeland")
                   .replace("lai ", "Leaf Area Index")} */}
-
                 <br />
                 <img
                   src="/img/icons/Bioimages icon.svg"
                   alt="bioimages icon"
                   width="100px"
-                />
-                {" "}
+                />{" "}
                 <br />
                 <span className="center" />
               </div>
-            </div>
-            {" "}
+            </div>{" "}
             <div className="thumbnail-text">
               {/* <strong>Site:</strong>  */}
               {bioImageDocument.site_id.label}
               <br />
-              {/* <strong>Image Type:</strong> */}
-              {" "}
-              {bioImageDocument.image_type.value[0].toUpperCase()
-                + bioImageDocument.image_type.value.substr(1)}
-              {" "}
+              {/* <strong>Image Type:</strong> */}{" "}
+              {bioImageDocument.image_type.value[0].toUpperCase() +
+                bioImageDocument.image_type.value.substr(1)}{" "}
               <img
                 src="/img/phenocam.svg"
                 width="20px"
                 alt="phenocam"
                 style={{
-                  border: ".5px solid orange", borderRadius: "20px", padding: "2px", marginBottom: "5px",
+                  border: ".5px solid orange",
+                  borderRadius: "20px",
+                  padding: "2px",
+                  marginBottom: "5px",
                 }}
               />
             </div>
@@ -204,11 +192,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
                   label="View"
                   onClick={handleShow}
                 /> */}
-                  <Form.Check
-                    inline
-                    type={type}
-                    id={bioImageDocument.id}
-                  />
+                  <Form.Check inline type={type} id={bioImageDocument.id} />
                   {/* <Form.Check
                   inline
                   label="Download"
@@ -225,8 +209,8 @@ const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
             {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
           </Button>
         </div>
-
       </Card>
+      {/* </div>  */}
     </Col>
   );
 };

@@ -1,6 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Row, Pagination, DropdownButton, Dropdown, Modal, Carousel, Image } from "react-bootstrap";
+import {
+  Row,
+  Pagination,
+  DropdownButton,
+  Dropdown,
+  Modal,
+  Carousel,
+  Image,
+  Col,
+  Navbar,
+} from "react-bootstrap";
+import { Link } from "react-scroll";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResult from "./SearchResult";
 import BioResultPagination from "./BioResultPagination";
@@ -48,6 +59,7 @@ const SearchEngine = ({ embed }) => {
   const handleShow = () => setShow(true);
 
   const ShowPagination = () => (
+   
     <div>
       <Row>
         {data.map((bioImageDocument) => (
@@ -60,37 +72,27 @@ const SearchEngine = ({ embed }) => {
           />
         ))}
       </Row>
-      <Modal  size="lg" show={show} onHide={handleClose}>
-      <Modal.Header closeButton className="modal-header">
-        <Modal.Body>
-        <Carousel>
-         
-            {data.map((bioImageDocument) => (
-               <Carousel.Item>
-          <Image
-          fluid
-          className="d-block w-100"
-            src={bioImageDocument["_source"].preview_urls[0].url}
-           
-            key={bioImageDocument["_id"]}
-           
-          />
-             </Carousel.Item>
-        ))}
-     
-         
-          
-          </Carousel>
-
-
-
-
-
-        </Modal.Body>
-
-
-      </Modal.Header>
+      <Modal size="lg" show={show} onHide={handleClose}>
+        <Modal.Header closeButton className="modal-header">
+       
+          <Modal.Body>
+            <Carousel>
+              {data.map((bioImageDocument) => (
+                <Carousel.Item>
+                  <Image
+                    fluid
+                    className="d-block w-100"
+                    src={bioImageDocument["_source"].preview_urls[0].url}
+                    key={bioImageDocument["_id"]}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Modal.Body>
+        </Modal.Header>
       </Modal>
+
+
       <Row className="pagination-row">
         <Pagination className="pagination">
           <div>
