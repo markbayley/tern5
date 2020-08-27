@@ -1,12 +1,11 @@
 import React from "react";
-import { Navbar, NavItem, Nav } from "react-bootstrap";
-import {
-  Switch, Route, Link,
-} from "react-router-dom";
+import { Navbar, NavItem, Nav, Button } from "react-bootstrap";
+import { Switch, Route, Link } from "react-router-dom";
 import TERNDataDropdown from "../dropdowns/TERNDataDropdown";
 import CommunityDropdown from "../dropdowns/CommunityDropdown";
 import CoESRADropdown from "../dropdowns/CoESRADropdown";
 import DataVisualiserDropdown from "../dropdowns/DataVisualiserDropdown";
+import './TopBar.scss';
 
 export default function TopBar() {
   return (
@@ -14,10 +13,19 @@ export default function TopBar() {
       <div className="above-header">
         <div className="container">
           <div className="above-header-section-wrap d-flex">
-            <Navbar expand="md" style={{ padding: "0%" }}>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar expand="lg">
+              <Navbar.Toggle
+                aria-controls="basic-navbar-nav"
+                style={{ backgroundColor: "#fff" }}
+              />
+              {/* <Button style={{ borderRadius: "10px", float: "left" }} variant="flat" size="sm">
+                <span style={{ paddingRight: "5px" }}>
+                  <i className="fa fa-user"> </i>
+                </span>
+              </Button> */}
+
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav navbar className="ml-auto">
+                <Nav navbar className="">
                   <NavItem>
                     <TERNDataDropdown />
                   </NavItem>
@@ -34,19 +42,18 @@ export default function TopBar() {
               </Navbar.Collapse>
             </Navbar>
 
-            <div className="above-header-section above-header-section-1" style={{ marginLeft: "15px", maxWidth: "100px" }}>
+            <div className="above-header-section above-header-section-1">
               <div className="user-select">
                 <Link to="/">
                   {" "}
-                  <img src="img/logo-mini-all.png" alt="logo" />
-                  {" "}
+                  <img src="img/logo-mini-all.png" alt="logo" />{" "}
                 </Link>
               </div>
             </div>
             <div className="above-header-section above-header-section-2">
               <div id="data">
                 {" "}
-                <Link to="/data" style={{ color: "#fff", fontSize: "15px" }}>
+                <Link to="/data" style={{ color: "#fff", fontSize: "16px" }}>
                   <p className="center">Data</p>
                 </Link>
               </div>

@@ -369,6 +369,7 @@ const BioFacets = () => {
         ":active": {
           backgroundColor: !isDisabled && (isSelected ? data.color : "#ED694B"),
           color: "#ED694B",
+        
         },
         ":hover": {
           backgroundColor: "#B3D4C9",
@@ -381,6 +382,7 @@ const BioFacets = () => {
       backgroundColor: "#B3D4C9",
       color: "#00565D",
       fontSize: "18.5px",
+      borderRadius: "3px",
     }),
   };
 

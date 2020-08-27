@@ -14,6 +14,7 @@ import LoginButton from "../buttons/LoginButton";
 import { selectedFilterAction } from "../../store/reducer";
 import { CONFIG } from "../../config";
 
+
 /* Connects to another test API unsplash, not the TERN API as yet, need to change over */
 function SearchBar() {
   const dispatch = useDispatch();

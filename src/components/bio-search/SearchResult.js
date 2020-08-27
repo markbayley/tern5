@@ -14,7 +14,7 @@ import { Link } from "react-scroll";
 
 import "./SearchResult.scss";
 
-const SearchResult = ({ bioImageDocument, site_id, embed }) => {
+const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
   const img_url_small = bioImageDocument.preview_urls[1].url;
   const img_url_large = bioImageDocument.preview_urls[0].url;
 
@@ -89,38 +89,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
         </Modal.Header>
         <hr className="modal-line" />
         <Modal.Body>
-          <Carousel>
-            <Carousel.Item>
-              <Image
-                fluid
-                src={img_url_large}
-                // width="765px"
-                // height="465px"
-                className="d-block w-100"
-              />
-              <Carousel.Caption />
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                fluid
-                src={img_url_large}
-                // width="765px"
-                // height="465px"
-                className="d-block w-100"
-              />
-              <Carousel.Caption />
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                fluid
-                src={img_url_large}
-                // width="765px"
-                // height="465px"
-                className="d-block w-100"
-              />
-              <Carousel.Caption />
-            </Carousel.Item>
-          </Carousel>
+    
           {" "}
           <br />
 
@@ -154,15 +123,20 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
         <div className="hvrbox">
           <Button
             variant="flat image-card-button"
-            onClick={handleShow}
+            onClick={showCarousel}
           >
+            {/* <div style={{width: "100%", height: "0", paddingTop: "56%", backgroundImage: `url(${img_url_small})`}}>
+
+
+            </div> */}
             <Image
               fluid
               className="small_preview"
               onClick={handleShow}
               src={img_url_small}
-            />
-            <Image
+              
+            /> 
+             <Image
               fluid
               className="large_preview"
               onClick={handleShow}

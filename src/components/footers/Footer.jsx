@@ -7,12 +7,16 @@ const Footer = () => {
       <Container
         className="main-footer"
         fluid
-        style={{  paddingLeft: "0%", paddingRight: "0%", backgroundColor: "#043E4F" }}
+        style={{
+          paddingLeft: "0%",
+          paddingRight: "0%",
+          backgroundColor: "#043E4F",
+        }}
       />
       <Nav
         className="footer-partners justify-content-center"
         activeKey="/home"
-        style={{ lineHeight: "30px", backgroundColor: "#043E4F"}}
+        style={{ lineHeight: "30px", backgroundColor: "#043E4F" }}
       >
         <Nav.Item style={{ padding: "0 20px 0px 20px", fontSize: "16px" }}>
           <Nav.Link style={{ color: "white" }} href="/home">

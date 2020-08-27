@@ -11,7 +11,19 @@ import FilterHeader from "./bio-image-search/FilterHeader";
 // import { fetchSearchAction, getSelectedFilter } from "../store/reducer";
 import { fetchSearchAction, setSearchModeAction } from "../store/reducer";
 import LeftSideBar from "../animations/LeftSideBar";
+import Dates from "./bio-image-search/Dates";
+
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
+import { DateRangePicker } from 'react-date-range';
+
 // import MobileSidebar from "./test/MobileSidebar";
+
+
+import { addDays } from 'date-fns';
+import { useState } from 'react';
+
 
 
 
@@ -37,6 +49,14 @@ const BioImagesEngine = () => {
   const dispatch = useDispatch();
   const searchMode = useSelector((state) => state.ui.searchResults.searchMode);
 
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: 'selection'
+    }
+  ]);
+
   // TODO: move these two below somewhere else, or look at url params?
   // TODO: this triggers a re-render - this component does not depend on selectedFilter
   const selectedFilter = useSelector((state) => state.search.selectedFilter);
@@ -56,8 +76,21 @@ const BioImagesEngine = () => {
           <FilterHeader />
           <ImageSearchEngine />
           <DateRange />
+{/* 
+          <DateRangePicker
+            onChange={item => setState([item.selection])}
+            showSelectionPreview={false}
+            moveRangeOnFirstSelection={false}
+            
+            months={2}
+            ranges={state}
+            direction="horizontal"
+          /> */}
+
           {/* <MobileSidebar /> */}
-        
+          <Dates />
+
+    
           <Favourite />
         </Col>
         <Toggle />

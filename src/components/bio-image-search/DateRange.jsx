@@ -58,6 +58,7 @@ const DateRange = () => {
         <DateRangePicker
           small
           noBorder
+          showClearDates
           keepOpenOnDateSelect
           startDateAriaLabel="fff"
           startDate={start}
