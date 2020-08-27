@@ -10,6 +10,8 @@ import {
   Image,
   Col,
   Navbar,
+  Form,
+  Button,
 } from "react-bootstrap";
 import { Link } from "react-scroll";
 import { useSelector, useDispatch } from "react-redux";
@@ -59,7 +61,6 @@ const SearchEngine = ({ embed }) => {
   const handleShow = () => setShow(true);
 
   const ShowPagination = () => (
-   
     <div>
       <Row>
         {data.map((bioImageDocument) => (
@@ -74,24 +75,99 @@ const SearchEngine = ({ embed }) => {
       </Row>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton className="modal-header">
-       
-          <Modal.Body>
-            <Carousel>
-              {data.map((bioImageDocument) => (
-                <Carousel.Item>
-                  <Image
-                    fluid
-                    className="d-block w-100"
-                    src={bioImageDocument["_source"].preview_urls[0].url}
-                    key={bioImageDocument["_id"]}
-                  />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </Modal.Body>
+          <Modal.Title>
+            {" "}
+            <Col sm={2} className="modal-column">
+              <Navbar.Brand>
+                <div className="site-branding">
+                  <Link to="/">
+                    <img src="/img/logo@3x.png" alt="" />
+                  </Link>
+                </div>
+              </Navbar.Brand>
+            </Col>
+            <Col className="modal-info" sm={5}>
+              <h6>
+                {/* {bioImageDocument.site_id.label
+                  .replace("_", " ")
+                  .replace("=", " ")
+                  .replace("value", " ")
+                  .replace(".", " ")
+                  .replace("id", " ")
+                  .replace("_", " ")
+                  .replace("alic", "Alice Mulga")
+                  .replace("capetrib", "Cape Tribulation")
+                  .replace("cblp", "Cumberland Plain")
+                  .replace("clpm", "Calperum Mallee")
+                  .replace("fnqr robson", "Robson Creek")
+                  .replace("gwwl", "Great Western Woodlands")
+                  .replace("lfld", "Litchfield")
+                  .replace("mgrl", "Mitchell Grass Rangeland")}{" "} */}
+                <br />
+                {/* {bioImageDocument.image_type.value.replace(
+                  "lai",
+                  "Leaf Area Index"
+                )}{" "} */}
+                <br />
+                Plot:{" "}
+                {/* {bioImageDocument.plot.value
+                  .replace("_", " ")
+                  .replace("=", " ")
+                  .replace("value", " ")
+                  .replace(".", " ")
+                  .replace("id", " ")
+                  .replace("_", " ")}{" "} */}
+                <br />
+                Date:
+                {/* {bioImageDocument.site_visit_id} */}
+                <br />
+                {/* ID: {bioImageDocumentId.slice(-8)} */}
+                1/
+                {/* {bioImageDocument.doc_count} */}
+              </h6>
+            </Col>
+          </Modal.Title>
         </Modal.Header>
-      </Modal>
+        <hr className="modal-line" />
+        <Modal.Body>
+          <Carousel>
+            {data.map((bioImageDocument) => (
+              <Carousel.Item>
+                <Image
+                  fluid
+                  className="d-block w-100"
+                  src={bioImageDocument["_source"].preview_urls[0].url}
+                  key={bioImageDocument["_id"]}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
 
+          <Form className="center modal-select">
+            {["checkbox"].map((type) => (
+              // <div key={bioImageDocument.id} className="mb-3">
+              <div key={type} className="mb-3">
+                <Form.Check
+                  inline
+                  label="Add To Selected Images?"
+                  type={type}
+                  // id={bioImageDocument.id}
+                  key={type}
+                />
+              </div>
+            ))}
+          </Form>
+        </Modal.Body>{" "}
+        <br />
+        <Modal.Footer>
+          <Button variant="login" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="login" onClick={handleClose}>
+            Download
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <Row className="pagination-row">
         <Pagination className="pagination">
@@ -102,17 +178,14 @@ const SearchEngine = ({ embed }) => {
               variant="pageitems"
               className="pageitems"
             >
-              <Dropdown.Item onClick={() => handlePageSizeChange(18)}>
-                18 per page
+              <Dropdown.Item onClick={() => handlePageSizeChange(24)}>
+                24 per page
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(36)}>
-                36 per page
+              <Dropdown.Item onClick={() => handlePageSizeChange(48)}>
+                48 per page
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(54)}>
-                54 per page
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => handlePageSizeChange(102)}>
-                102 per page
+              <Dropdown.Item onClick={() => handlePageSizeChange(96)}>
+                96 per page
               </Dropdown.Item>
             </DropdownButton>
           </div>
