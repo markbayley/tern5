@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Card,
   Button,
@@ -10,41 +11,30 @@ import {
   Carousel,
 } from "react-bootstrap";
 import { Link } from "react-scroll";
-import { useDispatch, useSelector } from "react-redux";
-import { selectedFilterAction } from "../../store/reducer";
 
-const SearchResult = ({ bioImageDocument, site_id, embed }) => {
-  const dispatch = useDispatch();
-  const selectedFilter = useSelector((state) => state.search.selectedFilter);
+import "./SearchResult.scss";
 
-  // let splitAggregation = null;
-  // if (aggregation != null) {
-  //   const aggreSplit = aggregation.split(".");
-  //   splitAggregation = aggreSplit[0];
-  // }
-
-  const img_url = bioImageDocument.thumbnail_url;
+const SearchResult = ({ bioImageDocument, site_id, embed, showCarousel }) => {
+  const img_url_small = bioImageDocument.preview_urls[1].url;
+  const img_url_large = bioImageDocument.preview_urls[0].url;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // const handleFilter = () => {
-  //   const fKey = splitAggregation;
-  //   const fValue = site_id;
-  //   const addFilter = { [fKey]: fValue };
-  //   // Add filter
-  //   const updatedFilter = { ...selectedFilter, ...addFilter };
-  //   dispatch(selectedFilterAction(updatedFilter));
-  // };
-
   return (
-    <Col xl={embed ? 12 : 3} lg={embed ? 12 : 6} md={embed ? 12 : 6} sm={12} xs={12}>
+    <Col
+      xl={embed ? 7 : 2}
+      lg={embed ? 7 : 3}
+      md={embed ? 12 : 4}
+      sm={12}
+      xs={12}
+    >
       <Modal size="lg" show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ paddingBottom: "10%" }}>
+        <Modal.Header closeButton className="modal-header">
           <Modal.Title>
             {" "}
-            <Col sm={2} style={{ position: "absolute", left: "0%" }}>
+            <Col sm={2} className="modal-column">
               <Navbar.Brand>
                 <div className="site-branding">
                   <Link to="/">
@@ -53,16 +43,8 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                 </div>
               </Navbar.Brand>
             </Col>
-            <Col
-              sm={5}
-              style={{
-                position: "absolute",
-                right: "4%",
-                textAlign: "right",
-                color: "#043E4F",
-              }}
-            >
-              <h6 style={{ textTransform: "capitalize" }}>
+            <Col className="modal-info" sm={5}>
+              <h6>
                 {bioImageDocument.site_id.label
                   .replace("_", " ")
                   .replace("=", " ")
@@ -93,103 +75,70 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                   .replace("id", " ")
                   .replace("_", " ")}{" "}
                 <br />
-                Date: {bioImageDocument.site_visit_id} <br />
+                Date:
+                {bioImageDocument.site_visit_id}
+                <br />
                 {/* ID: {bioImageDocumentId.slice(-8)} */}
-                1/{bioImageDocument.doc_count}
+                1/
+                {bioImageDocument.doc_count}
               </h6>
             </Col>
           </Modal.Title>
         </Modal.Header>
-        <hr
-          style={{
-            border: "0.5px solid #66b3a6",
-            marginTop: "0%",
-            marginBottom: "0.5%",
-          }}
-        ></hr>
+        <hr className="modal-line" />
         <Modal.Body>
-          <Carousel>
-            <Carousel.Item>
-              <Image
-                src={img_url}
-                width="765px"
-                height="465px"
-                className="d-block w-100"
-              />
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                src={img_url}
-                width="765px"
-                height="465px"
-                className="d-block w-100"
-              />
-
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                src={img_url}
-                width="765px"
-                height="465px"
-                className="d-block w-100"
-              />
-
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>{" "}
+          {" "}
           <br />
-          <br />
-          <Form
-            className="center"
-            style={{ paddingTop: "5px", color: "#065f65" }}
-          >
-            {["checkbox"].map((type, index) => (
+       
+          <Form className="center modal-select">
+            {["checkbox"].map((type) => (
               // <div key={bioImageDocument.id} className="mb-3">
-              <div key={index} className="mb-3">
+              <div key={type} className="mb-3">
                 <Form.Check
                   inline
                   label="Add To Selected Images?"
                   type={type}
                   id={bioImageDocument.id}
-                  key={index}
+                  key={type}
                 />
               </div>
             ))}
           </Form>
-          <p></p>
+          <p />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="flat" onClick={handleClose}>
+          <Button variant="login" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="flat" onClick={handleClose}>
+          <Button variant="login" onClick={handleClose}>
             Download
           </Button>
         </Modal.Footer>
       </Modal>
 
-      <Card id={site_id} style={{ border: "#fff", marginRight: "-8%" }}>
+      <Card id={site_id} className="image-card">
         <div className="hvrbox">
           <Button
-            variant="flat"
-            style={{ width: "100%", padding: "0px" }}
-            onClick={handleShow}
+            variant="flat image-card-button"
+            onClick={showCarousel}
+            // style={{width: "100%", height: "0", paddingTop: "56%", backgroundImage: `url(${img_url_small})`}}
           >
             <Image
-              className="hvrbox-layer_bottom"
+              fluid
+              className="small_preview"
               onClick={handleShow}
-              src={img_url}
-              style={{ width: "100%", height: "210px", padding: "1%" }}
+              src={img_url_small}
+            />
+            <Image
+              fluid
+              className="large_preview"
+              onClick={handleShow}
+              src={img_url_large}
             />
             <div className="hvrbox-layer_top">
-              <div
-                className="hvrbox-text"
-                style={{ textTransform: "capitalize" }}
-              >
-                View{" "}
-                {site_id.replace("_", " ")
+              <div className="hvrbox-text">
+                View Image?{" "}
+                {/* {site_id.replace("_", " ")
                   .replace("=", " ")
                   .replace("value", " ")
                   .replace(".", " ")
@@ -203,8 +152,7 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                   .replace("gwwl", "Great Western Woodlands")
                   .replace("lfld", "Litchfield")
                   .replace("mgrl", "Mitchell Grass Rangeland")
-                  .replace("lai ", "Leaf Area Index")}
-                ?
+                  .replace("lai ", "Leaf Area Index")} */}
                 <br />
                 <img
                   src="/img/icons/Bioimages icon.svg"
@@ -212,51 +160,69 @@ const SearchResult = ({ bioImageDocument, site_id, embed }) => {
                   width="100px"
                 />{" "}
                 <br />
-                <span className="center"></span>
+                <span className="center" />
               </div>
             </div>{" "}
-            <strong>Site:</strong> {bioImageDocument.site_id.label} <br />
-            <strong>Image Type:</strong>{" "}
-            {bioImageDocument.image_type.value[0].toUpperCase() +
-              bioImageDocument.image_type.value.substr(1)}{" "}
-            {/* <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "}  */}
-            {/* <strong>Plot:</strong> {bioImageDocument.plot.value}{" "} */}
-            {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
-          </Button>
-        </div>
-        {/* 
-          <Form
-            className="center"
-            style={{ paddingTop: "5px", color: "#065f65" }}
-          >
-            {["checkbox"].map((type, index) => (
-              <div key={index} className="mb-3">
-                <Form.Check
+            <div className="thumbnail-text">
+              {/* <strong>Site:</strong>  */}
+              {bioImageDocument.site_id.label}
+              <br />
+              {/* <strong>Image Type:</strong> */}{" "}
+              {bioImageDocument.image_type.value[0].toUpperCase() +
+                bioImageDocument.image_type.value.substr(1)}{" "}
+              <img
+                src="/img/phenocam.svg"
+                width="20px"
+                alt="phenocam"
+                style={{
+                  border: ".5px solid orange",
+                  borderRadius: "20px",
+                  padding: "2px",
+                  marginBottom: "5px",
+                }}
+              />
+            </div>
+            <Form className="center image-form">
+              {["checkbox"].map((type) => (
+                <div className="image-checkbox" key={type}>
+                  {/* <Form.Check
                   type={type}
                   id={bioImageDocument.id}
                   inline
                   label="View"
                   onClick={handleShow}
-                />
-                <Form.Check
-                  inline
-                  label="Select"
-                  type={type}
-                  id={bioImageDocument.id}
-                />
-                <Form.Check
+                /> */}
+                  <Form.Check inline type={type} id={bioImageDocument.id} />
+                  {/* <Form.Check
                   inline
                   label="Download"
                   type={type}
                   id={bioImageDocument.id}
-                />
+                /> */}
 
-                {/*{props.value.doc_count} */}
-        {/* </div>
-            ))}
-          </Form> */}
+                  {/* {props.value.doc_count} */}
+                </div>
+              ))}
+            </Form>
+            {/* <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "}  */}
+            {/* <strong>Plot:</strong> {bioImageDocument.plot.value}{" "} */}
+            {/* <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "} */}
+          </Button>
+        </div>
       </Card>
+      {/* </div>  */}
     </Col>
   );
 };
+
+SearchResult.propTypes = {
+  bioImageDocument: PropTypes.objectOf(PropTypes.any).isRequired,
+  site_id: PropTypes.string.isRequired,
+  embed: PropTypes.bool,
+};
+
+SearchResult.defaultProps = {
+  embed: false,
+};
+
 export default SearchResult;

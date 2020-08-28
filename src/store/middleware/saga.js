@@ -1,10 +1,11 @@
-// import { all, takeLatest, takeEvery, put, call } from "redux-saga/effects";
+// eslint-disable-next-line object-curly-newline
 import { all, takeLatest, put, call } from "redux-saga/effects";
 import {
   fetchSearchAction,
   fetchSearchDoneAction,
   fetchFacetsAction,
   fetchFacetsDoneAction,
+  fetchSearchErrorAction,
 } from "../reducer";
 
 import { bioimages } from "./api";
@@ -15,7 +16,7 @@ function* fetchSearchSaga(action) {
     const { data } = yield call(bioimages.fetchSearch, action.payload);
     yield put(fetchSearchDoneAction(data));
   } catch (error) {
-    yield put(fetchSearchDoneAction(error.message));
+    yield put(fetchSearchErrorAction(error.message));
   }
 }
 
@@ -24,7 +25,7 @@ function* fetchFacetsSaga(action) {
     const { data } = yield call(bioimages.fetchFacets, action.payload);
     yield put(fetchFacetsDoneAction(data));
   } catch (error) {
-    yield put(fetchFacetsDoneAction(error.message));
+    yield put(fetchSearchErrorAction(error.message));
   }
 }
 

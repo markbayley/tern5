@@ -1,0 +1,194 @@
+
+/* FILTER */
+
+.filter-bar {
+  height: 80vh;
+  margin: 0px;
+  padding-right: 0px;
+  width: 400px;
+  // border-right: 60px solid #B3D4C9;
+  z-index: 9;
+  // background-image: linear-gradient(to bottom right, #fff, #B3D4C9);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.filter-line {
+  border: 0.5px solid #66b3a6;
+  margin-top: 0%;
+  margin-bottom: 0.5%;
+}
+.filter-type {
+  margin: 0% 1%;
+  text-transform: capitalize;
+  color: #065f65;
+  font-weight: 450;
+}
+.filter-header {
+  color: #fff;
+  // backgroundColor: #00565D;
+  padding: 20px 10px 20px 10px;
+  margin-bottom: 1px;
+  display: flex;
+  justify-content: space-around;
+}
+// .accordion {
+//   text-transform: capitalize;
+//   color: #065f65;
+//   font-weight: 500;
+//   display: flex;
+//   align-items: center;
+// }
+
+
+
+
+/* GALLERY */
+
+.thumbnail-text {
+  font-size: 15px;
+}
+
+
+
+
+/* SEARCHBAR */
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  background-image: url(/img/icons/search-bar2.png);
+  background-repeat: no-repeat;
+  height: 65px;
+  width: 455px;
+  padding-left: 1.3%;
+ 
+}
+.nav-bar {
+  height: 4%;
+  border-bottom: 1.5px solid #6EB3A6;
+ 
+}
+.nav-bar-col {
+  position: absolute;
+  left: 0;
+ 
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  color: #6EB3A6;
+ 
+}
+.bio-icon {
+  margin-bottom: 3%;
+  height: 35px;
+  margin-top: 0%;
+}
+.searchbutton {
+  background-image: url(/img/icons/search-arrow.svg);
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  height: 33px;
+  width: 33px;
+  margin-top: 3.7%;
+  margin-right: 20px;
+  border-radius: 50px;
+}
+.searchbutton:hover {
+  background-color: #B3D4C9;
+  transition: background 0.01s;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.icon-col {
+  display: flex; 
+  justify-content: flex-end;
+}
+.nav-item {
+  padding: 0 20px 0 20px;
+  font-size: 16px;
+}
+.nav-link {
+  color: #043E4F;
+}
+.search-form {
+  font-size: 20px;
+  color: #00565D;
+  margin-top: 17px; 
+}
+.search-icon {
+    width: 8%;
+    padding-top: 2%;
+}
+
+
+/* FOOTER */ 
+
+.footer-row{
+  position: fixed;
+  bottom: 0;
+  width: 103%;
+  line-height: 15px;
+  background-color: #003d4f;
+  height: 35px;
+}
+.footer-item {
+  padding: 0 20px 0px 20px;
+  font-size: 14px;
+}
+.breadcrumb {
+  position: fixed;
+  border-top: 1.5px solid #66b3a6;
+  width: 100%;
+  z-index: 20;
+}
+.breadcrumb-row {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 103%;
+  line-height: 15px;
+  height: 35px;
+}
+
+@media (max-width: 998px) {
+  .biologo {
+    display: none;
+  }
+  .icon-bar {
+    display: none;
+  }
+  .filter-bar {
+    border-right: 0px solid #B3D4C9;
+  }
+  #place{
+    font-size: 19px;
+    }
+  .search-form {
+  
+  }
+  
+  }
+
+ @media (max-width: 768px) {
+  #place{
+    font-size: 15px;
+    }
+  .login {
+    display: none;
+  }
+  .searchbar {
+    background-size: 390px 60px;
+    display: flex;
+    justify-content: start;
+  }
+  .search-form {
+ 
+  }
+ }
+
+
+

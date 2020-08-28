@@ -1,0 +1,55 @@
+/* MAP */
+
+
+
+
+
+
+
+
+.map-image-toggle {
+    position: fixed;
+    right: 5%;
+    top: 80px;
+    z-index: 100;
+  }
+  .toggle-result {
+    height: 80vh;
+    padding: 0%;
+    margin: 0%;
+  }
+  .tool-tip {
+    margin: 0px;
+    padding: 3px 7px;
+    border-left: 3px solid #065f65;
+    font-family: "museo-sans", sans-serif;
+    color: #065f65;
+    // border-radius: 10px;
+    
+  }
+  a {
+    .tool-tip-link {
+       color: #065f65;
+       text-transform: capitalize;
+    }
+  }
+
+  .main-toggle {
+    position: absolute;
+    left: 25%;
+    bottom: 60px;
+    z-index: 8 !important;
+  }
+
+  @media (max-width: 1199px) {
+    .main-toggle {
+      left: 40% !important;
+      bottom: 50px;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .main-toggle {
+      display: none;
+    }
+  }

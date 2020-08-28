@@ -1,45 +1,51 @@
-version: '3.5'
+image: node:12
 
-services:
+definitions:
+  # generic re-usable steps
+  steps:
+    - step: &envstep
+      # use a multiline step to set environment variables
+      - script: &setenv |
+          export IMAGE_NAME=ternau/bioimages_portal_ui
 
-  # db:
-  #   container_name: bioimages-db
-  #   image: postgres
-  #   ports:
-  #     - 5432:5432
-  #   volumes:
-  #     - ./volumes/db:/var/lib/postgresql/data
-  #   env_file:
-  #     - .env
+    - step: &build-test-step
+        caches:
+          - node
+        script: *build-test
+          - *setenv
+          - npm install
+          - npm run build
+          - CI=true npm test
+        services:
+          - docker
 
-  # flask-api:
-  #   container_name: bioimages-api
-  #   restart: always
-  #   build:
-  #     context: ./backend/
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 5000:80
-  #   volumes:
-  #     - ./backend:/usr/src/app
-  #   depends_on:
-  #     - db
-  #   env_file:
-  #     - .env
+  services:
+    docker:
+      memory: 512  # reduce memory usage for docker ... it's a very simple copy / build
 
-  client:
-    container_name: react-app
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    volumes:
-      - './client:/usr/src/app'
-      - '/usr/src/app/node_modules'
-    ports:
-      - 3000:3000
-    # depends_on:
-    #   - flask-api
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
-      - HOST_URL='https://bioimages-test.tern.org.au/api/v1.0/'
+
+pipelines:
+
+  branches:
+    develop:
+      - step: *build-test-step
+    master:
+      - step:
+          caches:
+            - node
+          script:
+            - *build-test
+            # TODO: get some image version from somewhere?
+            # - export VERSION=$(....)
+            - docker build -t $IMAGE_NAME .
+            # - export IMAGE_TAG=${VERSION/+/-}
+            # - docker tag $IMAGE_NAME $IMAGE_NAME:$IMAGE_TAG
+            # - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+            # - docker push $IMAGE_NAME
+            # - docker push $IMAGE_NAME:$IMAGE_TAG
+          services:
+            - docker
+
+  pull-requests:
+    '**':
+      - step: *build-test-step

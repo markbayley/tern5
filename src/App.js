@@ -2,15 +2,23 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
-import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./custom.scss";
+
+import TopBar from "./components/headers/TopBar";
+import BreadCrumb from "./components/footers/BreadCrumb";
+
 import BioImagesEngine from "./components/BioImagesEngine";
+import Footer from "./components/footers/Footer";
 
 function App() {
-  const initFilter = {};
   return (
     <Router>
-      <BioImagesEngine initFilter={initFilter} />
+      <TopBar />
+      <BioImagesEngine />
+
+      {/* <BreadCrumb /> */}
+      <Footer />
     </Router>
   );
 }
