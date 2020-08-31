@@ -1,15 +1,15 @@
 import React from "react";
-import { Container, Col, Row } from "reactstrap";
-
+import { Container, Row, Col } from "reactstrap";
+import './footer.css'
 
 function MainFooter() {
   return (
-
-      <div  style={{border: "10px solid red"}}>
-        <Container className="container">
-          <Row className="main-footer-row" style={{height: "20vh"}}>
-            <Container className="main-footer-container">
-              <Col className="footer-col footer-column-1">
+  <>
+      <Row className="main-footer" style={{ padding: "15px 30px"}}>
+        {/* <div className="container"> */}
+          <div className="main-footer-row">
+            <div className="main-footer-container">
+              <div className="footer-col footer-column-1">
                 <div className="footer-col-inner">
                   <div className="footer-col-inner-border">
                     <h3>Contact us</h3>
@@ -58,8 +58,8 @@ function MainFooter() {
                     </ul>
                   </div>
                 </div>
-              </Col>
-              <Col className="footer-col footer-column-2">
+              </div>
+              <div className="footer-col footer-column-2">
                 <div className="footer-col-inner">
                   <div className="footer-col-inner-border">
                     <h3>Funding</h3>
@@ -78,16 +78,16 @@ function MainFooter() {
                     </a>
                   </div>
                 </div>
-              </Col>
-              <Col className="footer-col footer-column-3">
+              </div>
+              <div className="footer-col footer-column-3">
                 <div className="footer-col-inner">
                   <div className="footer-col-inner-border">
                     <h3>Co-investment</h3>
                     <img width="180" src="img/Coinvestment-lockup.jpg" alt="" />
                   </div>
                 </div>
-              </Col>
-              <Col className="footer-col footer-column-4">
+              </div>
+              <div className="footer-col footer-column-4">
                 <div className="footer-col-inner">
                   <div className="footer-col-inner-border">
                     <h3>Newsletter</h3>
@@ -108,12 +108,36 @@ function MainFooter() {
                     </div>
                   </div>
                 </div>
-              </Col>
-            </Container>
-          </Row>
-        </Container>
-      </div>
+              </div>
+            </div>
+          </div>
+        {/* </div> */}
+        </Row>
+        <Container fluid>
+<Row style={{backgroundColor: "lightgrey", display: 'flex', alignItems: 'center', padding: "10px 0px 70px 0px"}}>
+
+<Col>
+
+  <img src="img/logo-uq@2x.png" alt="" width="169" height="47"/>
+  </Col>
+<Col>
+  <img src="https://www.tern.org.au/wp-content/uploads/james-cook-logo@2x.png" alt="" width="145"/>
+  </Col>
+<Col>
+  <img src="img/logo-csiro@2x.png" alt="" width="55"/>
+  </Col>
+<Col>
+  <img src="https://www.tern.org.au/wp-content/uploads/ua-logo@2x.png" alt="" width="145"/>
+  </Col>
+  
+</Row>
+</Container>
+
    
+
+
+</>
+  
   );
 }
 

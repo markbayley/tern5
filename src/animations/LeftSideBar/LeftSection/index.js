@@ -7,9 +7,13 @@ import { LeftSideBarContext } from "../LeftSideBarContext";
 import "./style.scss";
 import SearchEngine from "../../../components/bio-search/SearchEngine";
 import BioMapEngine from "../../../components/bio-image-map/BioMapEngine";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearchAction, setSearchModeAction } from "../../../store/reducer";
 
 const LeftSection = ({ searchmode }) => {
   const { isShowSidebar, setIsShowSidebar } = useContext(LeftSideBarContext);
+
+  const dispatch = useDispatch()
   return (
     <div className={`LeftSideBar__LeftSection LeftSideBar__LeftSection--${isShowSidebar ? "show" : "hide"}`}>
 
@@ -32,6 +36,7 @@ const LeftSection = ({ searchmode }) => {
             // onClick={() => setMySearch(searchmode === 'Map')}
             style={{ width: "100%" }}
             variant="flat"
+            onClick={() => dispatch(setSearchModeAction("Map"))}
           >
             <img src="img/map1.png" width="100%" alt="map" />
             Click the map to view

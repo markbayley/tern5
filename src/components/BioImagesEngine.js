@@ -53,7 +53,7 @@ const BioImagesEngine = () => {
     <>
       <SearchBar />
       <LeftSideBar searchmode={searchMode} />
-      <Row>
+      <Row style={{borderBottom: "1.5px solid #6EB3A6"}}>
         <Col xs="auto" className="filter-bar">
           <FilterHeader />
           <ImageSearchEngine />

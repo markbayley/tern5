@@ -5,12 +5,10 @@ const Footer = () => {
   return (
     <>
       <Container
-        className="main-footer"
+        className=""
         fluid
         style={{
-          paddingLeft: "0%",
-          paddingRight: "0%",
-          backgroundColor: "#043E4F",
+          backgroundColor: "#043E4F"
         }}
       />
       <Nav
@@ -35,7 +33,7 @@ const Footer = () => {
         </Nav.Item>
       </Nav>
       <Container />
-    </>
+      </>
   );
 };
 

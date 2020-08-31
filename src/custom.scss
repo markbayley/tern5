@@ -9,7 +9,8 @@
   // border-right: 60px solid #B3D4C9;
   z-index: 9;
   // background-image: linear-gradient(to bottom right, #fff, #B3D4C9);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-right: 1px solid lightgrey;
 }
 
 
@@ -47,6 +48,12 @@
 
 .thumbnail-text {
   font-size: 15px;
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  z-index: 2;
+  background-color: #fff;
 }
 
 

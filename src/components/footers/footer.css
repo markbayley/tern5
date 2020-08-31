@@ -1,0 +1,183 @@
+* {
+	box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Uni Neue';
+    src: url('/fonts/fontfabric_-_unineueheavy-webfont.woff2')format('woff2'),
+         url('/fonts/fontfabric_-_unineueheavy-webfont.woff')format('woff');
+    font-weight: 900;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Uni Neue';
+    src: url('/fontfabric_-_unineuelight-webfont.woff2')format('woff2'),
+         url('/fontfabric_-_unineuelight-webfont.woff')format('woff');
+    font-weight: 300;
+    font-style: normal;
+
+}
+html {
+	font-size: 100% !important;
+}
+body {
+	-webkit-font-smoothing: antialiased;
+	color: #333333;
+	font-family: 'museo-sans', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.42857143;
+	margin: 0;
+	padding: 0;
+}
+a {
+    color: #e36a51;
+}
+.d-flex {
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+}
+.fz-15 {
+	font-size: 15px;
+}
+.font-500 {
+	font-weight: 500;
+}
+.mb-20 {
+	margin-bottom: 20px;
+}
+.mb-46 {
+	margin-bottom: 46px;
+}
+.text-black {
+	color: #0F3540;
+}
+
+
+.main-footer {
+	padding: 110px 0px 125px 0px;
+}
+.footer-col {
+	float: left;
+	width: 25%;
+}
+.footer-col-inner {
+	padding: 0 15px;
+}
+.footer-col-inner-border {
+    border-style: solid;
+    border-width: 7px 0px 0px 0px;
+    border-color: #043e4f;
+    padding: 30px 0 0px 0;
+}
+.main-footer .footer-column-2 .footer-col-inner-border {
+	border-color: #6093a4;
+}
+.main-footer .footer-column-3 .footer-col-inner-border {
+	border-color: #6093A4;
+}
+.main-footer .footer-column-4 .footer-col-inner-border {
+	border-color: #e36a51;
+}
+.main-footer h3 {
+	font-family: 'Uni Neue', Sans-serif;
+	font-size: 16px;
+	font-weight: 900;
+}
+.main-footer .social-icons {
+	margin: 0;
+	margin-top: 46px;
+	padding: 0;
+}
+.main-footer .social-icons li {
+	display: inline-block;
+	margin-right: 20px;
+}
+.main-footer .social-icons li a {
+	color: #0f3540;
+	font-size: 25px;
+}
+.main-footer .social-icons li a:hover {
+	color: #e36a51;
+}
+.main-footer .subscription-form {
+	margin-top: 66px;
+}
+.main-footer .subscription-form input[type="text"] {
+	border: 1px solid #c4c4c4;
+	border-radius: 50px 50px 50px 50px;
+	color: rgba(112,112,112,0.53);
+	font-family: 'museo-sans', Sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	padding: 10px 25px 9px 25px;
+}
+.main-footer .subscription-form input {
+	max-width: 221px;
+	width: 100%;
+}
+.main-footer .subscription-form input[type="submit"] {
+	background-color: #dc4425;
+	border: 0;
+	border-radius: 50px 50px 50px 50px;
+	color: #FFF;
+	font-family: "Uni Neue", Sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    margin-top: 10px;
+    padding: 8px 40px 8px 40px; 
+}
+.main-footer .subscription-form input[type="submit"]:hover {
+	background-color: #e36a51;
+}
+.main-footer .below-footer {
+	clear: both;
+	padding-top: 100px;
+}
+.main-footer .below-footer .logos {
+	background-color: #ecebea;
+	clear: both;
+}
+.main-footer .below-footer .container {
+	max-width: 1760px;
+}
+.main-footer .below-footer p {
+	color: #d0d0d0;
+	font-family: 'museo-sans', sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	padding-left: 15px;
+}
+.main-footer .footer-logos {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.main-footer .footer-logos li {
+	display: inline-block;
+	padding-top: 10px;
+	text-align: center;
+	width: 12.3%;
+}
+.main-footer .footer-logos li img {
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+
+@media(max-width: 1024px) {
+	.footer-col {
+		width: 50%;
+	}
+}
+@media(max-width: 767px) {
+	.footer-col {
+		float: none;
+		text-align: center;
+		width: 100%;
+	}
+	.footer-column-2, .footer-column-3, .footer-column-4 {
+		display: none;
+	}
+}

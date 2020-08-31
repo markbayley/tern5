@@ -10,6 +10,7 @@ import BreadCrumb from "./components/footers/BreadCrumb";
 
 import BioImagesEngine from "./components/BioImagesEngine";
 import Footer from "./components/footers/Footer";
+import MainFooter from "./components/footers/MainFooter";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
       <TopBar />
       <BioImagesEngine />
 
-      {/* <BreadCrumb /> */}
-      <Footer />
+      <BreadCrumb />
+      {/* <Footer /> */}
+      <MainFooter />
     </Router>
   );
 }
